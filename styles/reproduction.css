@@ -1,0 +1,120 @@
+/* Estilos específicos para o sistema de reprodução */
+
+/* Garantir que todos os textos sejam visíveis */
+.reproduction-container * {
+  color: #1f2937 !important; /* gray-800 */
+}
+
+.reproduction-container .text-gray-500 {
+  color: #6b7280 !important;
+}
+
+.reproduction-container .text-gray-600 {
+  color: #4b5563 !important;
+}
+
+.reproduction-container .text-gray-700 {
+  color: #374151 !important;
+}
+
+.reproduction-container .text-gray-900 {
+  color: #111827 !important;
+}
+
+/* Cores específicas para status */
+.reproduction-container .text-red-600 {
+  color: #dc2626 !important;
+}
+
+.reproduction-container .text-green-600 {
+  color: #16a34a !important;
+}
+
+.reproduction-container .text-blue-600 {
+  color: #2563eb !important;
+}
+
+.reproduction-container .text-orange-600 {
+  color: #ea580c !important;
+}
+
+.reproduction-container .text-purple-600 {
+  color: #9333ea !important;
+}
+
+.reproduction-container .text-yellow-600 {
+  color: #ca8a04 !important;
+}
+
+/* Garantir contraste em backgrounds coloridos */
+.reproduction-container .bg-blue-50 * {
+  color: #1e40af !important;
+}
+
+.reproduction-container .bg-green-50 * {
+  color: #166534 !important;
+}
+
+.reproduction-container .bg-orange-50 * {
+  color: #c2410c !important;
+}
+
+.reproduction-container .bg-purple-50 * {
+  color: #7c3aed !important;
+}
+
+.reproduction-container .bg-red-50 * {
+  color: #dc2626 !important;
+}
+
+.reproduction-container .bg-yellow-50 * {
+  color: #a16207 !important;
+}
+
+/* Inputs e selects */
+.reproduction-container input,
+.reproduction-container textarea,
+.reproduction-container select,
+.reproduction-container button {
+  color: #111827 !important;
+}
+
+.reproduction-container input::placeholder,
+.reproduction-container textarea::placeholder {
+  color: #6b7280 !important;
+}
+
+/* Labels */
+.reproduction-container label {
+  color: #374151 !important;
+  font-weight: 500 !important;
+}
+
+/* Cards */
+.reproduction-container .card-title {
+  color: #111827 !important;
+  font-weight: 600 !important;
+}
+
+/* Badges */
+.reproduction-container .badge {
+  font-weight: 600 !important;
+}
+
+/* Botões */
+.reproduction-container button {
+  font-weight: 500 !important;
+}
+
+.reproduction-container button:not(.bg-blue-600):not(.bg-red-600) {
+  color: #374151 !important;
+}
+
+/* Alertas */
+.reproduction-container .alert {
+  border-width: 1px !important;
+}
+
+.reproduction-container .alert * {
+  font-weight: 500 !important;
+}
