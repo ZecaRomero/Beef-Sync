@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import { useAuth } from "../contexts/AuthContext";
 import Layout from "../components/Layout";
 import ModernDashboard from "../components/ModernDashboard";
 import AuctionManager from "../components/AuctionManager";
@@ -18,6 +19,156 @@ export default function Dashboard() {
   const [showWhatsAppMulti, setShowWhatsAppMulti] = useState(false);
   const [showTimeline, setShowTimeline] = useState(false);
   const router = useRouter();
+  const { user } = useAuth();
+
+  // Verificar autenticação
+  useEffect(() => {
+    if (!user) {
+      router.push('/login');
+    }
+  }, [user, router]);
+
+  // Se não há usuário, mostrar loading
+  if (!user) {
+    return (
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-600 mx-auto"></div>
+          <p className="mt-4 text-gray-600 dark:text-gray-400">Carregando...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Tela para consultores (usuários limitados)
+  if (user.role !== 'developer') {
+    return (
+      <Layout>
+        <div className="space-y-6">
+          {/* Header para Consultores */}
+          <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-white">
+            <div className="flex items-center justify-between">
+              <div>
+                <h1 className="text-3xl font-bold mb-2">
+                  👋 Bem-vindo, {user.name}!
+                </h1>
+                <p className="text-blue-100 text-lg">
+                  Consultor - Acesso aos relatórios e visualizações
+                </p>
+              </div>
+              <div className="text-6xl">
+                👨‍💼
+              </div>
+            </div>
+          </div>
+
+          {/* Ações Disponíveis para Consultores */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <button
+              onClick={() => setShowBIDashboard(true)}
+              className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700 group"
+            >
+              <div className="flex items-center space-x-4">
+                <div className="p-3 bg-purple-100 dark:bg-purple-900 rounded-lg group-hover:bg-purple-200 dark:group-hover:bg-purple-800 transition-colors">
+                  <ChartBarIcon className="h-8 w-8 text-purple-600 dark:text-purple-400" />
+                </div>
+                <div className="text-left">
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                    📊 Relatórios BI
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-400">
+                    Visualizar gráficos e análises
+                  </p>
+                </div>
+              </div>
+            </button>
+
+            <button
+              onClick={() => setShowTimeline(true)}
+              className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700 group"
+            >
+              <div className="flex items-center space-x-4">
+                <div className="p-3 bg-blue-100 dark:bg-blue-900 rounded-lg group-hover:bg-blue-200 dark:group-hover:bg-blue-800 transition-colors">
+                  <ClockIcon className="h-8 w-8 text-blue-600 dark:text-blue-400" />
+                </div>
+                <div className="text-left">
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                    📅 Timeline de Vendas
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-400">
+                    Acompanhar vendas em tempo real
+                  </p>
+                </div>
+              </div>
+            </button>
+          </div>
+
+          {/* Informações do Sistema */}
+          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+              ℹ️ Informações do Sistema
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="text-center p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+                  Consultor
+                </div>
+                <div className="text-sm text-gray-600 dark:text-gray-400">
+                  Seu Perfil
+                </div>
+              </div>
+              <div className="text-center p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                <div className="text-2xl font-bold text-green-600 dark:text-green-400">
+                  Visualização
+                </div>
+                <div className="text-sm text-gray-600 dark:text-gray-400">
+                  Permissões
+                </div>
+              </div>
+              <div className="text-center p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">
+                  Relatórios
+                </div>
+                <div className="text-sm text-gray-600 dark:text-gray-400">
+                  Acesso Liberado
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Aviso de Limitações */}
+          <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-xl p-6">
+            <div className="flex items-center space-x-3">
+              <div className="text-yellow-600 dark:text-yellow-400 text-2xl">
+                ⚠️
+              </div>
+              <div>
+                <h4 className="text-lg font-semibold text-yellow-800 dark:text-yellow-200">
+                  Acesso Limitado
+                </h4>
+                <p className="text-yellow-700 dark:text-yellow-300">
+                  Como consultor, você tem acesso apenas aos relatórios e visualizações. 
+                  Para funcionalidades administrativas, entre em contato com o desenvolvedor.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Modais disponíveis para consultores */}
+        {showBIDashboard && <BIDashboardModal />}
+        <LiveSalesTimeline
+          isOpen={showTimeline}
+          onClose={() => setShowTimeline(false)}
+        />
+        <WhatsAppMultiSender
+          isOpen={showWhatsAppMulti}
+          onClose={() => setShowWhatsAppMulti(false)}
+          reportMessage={getBIReportMessage()}
+        />
+      </Layout>
+    );
+  }
 
   // Dados reais serão carregados da API
   const salesData = [];

@@ -39,6 +39,12 @@ export const AuthProvider = ({ children }) => {
       role: 'consultant',
       permissions: ['read'],
       description: 'Consultor - Apenas visualização'
+    },
+    'jorge': {
+      name: 'Jorge',
+      role: 'consultant',
+      permissions: ['read'],
+      description: 'Consultor - Apenas visualização'
     }
   };
 
@@ -68,20 +74,34 @@ export const AuthProvider = ({ children }) => {
     // Simular autenticação
     await new Promise(resolve => setTimeout(resolve, 1000));
     
-    if (userRoles[username]) {
-      const userData = {
-        username,
-        name: userRoles[username].name,
-        role: userRoles[username].role,
-        permissions: userRoles[username].permissions
-      };
-      
-      setUser(userData);
-      localStorage.setItem('beef-sync-user', JSON.stringify(userData));
-      return { success: true };
-    } else {
+    // Verificar se usuário existe
+    if (!userRoles[username]) {
+      setLoading(false);
       return { success: false, error: 'Usuário não encontrado' };
     }
+    
+    // Validar senha
+    const validPassword = password === '123';
+    if (!validPassword) {
+      setLoading(false);
+      return { success: false, error: 'Senha incorreta' };
+    }
+    
+    // Login bem-sucedido
+    const userData = {
+      username,
+      name: userRoles[username].name,
+      role: userRoles[username].role,
+      permissions: userRoles[username].permissions
+    };
+    
+    setUser(userData);
+    localStorage.setItem('beef-sync-user', JSON.stringify(userData));
+    localStorage.setItem('beef_sync_user_name', userRoles[username].name);
+    localStorage.setItem('beef_sync_user_role', userRoles[username].role === 'developer' ? 'Desenvolvedor' : 'Consultor');
+    
+    setLoading(false);
+    return { success: true };
   };
 
   const logout = () => {

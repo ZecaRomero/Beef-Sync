@@ -93,9 +93,15 @@ export default function Login() {
           </div>
 
           <div className="text-center text-sm text-gray-600">
-            <p>Credenciais de teste:</p>
-            <p>Email: zeca@beefsync.com</p>
-            <p>Senha: zeca123</p>
+            <p className="font-semibold mb-2">Usuários disponíveis:</p>
+            <div className="space-y-1">
+              <p><strong>zeca</strong> - Desenvolvedor (acesso total)</p>
+              <p><strong>bento</strong> - Consultor (apenas relatórios)</p>
+              <p><strong>mauricio</strong> - Consultor (apenas relatórios)</p>
+              <p><strong>nilson</strong> - Consultor (apenas relatórios)</p>
+              <p><strong>jorge</strong> - Consultor (apenas relatórios)</p>
+            </div>
+            <p className="mt-3 font-semibold text-blue-600">Senha para todos: 123</p>
           </div>
         </form>
       </div>
