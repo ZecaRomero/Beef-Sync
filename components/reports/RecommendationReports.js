@@ -112,9 +112,9 @@ export default function RecommendationReports() {
         costPerMonth: animal.meses > 0 ? animal.custoTotal / animal.meses : 0,
         profitability: potentialROI >= 15 ? 'high' : potentialROI >= 5 ? 'medium' : 'low'
       }
-    })
+    });
 
-    setAnalysisData(analyzedAnimals)
+    setAnalysisData(analyzedAnimals);
   }
 
   const recommendations = [

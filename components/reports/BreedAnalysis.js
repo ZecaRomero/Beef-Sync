@@ -34,9 +34,9 @@ export default function BreedAnalysis() {
         stats.totalProfit += (animal.valorVenda - animal.custoTotal)
         stats.soldCount++
       } else if (animal.situacao === 'Ativo') {
-        stats.activeCount++
+        stats.activeCount++;
       }
-    })
+    });
 
     // Calcular médias e ROI
     Object.keys(breedStats).forEach(breed => {

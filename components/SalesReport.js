@@ -112,12 +112,6 @@ const SalesReport = () => {
     }));
   };
 
-  const loadMockData = () => {
-    // Removidos todos os dados fictícios - agora usa apenas dados reais
-    setSalesData([]);
-    setFilteredSales([]);
-  };
-
   // Filtrar vendas
   useEffect(() => {
     let filtered = salesData;

@@ -16,6 +16,7 @@ export default function MaterialsManager({ userId }) {
   const [reminders, setReminders] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [selectedSupplier, setSelectedSupplier] = useState(null);
+  const [purchaseHistory, setPurchaseHistory] = useState([]);
   const [filters, setFilters] = useState({
     category: "all",
     supplier: "all",
@@ -57,6 +58,25 @@ export default function MaterialsManager({ userId }) {
     };
     
     loadAnimals();
+
+    // Carregar histórico de compras da API
+    const loadPurchaseHistory = async () => {
+      try {
+        const response = await fetch('/api/purchase-history');
+        if (response.ok) {
+          const historyData = await response.json();
+          setPurchaseHistory(Array.isArray(historyData) ? historyData : []);
+        } else {
+          console.error('Erro ao carregar histórico de compras');
+          setPurchaseHistory([]);
+        }
+      } catch (error) {
+        console.error('Erro ao carregar histórico de compras:', error);
+        setPurchaseHistory([]);
+      }
+    };
+    
+    loadPurchaseHistory();
   }, []);
 
   const categories = [
@@ -537,29 +557,6 @@ export default function MaterialsManager({ userId }) {
     const itemsToReorder = materials.filter(
       (item) => item.quantity <= item.minStock
     );
-
-    // Carregar histórico de compras da API
-    const [purchaseHistory, setPurchaseHistory] = useState([]);
-    
-    useEffect(() => {
-      const loadPurchaseHistory = async () => {
-        try {
-          const response = await fetch('/api/purchase-history');
-          if (response.ok) {
-            const historyData = await response.json();
-            setPurchaseHistory(Array.isArray(historyData) ? historyData : []);
-          } else {
-            console.error('Erro ao carregar histórico de compras');
-            setPurchaseHistory([]);
-          }
-        } catch (error) {
-          console.error('Erro ao carregar histórico de compras:', error);
-          setPurchaseHistory([]);
-        }
-      };
-      
-      loadPurchaseHistory();
-    }, []);
 
     const getStatusColor = (status) => {
       switch (status) {

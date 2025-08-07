@@ -11,14 +11,6 @@ export default function InteractiveDashboard() {
   const custosPorTipo = {}; // Será carregado da API
   const animaisPorRaca = {}; // Será carregado da API
   const roiPorAnimal = []; // Será carregado da API
-    isVendido: !!animal.valorVenda
-  })).sort((a, b) => {
-    // Priorizar animais vendidos com ROI positivo, depois por custo (investimento)
-    if (a.isVendido && b.isVendido) return b.roi - a.roi
-    if (a.isVendido && !b.isVendido) return -1
-    if (!a.isVendido && b.isVendido) return 1
-    return b.custo - a.custo // Para animais ativos, ordenar por investimento
-  })
 
   // Métricas principais - agora usando dados reais
   const totalInvestido = 0; // Será carregado da API
@@ -81,18 +73,18 @@ export default function InteractiveDashboard() {
       case 'investido':
         const animaisComCusto = []; // Dados reais serão carregados da API
         // [].map(animal => ({
-          nome: `${animal.serie} ${animal.rg}`,
-          custo: animal.custoTotal,
-          situacao: animal.situacao,
-          raca: animal.raca,
-          meses: animal.meses
-        })).sort((a, b) => b.custo - a.custo)
+        //   nome: `${animal.serie} ${animal.rg}`,
+        //   custo: animal.custoTotal,
+        //   situacao: animal.situacao,
+        //   raca: animal.raca,
+        //   meses: animal.meses
+        // })).sort((a, b) => b.custo - a.custo);
 
         const custosPorSituacao = {}; // Dados reais serão carregados da API
         // [].reduce((acc, animal) => {
-          acc[animal.situacao] = (acc[animal.situacao] || 0) + animal.custoTotal
-          return acc
-        }, {})
+        //   acc[animal.situacao] = (acc[animal.situacao] || 0) + animal.custoTotal
+        //   return acc
+        // }, {})
 
         return {
           title: '💰 Total Investido - Detalhamento',
@@ -138,13 +130,13 @@ export default function InteractiveDashboard() {
       case 'lucro':
         const animaisComLucro = []; // Dados reais serão carregados da API
         // [].filter(a => a.valorVenda).map(animal => ({
-          nome: `${animal.serie} ${animal.rg}`,
-          receita: animal.valorVenda,
-          custo: animal.custoTotal,
-          lucro: animal.valorVenda - animal.custoTotal,
-          roi: ((animal.valorVenda - animal.custoTotal) / animal.custoTotal * 100),
-          raca: animal.raca
-        })).sort((a, b) => b.lucro - a.lucro)
+        //   nome: `${animal.serie} ${animal.rg}`,
+        //   receita: animal.valorVenda,
+        //   custo: animal.custoTotal,
+        //   lucro: animal.valorVenda - animal.custoTotal,
+        //   roi: ((animal.valorVenda - animal.custoTotal) / animal.custoTotal * 100),
+        //   raca: animal.raca
+        // })).sort((a, b) => b.lucro - a.lucro);
 
         const lucroPorRaca = animaisComLucro.reduce((acc, animal) => {
           acc[animal.raca] = (acc[animal.raca] || 0) + animal.lucro
@@ -167,15 +159,15 @@ export default function InteractiveDashboard() {
       case 'roi':
         const animaisComROI = []; // Dados reais serão carregados da API
         // [].filter(a => a.valorVenda).map(animal => ({
-          nome: `${animal.serie} ${animal.rg}`,
-          receita: animal.valorVenda,
-          custo: animal.custoTotal,
-          lucro: animal.valorVenda - animal.custoTotal,
-          roi: ((animal.valorVenda - animal.custoTotal) / animal.custoTotal * 100),
-          raca: animal.raca
-        })).sort((a, b) => b.roi - a.roi)
+        //   nome: `${animal.serie} ${animal.rg}`,
+        //   receita: animal.valorVenda,
+        //   custo: animal.custoTotal,
+        //   lucro: animal.valorVenda - animal.custoTotal,
+        //   roi: ((animal.valorVenda - animal.custoTotal) / animal.custoTotal * 100),
+        //   raca: animal.raca
+        // })).sort((a, b) => b.roi - a.roi);
 
-        const roiPorRaca = {}
+        const roiPorRaca = {};
         Object.keys(animaisPorRaca).forEach(raca => {
           const animaisDaRaca = animaisComROI.filter(a => a.raca === raca)
           if (animaisDaRaca.length > 0) {

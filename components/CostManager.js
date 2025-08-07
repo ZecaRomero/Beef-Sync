@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 
 export default function CostManager({ animal, isOpen, onClose, onSave }) {
-  if (!isOpen || !animal) return null;
-  
+  // Hooks sempre no topo
   const [costs, setCosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showAddForm, setShowAddForm] = useState(false);
@@ -15,10 +14,13 @@ export default function CostManager({ animal, isOpen, onClose, onSave }) {
   });
 
   useEffect(() => {
-    if (animal) {
+    if (animal && isOpen) {
       loadCosts();
     }
-  }, [animal]);
+  }, [animal, isOpen]);
+
+  // Early return após os hooks
+  if (!isOpen || !animal) return null;
 
   const loadCosts = async () => {
     try {

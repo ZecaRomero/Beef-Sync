@@ -1043,11 +1043,6 @@ const SemenStockManager = () => {
 };
 
 export default SemenStockManager;
-
-                        onChange={(e) => handleInputChange('responsavel', e.target.value)}
-                        placeholder="Nome do responsável"
-                        required
-                      />
                     </div>
                     <div>
                       <Label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">

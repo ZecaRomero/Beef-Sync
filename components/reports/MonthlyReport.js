@@ -19,9 +19,9 @@ export default function MonthlyReport() {
       // Simular custos mensais baseados nos dados reais
       const baseCosts = 0; // Dados reais serão carregados da API
       // [].reduce((acc, animal) => {
-        const monthlyCost = animal.custoTotal / 12 // Distribuir custos ao longo do ano
-        return acc + monthlyCost
-      }, 0)
+      //   const monthlyCost = animal.custoTotal / 12 // Distribuir custos ao longo do ano
+      //   return acc + monthlyCost
+      // }, 0)
 
       // Adicionar variação mensal (simulada)
       const variation = 1 + (Math.sin(month / 2) * 0.3) // Variação sazonal
