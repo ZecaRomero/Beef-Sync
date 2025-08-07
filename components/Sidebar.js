@@ -17,7 +17,8 @@ import {
   DocumentArrowUpIcon,
   TrashIcon,
   BookmarkIcon,
-  HeartIcon
+  HeartIcon,
+  UserIcon
 } from '@heroicons/react/24/outline'
 
 const navigation = [
@@ -26,6 +27,7 @@ const navigation = [
   { name: 'Reprodução', href: '/reproduction', icon: HeartIcon },
   { name: 'Gestações', href: '/gestacao', icon: PlusIcon },
   { name: 'Relatórios Gráficos', href: '/reports', icon: ChartBarIcon },
+  { name: 'Usuários', href: '/users', icon: UserIcon },
   { name: 'Configurações', href: '/settings', icon: CogIcon },
 ]
 

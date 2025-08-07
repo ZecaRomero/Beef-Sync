@@ -1,11 +1,11 @@
-import { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const AuthContext = createContext();
 
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider');
+    throw new Error('useAuth deve ser usado dentro de AuthProvider');
   }
   return context;
 };
@@ -13,78 +13,90 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  // Sistema de permissões
+  const userRoles = {
+    'zeca': {
+      name: 'Zeca',
+      role: 'developer',
+      permissions: ['read', 'write', 'delete', 'admin', 'manage_users'],
+      description: 'Desenvolvedor - Acesso completo'
+    },
+    'bento': {
+      name: 'Bento',
+      role: 'consultant',
+      permissions: ['read'],
+      description: 'Consultor - Apenas visualização'
+    },
+    'nilson': {
+      name: 'Nilson',
+      role: 'consultant',
+      permissions: ['read'],
+      description: 'Consultor - Apenas visualização'
+    },
+    'mauricio': {
+      name: 'Maurício',
+      role: 'consultant',
+      permissions: ['read'],
+      description: 'Consultor - Apenas visualização'
+    }
+  };
+
+  const checkPermission = (permission) => {
+    if (!user) return false;
+    const userRole = userRoles[user.username] || userRoles['bento'];
+    return userRole.permissions.includes(permission);
+  };
+
+  const getUserRole = () => {
+    if (!user) return null;
+    return userRoles[user.username] || userRoles['bento'];
+  };
 
   useEffect(() => {
-    // Verificar se há usuário logado no localStorage
-    const savedUser = localStorage.getItem('user');
-    const savedToken = localStorage.getItem('token');
-    
-    if (savedUser && savedToken) {
-      try {
-        const userData = JSON.parse(savedUser);
-        setUser(userData);
-        setIsAuthenticated(true);
-      } catch (error) {
-        console.error('Erro ao carregar dados do usuário:', error);
-        localStorage.removeItem('user');
-        localStorage.removeItem('token');
-      }
+    // Simular carregamento inicial
+    const savedUser = localStorage.getItem('beef-sync-user');
+    if (savedUser) {
+      setUser(JSON.parse(savedUser));
     }
-    
     setLoading(false);
   }, []);
 
-  const login = async (email, password) => {
-    try {
-      setLoading(true);
-      
-      // Simular login - em produção, fazer chamada para API
-      const mockUser = {
-        id: 1,
-        name: 'Usuário Demo',
-        email: email,
-        role: 'admin'
+  const login = async (username, password) => {
+    setLoading(true);
+    
+    // Simular autenticação
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    
+    if (userRoles[username]) {
+      const userData = {
+        username,
+        name: userRoles[username].name,
+        role: userRoles[username].role,
+        permissions: userRoles[username].permissions
       };
       
-      const mockToken = 'demo-token-' + Date.now();
-      
-      // Salvar no localStorage
-      localStorage.setItem('user', JSON.stringify(mockUser));
-      localStorage.setItem('token', mockToken);
-      
-      setUser(mockUser);
-      setIsAuthenticated(true);
-      
-      return { success: true, user: mockUser };
-    } catch (error) {
-      console.error('Erro no login:', error);
-      return { success: false, error: error.message };
-    } finally {
-      setLoading(false);
+      setUser(userData);
+      localStorage.setItem('beef-sync-user', JSON.stringify(userData));
+      return { success: true };
+    } else {
+      return { success: false, error: 'Usuário não encontrado' };
     }
   };
 
   const logout = () => {
-    localStorage.removeItem('user');
-    localStorage.removeItem('token');
     setUser(null);
-    setIsAuthenticated(false);
-  };
-
-  const updateUser = (userData) => {
-    const updatedUser = { ...user, ...userData };
-    setUser(updatedUser);
-    localStorage.setItem('user', JSON.stringify(updatedUser));
+    localStorage.removeItem('beef-sync-user');
   };
 
   const value = {
     user,
     loading,
-    isAuthenticated,
     login,
     logout,
-    updateUser
+    checkPermission,
+    getUserRole,
+    userRoles
   };
 
   return (
