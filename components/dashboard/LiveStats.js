@@ -19,7 +19,7 @@ export default function LiveStats({ data }) {
         const elapsed = Date.now() - startTime
         const progress = Math.min(elapsed / duration, 1)
         const current = start + (end - start) * progress
-        
+
         setAnimatedValues(prev => ({
           ...prev,
           [key]: Math.floor(current)
@@ -41,14 +41,14 @@ export default function LiveStats({ data }) {
   const handleCardClick = async (type) => {
     setModalType(type)
     setShowModal(true)
-    
+
     try {
       // Carregar dados específicos baseado no tipo
       const response = await fetch('/api/animals-list')
       const animals = await response.json()
-      
+
       let filteredData = []
-      
+
       switch (type) {
         case 'totalAnimals':
           filteredData = animals.map(animal => ({
@@ -61,7 +61,7 @@ export default function LiveStats({ data }) {
             dataNasc: animal.dataNasc
           }))
           break
-          
+
         case 'activeAnimals':
           filteredData = animals.filter(a => a.status === 'ATIVO').map(animal => ({
             brinco: animal.brinco,
@@ -73,7 +73,7 @@ export default function LiveStats({ data }) {
             custoTotal: animal.costs?.reduce((sum, cost) => sum + cost.valor, 0) || 0
           }))
           break
-          
+
         case 'totalInvested':
           filteredData = animals.map(animal => ({
             brinco: animal.brinco,
@@ -82,7 +82,7 @@ export default function LiveStats({ data }) {
             custos: animal.costs || []
           })).filter(animal => animal.custoTotal > 0)
           break
-          
+
         case 'totalRevenue':
           const salesResponse = await fetch('/api/sales-list')
           const sales = await salesResponse.json()
@@ -94,7 +94,7 @@ export default function LiveStats({ data }) {
             tipoVenda: sale.animal?.tipoVenda || 'N/A'
           }))
           break
-          
+
         case 'avgROI':
           const salesForROI = await fetch('/api/sales-list')
           const salesData = await salesForROI.json()
@@ -102,7 +102,7 @@ export default function LiveStats({ data }) {
             const animal = animals.find(a => a.id === sale.animalId)
             const custoTotal = animal?.costs?.reduce((sum, cost) => sum + cost.valor, 0) || 0
             const roi = custoTotal > 0 ? ((sale.valor - custoTotal) / custoTotal) * 100 : 0
-            
+
             return {
               animal: animal?.brinco || 'N/A',
               valorVenda: sale.valor,
@@ -114,7 +114,7 @@ export default function LiveStats({ data }) {
           }).sort((a, b) => b.roi - a.roi)
           break
       }
-      
+
       setModalData(filteredData)
     } catch (error) {
       console.error('Erro ao carregar dados:', error)
@@ -255,7 +255,7 @@ export default function LiveStats({ data }) {
                 </button>
               </div>
             </div>
-            
+
             <div className="p-6 overflow-y-auto max-h-[calc(90vh-120px)]">
               {modalData.length > 0 ? (
                 <div className="space-y-4">
@@ -289,7 +289,7 @@ export default function LiveStats({ data }) {
                           <div>
                             <span className="text-sm text-gray-500 dark:text-gray-400">Investimento:</span>
                             <div className="font-semibold text-red-600 dark:text-red-400">
-                              R$ {item.custoTotal.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+                              R$ {(item.custoTotal || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                             </div>
                           </div>
                           <div>
@@ -306,7 +306,7 @@ export default function LiveStats({ data }) {
                           <div>
                             <span className="text-sm text-gray-500 dark:text-gray-400">Valor:</span>
                             <div className="font-semibold text-green-600 dark:text-green-400">
-                              R$ {item.valor.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+                              R$ {(item.valor || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                             </div>
                           </div>
                           <div>
@@ -327,19 +327,19 @@ export default function LiveStats({ data }) {
                           <div>
                             <span className="text-sm text-gray-500 dark:text-gray-400">Venda:</span>
                             <div className="font-semibold text-green-600 dark:text-green-400">
-                              R$ {item.valorVenda.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+                              R$ {(item.valorVenda || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                             </div>
                           </div>
                           <div>
                             <span className="text-sm text-gray-500 dark:text-gray-400">Custo:</span>
                             <div className="font-semibold text-red-600 dark:text-red-400">
-                              R$ {item.custoTotal.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+                              R$ {(item.custoTotal || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                             </div>
                           </div>
                           <div>
                             <span className="text-sm text-gray-500 dark:text-gray-400">Lucro:</span>
                             <div className={`font-semibold ${item.lucro >= 0 ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}>
-                              R$ {item.lucro.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+                              R$ {(item.lucro || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                             </div>
                           </div>
                           <div>

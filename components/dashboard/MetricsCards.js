@@ -18,11 +18,11 @@ export default function MetricsCards({ timeRange, onReportClick }) {
   const loadRealData = async () => {
     try {
       console.log('🔄 MetricsCards: Carregando dados reais...');
-      
+
       // Carregar animais reais da API
       const animalsResponse = await fetch('/api/animals-list');
       const animals = animalsResponse.ok ? await animalsResponse.json() : [];
-      
+
       // Carregar vendas reais da API
       const salesResponse = await fetch('/api/sales-list');
       const sales = salesResponse.ok ? await salesResponse.json() : [];
@@ -48,10 +48,10 @@ export default function MetricsCards({ timeRange, onReportClick }) {
   const handleCardClick = async (type) => {
     setModalType(type)
     setShowModal(true)
-    
+
     try {
       let filteredData = []
-      
+
       switch (type) {
         case 'invested':
           filteredData = realData.animals.map(animal => ({
@@ -63,7 +63,7 @@ export default function MetricsCards({ timeRange, onReportClick }) {
             peso: animal.peso
           })).filter(animal => animal.custoTotal > 0)
           break
-          
+
         case 'revenue':
           filteredData = realData.sales.map(sale => ({
             animal: sale.animal?.brinco || 'N/A',
@@ -73,13 +73,13 @@ export default function MetricsCards({ timeRange, onReportClick }) {
             tipoVenda: sale.animal?.tipoVenda || 'N/A'
           }))
           break
-          
+
         case 'profit':
           filteredData = realData.sales.map(sale => {
             const animal = realData.animals.find(a => a.id === sale.animalId)
             const custoTotal = animal?.costs?.reduce((sum, cost) => sum + cost.valor, 0) || 0
             const lucro = sale.valor - custoTotal
-            
+
             return {
               animal: animal?.brinco || 'N/A',
               valorVenda: sale.valor,
@@ -90,13 +90,13 @@ export default function MetricsCards({ timeRange, onReportClick }) {
             }
           }).sort((a, b) => b.lucro - a.lucro)
           break
-          
+
         case 'roi':
           filteredData = realData.sales.map(sale => {
             const animal = realData.animals.find(a => a.id === sale.animalId)
             const custoTotal = animal?.costs?.reduce((sum, cost) => sum + cost.valor, 0) || 0
             const roi = custoTotal > 0 ? ((sale.valor - custoTotal) / custoTotal) * 100 : 0
-            
+
             return {
               animal: animal?.brinco || 'N/A',
               valorVenda: sale.valor,
@@ -107,7 +107,7 @@ export default function MetricsCards({ timeRange, onReportClick }) {
             }
           }).sort((a, b) => b.roi - a.roi)
           break
-          
+
         case 'activeAnimals':
           filteredData = realData.animals.filter(a => a.status === 'ATIVO').map(animal => ({
             brinco: animal.brinco,
@@ -119,7 +119,7 @@ export default function MetricsCards({ timeRange, onReportClick }) {
             custoTotal: animal.costs?.reduce((sum, cost) => sum + cost.valor, 0) || 0
           }))
           break
-          
+
         case 'soldAnimals':
           filteredData = realData.sales.map(sale => ({
             animal: sale.animal?.brinco || 'N/A',
@@ -130,7 +130,7 @@ export default function MetricsCards({ timeRange, onReportClick }) {
           }))
           break
       }
-      
+
       setModalData(filteredData)
     } catch (error) {
       console.error('Erro ao carregar dados do modal:', error)
@@ -200,7 +200,7 @@ export default function MetricsCards({ timeRange, onReportClick }) {
         const totalCost = costs
           .filter(cost => cost.tipo !== 'VENDA')
           .reduce((sum, cost) => sum + cost.valor, 0)
-        
+
         if (totalCost > 0) {
           const roi = ((sale.valor - totalCost) / totalCost) * 100
           totalROI += roi
@@ -329,9 +329,8 @@ export default function MetricsCards({ timeRange, onReportClick }) {
             title={`Clique para ver ${card.description}`}
           >
             {/* Background Gradient */}
-            <div className={`absolute inset-0 bg-gradient-to-br ${card.color} opacity-10 transition-opacity duration-300 ${
-              hoveredCard === card.id ? 'opacity-20' : 'opacity-10'
-            }`}></div>
+            <div className={`absolute inset-0 bg-gradient-to-br ${card.color} opacity-10 transition-opacity duration-300 ${hoveredCard === card.id ? 'opacity-20' : 'opacity-10'
+              }`}></div>
 
             <div className="relative z-10">
               {/* Header */}
@@ -340,14 +339,14 @@ export default function MetricsCards({ timeRange, onReportClick }) {
                   <span className="text-2xl">{card.icon}</span>
                 </div>
                 <div className={`
-                  px-3 py-1 rounded-full text-xs font-semibold flex items-center
-                  ${card.trend === 'up' 
-                    ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' 
+                px-3 py-1 rounded-full text-xs font-semibold flex items-center
+                ${card.trend === 'up'
+                    ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
                     : card.trend === 'down'
-                    ? 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
-                    : 'bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200'
+                      ? 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
+                      : 'bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200'
                   }
-                `}>
+              `}>
                   <span className="mr-1">{card.trend === 'up' ? '↗️' : card.trend === 'down' ? '↘️' : '→'}</span>
                   {card.change}
                 </div>
@@ -372,10 +371,10 @@ export default function MetricsCards({ timeRange, onReportClick }) {
               {/* Progress Bar (simulado) */}
               <div className="mt-4">
                 <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                  <div 
+                  <div
                     className={`bg-gradient-to-r ${card.color} h-2 rounded-full transition-all duration-1000`}
-                    style={{ 
-                      width: `${Math.min(100, Math.abs(parseFloat(card.change)) * 5)}%` 
+                    style={{
+                      width: `${Math.min(100, Math.abs(parseFloat(card.change)) * 5)}%`
                     }}
                   ></div>
                 </div>
@@ -412,7 +411,7 @@ export default function MetricsCards({ timeRange, onReportClick }) {
                 </button>
               </div>
             </div>
-            
+
             <div className="p-6 overflow-y-auto max-h-[calc(90vh-120px)]">
               {modalData.length > 0 ? (
                 <div className="space-y-4">
@@ -427,7 +426,7 @@ export default function MetricsCards({ timeRange, onReportClick }) {
                           <div>
                             <span className="text-sm text-gray-500 dark:text-gray-400">Investimento:</span>
                             <div className="font-semibold text-red-600 dark:text-red-400">
-                              R$ {item.custoTotal.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+                              R$ {(item.custoTotal || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                             </div>
                           </div>
                           <div>
@@ -448,7 +447,7 @@ export default function MetricsCards({ timeRange, onReportClick }) {
                           <div>
                             <span className="text-sm text-gray-500 dark:text-gray-400">Valor:</span>
                             <div className="font-semibold text-green-600 dark:text-green-400">
-                              R$ {item.valor.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+                              R$ {(item.valor || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                             </div>
                           </div>
                           <div>
@@ -469,19 +468,19 @@ export default function MetricsCards({ timeRange, onReportClick }) {
                           <div>
                             <span className="text-sm text-gray-500 dark:text-gray-400">Venda:</span>
                             <div className="font-semibold text-green-600 dark:text-green-400">
-                              R$ {item.valorVenda.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+                              R$ {(item.valorVenda || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                             </div>
                           </div>
                           <div>
                             <span className="text-sm text-gray-500 dark:text-gray-400">Custo:</span>
                             <div className="font-semibold text-red-600 dark:text-red-400">
-                              R$ {item.custoTotal.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+                              R$ {(item.custoTotal || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                             </div>
                           </div>
                           <div>
                             <span className="text-sm text-gray-500 dark:text-gray-400">Lucro:</span>
                             <div className={`font-semibold ${item.lucro >= 0 ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}>
-                              R$ {item.lucro.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+                              R$ {(item.lucro || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                             </div>
                           </div>
                           <div>
@@ -500,19 +499,19 @@ export default function MetricsCards({ timeRange, onReportClick }) {
                           <div>
                             <span className="text-sm text-gray-500 dark:text-gray-400">Venda:</span>
                             <div className="font-semibold text-green-600 dark:text-green-400">
-                              R$ {item.valorVenda.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+                              R$ {(item.valorVenda || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                             </div>
                           </div>
                           <div>
                             <span className="text-sm text-gray-500 dark:text-gray-400">Custo:</span>
                             <div className="font-semibold text-red-600 dark:text-red-400">
-                              R$ {item.custoTotal.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+                              R$ {(item.custoTotal || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                             </div>
                           </div>
                           <div>
                             <span className="text-sm text-gray-500 dark:text-gray-400">Lucro:</span>
                             <div className={`font-semibold ${item.lucro >= 0 ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}>
-                              R$ {item.lucro.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+                              R$ {(item.lucro || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                             </div>
                           </div>
                           <div>

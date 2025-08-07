@@ -227,7 +227,7 @@ export default function DirectInvoiceManager({ isOpen, onClose }) {
                 <input
                   type="text"
                   value={invoiceData.numero}
-                  onChange={(e) => setInvoiceData({...invoiceData, numero: e.target.value})}
+                  onChange={(e) => setInvoiceData({ ...invoiceData, numero: e.target.value })}
                   className="w-full px-4 py-3 border border-blue-300 dark:border-blue-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white text-lg font-medium"
                   placeholder="Ex: 001"
                 />
@@ -238,7 +238,7 @@ export default function DirectInvoiceManager({ isOpen, onClose }) {
                 </label>
                 <select
                   value={invoiceData.tipoVenda}
-                  onChange={(e) => setInvoiceData({...invoiceData, tipoVenda: e.target.value})}
+                  onChange={(e) => setInvoiceData({ ...invoiceData, tipoVenda: e.target.value })}
                   className="w-full px-4 py-3 border border-blue-300 dark:border-blue-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white text-lg"
                 >
                   <option value="VENDA_DIRETA">Venda Direta</option>
@@ -251,7 +251,7 @@ export default function DirectInvoiceManager({ isOpen, onClose }) {
                   <input
                     type="text"
                     placeholder="Especificar tipo de venda..."
-                    onChange={(e) => setInvoiceData({...invoiceData, tipoVenda: e.target.value})}
+                    onChange={(e) => setInvoiceData({ ...invoiceData, tipoVenda: e.target.value })}
                     className="w-full px-4 py-2 border border-blue-300 dark:border-blue-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white text-sm mt-2"
                   />
                 )}
@@ -263,7 +263,7 @@ export default function DirectInvoiceManager({ isOpen, onClose }) {
                 <input
                   type="date"
                   value={invoiceData.dataVenda}
-                  onChange={(e) => setInvoiceData({...invoiceData, dataVenda: e.target.value})}
+                  onChange={(e) => setInvoiceData({ ...invoiceData, dataVenda: e.target.value })}
                   className="w-full px-4 py-3 border border-blue-300 dark:border-blue-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white text-lg"
                 />
               </div>
@@ -273,7 +273,7 @@ export default function DirectInvoiceManager({ isOpen, onClose }) {
                 </label>
                 <select
                   value={invoiceData.status}
-                  onChange={(e) => setInvoiceData({...invoiceData, status: e.target.value})}
+                  onChange={(e) => setInvoiceData({ ...invoiceData, status: e.target.value })}
                   className="w-full px-4 py-3 border border-blue-300 dark:border-blue-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white text-lg"
                 >
                   <option value="PENDENTE">Pendente</option>
@@ -298,7 +298,7 @@ export default function DirectInvoiceManager({ isOpen, onClose }) {
                 <input
                   type="text"
                   value={invoiceData.compradorNome}
-                  onChange={(e) => setInvoiceData({...invoiceData, compradorNome: e.target.value})}
+                  onChange={(e) => setInvoiceData({ ...invoiceData, compradorNome: e.target.value })}
                   className="w-full px-4 py-3 border border-green-300 dark:border-green-600 rounded-lg focus:ring-2 focus:ring-green-500 dark:bg-gray-700 dark:text-white text-lg"
                   placeholder="Nome do comprador"
                 />
@@ -310,7 +310,7 @@ export default function DirectInvoiceManager({ isOpen, onClose }) {
                 <input
                   type="text"
                   value={invoiceData.compradorCpfCnpj}
-                  onChange={(e) => setInvoiceData({...invoiceData, compradorCpfCnpj: e.target.value})}
+                  onChange={(e) => setInvoiceData({ ...invoiceData, compradorCpfCnpj: e.target.value })}
                   className="w-full px-4 py-3 border border-green-300 dark:border-green-600 rounded-lg focus:ring-2 focus:ring-green-500 dark:bg-gray-700 dark:text-white text-lg"
                   placeholder="000.000.000-00"
                 />
@@ -322,7 +322,7 @@ export default function DirectInvoiceManager({ isOpen, onClose }) {
                 <input
                   type="text"
                   value={invoiceData.compradorCidade}
-                  onChange={(e) => setInvoiceData({...invoiceData, compradorCidade: e.target.value})}
+                  onChange={(e) => setInvoiceData({ ...invoiceData, compradorCidade: e.target.value })}
                   className="w-full px-4 py-3 border border-green-300 dark:border-green-600 rounded-lg focus:ring-2 focus:ring-green-500 dark:bg-gray-700 dark:text-white text-lg"
                   placeholder="Nome da cidade"
                 />
@@ -333,7 +333,7 @@ export default function DirectInvoiceManager({ isOpen, onClose }) {
                 </label>
                 <select
                   value={invoiceData.compradorEstado}
-                  onChange={(e) => setInvoiceData({...invoiceData, compradorEstado: e.target.value})}
+                  onChange={(e) => setInvoiceData({ ...invoiceData, compradorEstado: e.target.value })}
                   className="w-full px-4 py-3 border border-green-300 dark:border-green-600 rounded-lg focus:ring-2 focus:ring-green-500 dark:bg-gray-700 dark:text-white text-lg"
                 >
                   <option value="">Selecionar...</option>
@@ -377,7 +377,7 @@ export default function DirectInvoiceManager({ isOpen, onClose }) {
                   <input
                     type="text"
                     value={newAnimal.rg}
-                    onChange={(e) => setNewAnimal({...newAnimal, rg: e.target.value})}
+                    onChange={(e) => setNewAnimal({ ...newAnimal, rg: e.target.value })}
                     maxLength={6}
                     className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-orange-500 dark:bg-gray-700 dark:text-white"
                     placeholder="123456"
@@ -401,7 +401,7 @@ export default function DirectInvoiceManager({ isOpen, onClose }) {
                   </label>
                   <select
                     value={newAnimal.sexo}
-                    onChange={(e) => setNewAnimal({...newAnimal, sexo: e.target.value})}
+                    onChange={(e) => setNewAnimal({ ...newAnimal, sexo: e.target.value })}
                     className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-orange-500 dark:bg-gray-700 dark:text-white"
                   >
                     <option value="">Selecione...</option>
@@ -416,7 +416,7 @@ export default function DirectInvoiceManager({ isOpen, onClose }) {
                   <input
                     type="number"
                     value={newAnimal.era}
-                    onChange={(e) => setNewAnimal({...newAnimal, era: e.target.value})}
+                    onChange={(e) => setNewAnimal({ ...newAnimal, era: e.target.value })}
                     className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-orange-500 dark:bg-gray-700 dark:text-white"
                     placeholder="24"
                   />
@@ -429,7 +429,7 @@ export default function DirectInvoiceManager({ isOpen, onClose }) {
                     type="number"
                     step="0.01"
                     value={newAnimal.preco}
-                    onChange={(e) => setNewAnimal({...newAnimal, preco: e.target.value})}
+                    onChange={(e) => setNewAnimal({ ...newAnimal, preco: e.target.value })}
                     className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-orange-500 dark:bg-gray-700 dark:text-white"
                     placeholder="5000.00"
                   />
@@ -466,11 +466,10 @@ export default function DirectInvoiceManager({ isOpen, onClose }) {
                           <div className="text-xs text-gray-500">{animal.raca}</div>
                         </div>
                         <div>
-                          <span className={`px-2 py-1 rounded-full text-xs ${
-                            animal.sexo === "Macho"
-                              ? "bg-blue-100 text-blue-800"
-                              : "bg-pink-100 text-pink-800"
-                          }`}>
+                          <span className={`px-2 py-1 rounded-full text-xs ${animal.sexo === "Macho"
+                            ? "bg-blue-100 text-blue-800"
+                            : "bg-pink-100 text-pink-800"
+                            }`}>
                             {animal.sexo === "Macho" ? "🐂 Macho" : "🐄 Fêmea"}
                           </span>
                         </div>
@@ -478,7 +477,7 @@ export default function DirectInvoiceManager({ isOpen, onClose }) {
                           {animal.era ? `${animal.era} meses` : "N/I"}
                         </div>
                         <div className="font-bold text-green-600">
-                          R$ {animal.preco.toLocaleString('pt-BR', {minimumFractionDigits: 2})}
+                          R$ {(animal.preco || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                         </div>
                         <div className="flex justify-end">
                           <button
@@ -495,7 +494,7 @@ export default function DirectInvoiceManager({ isOpen, onClose }) {
                 </div>
                 <div className="mt-4 text-right">
                   <div className="text-2xl font-bold text-green-600">
-                    Total: R$ {calculateTotal().toLocaleString('pt-BR', {minimumFractionDigits: 2})}
+                    Total: R$ {(calculateTotal() || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                   </div>
                 </div>
               </div>
@@ -532,7 +531,7 @@ export default function DirectInvoiceManager({ isOpen, onClose }) {
             </h3>
             <textarea
               value={invoiceData.observacoes}
-              onChange={(e) => setInvoiceData({...invoiceData, observacoes: e.target.value})}
+              onChange={(e) => setInvoiceData({ ...invoiceData, observacoes: e.target.value })}
               className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-gray-500 dark:bg-gray-600 dark:text-white"
               rows={3}
               placeholder="Observações sobre a venda..."
