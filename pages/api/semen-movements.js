@@ -66,10 +66,11 @@ export default async function handler(req, res) {
         destinatario,
         valorUnitario,
         observacoes,
-        semenStockId,
         containerOrigemId,
         containerDestinoId
       } = req.body;
+      
+      let semenStockId = req.body.semenStockId;
 
       // Validações básicas
       if (!tipo || !responsavel || !quantidade) {

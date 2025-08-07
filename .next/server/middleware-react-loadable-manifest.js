@@ -1,0 +1,1 @@
+self.__REACT_LOADABLE_MANIFEST='{"..\\\\components\\\\DirectInvoiceManager.js -> pdfjs-dist":{"id":8541,"files":["static/chunks/e18fe737.0c3e02f27c4aacad.js","static/chunks/594.433b681ea22ab39a.js"]}}';
