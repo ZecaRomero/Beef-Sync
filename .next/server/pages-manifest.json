@@ -3,6 +3,8 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/": "pages/index.js",
-  "/animals": "pages/animals.js",
-  "/reports": "pages/reports.js"
+  "/reports": "pages/reports.js",
+  "/api/sales-list": "pages/api/sales-list.js",
+  "/login": "pages/login.js",
+  "/api/animals-list": "pages/api/animals-list.js"
 }

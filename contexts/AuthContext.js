@@ -14,37 +14,54 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Sistema de permissões
+  // Sistema de permissões atualizado
   const userRoles = {
     'zeca': {
       name: 'Zeca',
       role: 'developer',
-      permissions: ['read', 'write', 'delete', 'admin', 'manage_users'],
+      permissions: [
+        'read', 'write', 'delete', 'admin', 'manage_users',
+        'dashboard_full', 'reports_full', 'animals_manage', 'sales_manage',
+        'reproduction_manage', 'gestation_manage', 'settings_access',
+        'export_import', 'feedback_system', 'invoice_manage'
+      ],
       description: 'Desenvolvedor - Acesso completo'
     },
     'bento': {
       name: 'Bento',
       role: 'consultant',
-      permissions: ['read'],
-      description: 'Consultor - Apenas visualização'
+      permissions: [
+        'read', 'dashboard_view', 'reports_view', 'animals_view',
+        'sales_view', 'search_animals', 'feedback_system'
+      ],
+      description: 'Consultor - Visualização e relatórios'
     },
     'nilson': {
       name: 'Nilson',
       role: 'consultant',
-      permissions: ['read'],
-      description: 'Consultor - Apenas visualização'
+      permissions: [
+        'read', 'dashboard_view', 'reports_view', 'animals_view',
+        'sales_view', 'search_animals', 'feedback_system'
+      ],
+      description: 'Consultor - Visualização e relatórios'
     },
     'mauricio': {
       name: 'Maurício',
       role: 'consultant',
-      permissions: ['read'],
-      description: 'Consultor - Apenas visualização'
+      permissions: [
+        'read', 'dashboard_view', 'reports_view', 'animals_view',
+        'sales_view', 'search_animals', 'feedback_system'
+      ],
+      description: 'Consultor - Visualização e relatórios'
     },
     'jorge': {
       name: 'Jorge',
       role: 'consultant',
-      permissions: ['read'],
-      description: 'Consultor - Apenas visualização'
+      permissions: [
+        'read', 'dashboard_view', 'reports_view', 'animals_view',
+        'sales_view', 'search_animals', 'feedback_system'
+      ],
+      description: 'Consultor - Visualização e relatórios'
     }
   };
 
@@ -57,6 +74,18 @@ export const AuthProvider = ({ children }) => {
   const getUserRole = () => {
     if (!user) return null;
     return userRoles[user.username] || userRoles['bento'];
+  };
+
+  // Verificar se é desenvolvedor
+  const isDeveloper = () => {
+    if (!user) return false;
+    return user.role === 'developer';
+  };
+
+  // Verificar se é consultor
+  const isConsultant = () => {
+    if (!user) return false;
+    return user.role === 'consultant';
   };
 
   useEffect(() => {
@@ -116,6 +145,8 @@ export const AuthProvider = ({ children }) => {
     logout,
     checkPermission,
     getUserRole,
+    isDeveloper,
+    isConsultant,
     userRoles
   };
 
