@@ -9,7 +9,9 @@ import DirectInvoiceManager from "../components/DirectInvoiceManager";
 import BIChartsVisual from "../components/BIChartsVisual";
 import WhatsAppMultiSender from "../components/WhatsAppMultiSender";
 import LiveSalesTimeline from "../components/LiveSalesTimeline";
-import { CurrencyDollarIcon, UserGroupIcon, ChartBarIcon, ClockIcon, DocumentTextIcon } from "@heroicons/react/24/outline";
+import AdvancedAnalytics from "../components/AdvancedAnalytics";
+import ReceptorAlertSystem from "../components/ReceptorAlertSystem";
+import { CurrencyDollarIcon, UserGroupIcon, ChartBarIcon, ClockIcon, DocumentTextIcon, BellIcon } from "@heroicons/react/24/outline";
 
 export default function Dashboard() {
   const [showAuctionManager, setShowAuctionManager] = useState(false);
@@ -18,6 +20,8 @@ export default function Dashboard() {
   const [showBIDashboard, setShowBIDashboard] = useState(false);
   const [showWhatsAppMulti, setShowWhatsAppMulti] = useState(false);
   const [showTimeline, setShowTimeline] = useState(false);
+  const [showAdvancedAnalytics, setShowAdvancedAnalytics] = useState(false);
+  const [showReceptorAlerts, setShowReceptorAlerts] = useState(false);
   const router = useRouter();
   const { user } = useAuth();
 
@@ -203,6 +207,47 @@ export default function Dashboard() {
             </button>
           </div>
 
+          {/* Seção Adicional para Consultores */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+            <button
+              onClick={() => setShowAdvancedAnalytics(true)}
+              className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700 group"
+            >
+              <div className="flex items-center space-x-4">
+                <div className="p-3 bg-indigo-100 dark:bg-indigo-900 rounded-lg group-hover:bg-indigo-200 dark:group-hover:bg-indigo-800 transition-colors">
+                  <ChartBarIcon className="h-8 w-8 text-indigo-600 dark:text-indigo-400" />
+                </div>
+                <div className="text-left">
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                    📊 Análises Avançadas
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-400">
+                    Médias FIV vs IA, performance por pai
+                  </p>
+                </div>
+              </div>
+            </button>
+
+            <button
+              onClick={() => setShowReceptorAlerts(true)}
+              className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700 group"
+            >
+              <div className="flex items-center space-x-4">
+                <div className="p-3 bg-orange-100 dark:bg-orange-900 rounded-lg group-hover:bg-orange-200 dark:group-hover:bg-orange-800 transition-colors">
+                  <BellIcon className="h-8 w-8 text-orange-600 dark:text-orange-400" />
+                </div>
+                <div className="text-left">
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                    🔔 Alertas de Receptoras
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-400">
+                    Monitoramento automático de TE
+                  </p>
+                </div>
+              </div>
+            </button>
+          </div>
+
           {/* Informações do Sistema */}
           <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
@@ -266,6 +311,66 @@ export default function Dashboard() {
           onClose={() => setShowWhatsAppMulti(false)}
           reportMessage={getBIReportMessage()}
         />
+        
+        {/* Modal de Análises Avançadas */}
+        {showAdvancedAnalytics && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-7xl w-full max-h-[95vh] overflow-hidden">
+              <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-indigo-600 to-purple-600">
+                <div className="flex items-center space-x-3">
+                  <ChartBarIcon className="h-8 w-8 text-white" />
+                  <div>
+                    <h2 className="text-2xl font-bold text-white">
+                      📊 Análises Avançadas de Vendas
+                    </h2>
+                    <p className="text-indigo-100">
+                      Médias de preços, FIV vs IA, performance por pai
+                    </p>
+                  </div>
+                </div>
+                <button
+                  onClick={() => setShowAdvancedAnalytics(false)}
+                  className="p-2 hover:bg-white/20 rounded-lg transition-colors text-white text-2xl font-bold"
+                >
+                  ×
+                </button>
+              </div>
+              <div className="p-6 overflow-y-auto max-h-[calc(95vh-120px)]">
+                <AdvancedAnalytics />
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Modal de Alertas de Receptoras */}
+        {showReceptorAlerts && (
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-7xl w-full max-h-[95vh] overflow-hidden">
+              <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-orange-600 to-red-600">
+                <div className="flex items-center space-x-3">
+                  <BellIcon className="h-8 w-8 text-white" />
+                  <div>
+                    <h2 className="text-2xl font-bold text-white">
+                      🔔 Sistema de Alertas - Receptoras
+                    </h2>
+                    <p className="text-orange-100">
+                      Monitoramento automático e gestão de receptoras
+                    </p>
+                  </div>
+                </div>
+                <button
+                  onClick={() => setShowReceptorAlerts(false)}
+                  className="p-2 hover:bg-white/20 rounded-lg transition-colors text-white text-2xl font-bold"
+                >
+                  ×
+                </button>
+              </div>
+              <div className="p-6 overflow-y-auto max-h-[calc(95vh-120px)]">
+                <ReceptorAlertSystem />
+              </div>
+            </div>
+          </div>
+        )}
       </Layout>
     );
   }
