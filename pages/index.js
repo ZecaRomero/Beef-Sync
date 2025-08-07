@@ -21,6 +21,87 @@ export default function Dashboard() {
   const router = useRouter();
   const { user } = useAuth();
 
+  // Dados reais serão carregados da API
+  const salesData = [];
+
+  const getBIReportMessage = () => {
+    return `
+🐄 *RELATÓRIO BI - VENDAS*
+
+📊 *RESUMO GERAL*
+• Total de Animais: 98
+• Animais Vendidos: 98
+• Taxa de Venda: 100.0%
+• Receita Total: R$ 2.850.000
+• Preço Médio: R$ 29.082
+
+📈 *ANÁLISE FIV vs IA*
+• FIV: 3 animais - Média: R$ 35.000
+• IA: 95 animais - Média: R$ 28.500
+
+🏆 *TOP TOUROS (Mais Filhos)*
+• Dados reais serão carregados da API
+• Sistema limpo de dados mockados
+
+📅 *CRONOGRAMA*
+• 08:00 - Abertura
+• 09:00 - Início dos Lances
+• 15:00 - Animais FIV
+• 17:00 - Encerramento
+
+📊 *GRÁFICOS INCLUSOS*
+• 🥧 Análise FIV vs IA
+• 📊 Vendas por Série
+• 📈 Timeline dos Últimos 7 Dias
+
+---
+🤖 Beef Sync - Gestão Bovina Inteligente 🐄
+    `.trim();
+  };
+
+  const BIDashboardModal = () => (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+      <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-7xl w-full max-h-[95vh] overflow-hidden">
+        {/* Header */}
+        <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-purple-600 to-pink-600">
+          <div className="flex items-center space-x-3">
+            <ChartBarIcon className="h-8 w-8 text-white" />
+            <div>
+              <h2 className="text-2xl font-bold text-white">
+                📊 BI Analytics - Sistema de Vendas
+              </h2>
+              <p className="text-purple-100">
+                Gráficos visuais e análises avançadas
+              </p>
+            </div>
+          </div>
+          
+          <div className="flex items-center space-x-4">
+            <button
+              onClick={() => setShowWhatsAppMulti(true)}
+              className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+            >
+              📱 Enviar WhatsApp
+            </button>
+            <button
+              onClick={() => setShowBIDashboard(false)}
+              className="p-2 hover:bg-white/20 rounded-lg transition-colors text-white text-2xl font-bold"
+            >
+              ×
+            </button>
+          </div>
+        </div>
+
+        <div className="p-6 overflow-y-auto max-h-[calc(95vh-120px)]">
+          <BIChartsVisual 
+            salesData={salesData}
+            onSendWhatsApp={() => setShowWhatsAppMulti(true)}
+          />
+        </div>
+      </div>
+    </div>
+  );
+
   // Verificar autenticação
   useEffect(() => {
     if (!user) {
@@ -63,7 +144,7 @@ export default function Dashboard() {
           </div>
 
           {/* Ações Disponíveis para Consultores */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <button
               onClick={() => setShowBIDashboard(true)}
               className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700 group"
@@ -77,7 +158,7 @@ export default function Dashboard() {
                     📊 Relatórios BI
                   </h3>
                   <p className="text-gray-600 dark:text-gray-400">
-                    Visualizar gráficos e análises
+                    Gráficos e análises de vendas
                   </p>
                 </div>
               </div>
@@ -97,6 +178,25 @@ export default function Dashboard() {
                   </h3>
                   <p className="text-gray-600 dark:text-gray-400">
                     Acompanhar vendas em tempo real
+                  </p>
+                </div>
+              </div>
+            </button>
+
+            <button
+              onClick={() => router.push('/reports')}
+              className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700 group"
+            >
+              <div className="flex items-center space-x-4">
+                <div className="p-3 bg-green-100 dark:bg-green-900 rounded-lg group-hover:bg-green-200 dark:group-hover:bg-green-800 transition-colors">
+                  <DocumentTextIcon className="h-8 w-8 text-green-600 dark:text-green-400" />
+                </div>
+                <div className="text-left">
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                    📋 Relatórios Gerais
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-400">
+                    Consultar relatórios do sistema
                   </p>
                 </div>
               </div>
@@ -170,89 +270,7 @@ export default function Dashboard() {
     );
   }
 
-  // Dados reais serão carregados da API
-  const salesData = [];
-
-  const getBIReportMessage = () => {
-    return `
-🐄 *RELATÓRIO BI - VENDAS*
-
-📊 *RESUMO GERAL*
-• Total de Animais: 98
-• Animais Vendidos: 98
-• Taxa de Venda: 100.0%
-• Receita Total: R$ 2.850.000
-• Preço Médio: R$ 29.082
-
-📈 *ANÁLISE FIV vs IA*
-• FIV: 3 animais - Média: R$ 35.000
-• IA: 95 animais - Média: R$ 28.500
-
-🏆 *TOP TOUROS (Mais Filhos)*
-• Dados reais serão carregados da API
-• Sistema limpo de dados mockados
-
-📅 *CRONOGRAMA*
-• 08:00 - Abertura
-• 09:00 - Início dos Lances
-• 15:00 - Animais FIV
-• 17:00 - Encerramento
-
-📊 *GRÁFICOS INCLUSOS*
-• 🥧 Análise FIV vs IA
-• 📊 Vendas por Série
-• 📈 Timeline dos Últimos 7 Dias
-
----
-🤖 Beef Sync - Gestão Bovina Inteligente 🐄
-    `.trim();
-  };
-
-
-
-  const BIDashboardModal = () => (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-7xl w-full max-h-[95vh] overflow-hidden">
-        {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-purple-600 to-pink-600">
-          <div className="flex items-center space-x-3">
-            <ChartBarIcon className="h-8 w-8 text-white" />
-            <div>
-              <h2 className="text-2xl font-bold text-white">
-                📊 BI Analytics - Sistema de Vendas
-              </h2>
-              <p className="text-purple-100">
-                Gráficos visuais e análises avançadas
-              </p>
-            </div>
-          </div>
-          
-          <div className="flex items-center space-x-4">
-            <button
-              onClick={() => setShowWhatsAppMulti(true)}
-              className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
-            >
-              📱 Enviar WhatsApp
-            </button>
-            <button
-              onClick={() => setShowBIDashboard(false)}
-              className="p-2 hover:bg-white/20 rounded-lg transition-colors text-white text-2xl font-bold"
-            >
-              ×
-            </button>
-          </div>
-        </div>
-
-        <div className="p-6 overflow-y-auto max-h-[calc(95vh-120px)]">
-          <BIChartsVisual 
-            salesData={salesData}
-            onSendWhatsApp={() => setShowWhatsAppMulti(true)}
-          />
-        </div>
-      </div>
-    </div>
-  );
-
+  // Tela completa para desenvolvedor (Zeca)
   return (
     <Layout>
       {/* Botões de Acesso Rápido */}
@@ -289,8 +307,6 @@ export default function Dashboard() {
           📋 CRIAR NOTA FISCAL
         </button>
       </div>
-
-
 
       <ModernDashboard />
 
