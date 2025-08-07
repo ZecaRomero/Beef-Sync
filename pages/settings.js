@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import Layout from '../components/Layout'
 // Constantes necessárias
 const usuarios = [
-  { id: 1, nome: 'Admin', role: 'Administrador', permissoes: ['all'] }
+  { id: 1, nome: 'Zeca', role: 'Desenvolvedor', permissoes: ['all'] }
 ];
 import { 
   UserIcon, 
@@ -22,9 +22,38 @@ import {
 
 export default function Settings() {
   const [activeTab, setActiveTab] = useState('users')
-  const [userList, setUserList] = useState(usuarios)
+  const [userList, setUserList] = useState([])
   const [showUserForm, setShowUserForm] = useState(false)
   const [editingUser, setEditingUser] = useState(null)
+
+  // Carregar usuários do localStorage na inicialização
+  useEffect(() => {
+    const loadUsers = () => {
+      try {
+        const savedUsers = localStorage.getItem('beef_sync_users')
+        if (savedUsers) {
+          const parsedUsers = JSON.parse(savedUsers)
+          setUserList(parsedUsers)
+        } else {
+          // Se não há usuários salvos, usar dados padrão
+          setUserList(usuarios)
+          localStorage.setItem('beef_sync_users', JSON.stringify(usuarios))
+        }
+      } catch (error) {
+        console.error('Erro ao carregar usuários:', error)
+        setUserList(usuarios)
+      }
+    }
+
+    loadUsers()
+  }, [])
+
+  // Salvar usuários no localStorage sempre que a lista mudar
+  useEffect(() => {
+    if (userList.length > 0) {
+      localStorage.setItem('beef_sync_users', JSON.stringify(userList))
+    }
+  }, [userList])
 
   const tabs = [
     { id: 'users', name: 'Usuários', icon: UserIcon },
@@ -67,7 +96,34 @@ export default function Settings() {
 
   const handleSaveUser = (userData) => {
     if (editingUser) {
-      setUserList(userList.map(u => u.id === editingUser.id ? { ...u, ...userData } : u))
+      const updatedUserList = userList.map(u => u.id === editingUser.id ? { ...u, ...userData } : u)
+      setUserList(updatedUserList)
+      
+      // Se o usuário editado é o usuário atual logado, atualizar localStorage
+      const currentUser = JSON.parse(localStorage.getItem('beef-sync-user') || '{}')
+      if (editingUser.id === 1 || editingUser.nome === currentUser.name) {
+        // Atualizar dados no localStorage
+        localStorage.setItem('beef_sync_user_name', userData.nome)
+        
+        // Determinar role em português
+        const roleInPortuguese = userData.role === 'Desenvolvedor' ? 'Desenvolvedor' : 
+                                userData.role === 'Dono' ? 'Proprietário' :
+                                userData.role === 'Gerente' ? 'Gerente' : 'Consultor'
+        localStorage.setItem('beef_sync_user_role', roleInPortuguese)
+        
+        // Atualizar objeto completo do usuário
+        const updatedUser = {
+          ...currentUser,
+          name: userData.nome,
+          role: userData.role.toLowerCase()
+        }
+        localStorage.setItem('beef-sync-user', JSON.stringify(updatedUser))
+        
+        // Forçar atualização do header recarregando a página
+        setTimeout(() => {
+          window.location.reload()
+        }, 500)
+      }
     } else {
       const newUser = {
         ...userData,
@@ -1432,7 +1488,7 @@ function UserFormModal({ user, isOpen, onClose, onSave, roles }) {
     const selectedRole = roles.find(r => r.id === formData.role)
     onSave({
       ...formData,
-      permissoes: selectedRole.permissions
+      permissoes: selectedRole?.permissions || ['reports_view']
     })
   }
 

@@ -1,5 +1,6 @@
 import { Bars3Icon, SunIcon, MoonIcon, BellIcon, UserCircleIcon } from '@heroicons/react/24/outline'
 import { useState, useEffect } from 'react'
+import { useRouter } from 'next/router'
 import NotificationSystem from './NotificationSystem'
 
 export default function Header({ darkMode, toggleDarkMode, setSidebarOpen, onLogout }) {
@@ -9,22 +10,61 @@ export default function Header({ darkMode, toggleDarkMode, setSidebarOpen, onLog
     role: 'Administrador',
     avatar: null
   })
+  const router = useRouter()
 
   // Carregar dados do usuário apenas no cliente
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setCurrentUser({
-        name: localStorage.getItem('beef_sync_user_name') || 'Usuário',
-        role: localStorage.getItem('beef_sync_user_role') || 'Administrador',
-        avatar: null
-      })
+    const loadUserData = () => {
+      if (typeof window !== 'undefined') {
+        setCurrentUser({
+          name: localStorage.getItem('beef_sync_user_name') || 'Usuário',
+          role: localStorage.getItem('beef_sync_user_role') || 'Administrador',
+          avatar: null
+        })
+      }
+    }
+
+    // Carregar dados iniciais
+    loadUserData()
+
+    // Escutar mudanças no localStorage
+    const handleStorageChange = (e) => {
+      if (e.key === 'beef_sync_user_name' || e.key === 'beef_sync_user_role') {
+        loadUserData()
+      }
+    }
+
+    window.addEventListener('storage', handleStorageChange)
+    
+    // Também escutar mudanças customizadas
+    const handleCustomUpdate = () => loadUserData()
+    window.addEventListener('userDataUpdated', handleCustomUpdate)
+
+    return () => {
+      window.removeEventListener('storage', handleStorageChange)
+      window.removeEventListener('userDataUpdated', handleCustomUpdate)
     }
   }, [])
 
   const handleLogout = () => {
+    console.log('🚪 Fazendo logout...')
     setUserMenuOpen(false)
+    
+    // Limpar todos os dados de autenticação
+    localStorage.removeItem('beef-sync-user')
+    localStorage.removeItem('beef_sync_user_name')
+    localStorage.removeItem('beef_sync_user_role')
+    localStorage.removeItem('beef_sync_user')
+    sessionStorage.clear()
+    
+    console.log('✅ Logout realizado com sucesso')
+    
+    // Chamar função onLogout se fornecida
     if (onLogout) {
       onLogout()
+    } else {
+      // Redirecionar para login
+      router.push('/login')
     }
   }
 
@@ -81,12 +121,24 @@ export default function Header({ darkMode, toggleDarkMode, setSidebarOpen, onLog
 
             {userMenuOpen && (
               <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg py-1 z-50 border border-gray-200 dark:border-gray-700">
-                <a href="#" className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                <button
+                  onClick={() => {
+                    setUserMenuOpen(false)
+                    router.push('/profile')
+                  }}
+                  className="block w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                >
                   Perfil
-                </a>
-                <a href="#" className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                </button>
+                <button
+                  onClick={() => {
+                    setUserMenuOpen(false)
+                    router.push('/settings')
+                  }}
+                  className="block w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                >
                   Configurações
-                </a>
+                </button>
                 <hr className="my-1 border-gray-200 dark:border-gray-700" />
                 <button
                   onClick={handleLogout}
