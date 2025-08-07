@@ -12,6 +12,7 @@ export default function DirectInvoiceManager({ isOpen, onClose }) {
     numero: "",
     dataVenda: new Date().toISOString().split('T')[0],
     status: "PENDENTE",
+    tipoVenda: "VENDA_DIRETA", // VENDA_DIRETA ou LEILAO
     compradorNome: "",
     compradorCpfCnpj: "",
     compradorEndereco: "",
@@ -151,6 +152,7 @@ export default function DirectInvoiceManager({ isOpen, onClose }) {
       // Depois, criar a NF
       const nfData = {
         ...invoiceData,
+        tipoVenda: invoiceData.tipoVenda || "VENDA_DIRETA",
         animais: savedAnimals,
         valorTotal: calculateTotal(),
       };
@@ -217,7 +219,7 @@ export default function DirectInvoiceManager({ isOpen, onClose }) {
             <h3 className="text-lg font-bold text-blue-900 dark:text-blue-100 mb-4 flex items-center">
               📄 Dados da Nota Fiscal
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               <div>
                 <label className="block text-sm font-medium text-blue-800 dark:text-blue-200 mb-2">
                   Número da NF *
@@ -229,6 +231,19 @@ export default function DirectInvoiceManager({ isOpen, onClose }) {
                   className="w-full px-4 py-3 border border-blue-300 dark:border-blue-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white text-lg font-medium"
                   placeholder="Ex: 001"
                 />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-blue-800 dark:text-blue-200 mb-2">
+                  Tipo de Venda *
+                </label>
+                <select
+                  value={invoiceData.tipoVenda}
+                  onChange={(e) => setInvoiceData({...invoiceData, tipoVenda: e.target.value})}
+                  className="w-full px-4 py-3 border border-blue-300 dark:border-blue-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white text-lg"
+                >
+                  <option value="VENDA_DIRETA">Venda Direta</option>
+                  <option value="LEILAO">Leilão</option>
+                </select>
               </div>
               <div>
                 <label className="block text-sm font-medium text-blue-800 dark:text-blue-200 mb-2">

@@ -40,6 +40,7 @@ export default async function handler(req, res) {
     try {
       const {
         numero,
+        tipoVenda,
         compradorNome,
         compradorCpfCnpj,
         compradorEndereco,
@@ -57,6 +58,7 @@ export default async function handler(req, res) {
       const invoice = await prisma.invoice.create({
         data: {
           numero,
+          tipoVenda: tipoVenda || "VENDA_DIRETA",
           compradorNome,
           compradorCpfCnpj,
           compradorEndereco,

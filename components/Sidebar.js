@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
+import { useAuth } from '../contexts/AuthContext'
 // Dados mockados removidos - usando dados reais da API
 import { exportToExcel, formatAnimalDataForExport, exportCostsToExcel, exportReportToExcel } from '../services/exportUtils'
 import MarketWidget from './MarketWidget'
@@ -18,34 +19,72 @@ import {
   TrashIcon,
   BookmarkIcon,
   HeartIcon,
-  UserIcon
+  UserIcon,
+  EyeIcon,
+  ClipboardDocumentListIcon,
+  ChartBarSquareIcon,
+  Cog6ToothIcon,
+  ChatBubbleLeftRightIcon,
+  DocumentTextIcon,
+  CurrencyDollarIcon,
+  TruckIcon,
+  UserGroupIcon
 } from '@heroicons/react/24/outline'
-
-const navigation = [
-  { name: 'Dashboard', href: '/', icon: HomeIcon },
-  { name: 'Editar Animal', href: '/animals', icon: PencilIcon },
-  { name: 'Reprodução', href: '/reproduction', icon: HeartIcon },
-  { name: 'Gestações', href: '/gestacao', icon: PlusIcon },
-  { name: 'Relatórios Gráficos', href: '/reports', icon: ChartBarIcon },
-  { name: 'Usuários', href: '/users', icon: UserIcon },
-  { name: 'Configurações', href: '/settings', icon: CogIcon },
-]
-
-const quickActions = [
-  { name: 'Novo Registro', icon: PlusIcon, action: 'new' },
-  { name: 'Calcular Custo', icon: CalculatorIcon, action: 'calculate' },
-  { name: 'Buscar Animal', icon: MagnifyingGlassIcon, action: 'search' },
-  { name: 'Ver Gráficos', icon: ChartBarIcon, action: 'charts' },
-  { name: 'Exportar Excel', icon: DocumentArrowDownIcon, action: 'export' },
-  { name: 'Importar Excel', icon: DocumentArrowUpIcon, action: 'import' },
-  { name: 'Limpar Campos', icon: TrashIcon, action: 'clear' },
-  { name: 'Salvar Dados', icon: BookmarkIcon, action: 'save' },
-]
 
 export default function Sidebar({ isOpen, setIsOpen }) {
   const router = useRouter()
+  const { user, isDeveloper, isConsultant, checkPermission } = useAuth()
   const [showNotification, setShowNotification] = useState(false)
   const [notificationMessage, setNotificationMessage] = useState('')
+
+  // Navegação para desenvolvedores (acesso completo)
+  const developerNavigation = [
+    { name: 'Dashboard', href: '/', icon: HomeIcon },
+    { name: 'Editar Animal', href: '/animals', icon: PencilIcon },
+    { name: 'Reprodução', href: '/reproduction', icon: HeartIcon },
+    { name: 'Gestações', href: '/gestacao', icon: PlusIcon },
+    { name: 'Relatórios Gráficos', href: '/reports', icon: ChartBarIcon },
+    { name: 'Usuários', href: '/users', icon: UserIcon },
+    { name: 'Configurações', href: '/settings', icon: CogIcon },
+  ]
+
+  // Navegação para consultores (acesso limitado)
+  const consultantNavigation = [
+    { name: 'Dashboards', href: '/', icon: HomeIcon },
+    { name: 'Mais Ideias', href: '/dashboard-new', icon: EyeIcon },
+    { name: 'Dados de Vendas', href: '/vendas', icon: CurrencyDollarIcon },
+    { name: 'Relatórios Gerais', href: '/reports', icon: ClipboardDocumentListIcon },
+    { name: 'Análises Avançadas', href: '/dashboard-test', icon: ChartBarSquareIcon },
+    { name: 'Buscar Animal', href: '/animals', icon: MagnifyingGlassIcon },
+    { name: 'Relatório BI', href: '/reports', icon: ChartBarIcon },
+    { name: 'Feedback Sistema', href: '/feedback', icon: ChatBubbleLeftRightIcon },
+  ]
+
+  // Ações rápidas para desenvolvedores
+  const developerQuickActions = [
+    { name: 'Novo Registro', icon: PlusIcon, action: 'new' },
+    { name: 'Calcular Custo', icon: CalculatorIcon, action: 'calculate' },
+    { name: 'Buscar Animal', icon: MagnifyingGlassIcon, action: 'search' },
+    { name: 'Ver Gráficos', icon: ChartBarIcon, action: 'charts' },
+    { name: 'Exportar Excel', icon: DocumentArrowDownIcon, action: 'export' },
+    { name: 'Importar Excel', icon: DocumentArrowUpIcon, action: 'import' },
+    { name: 'Limpar Campos', icon: TrashIcon, action: 'clear' },
+    { name: 'Salvar Dados', icon: BookmarkIcon, action: 'save' },
+  ]
+
+  // Ações rápidas para consultores
+  const consultantQuickActions = [
+    { name: 'Ver Dashboards', icon: HomeIcon, action: 'dashboard' },
+    { name: 'Buscar Animal', icon: MagnifyingGlassIcon, action: 'search' },
+    { name: 'Relatórios', icon: ChartBarIcon, action: 'reports' },
+    { name: 'Análises', icon: ChartBarSquareIcon, action: 'analytics' },
+    { name: 'Feedback', icon: ChatBubbleLeftRightIcon, action: 'feedback' },
+    { name: 'Dados Vendas', icon: CurrencyDollarIcon, action: 'sales' },
+  ]
+
+  // Determinar qual navegação e ações usar
+  const navigation = isDeveloper() ? developerNavigation : consultantNavigation
+  const quickActions = isDeveloper() ? developerQuickActions : consultantQuickActions
 
   const showNotificationMessage = (message) => {
     setNotificationMessage(message)
@@ -75,6 +114,10 @@ export default function Sidebar({ isOpen, setIsOpen }) {
         showNotificationMessage('Carregando relatórios gráficos...')
         break
       case 'export':
+        if (!isDeveloper()) {
+          showNotificationMessage('❌ Apenas desenvolvedores podem exportar dados')
+          return
+        }
         showNotificationMessage('Exportando dados para Excel...')
         try {
           // Preparar dados dos animais para exportação
@@ -107,20 +150,52 @@ export default function Sidebar({ isOpen, setIsOpen }) {
         }
         break
       case 'import':
+        if (!isDeveloper()) {
+          showNotificationMessage('❌ Apenas desenvolvedores podem importar dados')
+          return
+        }
         // Redirecionar para a página de animais e abrir o importador
         router.push('/animals?openImporter=true')
         showNotificationMessage('🚀 Redirecionando para importação de animais...')
         break
       case 'clear':
+        if (!isDeveloper()) {
+          showNotificationMessage('❌ Apenas desenvolvedores podem limpar campos')
+          return
+        }
         if (confirm('Tem certeza que deseja limpar todos os campos?')) {
           showNotificationMessage('Campos limpos com sucesso!')
         }
         break
       case 'save':
+        if (!isDeveloper()) {
+          showNotificationMessage('❌ Apenas desenvolvedores podem salvar dados')
+          return
+        }
         showNotificationMessage('Salvando dados...')
         setTimeout(() => {
           showNotificationMessage('Dados salvos com sucesso!')
         }, 1500)
+        break
+      case 'dashboard':
+        router.push('/')
+        showNotificationMessage('Carregando dashboards...')
+        break
+      case 'reports':
+        router.push('/reports')
+        showNotificationMessage('Carregando relatórios...')
+        break
+      case 'analytics':
+        router.push('/dashboard-test')
+        showNotificationMessage('Carregando análises avançadas...')
+        break
+      case 'feedback':
+        router.push('/feedback')
+        showNotificationMessage('Abrindo sistema de feedback...')
+        break
+      case 'sales':
+        router.push('/vendas')
+        showNotificationMessage('Carregando dados de vendas...')
         break
       default:
         showNotificationMessage('Ação não implementada')
@@ -154,6 +229,38 @@ export default function Sidebar({ isOpen, setIsOpen }) {
           </button>
         </div>
 
+        {/* Indicador de tipo de usuário */}
+        <div className="px-4 py-2 bg-gray-50 dark:bg-gray-700">
+          <div className="flex items-center justify-between">
+            <span className="text-sm text-gray-600 dark:text-gray-300">
+              {user?.name || 'Usuário'}
+            </span>
+            <span className={`text-xs px-2 py-1 rounded-full ${
+              isDeveloper() 
+                ? 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200' 
+                : 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
+            }`}>
+              {isDeveloper() ? 'Desenvolvedor' : 'Consultor'}
+            </span>
+          </div>
+        </div>
+
+        {/* Indicador de tipo de usuário */}
+        <div className="px-4 py-2 bg-gray-50 dark:bg-gray-700">
+          <div className="flex items-center justify-between">
+            <span className="text-sm text-gray-600 dark:text-gray-300">
+              {user?.name || 'Usuário'}
+            </span>
+            <span className={`text-xs px-2 py-1 rounded-full ${
+              isDeveloper() 
+                ? 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200' 
+                : 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
+            }`}>
+              {isDeveloper() ? 'Desenvolvedor' : 'Consultor'}
+            </span>
+          </div>
+        </div>
+
         <nav className="mt-5 px-2 space-y-1">
           {navigation.map((item) => {
             const isActive = router.pathname === item.href
@@ -183,7 +290,7 @@ export default function Sidebar({ isOpen, setIsOpen }) {
 
         <div className="mt-8 px-2">
           <h3 className="px-2 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
-            Ações Rápidas
+            {isDeveloper() ? 'Ações Rápidas' : 'Ações Disponíveis'}
           </h3>
           <div className="mt-2 space-y-1">
             {quickActions.map((item) => (

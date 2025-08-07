@@ -1406,17 +1406,31 @@ export default function Animals() {
                       </span>
                     </div>
                     {selectedAnimal.valorVenda && (
-                      <div className="flex justify-between">
-                        <span className="text-gray-600 dark:text-gray-400">
-                          Valor de Venda:
-                        </span>
-                        <span className="font-bold text-green-600 dark:text-green-400">
-                          R${" "}
-                          {selectedAnimal.valorVenda.toLocaleString("pt-BR", {
-                            minimumFractionDigits: 2,
-                          })}
-                        </span>
-                      </div>
+                      <>
+                        <div className="flex justify-between">
+                          <span className="text-gray-600 dark:text-gray-400">
+                            Valor de Venda:
+                          </span>
+                          <span className="font-bold text-green-600 dark:text-green-400">
+                            R${" "}
+                            {selectedAnimal.valorVenda.toLocaleString("pt-BR", {
+                              minimumFractionDigits: 2,
+                            })}
+                          </span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-gray-600 dark:text-gray-400">
+                            Tipo de Venda:
+                          </span>
+                          <span className={`font-bold px-2 py-1 rounded text-xs ${
+                            selectedAnimal.tipoVenda === 'LEILAO' 
+                              ? 'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200'
+                              : 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200'
+                          }`}>
+                            {selectedAnimal.tipoVenda === 'LEILAO' ? 'Leilão' : 'Venda Direta'}
+                          </span>
+                        </div>
+                      </>
                     )}
                     {selectedAnimal.valorReal !== null && (
                       <div className="flex justify-between">

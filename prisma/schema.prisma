@@ -48,6 +48,7 @@ model Animal {
   // Campos de venda
   valorVenda  Float?
   dataVenda   DateTime?
+  tipoVenda   String?   // VENDA_DIRETA, LEILAO
   era         String?   // Idade em meses ou era do animal
 
   // Campos genealógicos
@@ -219,6 +220,7 @@ model Sale {
 model Invoice {
   id                String    @id @default(cuid())
   numero            String    @unique
+  tipoVenda         String    @default("VENDA_DIRETA") // VENDA_DIRETA, LEILAO
   compradorNome     String
   compradorCpfCnpj  String?
   compradorEndereco String?
