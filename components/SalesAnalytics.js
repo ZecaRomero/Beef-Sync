@@ -1,7 +1,7 @@
 import { useState } from "react";
 import {
-  TrendingUpIcon,
-  TrendingDownIcon,
+  ArrowTrendingUpIcon as TrendingUpIcon,
+  ArrowTrendingDownIcon as TrendingDownIcon,
   ChartBarIcon,
   CursorArrowRaysIcon,
   LightBulbIcon,

@@ -1,13 +1,13 @@
 import React from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '../ui/card';
 import { Badge } from '../ui/badge';
-import { 
-  CurrencyDollarIcon, 
-  ChartBarIcon, 
-  TrendingUpIcon, 
-  TrendingDownIcon,
-  CalendarIcon
-} from '@heroicons/react/24/outline';
+import {
+  CalendarIcon,
+  ChartBarIcon,
+  CurrencyDollarIcon,
+  ArrowTrendingDownIcon as TrendingDownIcon,
+  ArrowTrendingUpIcon as TrendingUpIcon,
+} from "@heroicons/react/24/outline";
 
 const CostDashboard = ({ process, financialReport }) => {
   const formatCurrency = (value) => {
@@ -171,12 +171,12 @@ const CostDashboard = ({ process, financialReport }) => {
                   )}
                 </div>
                 <span className="font-medium">
-                  {process.faseEntrega?.realizada ? 
+                  {process.faseEntrega?.realizada ?
                     formatCurrency(
-                      process.faseEntrega.receptoras.reduce((total, r) => 
+                      process.faseEntrega.receptoras.reduce((total, r) =>
                         total + (parseFloat(r.valorReceptora) || 0) + (parseFloat(r.valorFrete) || 0), 0
                       )
-                    ) : 
+                    ) :
                     formatCurrency(0)
                   }
                 </span>
@@ -259,14 +259,14 @@ const CostDashboard = ({ process, financialReport }) => {
                   </div>
                   <div className="text-right">
                     <p className="font-medium">
-                      {receptora.previsaoParto ? 
-                        new Date(receptora.previsaoParto).toLocaleDateString() : 
+                      {receptora.previsaoParto ?
+                        new Date(receptora.previsaoParto).toLocaleDateString() :
                         'Data não definida'
                       }
                     </p>
                     <p className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                      {receptora.previsaoParto ? 
-                        `${Math.ceil((new Date(receptora.previsaoParto) - new Date()) / (1000 * 60 * 60 * 24))} dias` : 
+                      {receptora.previsaoParto ?
+                        `${Math.ceil((new Date(receptora.previsaoParto) - new Date()) / (1000 * 60 * 60 * 24))} dias` :
                         ''
                       }
                     </p>
