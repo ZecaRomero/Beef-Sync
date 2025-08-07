@@ -70,7 +70,6 @@ async function main() {
           mae: animalData.categoria === 'NOVILHA' ? 'Vaca Elite' : 'Vaca Premium',
           avoMaterno: 'Touro Master',
           receptora: animalData.categoria === 'BEZERRO' ? 'Vaca Receptora Elite' : null,
-          isFiv: Math.random() > 0.7, // 30% chance de ser FIV
           observacoes: `Animal de alta qualidade - ${animalData.categoria}`,
           createdAt: new Date(Date.now() - Math.random() * 1000 * 60 * 60 * 24 * 365) // Último ano
         }
