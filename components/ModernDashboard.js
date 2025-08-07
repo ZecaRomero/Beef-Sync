@@ -16,6 +16,8 @@ import SalesManager from './SalesManager'
 import InviteSystem from './InviteSystem'
 import NotificationSystem from './NotificationSystem'
 import MaterialsManager from './MaterialsManager'
+import MarketAnalysis from './MarketAnalysis'
+import AdvancedBIReports from './AdvancedBIReports'
 import { useRouter } from 'next/router'
 
 export default function ModernDashboard() {
@@ -172,6 +174,12 @@ export default function ModernDashboard() {
           <div className="space-y-8">
             {/* Stats em Tempo Real */}
             <LiveStats data={liveData} />
+
+            {/* Análise de Mercado */}
+            <MarketAnalysis />
+
+            {/* Relatórios Avançados de BI */}
+            <AdvancedBIReports />
 
             {/* Métricas Principais */}
             <MetricsCards 
