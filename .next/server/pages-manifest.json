@@ -1,10 +1,1 @@
-{
-  "/_app": "pages/_app.js",
-  "/_error": "pages/_error.js",
-  "/_document": "pages/_document.js",
-  "/": "pages/index.js",
-  "/api/market-prices": "pages/api/market-prices.js",
-  "/api/sales-list": "pages/api/sales-list.js",
-  "/login": "pages/login.js",
-  "/api/animals-list": "pages/api/animals-list.js"
-}
+{}

@@ -15,8 +15,8 @@ async function main() {
       data: {
         email: 'Zeca@beef-sync.com',
         name: 'Zeca',
-        role: 'DEVELOPER',
-        permissions: ['all']
+        password: 'password123',
+        role: 'DEVELOPER'
       }
     });
     console.log('✅ Usuário criado:', user.name);
