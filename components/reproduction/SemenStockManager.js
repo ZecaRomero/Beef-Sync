@@ -8,7 +8,7 @@ import { Badge } from '../ui/badge';
 import { 
   PlusIcon, 
   TrashIcon, 
-  EditIcon, 
+  PencilIcon as EditIcon, 
   BeakerIcon,
   ArchiveBoxIcon,
   ArrowRightIcon,

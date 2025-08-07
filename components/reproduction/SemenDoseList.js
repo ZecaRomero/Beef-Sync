@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, CardContent } from '../ui/card';
 import { Button } from '../ui/button';
 import { Badge } from '../ui/badge';
-import { EditIcon, TrashIcon } from '@heroicons/react/24/outline';
+import { PencilIcon as EditIcon, TrashIcon } from '@heroicons/react/24/outline';
 
 const SemenDoseList = ({ doses, onEdit, onDelete, formatCurrency, getStatusColor }) => (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">

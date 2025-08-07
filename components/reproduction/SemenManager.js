@@ -5,7 +5,7 @@ import { Input } from '../ui/input';
 import { Label } from '../ui/label';
 import { Textarea } from '../ui/textarea';
 import { Badge } from '../ui/badge';
-import { PlusIcon, TrashIcon, EditIcon } from '@heroicons/react/24/outline';
+import { PlusIcon, TrashIcon, PencilIcon as EditIcon } from '@heroicons/react/24/outline';
 import { semenService } from '../../services/semenService';
 import SemenDoseForm from './SemenDoseForm';
 import SemenDoseList from './SemenDoseList';
