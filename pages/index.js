@@ -23,7 +23,7 @@ export default function Dashboard() {
   const [showAdvancedAnalytics, setShowAdvancedAnalytics] = useState(false);
   const [showReceptorAlerts, setShowReceptorAlerts] = useState(false);
   const router = useRouter();
-  const { user } = useAuth();
+  const { user, isDeveloper, isConsultant } = useAuth();
 
   // Dados reais serão carregados da API
   const salesData = [];
@@ -228,24 +228,26 @@ export default function Dashboard() {
               </div>
             </button>
 
-            <button
-              onClick={() => setShowReceptorAlerts(true)}
-              className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700 group"
-            >
-              <div className="flex items-center space-x-4">
-                <div className="p-3 bg-orange-100 dark:bg-orange-900 rounded-lg group-hover:bg-orange-200 dark:group-hover:bg-orange-800 transition-colors">
-                  <BellIcon className="h-8 w-8 text-orange-600 dark:text-orange-400" />
+            {isDeveloper() && (
+              <button
+                onClick={() => setShowReceptorAlerts(true)}
+                className="p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700 group"
+              >
+                <div className="flex items-center space-x-4">
+                  <div className="p-3 bg-orange-100 dark:bg-orange-900 rounded-lg group-hover:bg-orange-200 dark:group-hover:bg-orange-800 transition-colors">
+                    <BellIcon className="h-8 w-8 text-orange-600 dark:text-orange-400" />
+                  </div>
+                  <div className="text-left">
+                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                      🔔 Alertas de Receptoras
+                    </h3>
+                    <p className="text-gray-600 dark:text-gray-400">
+                      Monitoramento automático de TE
+                    </p>
+                  </div>
                 </div>
-                <div className="text-left">
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                    🔔 Alertas de Receptoras
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-400">
-                    Monitoramento automático de TE
-                  </p>
-                </div>
-              </div>
-            </button>
+              </button>
+            )}
           </div>
 
           {/* Informações do Sistema */}
@@ -343,7 +345,7 @@ export default function Dashboard() {
         )}
 
         {/* Modal de Alertas de Receptoras */}
-        {showReceptorAlerts && (
+        {showReceptorAlerts && isDeveloper() && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
             <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-7xl w-full max-h-[95vh] overflow-hidden">
               <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-orange-600 to-red-600">

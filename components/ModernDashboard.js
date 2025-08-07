@@ -36,62 +36,73 @@ export default function ModernDashboard() {
     topPerformer: null
   })
 
-  // Carregar dados reais (vazios por enquanto)
+  // Carregar dados reais da API
   useEffect(() => {
     const loadRealData = async () => {
       try {
-        // Dados reais vazios
-        const animals = []
-        const sales = []
+        console.log('🔄 Carregando dados reais...');
+        
+        // Carregar animais reais da API
+        const animalsResponse = await fetch('/api/animals-list');
+        const animals = animalsResponse.ok ? await animalsResponse.json() : [];
+        
+        // Carregar vendas reais da API
+        const salesResponse = await fetch('/api/sales-list');
+        const sales = salesResponse.ok ? await salesResponse.json() : [];
+
+        console.log('📊 Animais carregados:', animals.length);
+        console.log('💰 Vendas carregadas:', sales.length);
+        console.log('🐄 Dados dos animais:', animals);
+        console.log('💵 Dados das vendas:', sales);
 
         // Calcular métricas reais
-        const totalAnimals = animals.length
-        const activeAnimals = animals.filter(a => a.status === 'ATIVO').length
+        const totalAnimals = animals.length;
+        const activeAnimals = animals.filter(a => a.status === 'ATIVO').length;
         
         const totalInvested = animals.reduce((acc, animal) => {
-          const costs = animal.costs || []
+          const costs = animal.costs || [];
           const totalCost = costs
             .filter(cost => cost.tipo !== 'VENDA')
-            .reduce((sum, cost) => sum + cost.valor, 0)
-          return acc + totalCost
-        }, 0)
+            .reduce((sum, cost) => sum + cost.valor, 0);
+          return acc + totalCost;
+        }, 0);
 
-        const totalRevenue = sales.reduce((acc, sale) => acc + sale.valor, 0)
+        const totalRevenue = sales.reduce((acc, sale) => acc + sale.valor, 0);
         
-        let totalROI = 0
-        let validROICount = 0
-        let bestPerformer = null
-        let bestROI = -Infinity
+        let totalROI = 0;
+        let validROICount = 0;
+        let bestPerformer = null;
+        let bestROI = -Infinity;
 
         sales.forEach(sale => {
-          const animal = animals.find(a => a.id === sale.animalId)
+          const animal = animals.find(a => a.id === sale.animalId);
           if (animal) {
-            const costs = animal.costs || []
+            const costs = animal.costs || [];
             const totalCost = costs
               .filter(cost => cost.tipo !== 'VENDA')
-              .reduce((sum, cost) => sum + cost.valor, 0)
+              .reduce((sum, cost) => sum + cost.valor, 0);
             
             if (totalCost > 0) {
-              const profit = sale.valor - totalCost - (sale.comissao || 0) - (sale.taxas || 0)
-              const roi = (profit / totalCost) * 100
-              totalROI += roi
-              validROICount += 1
+              const profit = sale.valor - totalCost - (sale.comissao || 0) - (sale.taxas || 0);
+              const roi = (profit / totalCost) * 100;
+              totalROI += roi;
+              validROICount += 1;
 
               if (roi > bestROI) {
-                bestROI = roi
+                bestROI = roi;
                 bestPerformer = {
                   ...animal,
                   saleValue: sale.valor,
                   roi: roi
-                }
+                };
               }
             }
           }
-        })
+        });
 
-        const avgROI = validROICount > 0 ? totalROI / validROICount : 0
+        const avgROI = validROICount > 0 ? totalROI / validROICount : 0;
 
-        setLiveData({
+        const newLiveData = {
           totalAnimals,
           activeAnimals,
           totalInvested,
@@ -99,17 +110,27 @@ export default function ModernDashboard() {
           avgROI,
           topPerformer: bestPerformer,
           lastUpdate: new Date()
-        })
+        };
+
+        console.log('📈 Dados calculados:', newLiveData);
+        setLiveData(newLiveData);
       } catch (error) {
-        console.error('Erro ao carregar dados reais:', error)
+        console.error('❌ Erro ao carregar dados reais:', error);
+        // Fallback para dados vazios em caso de erro
+        setLiveData({
+          totalAnimals: 0,
+          activeAnimals: 0,
+          totalInvested: 0,
+          totalRevenue: 0,
+          avgROI: 0,
+          topPerformer: null,
+          lastUpdate: new Date()
+        });
       }
-    }
+    };
 
-    loadRealData()
-    const interval = setInterval(loadRealData, 30000) // Atualizar a cada 30 segundos
-
-    return () => clearInterval(interval)
-  }, [])
+    loadRealData();
+  }, []);
 
   const timeRanges = [
     { value: '7d', label: '7 dias' },

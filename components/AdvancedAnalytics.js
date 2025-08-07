@@ -126,10 +126,10 @@ const AdvancedAnalytics = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center space-y-2 sm:space-y-0">
         <div>
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+          <h2 className="text-2xl font-bold text-black dark:text-white">
             📊 Análises Avançadas de Vendas
           </h2>
-          <p className="text-gray-600 dark:text-gray-400 text-sm">
+          <p className="text-gray-700 dark:text-gray-300 text-sm font-medium">
             Médias de preços, performance por pai e tendências
           </p>
         </div>

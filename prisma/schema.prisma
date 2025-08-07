@@ -48,7 +48,7 @@ model Animal {
   // Campos de venda
   valorVenda  Float?
   dataVenda   DateTime?
-  tipoVenda   String?   // VENDA_DIRETA, LEILAO
+  tipoVenda   String?   // VENDA_DIRETA, LEILAO, VENDA_ABATE, VENDA_DESCARTE, OUTRO
   era         String?   // Idade em meses ou era do animal
 
   // Campos genealógicos
@@ -168,7 +168,7 @@ model MarketPrice {
 model SaleEvent {
   id          String   @id @default(cuid())
   nome        String
-  tipo        String   // LEILAO, VENDA_DIRETA, FEIRA, etc
+  tipo        String   // LEILAO, VENDA_DIRETA, VENDA_ABATE, VENDA_DESCARTE, FEIRA, etc
   data        DateTime
   local       String?
   descricao   String?
@@ -220,7 +220,7 @@ model Sale {
 model Invoice {
   id                String    @id @default(cuid())
   numero            String    @unique
-  tipoVenda         String    @default("VENDA_DIRETA") // VENDA_DIRETA, LEILAO
+  tipoVenda         String    @default("VENDA_DIRETA") // VENDA_DIRETA, LEILAO, VENDA_ABATE, VENDA_DESCARTE, OUTRO
   compradorNome     String
   compradorCpfCnpj  String?
   compradorEndereco String?

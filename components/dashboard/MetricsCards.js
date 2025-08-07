@@ -14,24 +14,33 @@ export default function MetricsCards({ timeRange, onReportClick }) {
 
   const loadRealData = async () => {
     try {
-      // Dados reais vazios
-      const animals = []
-      const sales = []
+      console.log('🔄 MetricsCards: Carregando dados reais...');
+      
+      // Carregar animais reais da API
+      const animalsResponse = await fetch('/api/animals-list');
+      const animals = animalsResponse.ok ? await animalsResponse.json() : [];
+      
+      // Carregar vendas reais da API
+      const salesResponse = await fetch('/api/sales-list');
+      const sales = salesResponse.ok ? await salesResponse.json() : [];
+
+      console.log('📊 MetricsCards: Animais carregados:', animals.length);
+      console.log('💰 MetricsCards: Vendas carregadas:', sales.length);
 
       setRealData({
         animals: animals || [],
         sales: sales || [],
         loading: false
-      })
+      });
     } catch (error) {
-      console.error('Erro ao carregar dados reais:', error)
+      console.error('❌ MetricsCards: Erro ao carregar dados reais:', error);
       setRealData({
         animals: [],
         sales: [],
         loading: false
-      })
+      });
     }
-  }
+  };
 
   // Calcular métricas baseadas nos dados reais do banco
   const calculateMetrics = () => {

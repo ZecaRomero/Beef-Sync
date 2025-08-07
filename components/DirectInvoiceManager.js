@@ -243,7 +243,18 @@ export default function DirectInvoiceManager({ isOpen, onClose }) {
                 >
                   <option value="VENDA_DIRETA">Venda Direta</option>
                   <option value="LEILAO">Leilão</option>
+                  <option value="VENDA_ABATE">Venda Abate</option>
+                  <option value="VENDA_DESCARTE">Venda Descarte</option>
+                  <option value="OUTRO">Outro (Especificar)</option>
                 </select>
+                {invoiceData.tipoVenda === 'OUTRO' && (
+                  <input
+                    type="text"
+                    placeholder="Especificar tipo de venda..."
+                    onChange={(e) => setInvoiceData({...invoiceData, tipoVenda: e.target.value})}
+                    className="w-full px-4 py-2 border border-blue-300 dark:border-blue-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-white text-sm mt-2"
+                  />
+                )}
               </div>
               <div>
                 <label className="block text-sm font-medium text-blue-800 dark:text-blue-200 mb-2">

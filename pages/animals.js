@@ -304,8 +304,8 @@ export default function Animals() {
           <h1>FICHA DO ANIMAL</h1>
           <h2>${animal.serie} ${animal.rg}</h2>
           <p>Impresso em: ${new Date().toLocaleDateString(
-            "pt-BR"
-          )} às ${new Date().toLocaleTimeString("pt-BR")}</p>
+      "pt-BR"
+    )} às ${new Date().toLocaleTimeString("pt-BR")}</p>
         </div>
 
         <div class="section">
@@ -333,96 +333,85 @@ export default function Animals() {
               <span class="info-label">Situação:</span> ${animal.situacao}
             </div>
             <div class="info-item">
-              <span class="info-label">Data de Nascimento:</span> ${
-                animal.dataNascimento
-                  ? new Date(animal.dataNascimento).toLocaleDateString("pt-BR")
-                  : "N/A"
-              }
+              <span class="info-label">Data de Nascimento:</span> ${animal.dataNascimento
+        ? new Date(animal.dataNascimento).toLocaleDateString("pt-BR")
+        : "N/A"
+      }
             </div>
           </div>
         </div>
 
-        ${
-          animal.pai || animal.mae || animal.avoMaterno || animal.receptora
-            ? `
+        ${animal.pai || animal.mae || animal.avoMaterno || animal.receptora
+        ? `
         <div class="section">
           <h3>🧬 Genealogia</h3>
           <div class="info-grid">
-            ${
-              animal.pai
-                ? `<div class="info-item"><span class="info-label">Pai:</span> ${animal.pai}</div>`
-                : ""
-            }
-            ${
-              animal.mae
-                ? `<div class="info-item"><span class="info-label">Mãe:</span> ${animal.mae}</div>`
-                : ""
-            }
-            ${
-              animal.avoMaterno
-                ? `<div class="info-item"><span class="info-label">Avô Materno:</span> ${animal.avoMaterno}</div>`
-                : ""
-            }
-            ${
-              animal.receptora
-                ? `<div class="info-item"><span class="info-label">Receptora:</span> ${animal.receptora}</div>`
-                : ""
-            }
-            ${
-              animal.isFiv
-                ? `<div class="info-item"><span class="info-label">FIV:</span> Sim</div>`
-                : ""
-            }
+            ${animal.pai
+          ? `<div class="info-item"><span class="info-label">Pai:</span> ${animal.pai}</div>`
+          : ""
+        }
+            ${animal.mae
+          ? `<div class="info-item"><span class="info-label">Mãe:</span> ${animal.mae}</div>`
+          : ""
+        }
+            ${animal.avoMaterno
+          ? `<div class="info-item"><span class="info-label">Avô Materno:</span> ${animal.avoMaterno}</div>`
+          : ""
+        }
+            ${animal.receptora
+          ? `<div class="info-item"><span class="info-label">Receptora:</span> ${animal.receptora}</div>`
+          : ""
+        }
+            ${animal.isFiv
+          ? `<div class="info-item"><span class="info-label">FIV:</span> Sim</div>`
+          : ""
+        }
           </div>
         </div>
         `
-            : ""
-        }
+        : ""
+      }
 
         <div class="section">
           <h3>💰 Resumo Financeiro</h3>
           <div class="info-grid">
             <div class="info-item">
               <span class="info-label">Custo Total:</span> R$ ${animal.custoTotal.toLocaleString(
-                "pt-BR",
-                { minimumFractionDigits: 2 }
-              )}
+        "pt-BR",
+        { minimumFractionDigits: 2 }
+      )}
             </div>
             <div class="info-item">
-              <span class="info-label">Valor de Venda:</span> ${
-                animal.valorVenda
-                  ? `R$ ${animal.valorVenda.toLocaleString("pt-BR", {
-                      minimumFractionDigits: 2,
-                    })}`
-                  : "N/A"
-              }
+              <span class="info-label">Valor de Venda:</span> ${animal.valorVenda
+        ? `R$ ${animal.valorVenda.toLocaleString("pt-BR", {
+          minimumFractionDigits: 2,
+        })}`
+        : "N/A"
+      }
             </div>
             <div class="info-item">
-              <span class="info-label">Resultado:</span> ${
-                animal.valorReal !== null
-                  ? `R$ ${animal.valorReal.toLocaleString("pt-BR", {
-                      minimumFractionDigits: 2,
-                    })}`
-                  : "N/A"
-              }
+              <span class="info-label">Resultado:</span> ${animal.valorReal !== null
+        ? `R$ ${animal.valorReal.toLocaleString("pt-BR", {
+          minimumFractionDigits: 2,
+        })}`
+        : "N/A"
+      }
             </div>
             <div class="info-item">
-              <span class="info-label">ROI:</span> ${
-                animal.valorVenda
-                  ? `${(
-                      ((animal.valorVenda - animal.custoTotal) /
-                        animal.custoTotal) *
-                      100
-                    ).toFixed(1)}%`
-                  : "N/A"
-              }
+              <span class="info-label">ROI:</span> ${animal.valorVenda
+        ? `${(
+          ((animal.valorVenda - animal.custoTotal) /
+            animal.custoTotal) *
+          100
+        ).toFixed(1)}%`
+        : "N/A"
+      }
             </div>
           </div>
         </div>
 
-        ${
-          animal.custos && animal.custos.length > 0
-            ? `
+        ${animal.custos && animal.custos.length > 0
+        ? `
         <div class="section">
           <h3>📊 Detalhamento de Custos</h3>
           <table class="costs-table">
@@ -437,33 +426,33 @@ export default function Animals() {
             </thead>
             <tbody>
               ${animal.custos
-                .map(
-                  (custo) => `
+          .map(
+            (custo) => `
                 <tr>
                   <td>${new Date(custo.data).toLocaleDateString("pt-BR")}</td>
                   <td>${custo.tipo}</td>
                   <td>${custo.subtipo || "-"}</td>
                   <td>R$ ${Math.abs(custo.valor).toLocaleString("pt-BR", {
-                    minimumFractionDigits: 2,
-                  })}</td>
+              minimumFractionDigits: 2,
+            })}</td>
                   <td>${custo.observacoes || "-"}</td>
                 </tr>
               `
-                )
-                .join("")}
+          )
+          .join("")}
               <tr class="total">
                 <td colspan="3"><strong>TOTAL</strong></td>
                 <td><strong>R$ ${animal.custoTotal.toLocaleString("pt-BR", {
-                  minimumFractionDigits: 2,
-                })}</strong></td>
+            minimumFractionDigits: 2,
+          })}</strong></td>
                 <td></td>
               </tr>
             </tbody>
           </table>
         </div>
         `
-            : ""
-        }
+        : ""
+      }
 
         <div class="section">
           <h3>📝 Observações</h3>
@@ -564,9 +553,9 @@ export default function Animals() {
           dataNasc: animal.dataNasc,
           meses: animal.dataNasc ? Math.floor((new Date() - new Date(animal.dataNasc)) / (1000 * 60 * 60 * 24 * 30.44)) : 0,
           situacao: animal.status === 'ATIVO' ? 'Ativo' :
-                   animal.status === 'VENDIDO' ? 'Vendido' :
-                   animal.status === 'MORTO' ? 'Morto' :
-                   animal.status === 'DOADO' ? 'Doado' : animal.status,
+            animal.status === 'VENDIDO' ? 'Vendido' :
+              animal.status === 'MORTO' ? 'Morto' :
+                animal.status === 'DOADO' ? 'Doado' : animal.status,
           categoria: animal.categoria,
           peso: animal.peso,
           observacoes: animal.observacoes,
@@ -888,15 +877,14 @@ export default function Animals() {
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
                       <span
-                        className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
-                          animal.situacao === "Ativo"
-                            ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
-                            : animal.situacao === "Vendido"
+                        className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${animal.situacao === "Ativo"
+                          ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
+                          : animal.situacao === "Vendido"
                             ? "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
                             : animal.situacao === "Morto"
-                            ? "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200"
-                            : "bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200"
-                        }`}
+                              ? "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200"
+                              : "bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200"
+                          }`}
                       >
                         {animal.situacao}
                       </span>
@@ -1031,11 +1019,10 @@ export default function Animals() {
                       <button
                         key={page}
                         onClick={() => goToPage(page)}
-                        className={`relative inline-flex items-center px-4 py-2 border text-sm font-medium ${
-                          page === currentPage
-                            ? 'z-10 bg-blue-50 dark:bg-blue-900 border-blue-500 dark:border-blue-400 text-blue-600 dark:text-blue-200'
-                            : 'bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700'
-                        }`}
+                        className={`relative inline-flex items-center px-4 py-2 border text-sm font-medium ${page === currentPage
+                          ? 'z-10 bg-blue-50 dark:bg-blue-900 border-blue-500 dark:border-blue-400 text-blue-600 dark:text-blue-200'
+                          : 'bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700'
+                          }`}
                       >
                         {page}
                       </button>
@@ -1299,15 +1286,14 @@ export default function Animals() {
                 <div className="flex items-center justify-between">
                   <div>
                     <span
-                      className={`inline-flex px-3 py-1 text-sm font-semibold rounded-full ${
-                        selectedAnimal.situacao === "Ativo"
-                          ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
-                          : selectedAnimal.situacao === "Vendido"
+                      className={`inline-flex px-3 py-1 text-sm font-semibold rounded-full ${selectedAnimal.situacao === "Ativo"
+                        ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
+                        : selectedAnimal.situacao === "Vendido"
                           ? "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
                           : selectedAnimal.situacao === "Morto"
-                          ? "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200"
-                          : "bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200"
-                      }`}
+                            ? "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200"
+                            : "bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200"
+                        }`}
                     >
                       {selectedAnimal.situacao}
                     </span>
@@ -1422,12 +1408,19 @@ export default function Animals() {
                           <span className="text-gray-600 dark:text-gray-400">
                             Tipo de Venda:
                           </span>
-                          <span className={`font-bold px-2 py-1 rounded text-xs ${
-                            selectedAnimal.tipoVenda === 'LEILAO' 
-                              ? 'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200'
-                              : 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200'
-                          }`}>
-                            {selectedAnimal.tipoVenda === 'LEILAO' ? 'Leilão' : 'Venda Direta'}
+                          <span className={`font-bold px-2 py-1 rounded text-xs ${selectedAnimal.tipoVenda === 'LEILAO'
+                            ? 'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200'
+                            : selectedAnimal.tipoVenda === 'VENDA_ABATE'
+                              ? 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
+                              : selectedAnimal.tipoVenda === 'VENDA_DESCARTE'
+                                ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200'
+                                : 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200'
+                            }`}>
+                            {selectedAnimal.tipoVenda === 'LEILAO' ? 'Leilão' :
+                              selectedAnimal.tipoVenda === 'VENDA_ABATE' ? 'Venda Abate' :
+                                selectedAnimal.tipoVenda === 'VENDA_DESCARTE' ? 'Venda Descarte' :
+                                  selectedAnimal.tipoVenda === 'VENDA_DIRETA' ? 'Venda Direta' :
+                                    selectedAnimal.tipoVenda || 'Não informado'}
                           </span>
                         </div>
                       </>
@@ -1438,11 +1431,10 @@ export default function Animals() {
                           Resultado:
                         </span>
                         <span
-                          className={`font-bold ${
-                            selectedAnimal.valorReal >= 0
-                              ? "text-green-600 dark:text-green-400"
-                              : "text-red-600 dark:text-red-400"
-                          }`}
+                          className={`font-bold ${selectedAnimal.valorReal >= 0
+                            ? "text-green-600 dark:text-green-400"
+                            : "text-red-600 dark:text-red-400"
+                            }`}
                         >
                           R${" "}
                           {selectedAnimal.valorReal.toLocaleString("pt-BR", {
@@ -1457,14 +1449,13 @@ export default function Animals() {
                           ROI:
                         </span>
                         <span
-                          className={`font-bold ${
-                            (selectedAnimal.valorVenda -
-                              selectedAnimal.custoTotal) /
-                              selectedAnimal.custoTotal >=
+                          className={`font-bold ${(selectedAnimal.valorVenda -
+                            selectedAnimal.custoTotal) /
+                            selectedAnimal.custoTotal >=
                             0
-                              ? "text-green-600 dark:text-green-400"
-                              : "text-red-600 dark:text-red-400"
-                          }`}
+                            ? "text-green-600 dark:text-green-400"
+                            : "text-red-600 dark:text-red-400"
+                            }`}
                         >
                           {(
                             ((selectedAnimal.valorVenda -
@@ -1485,65 +1476,65 @@ export default function Animals() {
                 selectedAnimal.mae ||
                 selectedAnimal.avoMaterno ||
                 selectedAnimal.receptora) && (
-                <div className="card p-4 mb-6">
-                  <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3 flex items-center">
-                    <span className="mr-2">🧬</span>
-                    Genealogia
-                  </h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {selectedAnimal.pai && (
-                      <div className="flex justify-between">
-                        <span className="text-gray-600 dark:text-gray-400">
-                          Pai:
-                        </span>
-                        <span className="font-medium text-gray-900 dark:text-white">
-                          {selectedAnimal.pai}
-                        </span>
-                      </div>
-                    )}
-                    {selectedAnimal.mae && (
-                      <div className="flex justify-between">
-                        <span className="text-gray-600 dark:text-gray-400">
-                          Mãe:
-                        </span>
-                        <span className="font-medium text-gray-900 dark:text-white">
-                          {selectedAnimal.mae}
-                        </span>
-                      </div>
-                    )}
-                    {selectedAnimal.avoMaterno && (
-                      <div className="flex justify-between">
-                        <span className="text-gray-600 dark:text-gray-400">
-                          Avô Materno:
-                        </span>
-                        <span className="font-medium text-gray-900 dark:text-white">
-                          {selectedAnimal.avoMaterno}
-                        </span>
-                      </div>
-                    )}
-                    {selectedAnimal.receptora && (
-                      <div className="flex justify-between">
-                        <span className="text-gray-600 dark:text-gray-400">
-                          Receptora:
-                        </span>
-                        <span className="font-medium text-gray-900 dark:text-white">
-                          {selectedAnimal.receptora}
-                        </span>
-                      </div>
-                    )}
-                    {selectedAnimal.isFiv && (
-                      <div className="flex justify-between">
-                        <span className="text-gray-600 dark:text-gray-400">
-                          FIV:
-                        </span>
-                        <span className="font-medium text-green-600 dark:text-green-400">
-                          Sim
-                        </span>
-                      </div>
-                    )}
+                  <div className="card p-4 mb-6">
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3 flex items-center">
+                      <span className="mr-2">🧬</span>
+                      Genealogia
+                    </h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {selectedAnimal.pai && (
+                        <div className="flex justify-between">
+                          <span className="text-gray-600 dark:text-gray-400">
+                            Pai:
+                          </span>
+                          <span className="font-medium text-gray-900 dark:text-white">
+                            {selectedAnimal.pai}
+                          </span>
+                        </div>
+                      )}
+                      {selectedAnimal.mae && (
+                        <div className="flex justify-between">
+                          <span className="text-gray-600 dark:text-gray-400">
+                            Mãe:
+                          </span>
+                          <span className="font-medium text-gray-900 dark:text-white">
+                            {selectedAnimal.mae}
+                          </span>
+                        </div>
+                      )}
+                      {selectedAnimal.avoMaterno && (
+                        <div className="flex justify-between">
+                          <span className="text-gray-600 dark:text-gray-400">
+                            Avô Materno:
+                          </span>
+                          <span className="font-medium text-gray-900 dark:text-white">
+                            {selectedAnimal.avoMaterno}
+                          </span>
+                        </div>
+                      )}
+                      {selectedAnimal.receptora && (
+                        <div className="flex justify-between">
+                          <span className="text-gray-600 dark:text-gray-400">
+                            Receptora:
+                          </span>
+                          <span className="font-medium text-gray-900 dark:text-white">
+                            {selectedAnimal.receptora}
+                          </span>
+                        </div>
+                      )}
+                      {selectedAnimal.isFiv && (
+                        <div className="flex justify-between">
+                          <span className="text-gray-600 dark:text-gray-400">
+                            FIV:
+                          </span>
+                          <span className="font-medium text-green-600 dark:text-green-400">
+                            Sim
+                          </span>
+                        </div>
+                      )}
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
 
               {/* Histórico de Custos */}
               {selectedAnimal.custos && selectedAnimal.custos.length > 0 && (
@@ -1589,11 +1580,10 @@ export default function Animals() {
                             </td>
                             <td className="px-4 py-2 whitespace-nowrap">
                               <span
-                                className={`text-sm font-bold ${
-                                  custo.valor > 0
-                                    ? "text-red-600 dark:text-red-400"
-                                    : "text-green-600 dark:text-green-400"
-                                }`}
+                                className={`text-sm font-bold ${custo.valor > 0
+                                  ? "text-red-600 dark:text-red-400"
+                                  : "text-green-600 dark:text-green-400"
+                                  }`}
                               >
                                 {custo.valor > 0 ? "-" : "+"}R${" "}
                                 {Math.abs(custo.valor).toLocaleString("pt-BR", {
@@ -1723,11 +1713,10 @@ export default function Animals() {
                     .map((animal, index) => (
                       <div key={animal.id} className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
                         <div className="flex items-center space-x-3">
-                          <div className={`w-8 h-8 rounded-full flex items-center justify-center text-white font-bold ${
-                            index === 0 ? 'bg-yellow-500' :
+                          <div className={`w-8 h-8 rounded-full flex items-center justify-center text-white font-bold ${index === 0 ? 'bg-yellow-500' :
                             index === 1 ? 'bg-gray-400' :
-                            index === 2 ? 'bg-orange-600' : 'bg-blue-500'
-                          }`}>
+                              index === 2 ? 'bg-orange-600' : 'bg-blue-500'
+                            }`}>
                             {index + 1}
                           </div>
                           <div>
@@ -1769,11 +1758,10 @@ export default function Animals() {
                     return (
                       <div key={situacao} className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-700 rounded-lg">
                         <div className="flex items-center space-x-3">
-                          <div className={`w-4 h-4 rounded-full ${
-                            situacao === 'Ativo' ? 'bg-green-500' :
+                          <div className={`w-4 h-4 rounded-full ${situacao === 'Ativo' ? 'bg-green-500' :
                             situacao === 'Vendido' ? 'bg-orange-500' :
-                            situacao === 'Morto' ? 'bg-red-500' : 'bg-blue-500'
-                          }`}></div>
+                              situacao === 'Morto' ? 'bg-red-500' : 'bg-blue-500'
+                            }`}></div>
                           <div>
                             <div className="font-medium text-gray-900 dark:text-white">
                               {situacao}
