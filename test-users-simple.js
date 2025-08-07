@@ -12,7 +12,7 @@ export default function TestUsersPage() {
 
   useEffect(() => {
     console.log('🔍 TestUsersPage - Verificando usuário:', user);
-    
+
     // Verificar se o usuário existe
     if (!user) {
       console.log('❌ Usuário não encontrado, redirecionando para login');
@@ -78,7 +78,7 @@ export default function TestUsersPage() {
           <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4">
             👥 Gerenciamento de Usuários - TESTE
           </h1>
-          
+
           <div className="space-y-4">
             <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-4">
               <h2 className="text-lg font-semibold text-green-800 dark:text-green-200 mb-2">
@@ -119,19 +119,19 @@ export default function TestUsersPage() {
                 Ações Disponíveis:
               </h3>
               <div className="space-y-2">
-                <button 
+                <button
                   className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg mr-2"
                   onClick={() => console.log('Adicionar usuário')}
                 >
                   ➕ Adicionar Usuário
                 </button>
-                <button 
+                <button
                   className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg mr-2"
                   onClick={() => console.log('Listar usuários')}
                 >
                   📋 Listar Usuários
                 </button>
-                <button 
+                <button
                   className="bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded-lg mr-2"
                   onClick={() => console.log('Editar permissões')}
                 >

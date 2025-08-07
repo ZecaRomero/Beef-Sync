@@ -79,7 +79,7 @@ export default function Dashboard() {
               </p>
             </div>
           </div>
-          
+
           <div className="flex items-center space-x-4">
             <button
               onClick={() => setShowWhatsAppMulti(true)}
@@ -97,7 +97,7 @@ export default function Dashboard() {
         </div>
 
         <div className="p-6 overflow-y-auto max-h-[calc(95vh-120px)]">
-          <BIChartsVisual 
+          <BIChartsVisual
             salesData={salesData}
             onSendWhatsApp={() => setShowWhatsAppMulti(true)}
           />
@@ -294,7 +294,7 @@ export default function Dashboard() {
                   Acesso Limitado
                 </h4>
                 <p className="text-yellow-700 dark:text-yellow-300">
-                  Como consultor, você tem acesso apenas aos relatórios e visualizações. 
+                  Como consultor, você tem acesso apenas aos relatórios e visualizações.
                   Para funcionalidades administrativas, entre em contato com o desenvolvedor.
                 </p>
               </div>
@@ -313,7 +313,7 @@ export default function Dashboard() {
           onClose={() => setShowWhatsAppMulti(false)}
           reportMessage={getBIReportMessage()}
         />
-        
+
         {/* Modal de Análises Avançadas */}
         {showAdvancedAnalytics && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
@@ -389,7 +389,7 @@ export default function Dashboard() {
           <UserGroupIcon className="h-6 w-6 mr-3" />
           🐄 CADASTRO DE ANIMAIS
         </button>
-        
+
         <button
           onClick={() => setShowBIDashboard(true)}
           className="px-6 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-xl hover:from-purple-700 hover:to-pink-700 transition-all duration-300 flex items-center font-bold text-lg shadow-2xl transform hover:scale-105"
@@ -397,7 +397,7 @@ export default function Dashboard() {
           <ChartBarIcon className="h-6 w-6 mr-3" />
           📊 BI ANALYTICS
         </button>
-        
+
         <button
           onClick={() => setShowTimeline(true)}
           className="px-6 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-xl hover:from-blue-700 hover:to-cyan-700 transition-all duration-300 flex items-center font-bold text-lg shadow-2xl transform hover:scale-105"
@@ -405,7 +405,7 @@ export default function Dashboard() {
           <ClockIcon className="h-6 w-6 mr-3" />
           📅 TIMELINE VENDAS
         </button>
-        
+
         <button
           onClick={() => setShowDirectInvoice(true)}
           className="px-6 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 flex items-center font-bold text-lg shadow-2xl transform hover:scale-105"

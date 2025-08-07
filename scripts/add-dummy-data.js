@@ -7,13 +7,13 @@ async function main() {
 
   // Criar ou buscar usuário
   let user = await prisma.user.findFirst({
-    where: { email: 'zeca@beef-sync.com' }
+    where: { email: 'Zeca@beef-sync.com' }
   });
 
   if (!user) {
     user = await prisma.user.create({
       data: {
-        email: 'zeca@beef-sync.com',
+        email: 'Zeca@beef-sync.com',
         name: 'Zeca',
         password: 'password123',
         role: 'DEVELOPER'

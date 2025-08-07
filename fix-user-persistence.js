@@ -5,19 +5,19 @@ console.log('======================================');
 // Inicializar usuários padrão se não existirem
 function inicializarUsuarios() {
     console.log('🔧 Inicializando sistema de usuários...');
-    
+
     const usuariosPadrao = [
-        { 
-            id: 1, 
-            nome: 'Zeca', 
-            role: 'Desenvolvedor', 
-            permissoes: ['all'] 
+        {
+            id: 1,
+            nome: 'Zeca',
+            role: 'Desenvolvedor',
+            permissoes: ['all']
         }
     ];
-    
+
     // Verificar se já existem usuários salvos
     const savedUsers = localStorage.getItem('beef_sync_users');
-    
+
     if (!savedUsers) {
         // Se não existem, criar usuários padrão
         localStorage.setItem('beef_sync_users', JSON.stringify(usuariosPadrao));
@@ -25,7 +25,7 @@ function inicializarUsuarios() {
     } else {
         console.log('✅ Usuários já existem no localStorage');
     }
-    
+
     // Verificar conteúdo
     const users = JSON.parse(localStorage.getItem('beef_sync_users') || '[]');
     console.log('👥 Usuários atuais:', users.length);
@@ -37,7 +37,7 @@ function inicializarUsuarios() {
 // Função para adicionar usuário de exemplo
 function adicionarUsuarioExemplo() {
     console.log('➕ Adicionando usuário de exemplo...');
-    
+
     const users = JSON.parse(localStorage.getItem('beef_sync_users') || '[]');
     const novoUsuario = {
         id: Math.max(...users.map(u => u.id), 0) + 1,
@@ -45,10 +45,10 @@ function adicionarUsuarioExemplo() {
         role: 'Consultor',
         permissoes: ['read']
     };
-    
+
     const updatedUsers = [...users, novoUsuario];
     localStorage.setItem('beef_sync_users', JSON.stringify(updatedUsers));
-    
+
     console.log('✅ Usuário adicionado:', novoUsuario.nome);
     console.log('💾 Total de usuários:', updatedUsers.length);
 }

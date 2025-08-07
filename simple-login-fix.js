@@ -1,15 +1,15 @@
 // SOLUÇÃO SIMPLES - Execute no console da tela de login
-console.log('🔑 FAZENDO LOGIN COMO ZECA...');
+console.log('🔑 FAZENDO LOGIN COMO Zeca...');
 
 // Login direto sem formulário
-const zecaUser = {
-    username: 'zeca',
+const ZecaUser = {
+    username: 'Zeca',
     name: 'Zeca',
     role: 'developer',
     permissions: ['read', 'write', 'delete', 'admin', 'manage_users']
 };
 
-localStorage.setItem('beef-sync-user', JSON.stringify(zecaUser));
+localStorage.setItem('beef-sync-user', JSON.stringify(ZecaUser));
 localStorage.setItem('beef_sync_user_name', 'Zeca');
 localStorage.setItem('beef_sync_user_role', 'Desenvolvedor');
 

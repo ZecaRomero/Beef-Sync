@@ -11,13 +11,13 @@ export default async function handler(req, res) {
     const existingUsers = await prisma.user.findMany({
       where: {
         email: {
-          in: ['bento@fazenda.com', 'nilson@fazenda.com']
+          in: ['Bento@fazenda.com', 'Nilson@fazenda.com']
         }
       }
     })
 
     if (existingUsers.length > 0) {
-      return res.status(400).json({ 
+      return res.status(400).json({
         message: 'Usuários já existem',
         existing: existingUsers.map(u => u.email)
       })
@@ -26,15 +26,15 @@ export default async function handler(req, res) {
     // Criar usuários
     const users = [
       {
-        email: 'bento@fazenda.com',
+        email: 'Bento@fazenda.com',
         name: 'Bento (Dono)',
-        password: await bcrypt.hash('bento123', 10),
+        password: await bcrypt.hash('Bento123', 10),
         role: 'OWNER'
       },
       {
-        email: 'nilson@fazenda.com', 
+        email: 'Nilson@fazenda.com',
         name: 'Nilson (Gerente)',
-        password: await bcrypt.hash('nilson123', 10),
+        password: await bcrypt.hash('Nilson123', 10),
         role: 'MANAGER'
       }
     ]
@@ -52,8 +52,8 @@ export default async function handler(req, res) {
         role: u.role
       })),
       credentials: [
-        { email: 'bento@fazenda.com', password: 'bento123', role: 'Dono' },
-        { email: 'nilson@fazenda.com', password: 'nilson123', role: 'Gerente' }
+        { email: 'Bento@fazenda.com', password: 'Bento123', role: 'Dono' },
+        { email: 'Nilson@fazenda.com', password: 'Nilson123', role: 'Gerente' }
       ]
     })
   } catch (error) {

@@ -7,7 +7,7 @@ async function main() {
 
   // Buscar usuário
   const user = await prisma.user.findFirst({
-    where: { email: 'zeca@beef-sync.com' }
+    where: { email: 'Zeca@beef-sync.com' }
   });
 
   if (!user) {
@@ -44,12 +44,12 @@ async function main() {
   for (const animal of animals) {
     // Adicionar 2-4 custos por animal
     const numCosts = Math.floor(Math.random() * 3) + 2; // 2-4 custos
-    
+
     for (let i = 0; i < numCosts; i++) {
       const costType = costTypes[Math.floor(Math.random() * costTypes.length)];
       const data = new Date();
       data.setDate(data.getDate() - Math.floor(Math.random() * 365)); // Último ano
-      
+
       try {
         await prisma.cost.create({
           data: {

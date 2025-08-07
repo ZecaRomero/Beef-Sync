@@ -1,5 +1,5 @@
-// TESTE DE LOGIN DO JORGE - Execute no console
-console.log('👤 TESTANDO LOGIN DO JORGE');
+// TESTE DE LOGIN DO Jorge - Execute no console
+console.log('👤 TESTANDO LOGIN DO Jorge');
 console.log('==========================');
 
 // Limpar dados antigos
@@ -11,38 +11,38 @@ localStorage.removeItem('beef_sync_user_role');
 // Simular login do Jorge
 console.log('🔑 Fazendo login como Jorge...');
 
-const jorgeUser = {
-    username: 'jorge',
+const JorgeUser = {
+    username: 'Jorge',
     name: 'Jorge',
     role: 'consultant',
     permissions: ['read']
 };
 
 // Salvar dados do Jorge
-localStorage.setItem('beef-sync-user', JSON.stringify(jorgeUser));
+localStorage.setItem('beef-sync-user', JSON.stringify(JorgeUser));
 localStorage.setItem('beef_sync_user_name', 'Jorge');
 localStorage.setItem('beef_sync_user_role', 'Consultor');
 
 console.log('✅ Login do Jorge realizado!');
-console.log('👤 Nome:', jorgeUser.name);
-console.log('🔑 Função:', jorgeUser.role);
-console.log('📋 Permissões:', jorgeUser.permissions.join(', '));
+console.log('👤 Nome:', JorgeUser.name);
+console.log('🔑 Função:', JorgeUser.role);
+console.log('📋 Permissões:', JorgeUser.permissions.join(', '));
 
 // Verificar se os dados foram salvos
 setTimeout(() => {
     const savedUser = localStorage.getItem('beef-sync-user');
     const savedName = localStorage.getItem('beef_sync_user_name');
     const savedRole = localStorage.getItem('beef_sync_user_role');
-    
+
     console.log('🔍 VERIFICAÇÃO:');
     console.log('Usuário salvo:', savedUser);
     console.log('Nome salvo:', savedName);
     console.log('Role salva:', savedRole);
-    
+
     if (savedUser && savedName === 'Jorge' && savedRole === 'Consultor') {
         console.log('✅ Dados salvos corretamente!');
         console.log('🔄 Recarregando página...');
-        
+
         // Recarregar página para aplicar mudanças
         setTimeout(() => {
             window.location.reload();

@@ -32,22 +32,22 @@ const checkUserAuth = () => {
 const setupZecaUser = () => {
   console.log("\n🔧 Configurando usuário Zeca com permissões completas...");
 
-  const zecaUser = {
-    username: "zeca",
+  const ZecaUser = {
+    username: "Zeca",
     name: "Zeca",
     role: "developer",
     permissions: ["read", "write", "delete", "admin", "manage_users"],
   };
 
   // Salvar no formato esperado pelo AuthContext
-  localStorage.setItem("beef-sync-user", JSON.stringify(zecaUser));
+  localStorage.setItem("beef-sync-user", JSON.stringify(ZecaUser));
 
   // Salvar também nos formatos usados pelo Header
   localStorage.setItem("beef_sync_user_name", "Zeca");
   localStorage.setItem("beef_sync_user_role", "Desenvolvedor");
 
   console.log("✅ Usuário Zeca configurado com sucesso!");
-  console.log("Dados salvos:", zecaUser);
+  console.log("Dados salvos:", ZecaUser);
 };
 
 // Verificar permissões
@@ -55,25 +55,25 @@ const checkPermissions = (user) => {
   console.log("\n🔐 Verificando permissões:");
 
   const userRoles = {
-    zeca: {
+    Zeca: {
       name: "Zeca",
       role: "developer",
       permissions: ["read", "write", "delete", "admin", "manage_users"],
       description: "Desenvolvedor - Acesso completo",
     },
-    bento: {
+    Bento: {
       name: "Bento",
       role: "consultant",
       permissions: ["read"],
       description: "Consultor - Apenas visualização",
     },
-    nilson: {
+    Nilson: {
       name: "Nilson",
       role: "consultant",
       permissions: ["read"],
       description: "Consultor - Apenas visualização",
     },
-    mauricio: {
+    Mauricio: {
       name: "Maurício",
       role: "consultant",
       permissions: ["read"],
@@ -107,7 +107,7 @@ console.log("🚀 Iniciando diagnóstico...");
 
 let user = checkUserAuth();
 
-if (!user || user.username !== "zeca") {
+if (!user || user.username !== "Zeca") {
   console.log("\n🔧 Configurando usuário Zeca...");
   setupZecaUser();
   user = checkUserAuth();

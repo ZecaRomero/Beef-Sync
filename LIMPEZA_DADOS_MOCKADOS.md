@@ -93,7 +93,7 @@ O sistema foi completamente limpo de dados fictícios e mockados, garantindo que
 
 O sistema agora está **100% livre de dados mockados** e preparado para uso em produção. Todas as funcionalidades foram testadas e estão operacionais com dados reais das APIs.
 
-**Data da Limpeza**: 05/08/2025  
-**Componentes Afetados**: 5  
-**APIs Criadas**: 4  
+**Data da Limpeza**: 05/08/2025
+**Componentes Afetados**: 5
+**APIs Criadas**: 4
 **Status**: ✅ CONCLUÍDO

@@ -11,34 +11,34 @@ console.log('✅ Logout concluído');
 // ETAPA 2: Aguardar um pouco
 console.log('⏳ ETAPA 2: Aguardando...');
 setTimeout(() => {
-    
+
     // ETAPA 3: Login automático como Zeca
     console.log('🔑 ETAPA 3: Fazendo login como Zeca...');
-    
-    const zecaUser = {
-        username: 'zeca',
+
+    const ZecaUser = {
+        username: 'Zeca',
         name: 'Zeca',
         role: 'developer',
         permissions: ['read', 'write', 'delete', 'admin', 'manage_users']
     };
-    
-    localStorage.setItem('beef-sync-user', JSON.stringify(zecaUser));
+
+    localStorage.setItem('beef-sync-user', JSON.stringify(ZecaUser));
     localStorage.setItem('beef_sync_user_name', 'Zeca');
     localStorage.setItem('beef_sync_user_role', 'Desenvolvedor');
-    
+
     console.log('✅ Login como Zeca realizado');
-    console.log('👤 Usuário:', zecaUser.name);
-    console.log('🔐 Permissões:', zecaUser.permissions.join(', '));
-    
+    console.log('👤 Usuário:', ZecaUser.name);
+    console.log('🔐 Permissões:', ZecaUser.permissions.join(', '));
+
     // ETAPA 4: Aguardar mais um pouco
     setTimeout(() => {
-        
+
         // ETAPA 5: Ir direto para página de usuários
         console.log('🚀 ETAPA 4: Navegando para página de usuários...');
         window.location.href = '/users';
-        
+
     }, 1000);
-    
+
 }, 1000);
 
 console.log('================================');

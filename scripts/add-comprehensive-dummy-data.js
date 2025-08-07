@@ -7,13 +7,13 @@ async function main() {
 
   // Buscar ou criar usuário
   let user = await prisma.user.findFirst({
-    where: { email: 'zeca@beef-sync.com' }
+    where: { email: 'Zeca@beef-sync.com' }
   });
 
   if (!user) {
     user = await prisma.user.create({
       data: {
-        email: 'zeca@beef-sync.com',
+        email: 'Zeca@beef-sync.com',
         name: 'Zeca',
         role: 'DEVELOPER',
         permissions: ['all']
@@ -24,7 +24,7 @@ async function main() {
 
   // 1. ADICIONAR MAIS ANIMAIS (25 animais totais)
   console.log('\n📊 Adicionando animais fictícios...');
-  
+
   const animalsData = [
     // Animais Ativos (15)
     { brinco: 'BENT 20006', nome: 'Touro BENT Premium Plus', raca: 'Nelore', categoria: 'REPRODUTOR', peso: 850, status: 'ATIVO', valorVenda: 48000 },
@@ -42,7 +42,7 @@ async function main() {
     { brinco: 'BENT 20010', nome: 'Touro BENT Gold Master', raca: 'Nelore', categoria: 'REPRODUTOR', peso: 980, status: 'ATIVO', valorVenda: 58000 },
     { brinco: 'CJCG 25009', nome: 'Novilha CJCG Gold Supreme', raca: 'Angus', categoria: 'NOVILHA', peso: 550, status: 'ATIVO', valorVenda: 45000 },
     { brinco: 'CJCJ 15009', nome: 'Bezerro CJCJ Gold Future', raca: 'Brahman', categoria: 'BEZERRO', peso: 420, status: 'ATIVO', valorVenda: 32000 },
-    
+
     // Animais Vendidos (10)
     { brinco: 'BENT 20011', nome: 'Touro BENT Vendido 1', raca: 'Nelore', categoria: 'REPRODUTOR', peso: 900, status: 'VENDIDO', valorVenda: 50000, tipoVenda: 'LEILAO' },
     { brinco: 'CJCG 25010', nome: 'Novilha CJCG Vendida 1', raca: 'Angus', categoria: 'NOVILHA', peso: 480, status: 'VENDIDO', valorVenda: 38000, tipoVenda: 'VENDA_DIRETA' },
@@ -86,7 +86,7 @@ async function main() {
 
   // 2. ADICIONAR CUSTOS DETALHADOS
   console.log('\n💰 Adicionando custos detalhados...');
-  
+
   const costTypes = [
     { tipo: 'ALIMENTACAO', descricao: 'Ração Premium', valor: 2000, observacoes: 'Ração de alta qualidade para engorda' },
     { tipo: 'ALIMENTACAO', descricao: 'Sal Mineral', valor: 400, observacoes: 'Suplemento mineral premium' },
@@ -111,12 +111,12 @@ async function main() {
   for (const animal of animals) {
     // Adicionar 3-6 custos por animal
     const numCosts = Math.floor(Math.random() * 4) + 3;
-    
+
     for (let i = 0; i < numCosts; i++) {
       const costType = costTypes[Math.floor(Math.random() * costTypes.length)];
       const data = new Date();
       data.setDate(data.getDate() - Math.floor(Math.random() * 365));
-      
+
       try {
         await prisma.cost.create({
           data: {
@@ -142,7 +142,7 @@ async function main() {
 
   // 3. ADICIONAR VENDAS DETALHADAS
   console.log('\n💵 Adicionando vendas detalhadas...');
-  
+
   const soldAnimals = animals.filter(a => a.status === 'VENDIDO');
   const buyers = [
     'João Silva Agropecuária',
@@ -163,7 +163,7 @@ async function main() {
     const saleValue = animal.valorVenda || 40000;
     const commission = saleValue * 0.05; // 5% de comissão
     const taxes = saleValue * 0.02; // 2% de taxas
-    
+
     try {
       await prisma.sale.create({
         data: {
@@ -190,17 +190,17 @@ async function main() {
 
   // 4. ADICIONAR PESOS (EVOLUÇÃO)
   console.log('\n⚖️ Adicionando evolução de pesos...');
-  
+
   let weightsCreated = 0;
   for (const animal of animals) {
     const baseWeight = animal.peso;
     const numWeights = Math.floor(Math.random() * 4) + 2; // 2-5 pesagens
-    
+
     for (let i = 0; i < numWeights; i++) {
       const weightDate = new Date();
       weightDate.setDate(weightDate.getDate() - Math.floor(Math.random() * 365));
       const weightVariation = Math.floor(Math.random() * 100) - 50; // ±50kg
-      
+
       try {
         await prisma.weight.create({
           data: {
@@ -222,7 +222,7 @@ async function main() {
 
   // 5. ADICIONAR ALERTAS
   console.log('\n🔔 Adicionando alertas...');
-  
+
   const alertTypes = [
     { tipo: 'VACINA', titulo: 'Vacinação Pendente', descricao: 'Animal precisa de vacinação contra aftosa' },
     { tipo: 'PARTO', titulo: 'Parto Previsto', descricao: 'Parto previsto para os próximos dias' },
@@ -236,7 +236,7 @@ async function main() {
     const alertType = alertTypes[Math.floor(Math.random() * alertTypes.length)];
     const alertDate = new Date();
     alertDate.setDate(alertDate.getDate() + Math.floor(Math.random() * 30)); // Próximos 30 dias
-    
+
     try {
       await prisma.alert.create({
         data: {
@@ -261,7 +261,7 @@ async function main() {
 
   // 6. ADICIONAR PREÇOS DE MERCADO
   console.log('\n📈 Adicionando preços de mercado...');
-  
+
   const marketPrices = [
     { categoria: 'GARROTE', precoMedio: 28000, precoMinimo: 25000, precoMaximo: 32000 },
     { categoria: 'NOVILHA', precoMedio: 32000, precoMinimo: 28000, precoMaximo: 38000 },
@@ -298,7 +298,7 @@ async function main() {
   // 7. RESUMO FINAL
   console.log('\n📊 RESUMO DOS DADOS CRIADOS:');
   console.log('=' * 50);
-  
+
   const finalAnimals = await prisma.animal.count({ where: { userId: user.id } });
   const finalCosts = await prisma.cost.count({ where: { userId: user.id } });
   const finalSales = await prisma.sale.count({ where: { userId: user.id } });
@@ -316,14 +316,14 @@ async function main() {
   // Calcular investimento total
   const allCosts = await prisma.cost.findMany({ where: { userId: user.id } });
   const totalInvestment = allCosts.reduce((sum, cost) => sum + cost.valor, 0);
-  
+
   // Calcular receita total
   const allSales = await prisma.sale.findMany({ where: { userId: user.id } });
   const totalRevenue = allSales.reduce((sum, sale) => sum + sale.valor, 0);
-  
+
   // Calcular ROI médio
   const activeAnimals = animals.filter(a => a.status === 'ATIVO');
-  const avgROI = activeAnimals.length > 0 ? 
+  const avgROI = activeAnimals.length > 0 ?
     activeAnimals.reduce((sum, animal) => {
       const animalCosts = allCosts.filter(c => c.animalId === animal.id);
       const totalCost = animalCosts.reduce((s, c) => s + c.valor, 0);

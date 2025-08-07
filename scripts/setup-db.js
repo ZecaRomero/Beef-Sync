@@ -8,13 +8,13 @@ async function setupDatabase() {
     console.log('🔧 Inicializando banco de dados...');
 
     // Criar usuário de teste
-    const hashedPassword = await bcrypt.hash('zeca123', 10);
+    const hashedPassword = await bcrypt.hash('Zeca123', 10);
 
     const user = await prisma.user.upsert({
-      where: { email: 'zeca@beefsync.com' },
+      where: { email: 'Zeca@beefsync.com' },
       update: {},
       create: {
-        email: 'zeca@beefsync.com',
+        email: 'Zeca@beefsync.com',
         name: 'Zeca Desenvolvedor',
         password: hashedPassword,
         role: 'ADMIN'
@@ -27,8 +27,8 @@ async function setupDatabase() {
     console.log('📝 Banco configurado sem dados mockados');
 
     console.log('🎉 Banco de dados inicializado com sucesso!');
-    console.log('📧 Email: zeca@beefsync.com');
-    console.log('🔑 Senha: zeca123');
+    console.log('📧 Email: Zeca@beefsync.com');
+    console.log('🔑 Senha: Zeca123');
 
   } catch (error) {
     console.error('❌ Erro ao inicializar banco:', error);

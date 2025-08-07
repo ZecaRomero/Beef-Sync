@@ -4,9 +4,9 @@ import Layout from '../components/Layout'
 const usuarios = [
   { id: 1, nome: 'Zeca', role: 'Desenvolvedor', permissoes: ['all'] }
 ];
-import { 
-  UserIcon, 
-  CogIcon, 
+import {
+  UserIcon,
+  CogIcon,
   ShieldCheckIcon,
   BellIcon,
   DocumentTextIcon,
@@ -68,27 +68,27 @@ export default function Settings() {
   ]
 
   const roles = [
-    { 
-      id: 'Desenvolvedor', 
-      name: 'Desenvolvedor', 
+    {
+      id: 'Desenvolvedor',
+      name: 'Desenvolvedor',
       permissions: ['all'],
       description: 'Acesso total ao sistema'
     },
-    { 
-      id: 'Dono', 
-      name: 'Dono', 
+    {
+      id: 'Dono',
+      name: 'Dono',
       permissions: ['reports', 'financial'],
       description: 'Acesso a relatórios e financeiro'
     },
-    { 
-      id: 'Gerente', 
-      name: 'Gerente', 
+    {
+      id: 'Gerente',
+      name: 'Gerente',
       permissions: ['reports', 'financial', 'management'],
       description: 'Mesmo privilégios do Dono'
     },
-    { 
-      id: 'Capataz', 
-      name: 'Capataz', 
+    {
+      id: 'Capataz',
+      name: 'Capataz',
       permissions: ['birth', 'death', 'entry', 'exit', 'reports_view'],
       description: 'Nascimento, morte, entrada/saída e visualizar relatórios'
     }
@@ -98,19 +98,19 @@ export default function Settings() {
     if (editingUser) {
       const updatedUserList = userList.map(u => u.id === editingUser.id ? { ...u, ...userData } : u)
       setUserList(updatedUserList)
-      
+
       // Se o usuário editado é o usuário atual logado, atualizar localStorage
       const currentUser = JSON.parse(localStorage.getItem('beef-sync-user') || '{}')
       if (editingUser.id === 1 || editingUser.nome === currentUser.name) {
         // Atualizar dados no localStorage
         localStorage.setItem('beef_sync_user_name', userData.nome)
-        
+
         // Determinar role em português
-        const roleInPortuguese = userData.role === 'Desenvolvedor' ? 'Desenvolvedor' : 
-                                userData.role === 'Dono' ? 'Proprietário' :
-                                userData.role === 'Gerente' ? 'Gerente' : 'Consultor'
+        const roleInPortuguese = userData.role === 'Desenvolvedor' ? 'Desenvolvedor' :
+          userData.role === 'Dono' ? 'Proprietário' :
+            userData.role === 'Gerente' ? 'Gerente' : 'Consultor'
         localStorage.setItem('beef_sync_user_role', roleInPortuguese)
-        
+
         // Atualizar objeto completo do usuário
         const updatedUser = {
           ...currentUser,
@@ -118,7 +118,7 @@ export default function Settings() {
           role: userData.role.toLowerCase()
         }
         localStorage.setItem('beef-sync-user', JSON.stringify(updatedUser))
-        
+
         // Forçar atualização do header recarregando a página
         setTimeout(() => {
           window.location.reload()
@@ -195,12 +195,11 @@ export default function Settings() {
                   </div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
-                    user.role === 'Desenvolvedor' ? 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200' :
-                    user.role === 'Dono' ? 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200' :
-                    user.role === 'Gerente' ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' :
-                    'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200'
-                  }`}>
+                  <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${user.role === 'Desenvolvedor' ? 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200' :
+                      user.role === 'Dono' ? 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200' :
+                        user.role === 'Gerente' ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' :
+                          'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-200'
+                    }`}>
                     {user.role}
                   </span>
                 </td>
@@ -263,7 +262,7 @@ export default function Settings() {
       <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
         Configurações do Sistema
       </h3>
-      
+
       <div className="card p-6">
         <h4 className="text-md font-semibold text-gray-900 dark:text-white mb-4">
           Configurações Gerais
@@ -339,7 +338,7 @@ export default function Settings() {
       <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
         Configurações de Segurança
       </h3>
-      
+
       <div className="card p-6">
         <h4 className="text-md font-semibold text-gray-900 dark:text-white mb-4">
           Autenticação
@@ -359,7 +358,7 @@ export default function Settings() {
               <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
             </label>
           </div>
-          
+
           <div className="flex items-center justify-between">
             <div>
               <div className="text-sm font-medium text-gray-900 dark:text-white">
@@ -442,7 +441,7 @@ export default function Settings() {
               className="input-field w-32"
             />
           </div>
-          
+
           <div className="space-y-2">
             <div className="flex items-center">
               <input type="checkbox" id="require-uppercase" className="mr-2" defaultChecked />
@@ -479,7 +478,7 @@ export default function Settings() {
       <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
         Configurações de Notificações
       </h3>
-      
+
       <div className="card p-6">
         <h4 className="text-md font-semibold text-gray-900 dark:text-white mb-4">
           Alertas do Sistema
@@ -562,7 +561,7 @@ export default function Settings() {
               className="input-field"
             />
           </div>
-          
+
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
               Frequência de Resumos
@@ -590,7 +589,7 @@ export default function Settings() {
       <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
         Backup e Restauração
       </h3>
-      
+
       <div className="card p-6">
         <h4 className="text-md font-semibold text-gray-900 dark:text-white mb-4">
           Backup Automático
@@ -656,7 +655,7 @@ export default function Settings() {
           <p className="text-sm text-gray-600 dark:text-gray-400">
             Realize um backup manual dos seus dados a qualquer momento.
           </p>
-          
+
           <div className="flex space-x-4">
             <button className="btn-primary">
               🔄 Criar Backup Agora
@@ -691,7 +690,7 @@ export default function Settings() {
           <p className="text-sm text-gray-600 dark:text-gray-400">
             Restaure seus dados a partir de um backup anterior.
           </p>
-          
+
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
               Selecionar Arquivo de Backup
@@ -707,7 +706,7 @@ export default function Settings() {
             <div className="flex items-center">
               <div className="text-yellow-600 dark:text-yellow-400 mr-2">⚠️</div>
               <div className="text-sm text-yellow-800 dark:text-yellow-200">
-                <strong>Atenção:</strong> A restauração substituirá todos os dados atuais. 
+                <strong>Atenção:</strong> A restauração substituirá todos os dados atuais.
                 Recomendamos fazer um backup antes de prosseguir.
               </div>
             </div>
@@ -730,7 +729,7 @@ export default function Settings() {
   // Componente de gráfico de ondas animado
   const WaveChart = ({ data, color = "blue", height = 60 }) => {
     const [animationPhase, setAnimationPhase] = useState(0)
-    
+
     useEffect(() => {
       const interval = setInterval(() => {
         setAnimationPhase(prev => (prev + 1) % 360)
@@ -743,12 +742,12 @@ export default function Settings() {
       const amplitude = height * 0.3
       const frequency = 0.02
       const phase = animationPhase * 0.1
-      
+
       for (let x = 0; x <= 300; x += 5) {
-        const y = height/2 + amplitude * Math.sin(frequency * x + phase)
+        const y = height / 2 + amplitude * Math.sin(frequency * x + phase)
         points.push(`${x},${y}`)
       }
-      
+
       return `M0,${height} L${points.join(' L')} L300,${height} Z`
     }
 
@@ -757,8 +756,8 @@ export default function Settings() {
         <svg width="300" height={height} className="absolute inset-0">
           <defs>
             <linearGradient id={`gradient-${color}`} x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stopColor={`rgb(59 130 246)`} stopOpacity="0.8"/>
-              <stop offset="100%" stopColor={`rgb(59 130 246)`} stopOpacity="0.1"/>
+              <stop offset="0%" stopColor={`rgb(59 130 246)`} stopOpacity="0.8" />
+              <stop offset="100%" stopColor={`rgb(59 130 246)`} stopOpacity="0.1" />
             </linearGradient>
           </defs>
           <path
@@ -827,7 +826,7 @@ export default function Settings() {
                   {item.month}
                 </div>
                 <div className="flex-1 bg-gray-200 dark:bg-gray-700 rounded-full h-3 overflow-hidden">
-                  <div 
+                  <div
                     className={`h-full ${item.color} rounded-full transition-all duration-1000 ease-out animate-pulse`}
                     style={{ width: `${item.value}%` }}
                   ></div>
@@ -939,25 +938,25 @@ export default function Settings() {
       {/* Relatórios Rápidos */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {[
-          { 
-            title: "Relatório Financeiro", 
-            icon: "💰", 
+          {
+            title: "Relatório Financeiro",
+            icon: "💰",
             description: "Análise completa de receitas e despesas",
             status: "Pronto",
             lastUpdate: "2 min atrás",
             color: "green"
           },
-          { 
-            title: "Inventário do Rebanho", 
-            icon: "🐄", 
+          {
+            title: "Inventário do Rebanho",
+            icon: "🐄",
             description: "Contagem e status de todos os animais",
             status: "Processando",
             lastUpdate: "Atualizando...",
             color: "yellow"
           },
-          { 
-            title: "Performance Reprodutiva", 
-            icon: "📊", 
+          {
+            title: "Performance Reprodutiva",
+            icon: "📊",
             description: "Taxas de prenhez e nascimentos",
             status: "Agendado",
             lastUpdate: "Próx: 14:00",
@@ -967,11 +966,10 @@ export default function Settings() {
           <div key={index} className="card p-6 hover:shadow-lg transition-shadow cursor-pointer group">
             <div className="flex items-start justify-between mb-4">
               <div className="text-3xl">{report.icon}</div>
-              <div className={`px-2 py-1 text-xs rounded-full ${
-                report.color === 'green' ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' :
-                report.color === 'yellow' ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200' :
-                'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200'
-              }`}>
+              <div className={`px-2 py-1 text-xs rounded-full ${report.color === 'green' ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' :
+                  report.color === 'yellow' ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200' :
+                    'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200'
+                }`}>
                 {report.status}
               </div>
             </div>
@@ -996,7 +994,7 @@ export default function Settings() {
         <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-6 flex items-center">
           🎯 Relatórios Personalizados
         </h4>
-        
+
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div className="space-y-4">
             <div>
@@ -1011,7 +1009,7 @@ export default function Settings() {
                 <option>Análise Reprodutiva</option>
               </select>
             </div>
-            
+
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
@@ -1068,7 +1066,7 @@ export default function Settings() {
                 <span className="font-bold text-blue-600">R$ 613.140</span>
               </div>
             </div>
-            
+
             <div className="mt-6 space-y-2">
               <button className="w-full btn-primary">
                 📊 Gerar Relatório Completo
@@ -1108,11 +1106,10 @@ export default function Settings() {
                   <td className="p-3 text-gray-600 dark:text-gray-400">{report.period}</td>
                   <td className="p-3 text-gray-600 dark:text-gray-400">{report.date}</td>
                   <td className="p-3">
-                    <span className={`px-2 py-1 text-xs rounded-full ${
-                      report.status === 'Concluído' 
+                    <span className={`px-2 py-1 text-xs rounded-full ${report.status === 'Concluído'
                         ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
                         : 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200'
-                    }`}>
+                      }`}>
                       {report.status}
                     </span>
                   </td>
@@ -1166,12 +1163,10 @@ export default function Settings() {
             <div className="text-sm text-gray-600 dark:text-gray-400 mb-3">
               {metric.title}
             </div>
-            <div className={`w-full h-2 rounded-full ${
-              metric.status === 'normal' ? 'bg-green-200 dark:bg-green-800' : 'bg-yellow-200 dark:bg-yellow-800'
-            }`}>
-              <div className={`h-full rounded-full transition-all duration-500 ${
-                metric.status === 'normal' ? 'bg-green-500' : 'bg-yellow-500'
-              }`} style={{ width: metric.value }}></div>
+            <div className={`w-full h-2 rounded-full ${metric.status === 'normal' ? 'bg-green-200 dark:bg-green-800' : 'bg-yellow-200 dark:bg-yellow-800'
+              }`}>
+              <div className={`h-full rounded-full transition-all duration-500 ${metric.status === 'normal' ? 'bg-green-500' : 'bg-yellow-500'
+                }`} style={{ width: metric.value }}></div>
             </div>
           </div>
         ))}
@@ -1226,11 +1221,10 @@ export default function Settings() {
               { type: "info", message: "Backup agendado para 02:00", time: "1 hora atrás" },
               { type: "success", message: "Todos os serviços operacionais", time: "5 min atrás" }
             ].map((alert, index) => (
-              <div key={index} className={`p-3 rounded-lg border-l-4 ${
-                alert.type === 'warning' ? 'bg-yellow-50 border-yellow-400 dark:bg-yellow-900/20' :
-                alert.type === 'info' ? 'bg-blue-50 border-blue-400 dark:bg-blue-900/20' :
-                'bg-green-50 border-green-400 dark:bg-green-900/20'
-              }`}>
+              <div key={index} className={`p-3 rounded-lg border-l-4 ${alert.type === 'warning' ? 'bg-yellow-50 border-yellow-400 dark:bg-yellow-900/20' :
+                  alert.type === 'info' ? 'bg-blue-50 border-blue-400 dark:bg-blue-900/20' :
+                    'bg-green-50 border-green-400 dark:bg-green-900/20'
+                }`}>
                 <div className="flex items-center justify-between">
                   <span className="text-sm font-medium">{alert.message}</span>
                   <span className="text-xs text-gray-500">{alert.time}</span>
@@ -1315,8 +1309,8 @@ export default function Settings() {
           <svg className="w-full h-full">
             <defs>
               <linearGradient id="performanceGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="rgb(59 130 246)" stopOpacity="0.8"/>
-                <stop offset="100%" stopColor="rgb(59 130 246)" stopOpacity="0.1"/>
+                <stop offset="0%" stopColor="rgb(59 130 246)" stopOpacity="0.8" />
+                <stop offset="100%" stopColor="rgb(59 130 246)" stopOpacity="0.1" />
               </linearGradient>
             </defs>
             <path
@@ -1351,20 +1345,20 @@ export default function Settings() {
         </h4>
         <div className="space-y-4">
           {[
-            { 
-              title: "Limpeza de Cache", 
+            {
+              title: "Limpeza de Cache",
               description: "Limpar cache antigo pode liberar 340MB de memória",
               impact: "Alto",
               action: "Limpar Agora"
             },
-            { 
-              title: "Otimização de Banco", 
+            {
+              title: "Otimização de Banco",
               description: "Reindexar tabelas pode melhorar performance em 15%",
               impact: "Médio",
               action: "Agendar"
             },
-            { 
-              title: "Compressão de Logs", 
+            {
+              title: "Compressão de Logs",
               description: "Comprimir logs antigos pode liberar 120MB de disco",
               impact: "Baixo",
               action: "Executar"
@@ -1376,11 +1370,10 @@ export default function Settings() {
                 <div className="text-sm text-gray-600 dark:text-gray-400">{rec.description}</div>
               </div>
               <div className="flex items-center space-x-4">
-                <span className={`px-2 py-1 text-xs rounded-full ${
-                  rec.impact === 'Alto' ? 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200' :
-                  rec.impact === 'Médio' ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200' :
-                  'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
-                }`}>
+                <span className={`px-2 py-1 text-xs rounded-full ${rec.impact === 'Alto' ? 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200' :
+                    rec.impact === 'Médio' ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200' :
+                      'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
+                  }`}>
                   {rec.impact}
                 </span>
                 <button className="btn-secondary text-sm">
@@ -1441,11 +1434,10 @@ export default function Settings() {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center py-2 px-1 border-b-2 font-medium text-sm ${
-                  activeTab === tab.id
+                className={`flex items-center py-2 px-1 border-b-2 font-medium text-sm ${activeTab === tab.id
                     ? 'border-primary-500 text-primary-600 dark:text-primary-400'
                     : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 dark:text-gray-400 dark:hover:text-gray-300'
-                }`}
+                  }`}
               >
                 <tab.icon className="h-5 w-5 mr-2" />
                 {tab.name}

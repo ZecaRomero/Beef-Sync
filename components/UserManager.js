@@ -5,10 +5,10 @@ import { Badge } from './ui/badge';
 import { Input } from './ui/input';
 import { Label } from './ui/label';
 import { useAuth } from '../contexts/AuthContext';
-import { 
-  UserIcon, 
-  ShieldCheckIcon, 
-  EyeIcon, 
+import {
+  UserIcon,
+  ShieldCheckIcon,
+  EyeIcon,
   PencilIcon,
   TrashIcon,
   PlusIcon,
@@ -128,11 +128,10 @@ const UserManager = () => {
             {Object.entries(userRoles).map(([username, userData]) => (
               <div
                 key={username}
-                className={`p-4 rounded-lg border cursor-pointer transition-colors ${
-                  selectedUser === username
+                className={`p-4 rounded-lg border cursor-pointer transition-colors ${selectedUser === username
                     ? "border-blue-500 bg-blue-50 dark:bg-blue-900/20"
                     : "border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600"
-                }`}
+                  }`}
                 onClick={() => setSelectedUser(selectedUser === username ? null : username)}
               >
                 <div className="flex justify-between items-start">
@@ -152,7 +151,7 @@ const UserManager = () => {
                       </p>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-center space-x-2">
                     <Badge
                       variant={userData.role === 'developer' ? 'default' : 'secondary'}
@@ -160,8 +159,8 @@ const UserManager = () => {
                     >
                       {userData.role === 'developer' ? 'Desenvolvedor' : 'Consultor'}
                     </Badge>
-                    
-                    {canManageUsers && username !== 'zeca' && (
+
+                    {canManageUsers && username !== 'Zeca' && (
                       <div className="flex space-x-1">
                         <Button
                           variant="outline"
@@ -206,7 +205,7 @@ const UserManager = () => {
                           ))}
                         </div>
                       </div>
-                      
+
                       <div>
                         <h4 className="font-medium text-sm text-gray-700 dark:text-gray-300 mb-2">
                           Ações:
@@ -246,40 +245,40 @@ const UserManager = () => {
                 <Input
                   id="username"
                   value={newUser.username}
-                  onChange={(e) => setNewUser({...newUser, username: e.target.value})}
+                  onChange={(e) => setNewUser({ ...newUser, username: e.target.value })}
                   placeholder="ex: joao"
                 />
               </div>
-              
+
               <div>
                 <Label htmlFor="name">Nome Completo</Label>
                 <Input
                   id="name"
                   value={newUser.name}
-                  onChange={(e) => setNewUser({...newUser, name: e.target.value})}
+                  onChange={(e) => setNewUser({ ...newUser, name: e.target.value })}
                   placeholder="João Silva"
                 />
               </div>
-              
+
               <div>
                 <Label htmlFor="role">Função</Label>
                 <select
                   id="role"
                   value={newUser.role}
-                  onChange={(e) => setNewUser({...newUser, role: e.target.value})}
+                  onChange={(e) => setNewUser({ ...newUser, role: e.target.value })}
                   className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800"
                 >
                   <option value="consultant">Consultor</option>
                   <option value="developer">Desenvolvedor</option>
                 </select>
               </div>
-              
+
               <div className="flex space-x-2">
                 <Button onClick={handleAddUser} className="flex-1">
                   Adicionar
                 </Button>
-                <Button 
-                  variant="outline" 
+                <Button
+                  variant="outline"
                   onClick={() => setShowAddUser(false)}
                   className="flex-1"
                 >

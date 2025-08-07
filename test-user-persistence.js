@@ -5,7 +5,7 @@ console.log('====================================');
 // Função para verificar usuários salvos
 function verificarUsuariosSalvos() {
     console.log('🔍 Verificando usuários no localStorage...');
-    
+
     const savedUsers = localStorage.getItem('beef_sync_users');
     if (savedUsers) {
         const users = JSON.parse(savedUsers);
@@ -23,7 +23,7 @@ function verificarUsuariosSalvos() {
 // Função para adicionar usuário de teste
 function adicionarUsuarioTeste() {
     console.log('➕ Adicionando usuário de teste...');
-    
+
     const users = verificarUsuariosSalvos();
     const novoUsuario = {
         id: Math.max(...users.map(u => u.id), 0) + 1,
@@ -31,13 +31,13 @@ function adicionarUsuarioTeste() {
         role: 'Consultor',
         permissoes: ['read']
     };
-    
+
     const updatedUsers = [...users, novoUsuario];
     localStorage.setItem('beef_sync_users', JSON.stringify(updatedUsers));
-    
+
     console.log('✅ Usuário adicionado:', novoUsuario);
     console.log('💾 Dados salvos no localStorage');
-    
+
     return updatedUsers;
 }
 
@@ -51,14 +51,14 @@ function limparUsuarios() {
 // Função para restaurar usuários padrão
 function restaurarUsuariosPadrao() {
     console.log('🔄 Restaurando usuários padrão...');
-    
+
     const usuariosPadrao = [
         { id: 1, nome: 'Zeca', role: 'Desenvolvedor', permissoes: ['all'] }
     ];
-    
+
     localStorage.setItem('beef_sync_users', JSON.stringify(usuariosPadrao));
     console.log('✅ Usuários padrão restaurados');
-    
+
     return usuariosPadrao;
 }
 

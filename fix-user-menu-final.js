@@ -8,15 +8,15 @@ localStorage.clear();
 
 // 2. Configurar usuário Zeca com todas as permissões
 console.log('👤 Configurando usuário Zeca...');
-const zecaUserData = {
-  username: 'zeca',
+const ZecaUserData = {
+  username: 'Zeca',
   name: 'Zeca',
   role: 'developer',
   permissions: ['read', 'write', 'delete', 'admin', 'manage_users']
 };
 
 // Salvar nos diferentes formatos usados pelo sistema
-localStorage.setItem('beef-sync-user', JSON.stringify(zecaUserData));
+localStorage.setItem('beef-sync-user', JSON.stringify(ZecaUserData));
 localStorage.setItem('beef_sync_user_name', 'Zeca');
 localStorage.setItem('beef_sync_user_role', 'Desenvolvedor');
 
@@ -24,11 +24,11 @@ localStorage.setItem('beef_sync_user_role', 'Desenvolvedor');
 localStorage.setItem('beef_sync_user', JSON.stringify({
   id: 1,
   name: 'Zeca',
-  email: 'zeca@beef-sync.com',
+  email: 'Zeca@beef-sync.com',
   role: 'developer'
 }));
 
-console.log('✅ Usuário configurado:', zecaUserData);
+console.log('✅ Usuário configurado:', ZecaUserData);
 
 // 3. Verificar se a configuração está correta
 console.log('🔍 Verificando configuração...');
@@ -38,7 +38,7 @@ console.log('Usuário salvo:', savedUser);
 // 4. Testar sistema de permissões
 console.log('🔐 Testando permissões...');
 const userRoles = {
-  'zeca': {
+  'Zeca': {
     name: 'Zeca',
     role: 'developer',
     permissions: ['read', 'write', 'delete', 'admin', 'manage_users'],
@@ -53,14 +53,14 @@ console.log('Pode gerenciar usuários:', hasManageUsers ? '✅ SIM' : '❌ NÃO'
 // 5. Forçar navegação para página de usuários
 if (hasManageUsers) {
   console.log('🚀 Redirecionando para página de usuários...');
-  
+
   // Aguardar um pouco e redirecionar
   setTimeout(() => {
     if (typeof window !== 'undefined') {
       window.location.href = '/users';
     }
   }, 1500);
-  
+
   console.log('✅ CORREÇÃO APLICADA COM SUCESSO!');
   console.log('📋 Resumo:');
   console.log('- Usuário: Zeca (Desenvolvedor)');

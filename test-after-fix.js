@@ -7,18 +7,18 @@ const user = localStorage.getItem('beef-sync-user');
 if (!user) {
     console.log('❌ Usuário não está logado');
     console.log('🔑 Configurando usuário Zeca...');
-    
-    const zecaUser = {
-        username: 'zeca',
+
+    const ZecaUser = {
+        username: 'Zeca',
         name: 'Zeca',
         role: 'developer',
         permissions: ['read', 'write', 'delete', 'admin', 'manage_users']
     };
-    
-    localStorage.setItem('beef-sync-user', JSON.stringify(zecaUser));
+
+    localStorage.setItem('beef-sync-user', JSON.stringify(ZecaUser));
     localStorage.setItem('beef_sync_user_name', 'Zeca');
     localStorage.setItem('beef_sync_user_role', 'Desenvolvedor');
-    
+
     console.log('✅ Usuário configurado');
 } else {
     console.log('✅ Usuário já está logado');

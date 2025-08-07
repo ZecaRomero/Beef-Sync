@@ -7,7 +7,7 @@ async function main() {
 
   // Buscar usuário
   const user = await prisma.user.findFirst({
-    where: { email: 'zeca@beef-sync.com' }
+    where: { email: 'Zeca@beef-sync.com' }
   });
 
   if (!user) {

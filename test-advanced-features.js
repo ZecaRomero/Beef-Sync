@@ -3,14 +3,14 @@ console.log('🚀 TESTANDO FUNCIONALIDADES AVANÇADAS');
 console.log('=====================================');
 
 // Função para simular login de consultor e testar funcionalidades
-function testarFuncionalidadesAvancadas(usuario = 'bento') {
+function testarFuncionalidadesAvancadas(usuario = 'Bento') {
     console.log(`🔑 Fazendo login como ${usuario} (consultor)...`);
-    
+
     // Limpar dados antigos
     localStorage.removeItem('beef-sync-user');
     localStorage.removeItem('beef_sync_user_name');
     localStorage.removeItem('beef_sync_user_role');
-    
+
     // Configurar consultor
     const consultorUser = {
         username: usuario.toLowerCase(),
@@ -18,11 +18,11 @@ function testarFuncionalidadesAvancadas(usuario = 'bento') {
         role: 'consultant',
         permissions: ['read']
     };
-    
+
     localStorage.setItem('beef-sync-user', JSON.stringify(consultorUser));
     localStorage.setItem('beef_sync_user_name', consultorUser.name);
     localStorage.setItem('beef_sync_user_role', 'Consultor');
-    
+
     console.log('✅ Login realizado como:', consultorUser.name);
     console.log('');
     console.log('📊 NOVAS FUNCIONALIDADES DISPONÍVEIS:');
@@ -43,7 +43,7 @@ function testarFuncionalidadesAvancadas(usuario = 'bento') {
     console.log('   - Acesso aos relatórios existentes');
     console.log('   - Timeline de vendas');
     console.log('   - BI Analytics');
-    
+
     return consultorUser;
 }
 
@@ -106,7 +106,7 @@ console.log('- mostrarExemplosDados() - Ver exemplos de dados');
 console.log('- mostrarRegrasNegocio() - Ver regras implementadas');
 console.log('');
 console.log('🧪 TESTE RÁPIDO:');
-console.log('1. Execute: testarFuncionalidadesAvancadas("bento")');
+console.log('1. Execute: testarFuncionalidadesAvancadas("Bento")');
 console.log('2. Execute: window.location.reload()');
 console.log('3. Teste os novos botões: "Análises Avançadas" e "Alertas de Receptoras"');
 console.log('=====================================');

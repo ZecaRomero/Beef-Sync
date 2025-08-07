@@ -117,8 +117,8 @@ Acesse http://localhost:3000
 ## 🔑 Credenciais Padrão
 
 Após executar o seed:
-- **Email**: zeca@beefsync.com
-- **Senha**: zeca123
+- **Email**: Zeca@beefsync.com
+- **Senha**: Zeca123
 
 ## 📜 Scripts Disponíveis
 

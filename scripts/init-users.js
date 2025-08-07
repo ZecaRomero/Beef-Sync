@@ -4,22 +4,22 @@ const bcrypt = require('bcryptjs');
 const users = [
   {
     id: 1,
-    email: 'zeca@beefsync.com',
-    password: 'zeca123',
+    email: 'Zeca@beefsync.com',
+    password: 'Zeca123',
     name: 'Zeca (Proprietário)',
     role: 'OWNER'
   },
   {
     id: 2,
-    email: 'bento@fazenda.com',
-    password: 'bento123',
+    email: 'Bento@fazenda.com',
+    password: 'Bento123',
     name: 'Bento (Dono)',
     role: 'OWNER'
   },
   {
     id: 3,
-    email: 'nilson@fazenda.com',
-    password: 'nilson123',
+    email: 'Nilson@fazenda.com',
+    password: 'Nilson123',
     name: 'Nilson (Gerente)',
     role: 'MANAGER'
   },
@@ -35,11 +35,11 @@ const users = [
 // Função para verificar credenciais (para desenvolvimento)
 export const validateUser = async (email, password) => {
   const user = users.find(u => u.email === email);
-  
+
   if (!user) {
     return null;
   }
-  
+
   // Para desenvolvimento, comparação simples
   if (user.password === password) {
     return {
@@ -49,7 +49,7 @@ export const validateUser = async (email, password) => {
       role: user.role
     };
   }
-  
+
   return null;
 };
 

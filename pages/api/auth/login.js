@@ -4,22 +4,22 @@ import jwt from 'jsonwebtoken'
 const users = [
   {
     id: 1,
-    email: 'zeca@beefsync.com',
-    password: 'zeca123',
+    email: 'Zeca@beefsync.com',
+    password: 'Zeca123',
     name: 'Zeca (Proprietário)',
     role: 'OWNER'
   },
   {
     id: 2,
-    email: 'bento@fazenda.com',
-    password: 'bento123',
+    email: 'Bento@fazenda.com',
+    password: 'Bento123',
     name: 'Bento (Dono)',
     role: 'OWNER'
   },
   {
     id: 3,
-    email: 'nilson@fazenda.com',
-    password: 'nilson123',
+    email: 'Nilson@fazenda.com',
+    password: 'Nilson123',
     name: 'Nilson (Gerente)',
     role: 'MANAGER'
   },

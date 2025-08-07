@@ -19,6 +19,6 @@ window.location.href = '/login';
 
 console.log('📋 INSTRUÇÕES APÓS LOGOUT:');
 console.log('1. Na tela de login, use:');
-console.log('   - Usuário: zeca');
+console.log('   - Usuário: Zeca');
 console.log('   - Senha: 123');
 console.log('2. Após login, clique em "Usuários" no menu');

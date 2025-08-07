@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { useAuth } from '../contexts/AuthContext';
 
 export default function Login() {
-  const [username, setUsername] = useState('zeca');
+  const [username, setUsername] = useState('Zeca');
   const [password, setPassword] = useState('123');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -54,7 +54,7 @@ export default function Login() {
                 type="text"
                 required
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
-                placeholder="Usuário (zeca, bento, nilson, mauricio)"
+                placeholder="Usuário (Zeca, Bento, Nilson, Mauricio)"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
               />
@@ -95,11 +95,11 @@ export default function Login() {
           <div className="text-center text-sm text-gray-600">
             <p className="font-semibold mb-2">Usuários disponíveis:</p>
             <div className="space-y-1">
-              <p><strong>zeca</strong> - Desenvolvedor (acesso total)</p>
-              <p><strong>bento</strong> - Consultor (apenas relatórios)</p>
-              <p><strong>mauricio</strong> - Consultor (apenas relatórios)</p>
-              <p><strong>nilson</strong> - Consultor (apenas relatórios)</p>
-              <p><strong>jorge</strong> - Consultor (apenas relatórios)</p>
+              <p><strong>Zeca</strong> - Desenvolvedor (acesso total)</p>
+              <p><strong>Bento</strong> - Consultor (apenas relatórios)</p>
+              <p><strong>Mauricio</strong> - Consultor (apenas relatórios)</p>
+              <p><strong>Nilson</strong> - Consultor (apenas relatórios)</p>
+              <p><strong>Jorge</strong> - Consultor (apenas relatórios)</p>
             </div>
             <p className="mt-3 font-semibold text-blue-600">Senha para todos: 123</p>
           </div>

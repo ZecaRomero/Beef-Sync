@@ -8,7 +8,7 @@ console.log('✅ Logout concluído');
 
 // PASSO 2: Configurar usuário Zeca
 console.log('🔑 PASSO 2: Configurando usuário Zeca...');
-localStorage.setItem('beef-sync-user', '{"username":"zeca","name":"Zeca","role":"developer","permissions":["read","write","delete","admin","manage_users"]}');
+localStorage.setItem('beef-sync-user', '{"username":"Zeca","name":"Zeca","role":"developer","permissions":["read","write","delete","admin","manage_users"]}');
 localStorage.setItem('beef_sync_user_name', 'Zeca');
 localStorage.setItem('beef_sync_user_role', 'Desenvolvedor');
 console.log('✅ Usuário Zeca configurado');

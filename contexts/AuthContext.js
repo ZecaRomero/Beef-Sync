@@ -16,7 +16,7 @@ export const AuthProvider = ({ children }) => {
 
   // Sistema de permissões atualizado
   const userRoles = {
-    'zeca': {
+    'Zeca': {
       name: 'Zeca',
       role: 'developer',
       permissions: [
@@ -27,7 +27,7 @@ export const AuthProvider = ({ children }) => {
       ],
       description: 'Desenvolvedor - Acesso completo'
     },
-    'bento': {
+    'Bento': {
       name: 'Bento',
       role: 'consultant',
       permissions: [
@@ -36,7 +36,7 @@ export const AuthProvider = ({ children }) => {
       ],
       description: 'Consultor - Visualização e relatórios'
     },
-    'nilson': {
+    'Nilson': {
       name: 'Nilson',
       role: 'consultant',
       permissions: [
@@ -45,7 +45,7 @@ export const AuthProvider = ({ children }) => {
       ],
       description: 'Consultor - Visualização e relatórios'
     },
-    'mauricio': {
+    'Mauricio': {
       name: 'Maurício',
       role: 'consultant',
       permissions: [
@@ -54,7 +54,7 @@ export const AuthProvider = ({ children }) => {
       ],
       description: 'Consultor - Visualização e relatórios'
     },
-    'jorge': {
+    'Jorge': {
       name: 'Jorge',
       role: 'consultant',
       permissions: [
@@ -67,13 +67,13 @@ export const AuthProvider = ({ children }) => {
 
   const checkPermission = (permission) => {
     if (!user) return false;
-    const userRole = userRoles[user.username] || userRoles['bento'];
+    const userRole = userRoles[user.username] || userRoles['Bento'];
     return userRole.permissions.includes(permission);
   };
 
   const getUserRole = () => {
     if (!user) return null;
-    return userRoles[user.username] || userRoles['bento'];
+    return userRoles[user.username] || userRoles['Bento'];
   };
 
   // Verificar se é desenvolvedor
@@ -99,23 +99,23 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (username, password) => {
     setLoading(true);
-    
+
     // Simular autenticação
     await new Promise(resolve => setTimeout(resolve, 1000));
-    
+
     // Verificar se usuário existe
     if (!userRoles[username]) {
       setLoading(false);
       return { success: false, error: 'Usuário não encontrado' };
     }
-    
+
     // Validar senha
     const validPassword = password === '123';
     if (!validPassword) {
       setLoading(false);
       return { success: false, error: 'Senha incorreta' };
     }
-    
+
     // Login bem-sucedido
     const userData = {
       username,
@@ -123,12 +123,12 @@ export const AuthProvider = ({ children }) => {
       role: userRoles[username].role,
       permissions: userRoles[username].permissions
     };
-    
+
     setUser(userData);
     localStorage.setItem('beef-sync-user', JSON.stringify(userData));
     localStorage.setItem('beef_sync_user_name', userRoles[username].name);
     localStorage.setItem('beef_sync_user_role', userRoles[username].role === 'developer' ? 'Desenvolvedor' : 'Consultor');
-    
+
     setLoading(false);
     return { success: true };
   };
