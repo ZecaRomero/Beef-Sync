@@ -519,11 +519,10 @@ export default function Dashboard() {
                         </td>
                         <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
                           <span
-                            className={`px-2 py-1 rounded-full text-xs ${
-                              animal.sexo === "M"
+                            className={`px-2 py-1 rounded-full text-xs ${animal.sexo === "M"
                                 ? "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
                                 : "bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-200"
-                            }`}
+                              }`}
                           >
                             {animal.sexo === "M" ? "Macho" : "Fêmea"}
                           </span>
@@ -710,11 +709,10 @@ export default function Dashboard() {
                       </td>
                       <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
                         <span
-                          className={`px-2 py-1 rounded-full text-xs ${
-                            nascimento.sexo === "M"
+                          className={`px-2 py-1 rounded-full text-xs ${nascimento.sexo === "M"
                               ? "bg-blue-100 text-blue-800"
                               : "bg-pink-100 text-pink-800"
-                          }`}
+                            }`}
                         >
                           {nascimento.sexo === "M" ? "Macho" : "Fêmea"}
                         </span>
@@ -724,11 +722,10 @@ export default function Dashboard() {
                       </td>
                       <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
                         <span
-                          className={`px-2 py-1 rounded-full text-xs ${
-                            nascimento.status === "Saudável"
+                          className={`px-2 py-1 rounded-full text-xs ${nascimento.status === "Saudável"
                               ? "bg-green-100 text-green-800"
                               : "bg-yellow-100 text-yellow-800"
-                          }`}
+                            }`}
                         >
                           {nascimento.status}
                         </span>
@@ -1551,11 +1548,10 @@ export default function Dashboard() {
                       </td>
                       <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
                         <span
-                          className={`px-2 py-1 rounded-full text-xs ${
-                            leilao.status === "Concluído"
+                          className={`px-2 py-1 rounded-full text-xs ${leilao.status === "Concluído"
                               ? "bg-green-100 text-green-800"
                               : "bg-blue-100 text-blue-800"
-                          }`}
+                            }`}
                         >
                           {leilao.status}
                         </span>
@@ -2081,13 +2077,12 @@ export default function Dashboard() {
                       </td>
                       <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
                         <span
-                          className={`px-2 py-1 rounded-full text-xs ${
-                            descarte.motivo.includes("Idade")
+                          className={`px-2 py-1 rounded-full text-xs ${descarte.motivo.includes("Idade")
                               ? "bg-yellow-100 text-yellow-800"
                               : descarte.motivo.includes("Lesão")
-                              ? "bg-red-100 text-red-800"
-                              : "bg-orange-100 text-orange-800"
-                          }`}
+                                ? "bg-red-100 text-red-800"
+                                : "bg-orange-100 text-orange-800"
+                            }`}
                         >
                           {descarte.motivo}
                         </span>
@@ -2239,13 +2234,12 @@ export default function Dashboard() {
                 {topCompradores.map((comprador, index) => (
                   <div
                     key={index}
-                    className={`p-4 rounded-lg border-l-4 ${
-                      index === 0
+                    className={`p-4 rounded-lg border-l-4 ${index === 0
                         ? "bg-yellow-50 border-yellow-500"
                         : index === 1
-                        ? "bg-gray-50 border-gray-500"
-                        : "bg-orange-50 border-orange-500"
-                    }`}
+                          ? "bg-gray-50 border-gray-500"
+                          : "bg-orange-50 border-orange-500"
+                      }`}
                   >
                     <div className="flex items-center justify-between mb-2">
                       <h4 className="font-semibold text-gray-900">
@@ -2332,11 +2326,10 @@ export default function Dashboard() {
                       </td>
                       <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
                         <span
-                          className={`px-2 py-1 rounded-full text-xs ${
-                            leilao.status === "Concluído"
+                          className={`px-2 py-1 rounded-full text-xs ${leilao.status === "Concluído"
                               ? "bg-green-100 text-green-800"
                               : "bg-blue-100 text-blue-800"
-                          }`}
+                            }`}
                         >
                           {leilao.status}
                         </span>
@@ -2580,11 +2573,10 @@ export default function Dashboard() {
                       </td>
                       <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
                         <span
-                          className={`px-2 py-1 rounded-full text-xs ${
-                            parseFloat(venda.rendimento) >= 58
+                          className={`px-2 py-1 rounded-full text-xs ${parseFloat(venda.rendimento) >= 58
                               ? "bg-green-100 text-green-800"
                               : "bg-yellow-100 text-yellow-800"
-                          }`}
+                            }`}
                         >
                           {venda.rendimento}
                         </span>
@@ -2728,11 +2720,10 @@ export default function Dashboard() {
                         </td>
                         <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
                           <span
-                            className={`px-2 py-1 rounded-full text-xs ${
-                              pai.vendas / pai.filhos >= 0.8
+                            className={`px-2 py-1 rounded-full text-xs ${pai.vendas / pai.filhos >= 0.8
                                 ? "bg-green-100 text-green-800"
                                 : "bg-yellow-100 text-yellow-800"
-                            }`}
+                              }`}
                           >
                             {((pai.vendas / pai.filhos) * 100).toFixed(0)}%
                           </span>
@@ -2748,10 +2739,10 @@ export default function Dashboard() {
                             {index === 0
                               ? "🥇"
                               : index === 1
-                              ? "🥈"
-                              : index === 2
-                              ? "🥉"
-                              : "📊"}
+                                ? "🥈"
+                                : index === 2
+                                  ? "🥉"
+                                  : "📊"}
                           </span>
                         </td>
                       </tr>
@@ -3092,8 +3083,8 @@ export default function Dashboard() {
                   R${" "}
                   {Math.round(
                     parseInt(estado.valor.replace(/[^\d]/g, "")) /
-                      estado.vendas /
-                      1000
+                    estado.vendas /
+                    1000
                   )}
                   K
                 </div>
@@ -3152,10 +3143,10 @@ export default function Dashboard() {
                             {index === 0
                               ? "🥇"
                               : index === 1
-                              ? "🥈"
-                              : index === 2
-                              ? "🥉"
-                              : "🏅"}
+                                ? "🥈"
+                                : index === 2
+                                  ? "🥉"
+                                  : "🏅"}
                           </span>
                         </div>
                         <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">
@@ -3232,13 +3223,12 @@ export default function Dashboard() {
                           </td>
                           <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
                             <span
-                              className={`px-2 py-1 rounded-full text-xs ${
-                                venda.tipo === "Leilão"
+                              className={`px-2 py-1 rounded-full text-xs ${venda.tipo === "Leilão"
                                   ? "bg-purple-100 text-purple-800"
                                   : venda.tipo === "Venda Direta"
-                                  ? "bg-blue-100 text-blue-800"
-                                  : "bg-red-100 text-red-800"
-                              }`}
+                                    ? "bg-blue-100 text-blue-800"
+                                    : "bg-red-100 text-red-800"
+                                }`}
                             >
                               {venda.tipo}
                             </span>
@@ -3548,11 +3538,10 @@ export default function Dashboard() {
                       </td>
                       <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
                         <span
-                          className={`px-2 py-1 rounded-full text-xs ${
-                            cliente.status === "VIP"
+                          className={`px-2 py-1 rounded-full text-xs ${cliente.status === "VIP"
                               ? "bg-gold-100 text-gold-800"
                               : "bg-blue-100 text-blue-800"
-                          }`}
+                            }`}
                         >
                           {cliente.status}
                         </span>
@@ -4227,24 +4216,22 @@ export default function Dashboard() {
                       </td>
                       <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
                         <span
-                          className={`px-2 py-1 rounded-full text-xs ${
-                            nota.followUp === "Ativo"
+                          className={`px-2 py-1 rounded-full text-xs ${nota.followUp === "Ativo"
                               ? "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
                               : nota.followUp === "Pendente"
-                              ? "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200"
-                              : "bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200"
-                          }`}
+                                ? "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200"
+                                : "bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200"
+                            }`}
                         >
                           {nota.followUp}
                         </span>
                       </td>
                       <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
                         <span
-                          className={`px-2 py-1 rounded-full text-xs ${
-                            nota.status === "Emitida"
+                          className={`px-2 py-1 rounded-full text-xs ${nota.status === "Emitida"
                               ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
                               : "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200"
-                          }`}
+                            }`}
                         >
                           {nota.status}
                         </span>
@@ -4701,7 +4688,7 @@ export default function Dashboard() {
                   </button>
                 </div>
               </div>
-              
+
               <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-3 border-l-4 border-blue-500">
                 <div className="flex items-center justify-between">
                   <div>
@@ -4986,7 +4973,7 @@ export default function Dashboard() {
       ]);
 
       const markAsCompleted = (notificationId) => {
-        setNotifications(notifications.map(notif => 
+        setNotifications(notifications.map(notif =>
           notif.id === notificationId ? { ...notif, status: "completed" } : notif
         ));
       };
@@ -5097,16 +5084,15 @@ export default function Dashboard() {
                           <span>📞 {notification.phone}</span>
                         )}
                         <span
-                          className={`px-2 py-1 rounded-full text-xs ${
-                            notification.priority === "high"
+                          className={`px-2 py-1 rounded-full text-xs ${notification.priority === "high"
                               ? "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200"
                               : notification.priority === "medium"
-                              ? "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200"
-                              : "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
-                          }`}
+                                ? "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200"
+                                : "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
+                            }`}
                         >
-                          {notification.priority === "high" ? "🔴 Urgente" : 
-                           notification.priority === "medium" ? "🟡 Médio" : "🔵 Baixo"}
+                          {notification.priority === "high" ? "🔴 Urgente" :
+                            notification.priority === "medium" ? "🟡 Médio" : "🔵 Baixo"}
                         </span>
                       </div>
                     </div>
@@ -5421,13 +5407,12 @@ export default function Dashboard() {
               {followUpTasks.map((task) => (
                 <div
                   key={task.id}
-                  className={`bg-white dark:bg-gray-700 rounded-lg p-4 border-l-4 ${
-                    task.status === "Pendente"
+                  className={`bg-white dark:bg-gray-700 rounded-lg p-4 border-l-4 ${task.status === "Pendente"
                       ? "border-red-500"
                       : task.status === "Agendado"
-                      ? "border-yellow-500"
-                      : "border-green-500"
-                  }`}
+                        ? "border-yellow-500"
+                        : "border-green-500"
+                    }`}
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex-1">
@@ -5439,13 +5424,12 @@ export default function Dashboard() {
                           GTA: {task.gta}
                         </span>
                         <span
-                          className={`px-2 py-1 rounded-full text-xs ${
-                            task.status === "Pendente"
+                          className={`px-2 py-1 rounded-full text-xs ${task.status === "Pendente"
                               ? "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200"
                               : task.status === "Agendado"
-                              ? "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200"
-                              : "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
-                          }`}
+                                ? "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200"
+                                : "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
+                            }`}
                         >
                           {task.status}
                         </span>
@@ -5544,37 +5528,37 @@ export default function Dashboard() {
         </div>
 
         {/* Botões de Acesso Rápido */}
-        <div className="mb-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
+        <div className="mb-4 sm:mb-6 grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-4 max-w-6xl mx-auto">
           <button
             onClick={() => setShowAnimalManager(true)}
-            className="px-6 py-4 bg-gradient-to-r from-emerald-600 to-green-600 text-white rounded-xl hover:from-emerald-700 hover:to-green-700 transition-all duration-300 flex items-center font-bold text-lg shadow-2xl transform hover:scale-105"
+            className="px-3 py-3 sm:px-6 sm:py-4 bg-gradient-to-r from-emerald-600 to-green-600 text-white rounded-lg sm:rounded-xl hover:from-emerald-700 hover:to-green-700 transition-all duration-300 flex items-center font-bold text-sm sm:text-lg shadow-xl sm:shadow-2xl"
           >
-            <UserGroupIcon className="h-6 w-6 mr-3" />
-            🐄 CADASTRO DE ANIMAIS
+            <UserGroupIcon className="h-5 w-5 sm:h-6 sm:w-6 mr-2 sm:mr-3" />
+            <span className="truncate">🐄 Cadastro</span>
           </button>
 
           <button
             onClick={() => setShowBIDashboard(true)}
-            className="px-6 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-xl hover:from-purple-700 hover:to-pink-700 transition-all duration-300 flex items-center font-bold text-lg shadow-2xl transform hover:scale-105"
+            className="px-3 py-3 sm:px-6 sm:py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg sm:rounded-xl hover:from-purple-700 hover:to-pink-700 transition-all duration-300 flex items-center font-bold text-sm sm:text-lg shadow-xl sm:shadow-2xl"
           >
-            <ChartBarIcon className="h-6 w-6 mr-3" />
-            📊 BI ANALYTICS
+            <ChartBarIcon className="h-5 w-5 sm:h-6 sm:w-6 mr-2 sm:mr-3" />
+            <span className="truncate">📊 BI</span>
           </button>
 
           <button
             onClick={() => setShowTimeline(true)}
-            className="px-6 py-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-xl hover:from-blue-700 hover:to-cyan-700 transition-all duration-300 flex items-center font-bold text-lg shadow-2xl transform hover:scale-105"
+            className="px-3 py-3 sm:px-6 sm:py-4 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-lg sm:rounded-xl hover:from-blue-700 hover:to-cyan-700 transition-all duration-300 flex items-center font-bold text-sm sm:text-lg shadow-xl sm:shadow-2xl"
           >
-            <ClockIcon className="h-6 w-6 mr-3" />
-            📅 TIMELINE VENDAS
+            <ClockIcon className="h-5 w-5 sm:h-6 sm:w-6 mr-2 sm:mr-3" />
+            <span className="truncate">📅 Vendas</span>
           </button>
 
           <button
             onClick={() => setShowDirectInvoice(true)}
-            className="px-6 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 flex items-center font-bold text-lg shadow-2xl transform hover:scale-105"
+            className="px-3 py-3 sm:px-6 sm:py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg sm:rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 flex items-center font-bold text-sm sm:text-lg shadow-xl sm:shadow-2xl"
           >
-            <CurrencyDollarIcon className="h-6 w-6 mr-3" />
-            📋 CRIAR NOTA FISCAL
+            <CurrencyDollarIcon className="h-5 w-5 sm:h-6 sm:w-6 mr-2 sm:mr-3" />
+            <span className="truncate">📋 Nota Fiscal</span>
           </button>
         </div>
 
