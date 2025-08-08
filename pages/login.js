@@ -153,7 +153,7 @@ export default function Login() {
                     type="password"
                     required
                     className="appearance-none relative block w-full px-4 py-3 border border-white/30 placeholder-gray-400 text-white bg-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent backdrop-blur-sm text-lg"
-                    placeholder="Digite a senha (123)"
+                    placeholder="Digite a senha"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                   />

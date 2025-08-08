@@ -2,7 +2,11 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
+  "/api/animals-list": "pages/api/animals-list.js",
+  "/api/market-prices": "pages/api/market-prices.js",
+  "/api/sales-list": "pages/api/sales-list.js",
+  "/api/weights-list": "pages/api/weights-list.js",
+  "/api/costs-list": "pages/api/costs-list.js",
   "/login": "pages/login.js",
-  "/": "pages/index.js",
-  "/api/market-prices": "pages/api/market-prices.js"
+  "/": "pages/index.js"
 }

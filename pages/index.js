@@ -744,6 +744,333 @@ export default function Dashboard() {
     );
   };
 
+  // Modal PROGRAMA FIV
+  const FIVModal = ({ isOpen, onClose }) => {
+    if (!isOpen) return null;
+
+    return (
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
+          <div className="flex items-center justify-between p-4 md:p-6 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-purple-600 to-pink-600">
+            <div className="flex items-center space-x-3">
+              <div className="text-3xl md:text-4xl">🧬</div>
+              <div>
+                <h2 className="text-xl md:text-2xl font-bold text-white">
+                  Programa FIV
+                </h2>
+                <p className="text-purple-100 text-sm md:text-base">
+                  Fertilização in vitro
+                </p>
+              </div>
+            </div>
+            <button
+              onClick={onClose}
+              className="p-2 hover:bg-white/20 rounded-lg transition-colors text-white text-2xl font-bold"
+            >
+              ×
+            </button>
+          </div>
+
+          <div className="p-4 md:p-6 overflow-y-auto max-h-[calc(90vh-120px)]">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+              <div className="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg text-center">
+                <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">
+                  15
+                </div>
+                <div className="text-sm text-purple-800 dark:text-purple-300">
+                  Procedimentos FIV
+                </div>
+              </div>
+              <div className="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg text-center">
+                <div className="text-2xl font-bold text-green-600 dark:text-green-400">
+                  12
+                </div>
+                <div className="text-sm text-green-800 dark:text-green-300">
+                  Sucessos
+                </div>
+              </div>
+              <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg text-center">
+                <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+                  80%
+                </div>
+                <div className="text-sm text-blue-800 dark:text-blue-300">
+                  Taxa Sucesso
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4">
+              <p className="text-center text-blue-700 dark:text-blue-300">
+                💡 <strong>Demonstração:</strong> Esta funcionalidade está
+                disponível na versão completa do sistema
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  // Modal VACINAÇÃO
+  const VacinacaoModal = ({ isOpen, onClose }) => {
+    if (!isOpen) return null;
+
+    return (
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
+          <div className="flex items-center justify-between p-4 md:p-6 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-green-600 to-blue-600">
+            <div className="flex items-center space-x-3">
+              <div className="text-3xl md:text-4xl">💉</div>
+              <div>
+                <h2 className="text-xl md:text-2xl font-bold text-white">
+                  Vacinação
+                </h2>
+                <p className="text-green-100 text-sm md:text-base">
+                  Controle de vacinas
+                </p>
+              </div>
+            </div>
+            <button
+              onClick={onClose}
+              className="p-2 hover:bg-white/20 rounded-lg transition-colors text-white text-2xl font-bold"
+            >
+              ×
+            </button>
+          </div>
+
+          <div className="p-4 md:p-6 overflow-y-auto max-h-[calc(90vh-120px)]">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+              <div className="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg text-center">
+                <div className="text-2xl font-bold text-green-600 dark:text-green-400">
+                  1180
+                </div>
+                <div className="text-sm text-green-800 dark:text-green-300">
+                  Animais Vacinados
+                </div>
+              </div>
+              <div className="bg-orange-50 dark:bg-orange-900/20 p-4 rounded-lg text-center">
+                <div className="text-2xl font-bold text-orange-600 dark:text-orange-400">
+                  67
+                </div>
+                <div className="text-sm text-orange-800 dark:text-orange-300">
+                  Pendentes
+                </div>
+              </div>
+              <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg text-center">
+                <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+                  95%
+                </div>
+                <div className="text-sm text-blue-800 dark:text-blue-300">
+                  Cobertura
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4">
+              <p className="text-center text-blue-700 dark:text-blue-300">
+                💡 <strong>Demonstração:</strong> Esta funcionalidade está
+                disponível na versão completa do sistema
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  // Modal SAÚDE ANIMAL
+  const SaudeModal = ({ isOpen, onClose }) => {
+    if (!isOpen) return null;
+
+    return (
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
+          <div className="flex items-center justify-between p-4 md:p-6 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-red-600 to-pink-600">
+            <div className="flex items-center space-x-3">
+              <div className="text-3xl md:text-4xl">🏥</div>
+              <div>
+                <h2 className="text-xl md:text-2xl font-bold text-white">
+                  Saúde Animal
+                </h2>
+                <p className="text-red-100 text-sm md:text-base">
+                  Monitoramento veterinário
+                </p>
+              </div>
+            </div>
+            <button
+              onClick={onClose}
+              className="p-2 hover:bg-white/20 rounded-lg transition-colors text-white text-2xl font-bold"
+            >
+              ×
+            </button>
+          </div>
+
+          <div className="p-4 md:p-6 overflow-y-auto max-h-[calc(90vh-120px)]">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+              <div className="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg text-center">
+                <div className="text-2xl font-bold text-green-600 dark:text-green-400">
+                  1200
+                </div>
+                <div className="text-sm text-green-800 dark:text-green-300">
+                  Animais Saudáveis
+                </div>
+              </div>
+              <div className="bg-yellow-50 dark:bg-yellow-900/20 p-4 rounded-lg text-center">
+                <div className="text-2xl font-bold text-yellow-600 dark:text-yellow-400">
+                  25
+                </div>
+                <div className="text-sm text-yellow-800 dark:text-yellow-300">
+                  Em Observação
+                </div>
+              </div>
+              <div className="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg text-center">
+                <div className="text-2xl font-bold text-red-600 dark:text-red-400">
+                  3
+                </div>
+                <div className="text-sm text-red-800 dark:text-red-300">
+                  Em Tratamento
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4">
+              <p className="text-center text-blue-700 dark:text-blue-300">
+                💡 <strong>Demonstração:</strong> Esta funcionalidade está
+                disponível na versão completa do sistema
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  // Modal RELATÓRIOS
+  const RelatoriosModal = ({ isOpen, onClose }) => {
+    if (!isOpen) return null;
+
+    return (
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
+          <div className="flex items-center justify-between p-4 md:p-6 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-indigo-600 to-purple-600">
+            <div className="flex items-center space-x-3">
+              <div className="text-3xl md:text-4xl">📊</div>
+              <div>
+                <h2 className="text-xl md:text-2xl font-bold text-white">
+                  Relatórios
+                </h2>
+                <p className="text-indigo-100 text-sm md:text-base">
+                  Análises de manejo
+                </p>
+              </div>
+            </div>
+            <button
+              onClick={onClose}
+              className="p-2 hover:bg-white/20 rounded-lg transition-colors text-white text-2xl font-bold"
+            >
+              ×
+            </button>
+          </div>
+
+          <div className="p-4 md:p-6 overflow-y-auto max-h-[calc(90vh-120px)]">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+              <button className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg hover:bg-blue-100 dark:hover:bg-blue-900/40 transition-colors">
+                <div className="text-blue-600 dark:text-blue-400 text-2xl mb-2">
+                  📈
+                </div>
+                <div className="font-semibold text-blue-800 dark:text-blue-200">
+                  Relatório de Produtividade
+                </div>
+              </button>
+              <button className="p-4 bg-green-50 dark:bg-green-900/20 rounded-lg hover:bg-green-100 dark:hover:bg-green-900/40 transition-colors">
+                <div className="text-green-600 dark:text-green-400 text-2xl mb-2">
+                  🐄
+                </div>
+                <div className="font-semibold text-green-800 dark:text-green-200">
+                  Relatório do Rebanho
+                </div>
+              </button>
+            </div>
+
+            <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4">
+              <p className="text-center text-blue-700 dark:text-blue-300">
+                💡 <strong>Demonstração:</strong> Esta funcionalidade está
+                disponível na versão completa do sistema
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  // Modal TRANSFERÊNCIAS
+  const TransferenciasModal = ({ isOpen, onClose }) => {
+    if (!isOpen) return null;
+
+    return (
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
+          <div className="flex items-center justify-between p-4 md:p-6 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-teal-600 to-cyan-600">
+            <div className="flex items-center space-x-3">
+              <div className="text-3xl md:text-4xl">🔄</div>
+              <div>
+                <h2 className="text-xl md:text-2xl font-bold text-white">
+                  Transferências
+                </h2>
+                <p className="text-teal-100 text-sm md:text-base">
+                  Movimentação de animais
+                </p>
+              </div>
+            </div>
+            <button
+              onClick={onClose}
+              className="p-2 hover:bg-white/20 rounded-lg transition-colors text-white text-2xl font-bold"
+            >
+              ×
+            </button>
+          </div>
+
+          <div className="p-4 md:p-6 overflow-y-auto max-h-[calc(90vh-120px)]">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+              <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg text-center">
+                <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+                  45
+                </div>
+                <div className="text-sm text-blue-800 dark:text-blue-300">
+                  Transferências Este Mês
+                </div>
+              </div>
+              <div className="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg text-center">
+                <div className="text-2xl font-bold text-green-600 dark:text-green-400">
+                  12
+                </div>
+                <div className="text-sm text-green-800 dark:text-green-300">
+                  Pendentes
+                </div>
+              </div>
+              <div className="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg text-center">
+                <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">
+                  3
+                </div>
+                <div className="text-sm text-purple-800 dark:text-purple-300">
+                  Fazendas Conectadas
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4">
+              <p className="text-center text-blue-700 dark:text-blue-300">
+                💡 <strong>Demonstração:</strong> Esta funcionalidade está
+                disponível na versão completa do sistema
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   // Modal CONTROLE DE MORTES
   const MortesModal = ({ isOpen, onClose }) => {
     if (!isOpen) return null;
@@ -751,15 +1078,15 @@ export default function Dashboard() {
     const mortesRecentes = [
       {
         id: "CJCJ 17000",
-        nome: "Velho João",
+        nome: "Maluco Sant Anna",
         idade: "8 anos",
         data: "05/12/2024",
         causa: "Idade Avançada",
         peso: "520kg",
       },
       {
-        id: "CJCJ 170502",
-        nome: "Bezerro 123",
+        id: "CJCJ 17050",
+        nome: "Morbito Sant Anna",
         idade: "2 meses",
         data: "28/11/2024",
         causa: "Doença",
@@ -3605,6 +3932,11 @@ export default function Dashboard() {
   const NotasFiscaisModal = ({ isOpen, onClose }) => {
     if (!isOpen) return null;
 
+    const [showGTAForm, setShowGTAForm] = useState(false);
+    const [gtaNumber, setGtaNumber] = useState("");
+    const [emissionDate, setEmissionDate] = useState("");
+    const [followUpTasks, setFollowUpTasks] = useState([]);
+
     const notasRecentes = [
       {
         numero: "NF-001234",
@@ -3612,6 +3944,8 @@ export default function Dashboard() {
         valor: "R$ 45.000",
         data: "15/12/2024",
         status: "Emitida",
+        gta: "1234567",
+        followUp: "Ativo",
       },
       {
         numero: "NF-001235",
@@ -3619,6 +3953,8 @@ export default function Dashboard() {
         valor: "R$ 32.000",
         data: "14/12/2024",
         status: "Emitida",
+        gta: "1234568",
+        followUp: "Pendente",
       },
       {
         numero: "NF-001236",
@@ -3626,8 +3962,52 @@ export default function Dashboard() {
         valor: "R$ 67.000",
         data: "13/12/2024",
         status: "Cancelada",
+        gta: "-",
+        followUp: "-",
       },
     ];
+
+    const handleGTASubmit = () => {
+      if (gtaNumber && emissionDate) {
+        const emissionDateObj = new Date(emissionDate);
+
+        // Criar tarefas de follow-up automatizadas
+        const tasks = [
+          {
+            type: "Confirmação de Chegada",
+            date: new Date(
+              emissionDateObj.getTime() + 20 * 24 * 60 * 60 * 1000
+            ), // +20 dias
+            message: "Ligar para confirmar se os animais chegaram bem",
+            status: "Agendado",
+          },
+          {
+            type: "Follow-up Satisfação",
+            date: new Date(
+              emissionDateObj.getTime() + 60 * 24 * 60 * 60 * 1000
+            ), // +2 meses
+            message: "Ligar para verificar satisfação com os animais",
+            status: "Agendado",
+          },
+          {
+            type: "Oferta Novos Animais",
+            date: new Date(
+              emissionDateObj.getTime() + 240 * 24 * 60 * 60 * 1000
+            ), // +8 meses
+            message: "Ligar para oferecer novos animais",
+            status: "Agendado",
+          },
+        ];
+
+        setFollowUpTasks(tasks);
+        alert(
+          `GTA ${gtaNumber} cadastrada com sucesso!\nFollow-ups automáticos criados para:\n- 20 dias: Confirmação chegada\n- 2 meses: Verificação satisfação\n- 8 meses: Oferta novos animais`
+        );
+        setGtaNumber("");
+        setEmissionDate("");
+        setShowGTAForm(false);
+      }
+    };
 
     return (
       <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
@@ -3649,6 +4029,105 @@ export default function Dashboard() {
           </div>
 
           <div className="p-6 overflow-y-auto max-h-[calc(90vh-120px)]">
+            {/* Seção GTA - Cadastro Manual */}
+            <div className="bg-purple-50 dark:bg-purple-900/20 rounded-xl p-4 mb-6">
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center space-x-2">
+                  <div className="text-2xl">📋</div>
+                  <h3 className="text-lg font-semibold text-purple-800 dark:text-purple-200">
+                    Cadastro de GTA
+                  </h3>
+                </div>
+                <button
+                  onClick={() => setShowGTAForm(!showGTAForm)}
+                  className="px-3 py-1 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors text-sm"
+                >
+                  {showGTAForm ? "Cancelar" : "+ Cadastrar GTA"}
+                </button>
+              </div>
+
+              {showGTAForm && (
+                <div className="bg-white dark:bg-gray-700 rounded-lg p-4 space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        Número da GTA (máx. 7 dígitos)
+                      </label>
+                      <input
+                        type="text"
+                        value={gtaNumber}
+                        onChange={(e) => {
+                          const value = e.target.value
+                            .replace(/\D/g, "")
+                            .slice(0, 7);
+                          setGtaNumber(value);
+                        }}
+                        placeholder="1234567"
+                        className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent dark:bg-gray-600 dark:text-white"
+                        maxLength="7"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                        Data de Emissão
+                      </label>
+                      <input
+                        type="date"
+                        value={emissionDate}
+                        onChange={(e) => setEmissionDate(e.target.value)}
+                        className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent dark:bg-gray-600 dark:text-white"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-3">
+                    <h4 className="font-semibold text-blue-800 dark:text-blue-200 mb-2">
+                      🤖 Follow-up Automático Pós-Venda:
+                    </h4>
+                    <ul className="text-sm text-blue-700 dark:text-blue-300 space-y-1">
+                      <li>
+                        • <strong>20 dias:</strong> Ligação para confirmar
+                        chegada dos animais
+                      </li>
+                      <li>
+                        • <strong>2 meses:</strong> Ligação para verificar
+                        satisfação
+                      </li>
+                      <li>
+                        • <strong>8 meses:</strong> Ligação para oferecer novos
+                        animais
+                      </li>
+                    </ul>
+                  </div>
+
+                  <button
+                    onClick={handleGTASubmit}
+                    disabled={!gtaNumber || !emissionDate}
+                    className="w-full px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
+                  >
+                    Cadastrar GTA e Ativar Follow-up
+                  </button>
+                </div>
+              )}
+
+              {followUpTasks.length > 0 && (
+                <div className="mt-4 bg-green-50 dark:bg-green-900/20 rounded-lg p-3">
+                  <h4 className="font-semibold text-green-800 dark:text-green-200 mb-2">
+                    ✅ Tarefas de Follow-up Criadas:
+                  </h4>
+                  {followUpTasks.map((task, index) => (
+                    <div
+                      key={index}
+                      className="text-sm text-green-700 dark:text-green-300 mb-1"
+                    >
+                      <strong>{task.type}:</strong>{" "}
+                      {task.date.toLocaleDateString("pt-BR")} - {task.message}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
               <div className="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg text-center">
                 <div className="text-2xl font-bold text-green-600 dark:text-green-400">
@@ -3674,19 +4153,19 @@ export default function Dashboard() {
                   Canceladas
                 </div>
               </div>
-              <div className="bg-yellow-50 dark:bg-yellow-900/20 p-4 rounded-lg text-center">
-                <div className="text-2xl font-bold text-yellow-600 dark:text-yellow-400">
-                  2
+              <div className="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg text-center">
+                <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">
+                  12
                 </div>
-                <div className="text-sm text-yellow-800 dark:text-yellow-300">
-                  Pendentes
+                <div className="text-sm text-purple-800 dark:text-purple-300">
+                  Follow-ups Ativos
                 </div>
               </div>
             </div>
 
             <div className="flex justify-between items-center mb-4">
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                📋 Notas Fiscais Recentes
+                📋 Notas Fiscais e GTAs
               </h3>
               <button className="px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors">
                 + Nova NF
@@ -3698,7 +4177,7 @@ export default function Dashboard() {
                 <thead className="bg-gray-50 dark:bg-gray-600">
                   <tr>
                     <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
-                      Número
+                      Número NF
                     </th>
                     <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
                       Cliente
@@ -3708,6 +4187,12 @@ export default function Dashboard() {
                     </th>
                     <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
                       Data
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      GTA
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      Follow-up
                     </th>
                     <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
                       Status
@@ -3736,28 +4221,87 @@ export default function Dashboard() {
                         {nota.data}
                       </td>
                       <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                        <span className="px-2 py-1 bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200 rounded text-xs font-mono">
+                          {nota.gta}
+                        </span>
+                      </td>
+                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                        <span
+                          className={`px-2 py-1 rounded-full text-xs ${
+                            nota.followUp === "Ativo"
+                              ? "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
+                              : nota.followUp === "Pendente"
+                              ? "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200"
+                              : "bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200"
+                          }`}
+                        >
+                          {nota.followUp}
+                        </span>
+                      </td>
+                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
                         <span
                           className={`px-2 py-1 rounded-full text-xs ${
                             nota.status === "Emitida"
-                              ? "bg-green-100 text-green-800"
-                              : "bg-red-100 text-red-800"
+                              ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
+                              : "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200"
                           }`}
                         >
                           {nota.status}
                         </span>
                       </td>
                       <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
-                        <button className="text-blue-600 hover:text-blue-800 mr-2">
+                        <button className="text-blue-600 hover:text-blue-800 mr-2 text-xs">
                           Ver
                         </button>
-                        <button className="text-green-600 hover:text-green-800">
+                        <button className="text-green-600 hover:text-green-800 mr-2 text-xs">
                           PDF
                         </button>
+                        {nota.followUp !== "-" && (
+                          <button className="text-purple-600 hover:text-purple-800 text-xs">
+                            Follow-up
+                          </button>
+                        )}
                       </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
+            </div>
+
+            {/* Seção de Follow-ups Pendentes */}
+            <div className="mt-8 bg-blue-50 dark:bg-blue-900/20 rounded-xl p-4">
+              <h3 className="text-lg font-semibold text-blue-800 dark:text-blue-200 mb-4 flex items-center">
+                <div className="text-2xl mr-2">📞</div>
+                Follow-ups Pendentes Hoje
+              </h3>
+              <div className="space-y-2">
+                <div className="bg-white dark:bg-gray-700 rounded-lg p-3 flex items-center justify-between">
+                  <div>
+                    <div className="font-medium text-gray-900 dark:text-white">
+                      Luciano Abramo Ciambelli
+                    </div>
+                    <div className="text-sm text-gray-600 dark:text-gray-400">
+                      GTA: 1234567 - Confirmação de chegada (20 dias)
+                    </div>
+                  </div>
+                  <button className="px-3 py-1 bg-blue-600 text-white rounded text-sm hover:bg-blue-700">
+                    Ligar Agora
+                  </button>
+                </div>
+                <div className="bg-white dark:bg-gray-700 rounded-lg p-3 flex items-center justify-between">
+                  <div>
+                    <div className="font-medium text-gray-900 dark:text-white">
+                      Dona Monica
+                    </div>
+                    <div className="text-sm text-gray-600 dark:text-gray-400">
+                      GTA: 1234568 - Verificação satisfação (2 meses)
+                    </div>
+                  </div>
+                  <button className="px-3 py-1 bg-blue-600 text-white rounded text-sm hover:bg-blue-700">
+                    Ligar Agora
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -4108,6 +4652,74 @@ export default function Dashboard() {
             </div>
           </div>
 
+          {/* Sistema de Notificações para Visitante */}
+          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-4 md:p-6">
+            <div className="flex items-center space-x-3 mb-4">
+              <div className="text-2xl">🔔</div>
+              <div>
+                <h3 className="text-lg md:text-xl font-bold text-gray-900 dark:text-white">
+                  Notificações do Sistema
+                </h3>
+                <p className="text-sm md:text-base text-gray-600 dark:text-gray-400">
+                  Follow-ups e oportunidades ativas
+                </p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-4">
+              <div className="bg-red-50 dark:bg-red-900/20 p-3 rounded-lg text-center">
+                <div className="text-lg md:text-xl font-bold text-red-600 dark:text-red-400">3</div>
+                <div className="text-xs md:text-sm text-red-800 dark:text-red-300">Urgentes</div>
+              </div>
+              <div className="bg-yellow-50 dark:bg-yellow-900/20 p-3 rounded-lg text-center">
+                <div className="text-lg md:text-xl font-bold text-yellow-600 dark:text-yellow-400">5</div>
+                <div className="text-xs md:text-sm text-yellow-800 dark:text-yellow-300">Agendados</div>
+              </div>
+              <div className="bg-green-50 dark:bg-green-900/20 p-3 rounded-lg text-center">
+                <div className="text-lg md:text-xl font-bold text-green-600 dark:text-green-400">12</div>
+                <div className="text-xs md:text-sm text-green-800 dark:text-green-300">Concluídos</div>
+              </div>
+              <div className="bg-blue-50 dark:bg-blue-900/20 p-3 rounded-lg text-center">
+                <div className="text-lg md:text-xl font-bold text-blue-600 dark:text-blue-400">8</div>
+                <div className="text-xs md:text-sm text-blue-800 dark:text-blue-300">Oportunidades</div>
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <div className="bg-red-50 dark:bg-red-900/20 rounded-lg p-3 border-l-4 border-red-500">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h4 className="font-semibold text-red-800 dark:text-red-200 text-sm md:text-base">
+                      📞 Follow-up Urgente
+                    </h4>
+                    <p className="text-xs md:text-sm text-red-600 dark:text-red-300">
+                      Luciano Abramo Ciambelli - Confirmação de chegada vencida
+                    </p>
+                  </div>
+                  <button className="px-2 py-1 bg-red-600 text-white rounded text-xs hover:bg-red-700">
+                    Ligar
+                  </button>
+                </div>
+              </div>
+              
+              <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-3 border-l-4 border-blue-500">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h4 className="font-semibold text-blue-800 dark:text-blue-200 text-sm md:text-base">
+                      💰 Oportunidade de Venda
+                    </h4>
+                    <p className="text-xs md:text-sm text-blue-600 dark:text-blue-300">
+                      Reginaldo Faria - Pronto para nova oferta de animais
+                    </p>
+                  </div>
+                  <button className="px-2 py-1 bg-blue-600 text-white rounded text-xs hover:bg-blue-700">
+                    Oferecer
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* Rodapé */}
           <div className="text-center text-gray-500 dark:text-gray-400">
             <p className="text-sm">
@@ -4144,6 +4756,41 @@ export default function Dashboard() {
           isOpen={showMortesModal}
           onClose={() => {
             setShowMortesModal(false);
+            setShowManejoModal(true);
+          }}
+        />
+        <FIVModal
+          isOpen={showFIVModal}
+          onClose={() => {
+            setShowFIVModal(false);
+            setShowManejoModal(true);
+          }}
+        />
+        <VacinacaoModal
+          isOpen={showVacinacaoModal}
+          onClose={() => {
+            setShowVacinacaoModal(false);
+            setShowManejoModal(true);
+          }}
+        />
+        <SaudeModal
+          isOpen={showSaudeModal}
+          onClose={() => {
+            setShowSaudeModal(false);
+            setShowManejoModal(true);
+          }}
+        />
+        <RelatoriosModal
+          isOpen={showRelatoriosModal}
+          onClose={() => {
+            setShowRelatoriosModal(false);
+            setShowManejoModal(true);
+          }}
+        />
+        <TransferenciasModal
+          isOpen={showTransferenciasModal}
+          onClose={() => {
+            setShowTransferenciasModal(false);
             setShowManejoModal(true);
           }}
         />
@@ -4287,6 +4934,554 @@ export default function Dashboard() {
       `.trim();
     };
 
+    // Sistema de Notificações Globais
+    const GlobalNotificationSystem = () => {
+      const [notifications, setNotifications] = useState([
+        {
+          id: 1,
+          type: "follow-up",
+          priority: "high",
+          title: "Follow-up Urgente",
+          message: "Luciano Abramo Ciambelli - GTA 1234567 - Confirmação de chegada vencida há 2 dias",
+          date: "2024-12-23",
+          assignedTo: "Equipe Comercial",
+          status: "pending",
+          client: "Luciano Abramo Ciambelli",
+          phone: "(11) 99999-9999"
+        },
+        {
+          id: 2,
+          type: "follow-up",
+          priority: "medium",
+          title: "Follow-up Agendado",
+          message: "Dona Monica - GTA 1234568 - Verificação de satisfação hoje",
+          date: "2024-12-25",
+          assignedTo: "Vendedor João",
+          status: "scheduled",
+          client: "Dona Monica",
+          phone: "(11) 88888-8888"
+        },
+        {
+          id: 3,
+          type: "opportunity",
+          priority: "high",
+          title: "Oportunidade de Venda",
+          message: "Reginaldo Faria - GTA 1234569 - Pronto para nova oferta de animais",
+          date: "2024-12-25",
+          assignedTo: "Vendedor Carlos",
+          status: "ready",
+          client: "Reginaldo Faria",
+          phone: "(11) 77777-7777"
+        },
+        {
+          id: 4,
+          type: "system",
+          priority: "low",
+          title: "Sistema Atualizado",
+          message: "Nova funcionalidade de GTA manual implementada com sucesso",
+          date: "2024-12-25",
+          assignedTo: "Todos os usuários",
+          status: "info"
+        }
+      ]);
+
+      const markAsCompleted = (notificationId) => {
+        setNotifications(notifications.map(notif => 
+          notif.id === notificationId ? { ...notif, status: "completed" } : notif
+        ));
+      };
+
+      const getPriorityColor = (priority) => {
+        switch (priority) {
+          case "high": return "border-red-500 bg-red-50 dark:bg-red-900/20";
+          case "medium": return "border-yellow-500 bg-yellow-50 dark:bg-yellow-900/20";
+          case "low": return "border-blue-500 bg-blue-50 dark:bg-blue-900/20";
+          default: return "border-gray-500 bg-gray-50 dark:bg-gray-900/20";
+        }
+      };
+
+      const getTypeIcon = (type) => {
+        switch (type) {
+          case "follow-up": return "📞";
+          case "opportunity": return "💰";
+          case "system": return "⚙️";
+          default: return "📋";
+        }
+      };
+
+      return (
+        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 mb-6">
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center space-x-3">
+              <div className="text-3xl">🔔</div>
+              <div>
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+                  Central de Notificações
+                </h2>
+                <p className="text-gray-600 dark:text-gray-400">
+                  Acompanhe follow-ups e oportunidades em tempo real
+                </p>
+              </div>
+            </div>
+            <div className="flex space-x-2">
+              <span className="px-3 py-1 bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200 rounded-full text-sm">
+                {notifications.filter(n => n.priority === "high" && n.status !== "completed").length} Urgentes
+              </span>
+              <span className="px-3 py-1 bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200 rounded-full text-sm">
+                {notifications.filter(n => n.status === "pending" || n.status === "scheduled").length} Pendentes
+              </span>
+            </div>
+          </div>
+
+          {/* Dashboard de Notificações */}
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+            <div className="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg text-center">
+              <div className="text-2xl font-bold text-red-600 dark:text-red-400">
+                {notifications.filter(n => n.priority === "high" && n.status !== "completed").length}
+              </div>
+              <div className="text-sm text-red-800 dark:text-red-300">Urgentes</div>
+            </div>
+            <div className="bg-yellow-50 dark:bg-yellow-900/20 p-4 rounded-lg text-center">
+              <div className="text-2xl font-bold text-yellow-600 dark:text-yellow-400">
+                {notifications.filter(n => n.status === "scheduled").length}
+              </div>
+              <div className="text-sm text-yellow-800 dark:text-yellow-300">Agendados</div>
+            </div>
+            <div className="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg text-center">
+              <div className="text-2xl font-bold text-green-600 dark:text-green-400">
+                {notifications.filter(n => n.status === "completed").length}
+              </div>
+              <div className="text-sm text-green-800 dark:text-green-300">Concluídos</div>
+            </div>
+            <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg text-center">
+              <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+                {notifications.filter(n => n.type === "opportunity").length}
+              </div>
+              <div className="text-sm text-blue-800 dark:text-blue-300">Oportunidades</div>
+            </div>
+          </div>
+
+          {/* Lista de Notificações */}
+          <div className="space-y-3">
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+              📋 Notificações Ativas
+            </h3>
+            {notifications
+              .filter(n => n.status !== "completed")
+              .sort((a, b) => {
+                const priorityOrder = { high: 3, medium: 2, low: 1 };
+                return priorityOrder[b.priority] - priorityOrder[a.priority];
+              })
+              .map((notification) => (
+                <div
+                  key={notification.id}
+                  className={`rounded-lg p-4 border-l-4 ${getPriorityColor(notification.priority)}`}
+                >
+                  <div className="flex items-start justify-between">
+                    <div className="flex-1">
+                      <div className="flex items-center space-x-3 mb-2">
+                        <span className="text-2xl">{getTypeIcon(notification.type)}</span>
+                        <div>
+                          <h4 className="font-semibold text-gray-900 dark:text-white">
+                            {notification.title}
+                          </h4>
+                          <p className="text-sm text-gray-600 dark:text-gray-400">
+                            {notification.message}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="flex items-center space-x-4 text-sm text-gray-500 dark:text-gray-400">
+                        <span>📅 {new Date(notification.date).toLocaleDateString('pt-BR')}</span>
+                        <span>👤 {notification.assignedTo}</span>
+                        {notification.phone && (
+                          <span>📞 {notification.phone}</span>
+                        )}
+                        <span
+                          className={`px-2 py-1 rounded-full text-xs ${
+                            notification.priority === "high"
+                              ? "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200"
+                              : notification.priority === "medium"
+                              ? "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200"
+                              : "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
+                          }`}
+                        >
+                          {notification.priority === "high" ? "🔴 Urgente" : 
+                           notification.priority === "medium" ? "🟡 Médio" : "🔵 Baixo"}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="flex space-x-2 ml-4">
+                      {notification.type === "follow-up" && (
+                        <button className="px-3 py-1 bg-blue-600 text-white rounded text-sm hover:bg-blue-700">
+                          📞 Ligar
+                        </button>
+                      )}
+                      {notification.type === "opportunity" && (
+                        <button className="px-3 py-1 bg-green-600 text-white rounded text-sm hover:bg-green-700">
+                          💰 Oferecer
+                        </button>
+                      )}
+                      <button
+                        onClick={() => markAsCompleted(notification.id)}
+                        className="px-3 py-1 bg-gray-600 text-white rounded text-sm hover:bg-gray-700"
+                      >
+                        ✓ Concluir
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+          </div>
+
+          {/* Integração com WhatsApp */}
+          <div className="mt-6 bg-green-50 dark:bg-green-900/20 rounded-lg p-4">
+            <h4 className="font-semibold text-green-800 dark:text-green-200 mb-3 flex items-center">
+              <span className="text-2xl mr-2">📱</span>
+              Integração WhatsApp Business
+            </h4>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <button className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+                📤 Enviar Follow-ups Pendentes
+              </button>
+              <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                📊 Relatório de Oportunidades
+              </button>
+            </div>
+          </div>
+        </div>
+      );
+    };
+
+    // Sistema de Gestão de GTA Integrado
+    const GTAManagementSystem = () => {
+      const [showGTAForm, setShowGTAForm] = useState(false);
+      const [gtaNumber, setGtaNumber] = useState("");
+      const [emissionDate, setEmissionDate] = useState("");
+      const [clientName, setClientName] = useState("");
+      const [animalCount, setAnimalCount] = useState("");
+      const [followUpTasks, setFollowUpTasks] = useState([
+        {
+          id: 1,
+          client: "Luciano Abramo Ciambelli",
+          gta: "1234567",
+          type: "Confirmação de Chegada",
+          date: "2024-12-25",
+          status: "Pendente",
+          phone: "(11) 99999-9999",
+        },
+        {
+          id: 2,
+          client: "Dona Monica",
+          gta: "1234568",
+          type: "Verificação Satisfação",
+          date: "2024-12-26",
+          status: "Pendente",
+          phone: "(11) 88888-8888",
+        },
+        {
+          id: 3,
+          client: "Reginaldo Faria",
+          gta: "1234569",
+          type: "Oferta Novos Animais",
+          date: "2024-12-27",
+          status: "Agendado",
+          phone: "(11) 77777-7777",
+        },
+      ]);
+
+      const handleGTASubmit = () => {
+        if (gtaNumber && emissionDate && clientName && animalCount) {
+          const emissionDateObj = new Date(emissionDate);
+
+          // Criar tarefas de follow-up automatizadas
+          const newTasks = [
+            {
+              id: Date.now() + 1,
+              client: clientName,
+              gta: gtaNumber,
+              type: "Confirmação de Chegada",
+              date: new Date(
+                emissionDateObj.getTime() + 20 * 24 * 60 * 60 * 1000
+              )
+                .toISOString()
+                .split("T")[0],
+              status: "Agendado",
+              phone: "A definir",
+            },
+            {
+              id: Date.now() + 2,
+              client: clientName,
+              gta: gtaNumber,
+              type: "Verificação Satisfação",
+              date: new Date(
+                emissionDateObj.getTime() + 60 * 24 * 60 * 60 * 1000
+              )
+                .toISOString()
+                .split("T")[0],
+              status: "Agendado",
+              phone: "A definir",
+            },
+            {
+              id: Date.now() + 3,
+              client: clientName,
+              gta: gtaNumber,
+              type: "Oferta Novos Animais",
+              date: new Date(
+                emissionDateObj.getTime() + 240 * 24 * 60 * 60 * 1000
+              )
+                .toISOString()
+                .split("T")[0],
+              status: "Agendado",
+              phone: "A definir",
+            },
+          ];
+
+          setFollowUpTasks([...followUpTasks, ...newTasks]);
+          alert(
+            `✅ GTA ${gtaNumber} cadastrada com sucesso!\n\n🤖 Follow-ups automáticos criados:\n• ${newTasks[0].date}: Confirmação chegada\n• ${newTasks[1].date}: Verificação satisfação\n• ${newTasks[2].date}: Oferta novos animais\n\n📞 Cliente: ${clientName}\n🐄 Animais: ${animalCount}`
+          );
+
+          // Limpar formulário
+          setGtaNumber("");
+          setEmissionDate("");
+          setClientName("");
+          setAnimalCount("");
+          setShowGTAForm(false);
+        }
+      };
+
+      const markTaskAsCompleted = (taskId) => {
+        setFollowUpTasks(
+          followUpTasks.map((task) =>
+            task.id === taskId ? { ...task, status: "Concluído" } : task
+          )
+        );
+      };
+
+      return (
+        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 mb-6">
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center space-x-3">
+              <div className="text-3xl">📋</div>
+              <div>
+                <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+                  Sistema GTA & Follow-up Pós-Venda
+                </h2>
+                <p className="text-gray-600 dark:text-gray-400">
+                  Cadastro manual de GTA com automação comercial
+                </p>
+              </div>
+            </div>
+            <button
+              onClick={() => setShowGTAForm(!showGTAForm)}
+              className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
+            >
+              {showGTAForm ? "Cancelar" : "+ Nova GTA"}
+            </button>
+          </div>
+
+          {/* Formulário de Cadastro GTA */}
+          {showGTAForm && (
+            <div className="bg-purple-50 dark:bg-purple-900/20 rounded-xl p-6 mb-6">
+              <h3 className="text-lg font-semibold text-purple-800 dark:text-purple-200 mb-4">
+                📝 Cadastrar Nova GTA
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    Número da GTA (máx. 7 dígitos) *
+                  </label>
+                  <input
+                    type="text"
+                    value={gtaNumber}
+                    onChange={(e) => {
+                      const value = e.target.value
+                        .replace(/\D/g, "")
+                        .slice(0, 7);
+                      setGtaNumber(value);
+                    }}
+                    placeholder="1234567"
+                    className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                    maxLength="7"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    Data de Emissão *
+                  </label>
+                  <input
+                    type="date"
+                    value={emissionDate}
+                    onChange={(e) => setEmissionDate(e.target.value)}
+                    className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    Nome do Cliente *
+                  </label>
+                  <input
+                    type="text"
+                    value={clientName}
+                    onChange={(e) => setClientName(e.target.value)}
+                    placeholder="Nome completo do cliente"
+                    className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    Quantidade de Animais *
+                  </label>
+                  <input
+                    type="number"
+                    value={animalCount}
+                    onChange={(e) => setAnimalCount(e.target.value)}
+                    placeholder="Ex: 5"
+                    min="1"
+                    className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent dark:bg-gray-700 dark:text-white"
+                  />
+                </div>
+              </div>
+
+              <div className="mt-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4">
+                <h4 className="font-semibold text-blue-800 dark:text-blue-200 mb-2">
+                  🤖 Follow-up Automático Pós-Venda:
+                </h4>
+                <ul className="text-sm text-blue-700 dark:text-blue-300 space-y-1">
+                  <li>
+                    • <strong>20 dias:</strong> Ligação para confirmar chegada
+                    dos animais
+                  </li>
+                  <li>
+                    • <strong>2 meses:</strong> Ligação para verificar
+                    satisfação
+                  </li>
+                  <li>
+                    • <strong>8 meses:</strong> Ligação para oferecer novos
+                    animais
+                  </li>
+                </ul>
+              </div>
+
+              <button
+                onClick={handleGTASubmit}
+                disabled={
+                  !gtaNumber || !emissionDate || !clientName || !animalCount
+                }
+                className="w-full mt-4 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
+              >
+                Cadastrar GTA e Ativar Follow-up Automático
+              </button>
+            </div>
+          )}
+
+          {/* Dashboard de Follow-ups */}
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+            <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg text-center">
+              <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+                {followUpTasks.filter((t) => t.status === "Pendente").length}
+              </div>
+              <div className="text-sm text-blue-800 dark:text-blue-300">
+                Follow-ups Hoje
+              </div>
+            </div>
+            <div className="bg-yellow-50 dark:bg-yellow-900/20 p-4 rounded-lg text-center">
+              <div className="text-2xl font-bold text-yellow-600 dark:text-yellow-400">
+                {followUpTasks.filter((t) => t.status === "Agendado").length}
+              </div>
+              <div className="text-sm text-yellow-800 dark:text-yellow-300">
+                Agendados
+              </div>
+            </div>
+            <div className="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg text-center">
+              <div className="text-2xl font-bold text-green-600 dark:text-green-400">
+                {followUpTasks.filter((t) => t.status === "Concluído").length}
+              </div>
+              <div className="text-sm text-green-800 dark:text-green-300">
+                Concluídos
+              </div>
+            </div>
+            <div className="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg text-center">
+              <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">
+                {followUpTasks.length}
+              </div>
+              <div className="text-sm text-purple-800 dark:text-purple-300">
+                Total
+              </div>
+            </div>
+          </div>
+
+          {/* Lista de Follow-ups */}
+          <div>
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center">
+              <div className="text-2xl mr-2">📞</div>
+              Agenda de Follow-ups
+            </h3>
+            <div className="space-y-3">
+              {followUpTasks.map((task) => (
+                <div
+                  key={task.id}
+                  className={`bg-white dark:bg-gray-700 rounded-lg p-4 border-l-4 ${
+                    task.status === "Pendente"
+                      ? "border-red-500"
+                      : task.status === "Agendado"
+                      ? "border-yellow-500"
+                      : "border-green-500"
+                  }`}
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex-1">
+                      <div className="flex items-center space-x-3 mb-2">
+                        <h4 className="font-semibold text-gray-900 dark:text-white">
+                          {task.client}
+                        </h4>
+                        <span className="text-sm text-gray-500 dark:text-gray-400">
+                          GTA: {task.gta}
+                        </span>
+                        <span
+                          className={`px-2 py-1 rounded-full text-xs ${
+                            task.status === "Pendente"
+                              ? "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200"
+                              : task.status === "Agendado"
+                              ? "bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200"
+                              : "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
+                          }`}
+                        >
+                          {task.status}
+                        </span>
+                      </div>
+                      <div className="text-sm text-gray-600 dark:text-gray-400">
+                        <strong>{task.type}</strong> -{" "}
+                        {new Date(task.date).toLocaleDateString("pt-BR")}
+                      </div>
+                      <div className="text-sm text-gray-500 dark:text-gray-500">
+                        📞 {task.phone}
+                      </div>
+                    </div>
+                    <div className="flex space-x-2">
+                      {task.status !== "Concluído" && (
+                        <>
+                          <button
+                            onClick={() => markTaskAsCompleted(task.id)}
+                            className="px-3 py-1 bg-green-600 text-white rounded text-sm hover:bg-green-700"
+                          >
+                            ✓ Concluir
+                          </button>
+                          <button className="px-3 py-1 bg-blue-600 text-white rounded text-sm hover:bg-blue-700">
+                            📞 Ligar
+                          </button>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      );
+    };
+
     const BIDashboardModal = () => (
       <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
         <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-7xl w-full max-h-[95vh] overflow-hidden">
@@ -4384,6 +5579,12 @@ export default function Dashboard() {
         </div>
 
         <ModernDashboard />
+
+        {/* Sistema GTA Integrado - Desenvolvedor */}
+        <GTAManagementSystem />
+
+        {/* Sistema de Notificações Globais */}
+        <GlobalNotificationSystem />
 
         {/* Modais do Desenvolvedor */}
         <AuctionManager

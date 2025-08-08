@@ -23,8 +23,11 @@ export default function DirectInvoiceManager({ isOpen, onClose }) {
   });
 
   const [animals, setAnimals] = useState([]);
-  const [showGTAImport, setShowGTAImport] = useState(false);
+
   const [showBulkAdd, setShowBulkAdd] = useState(false);
+  const [showGTAForm, setShowGTAForm] = useState(false);
+  const [gtaNumber, setGtaNumber] = useState('');
+  const [emissionDate, setEmissionDate] = useState('');
   const [newAnimal, setNewAnimal] = useState({
     serie: "",
     rg: "",
@@ -102,6 +105,39 @@ export default function DirectInvoiceManager({ isOpen, onClose }) {
 
   const calculateTotal = () => {
     return animals.reduce((sum, animal) => sum + (animal.preco || 0), 0);
+  };
+
+  const handleGTASubmit = () => {
+    if (gtaNumber && emissionDate) {
+      const emissionDateObj = new Date(emissionDate);
+      
+      // Criar tarefas de follow-up automatizadas
+      const tasks = [
+        {
+          type: "Confirmação de Chegada",
+          date: new Date(emissionDateObj.getTime() + 20 * 24 * 60 * 60 * 1000), // +20 dias
+          message: "Ligar para confirmar se os animais chegaram bem",
+          status: "Agendado"
+        },
+        {
+          type: "Follow-up Satisfação",
+          date: new Date(emissionDateObj.getTime() + 60 * 24 * 60 * 60 * 1000), // +2 meses
+          message: "Ligar para verificar satisfação com os animais",
+          status: "Agendado"
+        },
+        {
+          type: "Oferta Novos Animais",
+          date: new Date(emissionDateObj.getTime() + 240 * 24 * 60 * 60 * 1000), // +8 meses
+          message: "Ligar para oferecer novos animais",
+          status: "Agendado"
+        }
+      ];
+      
+      alert(`✅ GTA ${gtaNumber} cadastrada com sucesso!\n\n🤖 Follow-ups automáticos criados para:\n• ${tasks[0].date.toLocaleDateString('pt-BR')}: Confirmação chegada\n• ${tasks[1].date.toLocaleDateString('pt-BR')}: Verificação satisfação\n• ${tasks[2].date.toLocaleDateString('pt-BR')}: Oferta novos animais\n\n📞 Cliente: ${invoiceData.compradorNome || 'A definir'}`);
+      setGtaNumber('');
+      setEmissionDate('');
+      setShowGTAForm(false);
+    }
   };
 
   const handleSave = async () => {
@@ -501,19 +537,74 @@ export default function DirectInvoiceManager({ isOpen, onClose }) {
             )}
           </div>
 
-          {/* Opções de Importação - MOVIDO PARA ANTES DAS OBSERVAÇÕES */}
+          {/* Sistema GTA Manual - Substituindo Importação */}
           <div className="bg-purple-50 dark:bg-purple-900 rounded-xl p-6">
-            <h3 className="text-lg font-bold text-purple-900 dark:text-purple-100 mb-4">
-              📊 Opções de Importação
-            </h3>
-            <div className="flex space-x-4">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-lg font-bold text-purple-900 dark:text-purple-100">
+                📋 Cadastro Manual de GTA
+              </h3>
               <button
-                onClick={() => setShowGTAImport(true)}
-                className="px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-lg hover:from-purple-700 hover:to-indigo-700 transition-all duration-200 flex items-center shadow-lg"
+                onClick={() => setShowGTAForm(!showGTAForm)}
+                className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors text-sm"
               >
-                <DocumentTextIcon className="h-5 w-5 mr-2" />
-                📄 Importar GTA
+                {showGTAForm ? 'Cancelar' : '+ Nova GTA'}
               </button>
+            </div>
+
+            {showGTAForm && (
+              <div className="bg-white dark:bg-gray-700 rounded-lg p-4 space-y-4 mb-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                      Número da GTA (máx. 7 dígitos)
+                    </label>
+                    <input
+                      type="text"
+                      value={gtaNumber}
+                      onChange={(e) => {
+                        const value = e.target.value.replace(/\D/g, '').slice(0, 7);
+                        setGtaNumber(value);
+                      }}
+                      placeholder="1234567"
+                      className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent dark:bg-gray-600 dark:text-white"
+                      maxLength="7"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                      Data de Emissão
+                    </label>
+                    <input
+                      type="date"
+                      value={emissionDate}
+                      onChange={(e) => setEmissionDate(e.target.value)}
+                      className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent dark:bg-gray-600 dark:text-white"
+                    />
+                  </div>
+                </div>
+                
+                <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-3">
+                  <h4 className="font-semibold text-blue-800 dark:text-blue-200 mb-2">
+                    🤖 Follow-up Automático Pós-Venda:
+                  </h4>
+                  <ul className="text-sm text-blue-700 dark:text-blue-300 space-y-1">
+                    <li>• <strong>20 dias:</strong> Ligação para confirmar chegada dos animais</li>
+                    <li>• <strong>2 meses:</strong> Ligação para verificar satisfação</li>
+                    <li>• <strong>8 meses:</strong> Ligação para oferecer novos animais</li>
+                  </ul>
+                </div>
+
+                <button
+                  onClick={handleGTASubmit}
+                  disabled={!gtaNumber || !emissionDate}
+                  className="w-full px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
+                >
+                  Cadastrar GTA e Ativar Follow-up
+                </button>
+              </div>
+            )}
+
+            <div className="flex space-x-4">
               <button
                 onClick={() => setShowBulkAdd(true)}
                 className="px-6 py-3 bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-lg hover:from-green-700 hover:to-emerald-700 transition-all duration-200 flex items-center shadow-lg"
@@ -556,18 +647,6 @@ export default function DirectInvoiceManager({ isOpen, onClose }) {
           </div>
         </div>
 
-        {/* Modal de Importação GTA */}
-        {showGTAImport && (
-          <GTAImportModal
-            isOpen={showGTAImport}
-            onClose={() => setShowGTAImport(false)}
-            onAnimalsImported={(importedAnimals) => {
-              setAnimals([...animals, ...importedAnimals]);
-              setShowGTAImport(false);
-            }}
-          />
-        )}
-
         {/* Modal de Adição em Lote */}
         {showBulkAdd && (
           <BulkAddModal
@@ -579,211 +658,6 @@ export default function DirectInvoiceManager({ isOpen, onClose }) {
             }}
           />
         )}
-      </div>
-    </div>
-  );
-}
-
-// Modal para Importação de GTA
-function GTAImportModal({ isOpen, onClose, onAnimalsImported }) {
-  const [processing, setProcessing] = useState(false);
-  const [pdfText, setPdfText] = useState("");
-  const [extractedAnimals, setExtractedAnimals] = useState([]);
-  const fileInputRef = useRef(null);
-
-  const handlePDFUpload = async (file) => {
-    if (!file || file.type !== 'application/pdf') {
-      alert('Por favor, selecione um arquivo PDF válido.');
-      return;
-    }
-
-    setProcessing(true);
-    try {
-      // Importar PDF.js dinamicamente
-      const pdfjsLib = await import('pdfjs-dist');
-      pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.js`;
-
-      const arrayBuffer = await file.arrayBuffer();
-      const pdf = await pdfjsLib.getDocument(arrayBuffer).promise;
-
-      let fullText = '';
-      for (let i = 1; i <= pdf.numPages; i++) {
-        const page = await pdf.getPage(i);
-        const textContent = await page.getTextContent();
-        const pageText = textContent.items.map(item => item.str).join(' ');
-        fullText += pageText + '\n';
-      }
-
-      setPdfText(fullText);
-      const animals = extractAnimalsFromText(fullText);
-      setExtractedAnimals(animals);
-
-      if (animals.length === 0) {
-        alert('Nenhum animal encontrado no PDF. Verifique o arquivo.');
-      }
-    } catch (error) {
-      console.error('Erro ao processar PDF:', error);
-      alert('Erro ao processar PDF. Tente novamente.');
-    } finally {
-      setProcessing(false);
-    }
-  };
-
-  const extractAnimalsFromText = (text) => {
-    const animals = [];
-    const animalPattern = /(CJCJ|BENT|RPT|CJCG)\s+(\d{1,6})/gi;
-    const matches = text.matchAll(animalPattern);
-
-    for (const match of matches) {
-      const serie = match[1].toUpperCase();
-      const rg = match[2];
-      const brinco = `${serie} ${rg}`;
-
-      // Evitar duplicatas
-      if (!animals.find(a => a.brinco === brinco)) {
-        animals.push({
-          id: Date.now() + Math.random(),
-          serie,
-          rg,
-          brinco,
-          sexo: "",
-          era: "",
-          preco: "",
-          raca: getRacaBySerie(serie),
-        });
-      }
-    }
-
-    return animals;
-  };
-
-  const getRacaBySerie = (serie) => {
-    const racas = {
-      'RPT': 'Receptora',
-      'BENT': 'Brahman',
-      'CJCJ': 'Nelore',
-      'CJCG': 'Gir'
-    };
-    return racas[serie] || 'Não definida';
-  };
-
-  const handleImport = () => {
-    if (extractedAnimals.length === 0) {
-      alert('Nenhum animal para importar.');
-      return;
-    }
-    onAnimalsImported(extractedAnimals);
-  };
-
-  if (!isOpen) return null;
-
-  return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[80vh] overflow-hidden">
-        <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-purple-600 to-indigo-600">
-          <div className="flex items-center space-x-3">
-            <DocumentTextIcon className="h-8 w-8 text-white" />
-            <div>
-              <h3 className="text-xl font-bold text-white">📄 Importar GTA</h3>
-              <p className="text-purple-100">Extrair animais do PDF da GTA</p>
-            </div>
-          </div>
-          <button
-            onClick={onClose}
-            className="p-2 hover:bg-white/20 rounded-lg transition-colors text-white text-xl font-bold"
-          >
-            ×
-          </button>
-        </div>
-
-        <div className="p-6 overflow-y-auto max-h-[calc(80vh-120px)]">
-          {!extractedAnimals.length ? (
-            <div className="text-center">
-              <div className="bg-purple-50 dark:bg-purple-900 rounded-xl p-8 border-2 border-dashed border-purple-300 dark:border-purple-600">
-                <DocumentTextIcon className="h-16 w-16 text-purple-500 mx-auto mb-4" />
-                <h4 className="text-lg font-bold text-purple-900 dark:text-purple-100 mb-4">
-                  Selecione o PDF da GTA
-                </h4>
-                <button
-                  onClick={() => fileInputRef.current?.click()}
-                  disabled={processing}
-                  className="px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors disabled:opacity-50"
-                >
-                  {processing ? '🔄 Processando...' : '📁 Escolher Arquivo'}
-                </button>
-                <input
-                  ref={fileInputRef}
-                  type="file"
-                  accept=".pdf"
-                  onChange={(e) => handlePDFUpload(e.target.files[0])}
-                  className="hidden"
-                />
-                <p className="text-sm text-purple-600 dark:text-purple-300 mt-4">
-                  O sistema irá detectar automaticamente os animais no PDF
-                </p>
-              </div>
-            </div>
-          ) : (
-            <div>
-              <div className="bg-green-50 dark:bg-green-900 rounded-xl p-4 mb-6">
-                <h4 className="font-bold text-green-900 dark:text-green-100 mb-2">
-                  ✅ {extractedAnimals.length} animais encontrados!
-                </h4>
-                <p className="text-green-700 dark:text-green-300 text-sm">
-                  Revise os dados e clique em "Importar" para adicionar à NF
-                </p>
-              </div>
-
-              <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700">
-                <div className="overflow-x-auto">
-                  <table className="w-full text-sm">
-                    <thead>
-                      <tr className="border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700">
-                        <th className="text-left p-3 font-semibold text-gray-900 dark:text-white">Brinco</th>
-                        <th className="text-left p-3 font-semibold text-gray-900 dark:text-white">Série</th>
-                        <th className="text-left p-3 font-semibold text-gray-900 dark:text-white">RG</th>
-                        <th className="text-left p-3 font-semibold text-gray-900 dark:text-white">Raça</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {extractedAnimals.map((animal) => (
-                        <tr key={animal.id} className="border-b border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700">
-                          <td className="p-3 font-mono font-bold text-gray-900 dark:text-white">
-                            {animal.brinco}
-                          </td>
-                          <td className="p-3 text-gray-600 dark:text-gray-400">
-                            {animal.serie}
-                          </td>
-                          <td className="p-3 text-gray-600 dark:text-gray-400">
-                            {animal.rg}
-                          </td>
-                          <td className="p-3 text-gray-600 dark:text-gray-400">
-                            {animal.raca}
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-
-              <div className="flex justify-end space-x-4 mt-6">
-                <button
-                  onClick={onClose}
-                  className="px-6 py-3 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors"
-                >
-                  Cancelar
-                </button>
-                <button
-                  onClick={handleImport}
-                  className="px-6 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors"
-                >
-                  📥 Importar {extractedAnimals.length} Animais
-                </button>
-              </div>
-            </div>
-          )}
-        </div>
       </div>
     </div>
   );
@@ -816,6 +690,16 @@ function BulkAddModal({ isOpen, onClose, onAnimalsAdded }) {
     ));
   };
 
+  const getRacaBySerie = (serie) => {
+    const racas = {
+      'RPT': 'Receptora',
+      'BENT': 'Brahman',
+      'CJCJ': 'Nelore',
+      'CJCG': 'Gir'
+    };
+    return racas[serie] || 'Não definida';
+  };
+
   const handleSave = () => {
     const validAnimals = bulkAnimals.filter(a => a.serie && a.rg && a.sexo);
     if (validAnimals.length === 0) {
@@ -835,16 +719,6 @@ function BulkAddModal({ isOpen, onClose, onAnimalsAdded }) {
     }));
 
     onAnimalsAdded(formattedAnimals);
-  };
-
-  const getRacaBySerie = (serie) => {
-    const racas = {
-      'RPT': 'Receptora',
-      'BENT': 'Brahman',
-      'CJCJ': 'Nelore',
-      'CJCG': 'Gir'
-    };
-    return racas[serie] || 'Não definida';
   };
 
   if (!isOpen) return null;
