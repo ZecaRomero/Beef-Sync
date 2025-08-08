@@ -188,7 +188,7 @@ export default function InviteSystem({ userId }) {
                 type="text"
                 value={newInvite.name}
                 onChange={(e) => setNewInvite({...newInvite, name: e.target.value})}
-                placeholder="Ex: João Silva"
+                placeholder="Ex: Luciano Abramo Ciambelli"
                 className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:bg-gray-800 dark:text-white"
               />
             </div>

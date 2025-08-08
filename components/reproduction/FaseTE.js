@@ -97,8 +97,8 @@ const FaseTE = ({ process, onUpdate }) => {
   ];
 
   const veterinarios = [
-    'Dr. João Silva',
-    'Dra. Maria Santos',
+    'Dr. Luciano Abramo Ciambelli',
+    'Dra. Dona Monica',
     'Dr. Pedro Oliveira',
     'Dra. Ana Costa',
     'Dr. Carlos Mendes'
@@ -216,7 +216,7 @@ const FaseTE = ({ process, onUpdate }) => {
             id="veterinario"
             value={formData.veterinario}
             onChange={(e) => handleInputChange('veterinario', e.target.value)}
-            placeholder="Digite o nome do veterinário (ex: Dr. João Silva)"
+            placeholder="Digite o nome do veterinário (ex: Dr. Luciano Abramo Ciambelli)"
             disabled={formData.realizada}
             list="veterinarios-te-list"
           />

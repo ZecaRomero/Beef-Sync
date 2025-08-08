@@ -106,7 +106,7 @@ O Sistema de Convites permite que você **convide pessoas para acompanhar suas v
 
 2. **Preencha os Dados**
 
-   - Nome: "João Silva"
+   - Nome: "Luciano Abramo Ciambelli"
    - Telefone: "(11) 99999-9999"
    - Email: "joao@email.com" (opcional)
    - Selecione as permissões desejadas

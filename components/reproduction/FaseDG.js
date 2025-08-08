@@ -101,8 +101,8 @@ const FaseDG = ({ process, onUpdate }) => {
   };
 
   const veterinarios = [
-    'Dr. João Silva',
-    'Dra. Maria Santos',
+    'Dr. Luciano Abramo Ciambelli',
+    'Dra. Dona Monica',
     'Dr. Pedro Oliveira',
     'Dra. Ana Costa',
     'Dr. Carlos Mendes'

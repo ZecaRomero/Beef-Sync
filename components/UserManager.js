@@ -256,7 +256,7 @@ const UserManager = () => {
                   id="name"
                   value={newUser.name}
                   onChange={(e) => setNewUser({ ...newUser, name: e.target.value })}
-                  placeholder="João Silva"
+                  placeholder="Luciano Abramo Ciambelli"
                 />
               </div>
 

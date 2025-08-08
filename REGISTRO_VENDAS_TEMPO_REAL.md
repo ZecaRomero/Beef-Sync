@@ -38,7 +38,7 @@ Agora você tem um **formulário de entrada rápida** para digitar os animais qu
 ### **2. Preencher os Dados**
 - **Animal**: Digite "CJCJ 15556" ou use botão rápido "15556"
 - **Valor**: Digite "45000" ou clique "R$ 45k"
-- **Comprador**: "João Silva" (opcional)
+- **Comprador**: "Luciano Abramo Ciambelli" (opcional)
 
 ### **3. Registrar a Venda**
 - **Clique**: "🏛️ Registrar Venda"
@@ -58,7 +58,7 @@ Agora você tem um **formulário de entrada rápida** para digitar os animais qu
 **1. Preencher:**
 - Animal: `CJCJ 15556` (ou clique botão "15556")
 - Valor: `45000` (ou clique "R$ 45k")
-- Comprador: `João Silva`
+- Comprador: `Luciano Abramo Ciambelli`
 
 **2. Clicar:** "🏛️ Registrar Venda"
 
@@ -67,7 +67,7 @@ Agora você tem um **formulário de entrada rápida** para digitar os animais qu
 ✅ Venda registrada com sucesso!
 
 🕐 Últimas Vendas:
-• CJCJ 15556 - 13:45:23 - João Silva - R$ 45.000 ✨ RECÉM ADICIONADA
+• CJCJ 15556 - 13:45:23 - Luciano Abramo Ciambelli - R$ 45.000 ✨ RECÉM ADICIONADA
 ```
 
 **4. Atualizações Automáticas:**

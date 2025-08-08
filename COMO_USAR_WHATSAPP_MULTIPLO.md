@@ -17,8 +17,8 @@ Agora você pode **selecionar múltiplas pessoas** para enviar o relatório BI v
 ## ✅ **FUNCIONALIDADES DO NOVO SISTEMA**
 
 ### 👥 **Lista de Contatos Pré-Cadastrados**
-- **João Silva**: +55 11 99999-1234
-- **Maria Santos**: +55 16 98888-5678  
+- **Luciano Abramo Ciambelli**: +55 11 99999-1234
+- **Dona Monica**: +55 16 98888-5678  
 - **Carlos Mendes**: +55 17 97777-9999
 - **Ana Costa**: +55 31 96666-7890
 

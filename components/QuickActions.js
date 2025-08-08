@@ -115,7 +115,7 @@ const QuickActions = ({ onActionComplete }) => {
               <Select>
                 <option value="">Selecione...</option>
                 <option value="nelore">Nelore</option>
-                <option value="angus">Angus</option>
+                <option value="GIR">GIR</option>
                 <option value="brahman">Brahman</option>
               </Select>
             </div>
@@ -181,7 +181,7 @@ const QuickActions = ({ onActionComplete }) => {
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
               Veterinário
             </label>
-            <Input placeholder="Dr. João Silva" />
+            <Input placeholder="Dr. Luciano Abramo Ciambelli" />
           </div>
         </div>
       ),

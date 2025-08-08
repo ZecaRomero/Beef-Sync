@@ -11,8 +11,8 @@ import {
 
 export default function WhatsAppMultiSender({ isOpen, onClose, reportMessage }) {
   const [contacts, setContacts] = useState([
-    { id: 1, name: "João Silva", number: "+55 11 99999-1234", selected: false },
-    { id: 2, name: "Maria Santos", number: "+55 16 98888-5678", selected: false },
+    { id: 1, name: "Luciano Abramo Ciambelli", number: "+55 11 99999-1234", selected: false },
+    { id: 2, name: "Dona Monica", number: "+55 16 98888-5678", selected: false },
     { id: 3, name: "Carlos Mendes", number: "+55 17 97777-9999", selected: false },
     { id: 4, name: "Ana Costa", number: "+55 31 96666-7890", selected: false },
   ]);

@@ -30,7 +30,7 @@ export default function BreedAnalysis() {
       'Brahman': '🐄',
       'Gir': '🐮',
       'Receptora': '🐄',
-      'Angus': '⚫',
+      'GIR': '⚫',
       'Senepol': '🔴'
     };
     return icons[breed] || '🐄';

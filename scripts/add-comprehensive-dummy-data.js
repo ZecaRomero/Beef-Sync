@@ -28,33 +28,33 @@ async function main() {
   const animalsData = [
     // Animais Ativos (15)
     { brinco: 'BENT 20006', nome: 'Touro BENT Premium Plus', raca: 'Nelore', categoria: 'REPRODUTOR', peso: 850, status: 'ATIVO', valorVenda: 48000 },
-    { brinco: 'CJCG 25005', nome: 'Novilha CJCG Elite Gold', raca: 'Angus', categoria: 'NOVILHA', peso: 420, status: 'ATIVO', valorVenda: 35000 },
+    { brinco: 'CJCG 25005', nome: 'Novilha CJCG Elite Gold', raca: 'GIR', categoria: 'NOVILHA', peso: 420, status: 'ATIVO', valorVenda: 35000 },
     { brinco: 'CJCJ 15005', nome: 'Bezerro CJCJ Promissor Plus', raca: 'Brahman', categoria: 'BEZERRO', peso: 280, status: 'ATIVO', valorVenda: 22000 },
     { brinco: 'BENT 20007', nome: 'Touro BENT Elite Master', raca: 'Nelore', categoria: 'REPRODUTOR', peso: 920, status: 'ATIVO', valorVenda: 52000 },
-    { brinco: 'CJCG 25006', nome: 'Novilha CJCG Premium Gold', raca: 'Angus', categoria: 'NOVILHA', peso: 450, status: 'ATIVO', valorVenda: 38000 },
+    { brinco: 'CJCG 25006', nome: 'Novilha CJCG Premium Gold', raca: 'GIR', categoria: 'NOVILHA', peso: 450, status: 'ATIVO', valorVenda: 38000 },
     { brinco: 'CJCJ 15006', nome: 'Bezerro CJCJ Elite Future', raca: 'Brahman', categoria: 'BEZERRO', peso: 320, status: 'ATIVO', valorVenda: 25000 },
     { brinco: 'BENT 20008', nome: 'Touro BENT Master Gold', raca: 'Nelore', categoria: 'REPRODUTOR', peso: 880, status: 'ATIVO', valorVenda: 49000 },
-    { brinco: 'CJCG 25007', nome: 'Novilha CJCG Supreme', raca: 'Angus', categoria: 'NOVILHA', peso: 480, status: 'ATIVO', valorVenda: 40000 },
+    { brinco: 'CJCG 25007', nome: 'Novilha CJCG Supreme', raca: 'GIR', categoria: 'NOVILHA', peso: 480, status: 'ATIVO', valorVenda: 40000 },
     { brinco: 'CJCJ 15007', nome: 'Bezerro CJCJ Supreme Future', raca: 'Brahman', categoria: 'BEZERRO', peso: 350, status: 'ATIVO', valorVenda: 28000 },
     { brinco: 'BENT 20009', nome: 'Touro BENT Supreme Master', raca: 'Nelore', categoria: 'REPRODUTOR', peso: 950, status: 'ATIVO', valorVenda: 55000 },
-    { brinco: 'CJCG 25008', nome: 'Novilha CJCG Master Gold', raca: 'Angus', categoria: 'NOVILHA', peso: 520, status: 'ATIVO', valorVenda: 42000 },
+    { brinco: 'CJCG 25008', nome: 'Novilha CJCG Master Gold', raca: 'GIR', categoria: 'NOVILHA', peso: 520, status: 'ATIVO', valorVenda: 42000 },
     { brinco: 'CJCJ 15008', nome: 'Bezerro CJCJ Master Future', raca: 'Brahman', categoria: 'BEZERRO', peso: 380, status: 'ATIVO', valorVenda: 30000 },
     { brinco: 'BENT 20010', nome: 'Touro BENT Gold Master', raca: 'Nelore', categoria: 'REPRODUTOR', peso: 980, status: 'ATIVO', valorVenda: 58000 },
-    { brinco: 'CJCG 25009', nome: 'Novilha CJCG Gold Supreme', raca: 'Angus', categoria: 'NOVILHA', peso: 550, status: 'ATIVO', valorVenda: 45000 },
+    { brinco: 'CJCG 25009', nome: 'Novilha CJCG Gold Supreme', raca: 'GIR', categoria: 'NOVILHA', peso: 550, status: 'ATIVO', valorVenda: 45000 },
     { brinco: 'CJCJ 15009', nome: 'Bezerro CJCJ Gold Future', raca: 'Brahman', categoria: 'BEZERRO', peso: 420, status: 'ATIVO', valorVenda: 32000 },
 
     // Animais Vendidos (10)
     { brinco: 'BENT 20011', nome: 'Touro BENT Vendido 1', raca: 'Nelore', categoria: 'REPRODUTOR', peso: 900, status: 'VENDIDO', valorVenda: 50000, tipoVenda: 'LEILAO' },
-    { brinco: 'CJCG 25010', nome: 'Novilha CJCG Vendida 1', raca: 'Angus', categoria: 'NOVILHA', peso: 480, status: 'VENDIDO', valorVenda: 38000, tipoVenda: 'VENDA_DIRETA' },
+    { brinco: 'CJCG 25010', nome: 'Novilha CJCG Vendida 1', raca: 'GIR', categoria: 'NOVILHA', peso: 480, status: 'VENDIDO', valorVenda: 38000, tipoVenda: 'VENDA_DIRETA' },
     { brinco: 'CJCJ 15010', nome: 'Bezerro CJCJ Vendido 1', raca: 'Brahman', categoria: 'BEZERRO', peso: 350, status: 'VENDIDO', valorVenda: 28000, tipoVenda: 'LEILAO' },
     { brinco: 'BENT 20012', nome: 'Touro BENT Vendido 2', raca: 'Nelore', categoria: 'REPRODUTOR', peso: 920, status: 'VENDIDO', valorVenda: 52000, tipoVenda: 'VENDA_ABATE' },
-    { brinco: 'CJCG 25011', nome: 'Novilha CJCG Vendida 2', raca: 'Angus', categoria: 'NOVILHA', peso: 500, status: 'VENDIDO', valorVenda: 40000, tipoVenda: 'VENDA_DIRETA' },
+    { brinco: 'CJCG 25011', nome: 'Novilha CJCG Vendida 2', raca: 'GIR', categoria: 'NOVILHA', peso: 500, status: 'VENDIDO', valorVenda: 40000, tipoVenda: 'VENDA_DIRETA' },
     { brinco: 'CJCJ 15011', nome: 'Bezerro CJCJ Vendido 2', raca: 'Brahman', categoria: 'BEZERRO', peso: 380, status: 'VENDIDO', valorVenda: 30000, tipoVenda: 'VENDA_DESCARTE' },
     { brinco: 'BENT 20013', nome: 'Touro BENT Vendido 3', raca: 'Nelore', categoria: 'REPRODUTOR', peso: 950, status: 'VENDIDO', valorVenda: 55000, tipoVenda: 'LEILAO' },
-    { brinco: 'CJCG 25012', nome: 'Novilha CJCG Vendida 3', raca: 'Angus', categoria: 'NOVILHA', peso: 520, status: 'VENDIDO', valorVenda: 42000, tipoVenda: 'VENDA_DIRETA' },
+    { brinco: 'CJCG 25012', nome: 'Novilha CJCG Vendida 3', raca: 'GIR', categoria: 'NOVILHA', peso: 520, status: 'VENDIDO', valorVenda: 42000, tipoVenda: 'VENDA_DIRETA' },
     { brinco: 'CJCJ 15012', nome: 'Bezerro CJCJ Vendido 3', raca: 'Brahman', categoria: 'BEZERRO', peso: 400, status: 'VENDIDO', valorVenda: 32000, tipoVenda: 'VENDA_ABATE' },
     { brinco: 'BENT 20014', nome: 'Touro BENT Vendido 4', raca: 'Nelore', categoria: 'REPRODUTOR', peso: 980, status: 'VENDIDO', valorVenda: 58000, tipoVenda: 'LEILAO' },
-    { brinco: 'CJCG 25013', nome: 'Novilha CJCG Vendida 4', raca: 'Angus', categoria: 'NOVILHA', peso: 550, status: 'VENDIDO', valorVenda: 45000, tipoVenda: 'VENDA_DIRETA' }
+    { brinco: 'CJCG 25013', nome: 'Novilha CJCG Vendida 4', raca: 'GIR', categoria: 'NOVILHA', peso: 550, status: 'VENDIDO', valorVenda: 45000, tipoVenda: 'VENDA_DIRETA' }
   ];
 
   let animalsCreated = 0;
@@ -145,9 +145,9 @@ async function main() {
 
   const soldAnimals = animals.filter(a => a.status === 'VENDIDO');
   const buyers = [
-    'João Silva Agropecuária',
-    'Maria Santos Fazenda',
-    'Pedro Costa Rancho',
+    'Luciano Abramo Ciambelli Agropecuária',
+    'Dona Monica Fazenda',
+    'Reginaldo Faria Rancho',
     'Ana Oliveira Estância',
     'Carlos Lima Pecuária',
     'Roberto Santos Fazenda',

@@ -41,7 +41,7 @@ function adicionarUsuarioExemplo() {
     const users = JSON.parse(localStorage.getItem('beef_sync_users') || '[]');
     const novoUsuario = {
         id: Math.max(...users.map(u => u.id), 0) + 1,
-        nome: 'Maria Santos',
+        nome: 'Dona Monica',
         role: 'Consultor',
         permissoes: ['read']
     };

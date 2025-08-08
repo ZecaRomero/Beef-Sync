@@ -98,7 +98,7 @@ O script `scripts/seed-semen-data.js` criou:
 
 ### 🧬 3 Lotes de Sêmen:
 - **Touro Alpha** (Nelore): 50 doses, 45 disponíveis - R$ 120/dose
-- **Touro Beta** (Angus): 30 doses, 28 disponíveis - R$ 150/dose
+- **Touro Beta** (GIR): 30 doses, 28 disponíveis - R$ 150/dose
 - **Touro Gamma** (Brahman): 25 doses, 0 disponíveis (esgotado) - R$ 100/dose
 
 ### 📊 2 Movimentações:

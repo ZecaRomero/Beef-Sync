@@ -34,7 +34,7 @@ async function main() {
       userId: user.id,
       valor: 45000,
       dataVenda: new Date('2024-08-01'),
-      comprador: 'João Silva',
+      comprador: 'Luciano Abramo Ciambelli',
       comissao: 2250,
       taxas: 500,
       observacoes: 'Venda realizada no leilão de agosto'
@@ -44,7 +44,7 @@ async function main() {
       userId: user.id,
       valor: 32000,
       dataVenda: new Date('2024-08-02'),
-      comprador: 'Maria Santos',
+      comprador: 'Dona Monica',
       comissao: 1600,
       taxas: 300,
       observacoes: 'Venda direta para cliente fidelizado'
@@ -54,7 +54,7 @@ async function main() {
       userId: user.id,
       valor: 42000,
       dataVenda: new Date('2024-08-03'),
-      comprador: 'Pedro Costa',
+      comprador: 'Reginaldo Faria',
       comissao: 2100,
       taxas: 400,
       observacoes: 'Venda no leilão de agosto'

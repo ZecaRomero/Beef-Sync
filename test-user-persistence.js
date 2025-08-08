@@ -27,7 +27,7 @@ function adicionarUsuarioTeste() {
     const users = verificarUsuariosSalvos();
     const novoUsuario = {
         id: Math.max(...users.map(u => u.id), 0) + 1,
-        nome: 'João Silva',
+        nome: 'Luciano Abramo Ciambelli',
         role: 'Consultor',
         permissoes: ['read']
     };

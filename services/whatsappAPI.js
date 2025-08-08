@@ -369,7 +369,7 @@ ${inviteLink}
 // Enviar convite
 const result = await WhatsAppAPI.sendInvite({
   phone: '+5511999999999',
-  name: 'João Silva',
+  name: 'Luciano Abramo Ciambelli',
   inviteLink: 'https://beef-sync.com/invite/abc123',
   permissions: ['view_sales', 'view_rankings']
 });

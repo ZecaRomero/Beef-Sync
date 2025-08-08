@@ -99,7 +99,7 @@ const FaseColeta = ({ process, onUpdate }) => {
   // Lista de doadoras (você pode conectar com seu banco de dados)
   const doadoras = [
     "Vaca 001 - Nelore",
-    "Vaca 002 - Angus",
+    "Vaca 002 - GIR",
     "Vaca 003 - Brahman",
     "Vaca 004 - Gir",
     "Vaca 005 - Guzerá",
@@ -116,14 +116,14 @@ const FaseColeta = ({ process, onUpdate }) => {
 
   const touros = [
     "Touro Alpha - Nelore",
-    "Touro Beta - Angus",
+    "Touro Beta - GIR",
     "Touro Gamma - Brahman",
     "Touro Delta - Gir",
   ];
 
   const veterinarios = [
-    "Dr. João Silva",
-    "Dra. Maria Santos",
+    "Dr. Luciano Abramo Ciambelli",
+    "Dra. Dona Monica",
     "Dr. Pedro Oliveira",
     "Dra. Ana Costa",
   ];
@@ -182,7 +182,7 @@ const FaseColeta = ({ process, onUpdate }) => {
             id="veterinario"
             value={formData.veterinario}
             onChange={(e) => handleInputChange("veterinario", e.target.value)}
-            placeholder="Digite o nome do veterinário (ex: Dr. João Silva)"
+            placeholder="Digite o nome do veterinário (ex: Dr. Luciano Abramo Ciambelli)"
             disabled={formData.realizada}
             list="veterinarios-list"
           />

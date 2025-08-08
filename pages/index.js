@@ -34,14 +34,25 @@ export default function Dashboard() {
   const [showRelatoriosModal, setShowRelatoriosModal] = useState(false);
   const [showTransferenciasModal, setShowTransferenciasModal] = useState(false);
   // Estados para modais COMERCIAL
-  const [showVendasLeilaoModal, setShowVendasLeilaoModal] = useState(false);
-  const [showRelatoriosVendasModal, setShowRelatoriosVendasModal] = useState(false);
-  const [showControleFinanceiroModal, setShowControleFinanceiroModal] = useState(false);
+  const [showGestaoVendasModal, setShowGestaoVendasModal] = useState(false);
+  const [showVendaDiretaModal, setShowVendaDiretaModal] = useState(false);
+  const [showLeilaoModal, setShowLeilaoModal] = useState(false);
+  const [showVendaAbateModal, setShowVendaAbateModal] = useState(false);
+  const [showVendaDescarteModal, setShowVendaDescarteModal] = useState(false);
+  const [showRelatorioDetalhadoModal, setShowRelatorioDetalhadoModal] =
+    useState(false);
+  const [showEstadoDetalheModal, setShowEstadoDetalheModal] = useState(false);
+  const [estadoSelecionado, setEstadoSelecionado] = useState(null);
+  const [showRelatoriosVendasModal, setShowRelatoriosVendasModal] =
+    useState(false);
+  const [showControleFinanceiroModal, setShowControleFinanceiroModal] =
+    useState(false);
   const [showAnalyticsBIModal, setShowAnalyticsBIModal] = useState(false);
   const [showMetasVendasModal, setShowMetasVendasModal] = useState(false);
   const [showNotasFiscaisModal, setShowNotasFiscaisModal] = useState(false);
   const [showClientesModal, setShowClientesModal] = useState(false);
-  const [showWhatsAppBusinessModal, setShowWhatsAppBusinessModal] = useState(false);
+  const [showWhatsAppBusinessModal, setShowWhatsAppBusinessModal] =
+    useState(false);
   const router = useRouter();
   const { user } = useAuth();
 
@@ -119,28 +130,28 @@ export default function Dashboard() {
                   onClick={() => {
                     if (option.title === "Boletim de Gado") {
                       setShowBoletimModal(true);
-                      onClose(); // Fecha o modal MANEJO
+                      // NÃO fecha o modal MANEJO
                     } else if (option.title === "Nascimentos") {
                       setShowNascimentosModal(true);
-                      onClose();
+                      // NÃO fecha o modal MANEJO
                     } else if (option.title === "Controle de Mortes") {
                       setShowMortesModal(true);
-                      onClose();
+                      // NÃO fecha o modal MANEJO
                     } else if (option.title === "Programa FIV") {
                       setShowFIVModal(true);
-                      onClose();
+                      // NÃO fecha o modal MANEJO
                     } else if (option.title === "Vacinação") {
                       setShowVacinacaoModal(true);
-                      onClose();
+                      // NÃO fecha o modal MANEJO
                     } else if (option.title === "Saúde Animal") {
                       setShowSaudeModal(true);
-                      onClose();
+                      // NÃO fecha o modal MANEJO
                     } else if (option.title === "Relatórios") {
                       setShowRelatoriosModal(true);
-                      onClose();
+                      // NÃO fecha o modal MANEJO
                     } else if (option.title === "Transferências") {
                       setShowTransferenciasModal(true);
-                      onClose();
+                      // NÃO fecha o modal MANEJO
                     }
                   }}
                   className="p-6 bg-gray-50 dark:bg-gray-700 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-600 transition-all duration-300 group transform hover:scale-105 hover:shadow-lg cursor-pointer"
@@ -180,7 +191,11 @@ export default function Dashboard() {
     if (!isOpen) return null;
 
     const comercialOptions = [
-      { icon: "🏛️", title: "Vendas em Leilão", desc: "Gestão de leilões" },
+      {
+        icon: "💼",
+        title: "Gestão de Vendas",
+        desc: "Todos os tipos de venda",
+      },
       {
         icon: "📈",
         title: "Relatórios de Vendas",
@@ -223,30 +238,30 @@ export default function Dashboard() {
                 <button
                   key={index}
                   onClick={() => {
-                    if (option.title === "Vendas em Leilão") {
-                      setShowVendasLeilaoModal(true);
-                      onClose();
+                    if (option.title === "Gestão de Vendas") {
+                      setShowGestaoVendasModal(true);
+                      // NÃO fecha o modal COMERCIAL
                     } else if (option.title === "Relatórios de Vendas") {
                       setShowRelatoriosVendasModal(true);
-                      onClose();
+                      // NÃO fecha o modal COMERCIAL
                     } else if (option.title === "Controle Financeiro") {
                       setShowControleFinanceiroModal(true);
-                      onClose();
+                      // NÃO fecha o modal COMERCIAL
                     } else if (option.title === "Analytics BI") {
                       setShowAnalyticsBIModal(true);
-                      onClose();
+                      // NÃO fecha o modal COMERCIAL
                     } else if (option.title === "Metas de Vendas") {
                       setShowMetasVendasModal(true);
-                      onClose();
+                      // NÃO fecha o modal COMERCIAL
                     } else if (option.title === "Notas Fiscais") {
                       setShowNotasFiscaisModal(true);
-                      onClose();
+                      // NÃO fecha o modal COMERCIAL
                     } else if (option.title === "Clientes") {
                       setShowClientesModal(true);
-                      onClose();
+                      // NÃO fecha o modal COMERCIAL
                     } else if (option.title === "WhatsApp Business") {
                       setShowWhatsAppBusinessModal(true);
-                      onClose();
+                      // NÃO fecha o modal COMERCIAL
                     }
                   }}
                   className="p-6 bg-gray-50 dark:bg-gray-700 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-600 transition-all duration-300 group transform hover:scale-105 hover:shadow-lg cursor-pointer"
@@ -312,7 +327,7 @@ export default function Dashboard() {
       },
       {
         id: "002",
-        nome: "Touro Bravo",
+        nome: "CRIVO SANT ANNA",
         sexo: "M",
         idade: "4 anos",
         peso: "780kg",
@@ -328,7 +343,7 @@ export default function Dashboard() {
       },
       {
         id: "004",
-        nome: "Guerreiro",
+        nome: "JATOBÁ SANT ANNA",
         sexo: "M",
         idade: "3 anos",
         peso: "650kg",
@@ -562,27 +577,27 @@ export default function Dashboard() {
 
     const nascimentosRecentes = [
       {
-        id: "N001",
+        id: "CJCJ 16002",
         mae: "Estrela",
-        pai: "Touro Bravo",
+        pai: "CRIVO SANT ANNA",
         data: "15/12/2024",
         sexo: "F",
         peso: "32kg",
         status: "Saudável",
       },
       {
-        id: "N002",
+        id: "CJCJ 15559",
         mae: "Bonita",
-        pai: "Guerreiro",
+        pai: "JATOBÁ SANT ANNA",
         data: "12/12/2024",
         sexo: "M",
         peso: "35kg",
         status: "Saudável",
       },
       {
-        id: "N003",
+        id: "CJCJ 16050",
         mae: "Mimosa",
-        pai: "Touro Bravo",
+        pai: "CRIVO SANT ANNA",
         data: "10/12/2024",
         sexo: "F",
         peso: "30kg",
@@ -727,7 +742,7 @@ export default function Dashboard() {
 
     const mortesRecentes = [
       {
-        id: "M001",
+        id: "CJCJ 17000",
         nome: "Velho João",
         idade: "8 anos",
         data: "05/12/2024",
@@ -735,7 +750,7 @@ export default function Dashboard() {
         peso: "520kg",
       },
       {
-        id: "M002",
+        id: "CJCJ 170502",
         nome: "Bezerro 123",
         idade: "2 meses",
         data: "28/11/2024",
@@ -855,14 +870,243 @@ export default function Dashboard() {
     );
   };
 
-  // Modal VENDAS EM LEILÃO
+  // Modal GESTÃO DE VENDAS
+  const GestaoVendasModal = ({ isOpen, onClose }) => {
+    if (!isOpen) return null;
+
+    const tiposVenda = [
+      {
+        icon: "🤝",
+        title: "Venda Direta",
+        desc: "Venda direta ao cliente",
+        vendas: 45,
+        valor: "R$ 1.250.000",
+        cor: "blue",
+      },
+      {
+        icon: "🏛️",
+        title: "Leilão",
+        desc: "Vendas em leilões",
+        vendas: 32,
+        valor: "R$ 890.000",
+        cor: "purple",
+      },
+      {
+        icon: "🥩",
+        title: "Venda Abate",
+        desc: "Animais para abate",
+        vendas: 28,
+        valor: "R$ 420.000",
+        cor: "red",
+      },
+      {
+        icon: "📦",
+        title: "Venda Descarte",
+        desc: "Descarte de animais",
+        vendas: 15,
+        valor: "R$ 180.000",
+        cor: "orange",
+      },
+      {
+        icon: "📝",
+        title: "Outro (Especificar)",
+        desc: "Outros tipos de venda",
+        vendas: 8,
+        valor: "R$ 95.000",
+        cor: "gray",
+      },
+    ];
+
+    const totalVendas = tiposVenda.reduce((acc, tipo) => acc + tipo.vendas, 0);
+    const totalValor = tiposVenda.reduce(
+      (acc, tipo) => acc + parseInt(tipo.valor.replace(/[^\d]/g, "")),
+      0
+    );
+
+    return (
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-6xl w-full max-h-[90vh] overflow-hidden">
+          <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-indigo-600 to-purple-600">
+            <div className="flex items-center space-x-3">
+              <div className="text-4xl">💼</div>
+              <div>
+                <h2 className="text-2xl font-bold text-white">
+                  Gestão de Vendas
+                </h2>
+                <p className="text-indigo-100">Todos os tipos de venda</p>
+              </div>
+            </div>
+            <button
+              onClick={onClose}
+              className="p-2 hover:bg-white/20 rounded-lg transition-colors text-white text-2xl font-bold"
+            >
+              ×
+            </button>
+          </div>
+
+          <div className="p-6 overflow-y-auto max-h-[calc(90vh-120px)]">
+            {/* Resumo Geral */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+              <div className="bg-green-50 dark:bg-green-900/20 p-6 rounded-lg text-center">
+                <div className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">
+                  {totalVendas}
+                </div>
+                <div className="text-sm text-green-800 dark:text-green-300">
+                  Total de Vendas
+                </div>
+              </div>
+              <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-lg text-center">
+                <div className="text-3xl font-bold text-blue-600 dark:text-blue-400">
+                  R$ {(totalValor / 1000000).toFixed(2)}M
+                </div>
+                <div className="text-sm text-blue-800 dark:text-blue-300">
+                  Faturamento Total
+                </div>
+              </div>
+              <div className="bg-purple-50 dark:bg-purple-900/20 p-6 rounded-lg text-center">
+                <div className="text-3xl font-bold text-purple-600 dark:text-purple-400">
+                  R$ {Math.round(totalValor / totalVendas / 1000)}K
+                </div>
+                <div className="text-sm text-purple-800 dark:text-purple-300">
+                  Ticket Médio
+                </div>
+              </div>
+            </div>
+
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">
+              📊 Tipos de Venda
+            </h3>
+
+            {/* Cards dos Tipos de Venda */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+              {tiposVenda.map((tipo, index) => (
+                <button
+                  key={index}
+                  onClick={() => {
+                    if (tipo.title === "Venda Direta") {
+                      setShowVendaDiretaModal(true);
+                    } else if (tipo.title === "Leilão") {
+                      setShowLeilaoModal(true);
+                    } else if (tipo.title === "Venda Abate") {
+                      setShowVendaAbateModal(true);
+                    } else if (tipo.title === "Venda Descarte") {
+                      setShowVendaDescarteModal(true);
+                    }
+                  }}
+                  className={`bg-${tipo.cor}-50 dark:bg-${tipo.cor}-900/20 p-6 rounded-xl border border-${tipo.cor}-200 dark:border-${tipo.cor}-800 hover:shadow-lg hover:scale-105 transition-all duration-300 cursor-pointer group`}
+                >
+                  <div className="text-center">
+                    <div className="text-4xl mb-3">{tipo.icon}</div>
+                    <h4
+                      className={`text-lg font-semibold text-${tipo.cor}-800 dark:text-${tipo.cor}-200 mb-2`}
+                    >
+                      {tipo.title}
+                    </h4>
+                    <p
+                      className={`text-sm text-${tipo.cor}-600 dark:text-${tipo.cor}-400 mb-4`}
+                    >
+                      {tipo.desc}
+                    </p>
+                    <div className="space-y-2">
+                      <div
+                        className={`text-2xl font-bold text-${tipo.cor}-600 dark:text-${tipo.cor}-400`}
+                      >
+                        {tipo.vendas}
+                      </div>
+                      <div
+                        className={`text-xs text-${tipo.cor}-500 dark:text-${tipo.cor}-500`}
+                      >
+                        vendas
+                      </div>
+                      <div
+                        className={`text-lg font-semibold text-${tipo.cor}-700 dark:text-${tipo.cor}-300`}
+                      >
+                        {tipo.valor}
+                      </div>
+                    </div>
+                    <div
+                      className={`mt-3 text-xs text-${tipo.cor}-600 dark:text-${tipo.cor}-400 opacity-0 group-hover:opacity-100 transition-opacity`}
+                    >
+                      Clique para detalhes
+                    </div>
+                  </div>
+                </button>
+              ))}
+            </div>
+
+            {/* Ações Rápidas */}
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+              <button className="p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg hover:bg-blue-100 dark:hover:bg-blue-900/40 transition-colors">
+                <div className="text-blue-600 dark:text-blue-400 text-2xl mb-2">
+                  ➕
+                </div>
+                <div className="font-semibold text-blue-800 dark:text-blue-200">
+                  Nova Venda
+                </div>
+              </button>
+              <button
+                onClick={() => setShowRelatorioDetalhadoModal(true)}
+                className="p-4 bg-green-50 dark:bg-green-900/20 rounded-lg hover:bg-green-100 dark:hover:bg-green-900/40 transition-colors"
+              >
+                <div className="text-green-600 dark:text-green-400 text-2xl mb-2">
+                  📊
+                </div>
+                <div className="font-semibold text-green-800 dark:text-green-200">
+                  Relatório Detalhado
+                </div>
+              </button>
+              <button className="p-4 bg-purple-50 dark:bg-purple-900/20 rounded-lg hover:bg-purple-100 dark:hover:bg-purple-900/40 transition-colors">
+                <div className="text-purple-600 dark:text-purple-400 text-2xl mb-2">
+                  📋
+                </div>
+                <div className="font-semibold text-purple-800 dark:text-purple-200">
+                  Exportar Excel
+                </div>
+              </button>
+              <button className="p-4 bg-orange-50 dark:bg-orange-900/20 rounded-lg hover:bg-orange-100 dark:hover:bg-orange-900/40 transition-colors">
+                <div className="text-orange-600 dark:text-orange-400 text-2xl mb-2">
+                  🔄
+                </div>
+                <div className="font-semibold text-orange-800 dark:text-orange-200">
+                  Atualizar Dados
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  // Modal VENDAS EM LEILÃO (mantido para compatibilidade)
   const VendasLeilaoModal = ({ isOpen, onClose }) => {
     if (!isOpen) return null;
 
     const leiloesRecentes = [
-      { id: "L001", data: "15/12/2024", local: "Fazenda Sant'Anna", animais: 45, arrecadacao: "R$ 1.250.000", status: "Concluído" },
-      { id: "L002", data: "20/12/2024", local: "Centro de Leilões", animais: 32, arrecadacao: "R$ 890.000", status: "Agendado" },
-      { id: "L003", data: "10/12/2024", local: "Fazenda Sant'Anna", animais: 28, arrecadacao: "R$ 720.000", status: "Concluído" },
+      {
+        id: "L001",
+        data: "15/12/2024",
+        local: "Fazenda Sant'Anna",
+        animais: 45,
+        arrecadacao: "R$ 1.250.000",
+        status: "Concluído",
+      },
+      {
+        id: "L002",
+        data: "20/12/2024",
+        local: "Virtual_Programa",
+        animais: 32,
+        arrecadacao: "R$ 890.000",
+        status: "Agendado",
+      },
+      {
+        id: "L003",
+        data: "10/12/2024",
+        local: "Fazenda Sant'Anna",
+        animais: 28,
+        arrecadacao: "R$ 720.000",
+        status: "Concluído",
+      },
     ];
 
     return (
@@ -872,56 +1116,112 @@ export default function Dashboard() {
             <div className="flex items-center space-x-3">
               <div className="text-4xl">🏛️</div>
               <div>
-                <h2 className="text-2xl font-bold text-white">Vendas em Leilão</h2>
+                <h2 className="text-2xl font-bold text-white">
+                  Vendas em Leilão
+                </h2>
                 <p className="text-blue-100">Gestão de leilões e vendas</p>
               </div>
             </div>
-            <button onClick={onClose} className="p-2 hover:bg-white/20 rounded-lg transition-colors text-white text-2xl font-bold">×</button>
+            <button
+              onClick={onClose}
+              className="p-2 hover:bg-white/20 rounded-lg transition-colors text-white text-2xl font-bold"
+            >
+              ×
+            </button>
           </div>
-          
+
           <div className="p-6 overflow-y-auto max-h-[calc(90vh-120px)]">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
               <div className="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg text-center">
-                <div className="text-2xl font-bold text-green-600 dark:text-green-400">R$ 2.86M</div>
-                <div className="text-sm text-green-800 dark:text-green-300">Arrecadação Total</div>
+                <div className="text-2xl font-bold text-green-600 dark:text-green-400">
+                  R$ 2.86M
+                </div>
+                <div className="text-sm text-green-800 dark:text-green-300">
+                  Arrecadação Total
+                </div>
               </div>
               <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg text-center">
-                <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">105</div>
-                <div className="text-sm text-blue-800 dark:text-blue-300">Animais Vendidos</div>
+                <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+                  105
+                </div>
+                <div className="text-sm text-blue-800 dark:text-blue-300">
+                  Animais Vendidos
+                </div>
               </div>
               <div className="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg text-center">
-                <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">R$ 27.2K</div>
-                <div className="text-sm text-purple-800 dark:text-purple-300">Preço Médio</div>
+                <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">
+                  R$ 27.2K
+                </div>
+                <div className="text-sm text-purple-800 dark:text-purple-300">
+                  Preço Médio
+                </div>
               </div>
               <div className="bg-orange-50 dark:bg-orange-900/20 p-4 rounded-lg text-center">
-                <div className="text-2xl font-bold text-orange-600 dark:text-orange-400">3</div>
-                <div className="text-sm text-orange-800 dark:text-orange-300">Leilões Realizados</div>
+                <div className="text-2xl font-bold text-orange-600 dark:text-orange-400">
+                  3
+                </div>
+                <div className="text-sm text-orange-800 dark:text-orange-300">
+                  Leilões Realizados
+                </div>
               </div>
             </div>
 
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">🏛️ Leilões Recentes</h3>
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+              🏛️ Leilões Recentes
+            </h3>
             <div className="overflow-x-auto">
               <table className="w-full bg-white dark:bg-gray-700 rounded-lg overflow-hidden">
                 <thead className="bg-gray-50 dark:bg-gray-600">
                   <tr>
-                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">ID</th>
-                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Data</th>
-                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Local</th>
-                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Animais</th>
-                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Arrecadação</th>
-                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Status</th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      ID
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      Data
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      Local
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      Animais
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      Arrecadação
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      Status
+                    </th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200 dark:divide-gray-600">
                   {leiloesRecentes.map((leilao, index) => (
-                    <tr key={index} className="hover:bg-gray-50 dark:hover:bg-gray-600">
-                      <td className="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">{leilao.id}</td>
-                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">{leilao.data}</td>
-                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">{leilao.local}</td>
-                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">{leilao.animais}</td>
-                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white font-semibold text-green-600">{leilao.arrecadacao}</td>
+                    <tr
+                      key={index}
+                      className="hover:bg-gray-50 dark:hover:bg-gray-600"
+                    >
+                      <td className="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
+                        {leilao.id}
+                      </td>
                       <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
-                        <span className={`px-2 py-1 rounded-full text-xs ${leilao.status === 'Concluído' ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800'}`}>
+                        {leilao.data}
+                      </td>
+                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                        {leilao.local}
+                      </td>
+                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                        {leilao.animais}
+                      </td>
+                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white font-semibold text-green-600">
+                        {leilao.arrecadacao}
+                      </td>
+                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                        <span
+                          className={`px-2 py-1 rounded-full text-xs ${
+                            leilao.status === "Concluído"
+                              ? "bg-green-100 text-green-800"
+                              : "bg-blue-100 text-blue-800"
+                          }`}
+                        >
                           {leilao.status}
                         </span>
                       </td>
@@ -944,7 +1244,7 @@ export default function Dashboard() {
       receitaTotal: "R$ 2.860.000",
       despesaTotal: "R$ 1.240.000",
       lucroLiquido: "R$ 1.620.000",
-      margemLucro: "56.6%"
+      margemLucro: "56.6%",
     };
 
     return (
@@ -954,66 +1254,117 @@ export default function Dashboard() {
             <div className="flex items-center space-x-3">
               <div className="text-4xl">💰</div>
               <div>
-                <h2 className="text-2xl font-bold text-white">Controle Financeiro</h2>
+                <h2 className="text-2xl font-bold text-white">
+                  Controle Financeiro
+                </h2>
                 <p className="text-green-100">Receitas e despesas</p>
               </div>
             </div>
-            <button onClick={onClose} className="p-2 hover:bg-white/20 rounded-lg transition-colors text-white text-2xl font-bold">×</button>
+            <button
+              onClick={onClose}
+              className="p-2 hover:bg-white/20 rounded-lg transition-colors text-white text-2xl font-bold"
+            >
+              ×
+            </button>
           </div>
-          
+
           <div className="p-6 overflow-y-auto max-h-[calc(90vh-120px)]">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
               <div className="bg-green-50 dark:bg-green-900/20 p-6 rounded-lg text-center">
-                <div className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">{dadosFinanceiros.receitaTotal}</div>
-                <div className="text-sm text-green-800 dark:text-green-300">Receita Total</div>
+                <div className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">
+                  {dadosFinanceiros.receitaTotal}
+                </div>
+                <div className="text-sm text-green-800 dark:text-green-300">
+                  Receita Total
+                </div>
               </div>
               <div className="bg-red-50 dark:bg-red-900/20 p-6 rounded-lg text-center">
-                <div className="text-3xl font-bold text-red-600 dark:text-red-400 mb-2">{dadosFinanceiros.despesaTotal}</div>
-                <div className="text-sm text-red-800 dark:text-red-300">Despesa Total</div>
+                <div className="text-3xl font-bold text-red-600 dark:text-red-400 mb-2">
+                  {dadosFinanceiros.despesaTotal}
+                </div>
+                <div className="text-sm text-red-800 dark:text-red-300">
+                  Despesa Total
+                </div>
               </div>
               <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-lg text-center">
-                <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">{dadosFinanceiros.lucroLiquido}</div>
-                <div className="text-sm text-blue-800 dark:text-blue-300">Lucro Líquido</div>
+                <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">
+                  {dadosFinanceiros.lucroLiquido}
+                </div>
+                <div className="text-sm text-blue-800 dark:text-blue-300">
+                  Lucro Líquido
+                </div>
               </div>
               <div className="bg-purple-50 dark:bg-purple-900/20 p-6 rounded-lg text-center">
-                <div className="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2">{dadosFinanceiros.margemLucro}</div>
-                <div className="text-sm text-purple-800 dark:text-purple-300">Margem de Lucro</div>
+                <div className="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2">
+                  {dadosFinanceiros.margemLucro}
+                </div>
+                <div className="text-sm text-purple-800 dark:text-purple-300">
+                  Margem de Lucro
+                </div>
               </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg">
-                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">📈 Principais Receitas</h4>
+                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+                  📈 Principais Receitas
+                </h4>
                 <div className="space-y-3">
                   <div className="flex justify-between">
-                    <span className="text-gray-600 dark:text-gray-400">Vendas de Animais</span>
-                    <span className="font-semibold text-green-600">R$ 2.650.000</span>
+                    <span className="text-gray-600 dark:text-gray-400">
+                      Vendas de Animais
+                    </span>
+                    <span className="font-semibold text-green-600">
+                      R$ 2.650.000
+                    </span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-600 dark:text-gray-400">Serviços Veterinários</span>
-                    <span className="font-semibold text-green-600">R$ 120.000</span>
+                    <span className="text-gray-600 dark:text-gray-400">
+                      Serviços Veterinários
+                    </span>
+                    <span className="font-semibold text-green-600">
+                      R$ 120.000
+                    </span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-600 dark:text-gray-400">Aluguel de Pastos</span>
-                    <span className="font-semibold text-green-600">R$ 90.000</span>
+                    <span className="text-gray-600 dark:text-gray-400">
+                      Aluguel de Pastos
+                    </span>
+                    <span className="font-semibold text-green-600">
+                      R$ 90.000
+                    </span>
                   </div>
                 </div>
               </div>
 
               <div className="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg">
-                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">📉 Principais Despesas</h4>
+                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+                  📉 Principais Despesas
+                </h4>
                 <div className="space-y-3">
                   <div className="flex justify-between">
-                    <span className="text-gray-600 dark:text-gray-400">Ração e Alimentação</span>
-                    <span className="font-semibold text-red-600">R$ 680.000</span>
+                    <span className="text-gray-600 dark:text-gray-400">
+                      Ração e Alimentação
+                    </span>
+                    <span className="font-semibold text-red-600">
+                      R$ 680.000
+                    </span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-600 dark:text-gray-400">Medicamentos</span>
-                    <span className="font-semibold text-red-600">R$ 240.000</span>
+                    <span className="text-gray-600 dark:text-gray-400">
+                      Medicamentos
+                    </span>
+                    <span className="font-semibold text-red-600">
+                      R$ 240.000
+                    </span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-600 dark:text-gray-400">Mão de Obra</span>
-                    <span className="font-semibold text-red-600">R$ 320.000</span>
+                    <span className="text-gray-600 dark:text-gray-400">
+                      Mão de Obra
+                    </span>
+                    <span className="font-semibold text-red-600">
+                      R$ 320.000
+                    </span>
                   </div>
                 </div>
               </div>
@@ -1024,14 +1375,1595 @@ export default function Dashboard() {
     );
   };
 
-  // Modal RELATÓRIOS DE VENDAS
+  // Modal VENDA DIRETA
+  const VendaDiretaModal = ({ isOpen, onClose }) => {
+    if (!isOpen) return null;
+
+    const compradores = [
+      {
+        nome: "Luciano Abramo Ciambelli",
+        estado: "SP",
+        compras: 8,
+        valor: "R$ 280.000",
+        contato: "(11) 99999-1234",
+        ultimaCompra: "15/12/2024",
+      },
+      {
+        nome: "Dona Monica",
+        estado: "RJ",
+        compras: 6,
+        valor: "R$ 210.000",
+        contato: "(21) 88888-5678",
+        ultimaCompra: "10/12/2024",
+      },
+      {
+        nome: "Reginaldo Faria",
+        estado: "MG",
+        compras: 12,
+        valor: "R$ 420.000",
+        contato: "(31) 77777-9012",
+        ultimaCompra: "08/12/2024",
+      },
+      {
+        nome: "Ana Oliveira",
+        estado: "RS",
+        compras: 4,
+        valor: "R$ 140.000",
+        contato: "(51) 66666-3456",
+        ultimaCompra: "05/12/2024",
+      },
+      {
+        nome: "Carlos Mendes",
+        estado: "GO",
+        compras: 15,
+        valor: "R$ 525.000",
+        contato: "(62) 55555-7890",
+        ultimaCompra: "20/11/2024",
+      },
+    ];
+
+    const maiorComprador = compradores.reduce((prev, current) =>
+      prev.valor > current.valor ? prev : current
+    );
+    const menorComprador = compradores.reduce((prev, current) =>
+      prev.valor < current.valor ? prev : current
+    );
+
+    return (
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-7xl w-full max-h-[95vh] overflow-hidden">
+          <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-blue-600 to-indigo-600">
+            <div className="flex items-center space-x-3">
+              <div className="text-4xl">🤝</div>
+              <div>
+                <h2 className="text-2xl font-bold text-white">Venda Direta</h2>
+                <p className="text-blue-100">
+                  Análise detalhada de vendas diretas
+                </p>
+              </div>
+            </div>
+            <button
+              onClick={onClose}
+              className="p-2 hover:bg-white/20 rounded-lg transition-colors text-white text-2xl font-bold"
+            >
+              ×
+            </button>
+          </div>
+
+          <div className="p-6 overflow-y-auto max-h-[calc(95vh-120px)]">
+            {/* Resumo Geral */}
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+              <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg text-center">
+                <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+                  45
+                </div>
+                <div className="text-sm text-blue-800 dark:text-blue-300">
+                  Total Vendas
+                </div>
+              </div>
+              <div className="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg text-center">
+                <div className="text-2xl font-bold text-green-600 dark:text-green-400">
+                  R$ 1.25M
+                </div>
+                <div className="text-sm text-green-800 dark:text-green-300">
+                  Faturamento
+                </div>
+              </div>
+              <div className="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg text-center">
+                <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">
+                  R$ 27.8K
+                </div>
+                <div className="text-sm text-purple-800 dark:text-purple-300">
+                  Preço Médio
+                </div>
+              </div>
+              <div className="bg-orange-50 dark:bg-orange-900/20 p-4 rounded-lg text-center">
+                <div className="text-2xl font-bold text-orange-600 dark:text-orange-400">
+                  5
+                </div>
+                <div className="text-sm text-orange-800 dark:text-orange-300">
+                  Estados
+                </div>
+              </div>
+            </div>
+
+            {/* Maior e Menor Comprador */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+              <div className="bg-green-50 dark:bg-green-900/20 p-6 rounded-lg border-l-4 border-green-500">
+                <h4 className="text-lg font-semibold text-green-800 dark:text-green-200 mb-3">
+                  🏆 Maior Comprador
+                </h4>
+                <div className="space-y-2">
+                  <p className="text-green-700 dark:text-green-300">
+                    <strong>{maiorComprador.nome}</strong> -{" "}
+                    {maiorComprador.estado}
+                  </p>
+                  <p className="text-green-600 dark:text-green-400">
+                    {maiorComprador.compras} compras - {maiorComprador.valor}
+                  </p>
+                  <p className="text-sm text-green-500">
+                    Contato: {maiorComprador.contato}
+                  </p>
+                  <button className="mt-2 px-3 py-1 bg-green-600 text-white rounded text-sm hover:bg-green-700">
+                    📞 Sugerir Nova Compra
+                  </button>
+                </div>
+              </div>
+
+              <div className="bg-orange-50 dark:bg-orange-900/20 p-6 rounded-lg border-l-4 border-orange-500">
+                <h4 className="text-lg font-semibold text-orange-800 dark:text-orange-200 mb-3">
+                  📈 Menor Comprador
+                </h4>
+                <div className="space-y-2">
+                  <p className="text-orange-700 dark:text-orange-300">
+                    <strong>{menorComprador.nome}</strong> -{" "}
+                    {menorComprador.estado}
+                  </p>
+                  <p className="text-orange-600 dark:text-orange-400">
+                    {menorComprador.compras} compras - {menorComprador.valor}
+                  </p>
+                  <p className="text-sm text-orange-500">
+                    Contato: {menorComprador.contato}
+                  </p>
+                  <button className="mt-2 px-3 py-1 bg-orange-600 text-white rounded text-sm hover:bg-orange-700">
+                    🎯 Estratégia de Vendas
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Tabela de Compradores */}
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+              👥 Compradores por Estado
+            </h3>
+            <div className="overflow-x-auto">
+              <table className="w-full bg-white dark:bg-gray-700 rounded-lg overflow-hidden">
+                <thead className="bg-gray-50 dark:bg-gray-600">
+                  <tr>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      Nome
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      Estado
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      Compras
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      Valor Total
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      Contato
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      Última Compra
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      Ações
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-200 dark:divide-gray-600">
+                  {compradores.map((comprador, index) => (
+                    <tr
+                      key={index}
+                      className="hover:bg-gray-50 dark:hover:bg-gray-600"
+                    >
+                      <td className="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
+                        {comprador.nome}
+                      </td>
+                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                        <span className="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">
+                          {comprador.estado}
+                        </span>
+                      </td>
+                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                        {comprador.compras}
+                      </td>
+                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white font-semibold text-green-600">
+                        {comprador.valor}
+                      </td>
+                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                        {comprador.contato}
+                      </td>
+                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                        {comprador.ultimaCompra}
+                      </td>
+                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                        <button className="text-blue-600 hover:text-blue-800 mr-2">
+                          📞
+                        </button>
+                        <button className="text-green-600 hover:text-green-800">
+                          💬
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  // Modal VENDA DESCARTE
+  const VendaDescarteModal = ({ isOpen, onClose }) => {
+    if (!isOpen) return null;
+
+    const descartes = [
+      {
+        id: "D001",
+        animal: "Vaca Velha 123",
+        idade: "12 anos",
+        motivo: "Idade Avançada",
+        valor: "R$ 8.000",
+        comprador: "Frigorífico ABC",
+        data: "15/12/2024",
+      },
+      {
+        id: "D002",
+        animal: "Touro Machucado",
+        idade: "6 anos",
+        motivo: "Lesão Permanente",
+        valor: "R$ 12.000",
+        comprador: "Açougue Central",
+        data: "10/12/2024",
+      },
+      {
+        id: "D003",
+        animal: "Novilha Improdutiva",
+        idade: "4 anos",
+        motivo: "Baixa Produtividade",
+        valor: "R$ 15.000",
+        comprador: "Fazenda Vizinha",
+        data: "08/12/2024",
+      },
+    ];
+
+    return (
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-6xl w-full max-h-[90vh] overflow-hidden">
+          <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-orange-600 to-red-600">
+            <div className="flex items-center space-x-3">
+              <div className="text-4xl">📦</div>
+              <div>
+                <h2 className="text-2xl font-bold text-white">
+                  Venda Descarte
+                </h2>
+                <p className="text-orange-100">Gestão de animais descartados</p>
+              </div>
+            </div>
+            <button
+              onClick={onClose}
+              className="p-2 hover:bg-white/20 rounded-lg transition-colors text-white text-2xl font-bold"
+            >
+              ×
+            </button>
+          </div>
+
+          <div className="p-6 overflow-y-auto max-h-[calc(90vh-120px)]">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+              <div className="bg-orange-50 dark:bg-orange-900/20 p-4 rounded-lg text-center">
+                <div className="text-2xl font-bold text-orange-600 dark:text-orange-400">
+                  15
+                </div>
+                <div className="text-sm text-orange-800 dark:text-orange-300">
+                  Animais Descartados
+                </div>
+              </div>
+              <div className="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg text-center">
+                <div className="text-2xl font-bold text-red-600 dark:text-red-400">
+                  R$ 180K
+                </div>
+                <div className="text-sm text-red-800 dark:text-red-300">
+                  Valor Recuperado
+                </div>
+              </div>
+              <div className="bg-yellow-50 dark:bg-yellow-900/20 p-4 rounded-lg text-center">
+                <div className="text-2xl font-bold text-yellow-600 dark:text-yellow-400">
+                  R$ 12K
+                </div>
+                <div className="text-sm text-yellow-800 dark:text-yellow-300">
+                  Valor Médio
+                </div>
+              </div>
+              <div className="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg text-center">
+                <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">
+                  1.2%
+                </div>
+                <div className="text-sm text-purple-800 dark:text-purple-300">
+                  Taxa Descarte
+                </div>
+              </div>
+            </div>
+
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+              📋 Descartes Recentes
+            </h3>
+            <div className="overflow-x-auto">
+              <table className="w-full bg-white dark:bg-gray-700 rounded-lg overflow-hidden">
+                <thead className="bg-gray-50 dark:bg-gray-600">
+                  <tr>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      ID
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      Animal
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      Idade
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      Motivo
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      Valor
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      Comprador
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      Data
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-200 dark:divide-gray-600">
+                  {descartes.map((descarte, index) => (
+                    <tr
+                      key={index}
+                      className="hover:bg-gray-50 dark:hover:bg-gray-600"
+                    >
+                      <td className="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
+                        {descarte.id}
+                      </td>
+                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                        {descarte.animal}
+                      </td>
+                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                        {descarte.idade}
+                      </td>
+                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                        <span
+                          className={`px-2 py-1 rounded-full text-xs ${
+                            descarte.motivo.includes("Idade")
+                              ? "bg-yellow-100 text-yellow-800"
+                              : descarte.motivo.includes("Lesão")
+                              ? "bg-red-100 text-red-800"
+                              : "bg-orange-100 text-orange-800"
+                          }`}
+                        >
+                          {descarte.motivo}
+                        </span>
+                      </td>
+                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white font-semibold text-green-600">
+                        {descarte.valor}
+                      </td>
+                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                        {descarte.comprador}
+                      </td>
+                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                        {descarte.data}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  // Modal LEILÃO
+  const LeilaoModal = ({ isOpen, onClose }) => {
+    if (!isOpen) return null;
+
+    const leiloes = [
+      {
+        id: "L001",
+        data: "15/12/2024",
+        local: "Fazenda Sant'Anna",
+        animais: 45,
+        arrecadacao: "R$ 1.250.000",
+        leiloeiro: "João Martins",
+        comissao: "5%",
+        status: "Concluído",
+        melhorLance: "R$ 45.000",
+        piorLance: "R$ 18.000",
+      },
+      {
+        id: "L002",
+        data: "20/12/2024",
+        local: "Virtual_Programa",
+        animais: 32,
+        arrecadacao: "R$ 890.000",
+        leiloeiro: "Maria Silva",
+        comissao: "4.5%",
+        status: "Agendado",
+        melhorLance: "R$ 38.000",
+        piorLance: "R$ 22.000",
+      },
+    ];
+
+    const topCompradores = [
+      {
+        nome: "Roberto de Biasi",
+        lances: 12,
+        valor: "R$ 420.000",
+        estado: "SP",
+      },
+      {
+        nome: "Nelson Coletto",
+        lances: 8,
+        valor: "R$ 280.000",
+        estado: "MG",
+      },
+      {
+        nome: "Gil Medeiros",
+        lances: 6,
+        valor: "R$ 210.000",
+        estado: "RS",
+      },
+    ];
+
+    return (
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-7xl w-full max-h-[95vh] overflow-hidden">
+          <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-purple-600 to-indigo-600">
+            <div className="flex items-center space-x-3">
+              <div className="text-4xl">🏛️</div>
+              <div>
+                <h2 className="text-2xl font-bold text-white">
+                  Gestão de Leilões
+                </h2>
+                <p className="text-purple-100">Análise completa de leilões</p>
+              </div>
+            </div>
+            <button
+              onClick={onClose}
+              className="p-2 hover:bg-white/20 rounded-lg transition-colors text-white text-2xl font-bold"
+            >
+              ×
+            </button>
+          </div>
+
+          <div className="p-6 overflow-y-auto max-h-[calc(95vh-120px)]">
+            {/* Resumo Geral */}
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-8">
+              <div className="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg text-center">
+                <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">
+                  77
+                </div>
+                <div className="text-sm text-purple-800 dark:text-purple-300">
+                  Animais Vendidos
+                </div>
+              </div>
+              <div className="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg text-center">
+                <div className="text-2xl font-bold text-green-600 dark:text-green-400">
+                  R$ 2.14M
+                </div>
+                <div className="text-sm text-green-800 dark:text-green-300">
+                  Arrecadação Total
+                </div>
+              </div>
+              <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg text-center">
+                <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+                  R$ 27.8K
+                </div>
+                <div className="text-sm text-blue-800 dark:text-blue-300">
+                  Preço Médio
+                </div>
+              </div>
+              <div className="bg-orange-50 dark:bg-orange-900/20 p-4 rounded-lg text-center">
+                <div className="text-2xl font-bold text-orange-600 dark:text-orange-400">
+                  R$ 45K
+                </div>
+                <div className="text-sm text-orange-800 dark:text-orange-300">
+                  Melhor Lance
+                </div>
+              </div>
+              <div className="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg text-center">
+                <div className="text-2xl font-bold text-red-600 dark:text-red-400">
+                  4.75%
+                </div>
+                <div className="text-sm text-red-800 dark:text-red-300">
+                  Comissão Média
+                </div>
+              </div>
+            </div>
+
+            {/* Top Compradores */}
+            <div className="mb-8">
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+                🏆 Top Compradores em Leilões
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {topCompradores.map((comprador, index) => (
+                  <div
+                    key={index}
+                    className={`p-4 rounded-lg border-l-4 ${
+                      index === 0
+                        ? "bg-yellow-50 border-yellow-500"
+                        : index === 1
+                        ? "bg-gray-50 border-gray-500"
+                        : "bg-orange-50 border-orange-500"
+                    }`}
+                  >
+                    <div className="flex items-center justify-between mb-2">
+                      <h4 className="font-semibold text-gray-900">
+                        {comprador.nome}
+                      </h4>
+                      <span className="text-2xl">
+                        {index === 0 ? "🥇" : index === 1 ? "🥈" : "🥉"}
+                      </span>
+                    </div>
+                    <p className="text-sm text-gray-600">
+                      {comprador.estado} • {comprador.lances} lances
+                    </p>
+                    <p className="text-lg font-bold text-green-600">
+                      {comprador.valor}
+                    </p>
+                    <button className="mt-2 px-3 py-1 bg-blue-600 text-white rounded text-sm hover:bg-blue-700">
+                      📞 Convidar para Próximo Leilão
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Tabela de Leilões */}
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+              📋 Histórico de Leilões
+            </h3>
+            <div className="overflow-x-auto">
+              <table className="w-full bg-white dark:bg-gray-700 rounded-lg overflow-hidden">
+                <thead className="bg-gray-50 dark:bg-gray-600">
+                  <tr>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      ID
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      Data
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      Local
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      Animais
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      Arrecadação
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      Leiloeiro
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      Comissão
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      Status
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-200 dark:divide-gray-600">
+                  {leiloes.map((leilao, index) => (
+                    <tr
+                      key={index}
+                      className="hover:bg-gray-50 dark:hover:bg-gray-600"
+                    >
+                      <td className="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
+                        {leilao.id}
+                      </td>
+                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                        {leilao.data}
+                      </td>
+                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                        {leilao.local}
+                      </td>
+                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                        {leilao.animais}
+                      </td>
+                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white font-semibold text-green-600">
+                        {leilao.arrecadacao}
+                      </td>
+                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                        {leilao.leiloeiro}
+                      </td>
+                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                        {leilao.comissao}
+                      </td>
+                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                        <span
+                          className={`px-2 py-1 rounded-full text-xs ${
+                            leilao.status === "Concluído"
+                              ? "bg-green-100 text-green-800"
+                              : "bg-blue-100 text-blue-800"
+                          }`}
+                        >
+                          {leilao.status}
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  // Modal VENDA ABATE
+  const VendaAbateModal = ({ isOpen, onClose }) => {
+    if (!isOpen) return null;
+
+    const vendasAbate = [
+      {
+        id: "A001",
+        animal: "Boi Gordo 456",
+        peso: "520kg",
+        idade: "30 meses",
+        valor: "R$ 18.000",
+        frigorífico: "JBS Friboi",
+        data: "15/12/2024",
+        precoArroba: "R$ 280",
+        rendimento: "58%",
+      },
+      {
+        id: "A002",
+        animal: "Novilho Premium",
+        peso: "480kg",
+        idade: "28 meses",
+        valor: "R$ 16.800",
+        frigorífico: "Marfrig",
+        data: "12/12/2024",
+        precoArroba: "R$ 275",
+        rendimento: "60%",
+      },
+      {
+        id: "A003",
+        animal: "Vaca Gorda 789",
+        peso: "450kg",
+        idade: "48 meses",
+        valor: "R$ 15.300",
+        frigorífico: "Minerva Foods",
+        data: "10/12/2024",
+        precoArroba: "R$ 270",
+        rendimento: "56%",
+      },
+    ];
+
+    const frigorificos = [
+      {
+        nome: "JBS Friboi",
+        compras: 12,
+        valor: "R$ 216.000",
+        precoMedio: "R$ 278",
+      },
+      {
+        nome: "Marfrig",
+        compras: 8,
+        valor: "R$ 134.400",
+        precoMedio: "R$ 275",
+      },
+      {
+        nome: "Minerva Foods",
+        compras: 8,
+        valor: "R$ 122.400",
+        precoMedio: "R$ 272",
+      },
+    ];
+
+    return (
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-7xl w-full max-h-[95vh] overflow-hidden">
+          <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-red-600 to-pink-600">
+            <div className="flex items-center space-x-3">
+              <div className="text-4xl">🥩</div>
+              <div>
+                <h2 className="text-2xl font-bold text-white">
+                  Venda para Abate
+                </h2>
+                <p className="text-red-100">
+                  Gestão de vendas para frigoríficos
+                </p>
+              </div>
+            </div>
+            <button
+              onClick={onClose}
+              className="p-2 hover:bg-white/20 rounded-lg transition-colors text-white text-2xl font-bold"
+            >
+              ×
+            </button>
+          </div>
+
+          <div className="p-6 overflow-y-auto max-h-[calc(95vh-120px)]">
+            {/* Resumo Geral */}
+            <div className="grid grid-cols-1 md:grid-cols-5 gap-4 mb-8">
+              <div className="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg text-center">
+                <div className="text-2xl font-bold text-red-600 dark:text-red-400">
+                  28
+                </div>
+                <div className="text-sm text-red-800 dark:text-red-300">
+                  Animais Abatidos
+                </div>
+              </div>
+              <div className="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg text-center">
+                <div className="text-2xl font-bold text-green-600 dark:text-green-400">
+                  R$ 420K
+                </div>
+                <div className="text-sm text-green-800 dark:text-green-300">
+                  Faturamento
+                </div>
+              </div>
+              <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg text-center">
+                <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+                  R$ 275
+                </div>
+                <div className="text-sm text-blue-800 dark:text-blue-300">
+                  Preço Médio/@
+                </div>
+              </div>
+              <div className="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg text-center">
+                <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">
+                  483kg
+                </div>
+                <div className="text-sm text-purple-800 dark:text-purple-300">
+                  Peso Médio
+                </div>
+              </div>
+              <div className="bg-orange-50 dark:bg-orange-900/20 p-4 rounded-lg text-center">
+                <div className="text-2xl font-bold text-orange-600 dark:text-orange-400">
+                  58%
+                </div>
+                <div className="text-sm text-orange-800 dark:text-orange-300">
+                  Rendimento Médio
+                </div>
+              </div>
+            </div>
+
+            {/* Frigoríficos Parceiros */}
+            <div className="mb-8">
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+                🏭 Frigoríficos Parceiros
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {frigorificos.map((frigorífico, index) => (
+                  <div
+                    key={index}
+                    className="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg border border-gray-200 dark:border-gray-600"
+                  >
+                    <h4 className="font-semibold text-gray-900 dark:text-white mb-3">
+                      {frigorífico.nome}
+                    </h4>
+                    <div className="space-y-2">
+                      <p className="text-sm text-gray-600 dark:text-gray-400">
+                        {frigorífico.compras} compras realizadas
+                      </p>
+                      <p className="text-lg font-bold text-green-600">
+                        {frigorífico.valor}
+                      </p>
+                      <p className="text-sm text-blue-600">
+                        Preço médio: {frigorífico.precoMedio}/@
+                      </p>
+                      <button className="mt-2 px-3 py-1 bg-red-600 text-white rounded text-sm hover:bg-red-700">
+                        📞 Negociar Preços
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Tabela de Vendas para Abate */}
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+              🥩 Vendas para Abate
+            </h3>
+            <div className="overflow-x-auto">
+              <table className="w-full bg-white dark:bg-gray-700 rounded-lg overflow-hidden">
+                <thead className="bg-gray-50 dark:bg-gray-600">
+                  <tr>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      ID
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      Animal
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      Peso
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      Idade
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      Valor
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      Preço/@
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      Frigorífico
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      Rendimento
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      Data
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-200 dark:divide-gray-600">
+                  {vendasAbate.map((venda, index) => (
+                    <tr
+                      key={index}
+                      className="hover:bg-gray-50 dark:hover:bg-gray-600"
+                    >
+                      <td className="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
+                        {venda.id}
+                      </td>
+                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                        {venda.animal}
+                      </td>
+                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white font-semibold">
+                        {venda.peso}
+                      </td>
+                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                        {venda.idade}
+                      </td>
+                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white font-semibold text-green-600">
+                        {venda.valor}
+                      </td>
+                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white font-semibold text-blue-600">
+                        {venda.precoArroba}
+                      </td>
+                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                        {venda.frigorífico}
+                      </td>
+                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                        <span
+                          className={`px-2 py-1 rounded-full text-xs ${
+                            parseFloat(venda.rendimento) >= 58
+                              ? "bg-green-100 text-green-800"
+                              : "bg-yellow-100 text-yellow-800"
+                          }`}
+                        >
+                          {venda.rendimento}
+                        </span>
+                      </td>
+                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                        {venda.data}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  // Modal RELATÓRIO DETALHADO
+  const RelatorioDetalhadoModal = ({ isOpen, onClose }) => {
+    if (!isOpen) return null;
+
+    const vendasPorPai = [
+      {
+        pai: "TREM BALA_EAO",
+        filhos: 15,
+        vendas: 12,
+        valor: "R$ 420.000",
+        precoMedio: "R$ 35.000",
+      },
+      {
+        pai: "GREGO FIV FVC",
+        filhos: 23,
+        vendas: 18,
+        valor: "R$ 486.000",
+        precoMedio: "R$ 27.000",
+      },
+      {
+        pai: "LINEAR SANT ANNA",
+        filhos: 18,
+        vendas: 14,
+        valor: "R$ 378.000",
+        precoMedio: "R$ 27.000",
+      },
+      {
+        pai: "REM HERMOSO FIV GEN",
+        filhos: 12,
+        vendas: 9,
+        valor: "R$ 243.000",
+        precoMedio: "R$ 27.000",
+      },
+    ];
+
+    const vendasPorEstado = [
+      { estado: "SP", vendas: 32, valor: "R$ 896.000", compradores: 12 },
+      { estado: "MG", vendas: 28, valor: "R$ 756.000", compradores: 8 },
+      { estado: "RJ", vendas: 18, valor: "R$ 486.000", compradores: 6 },
+      { estado: "RS", vendas: 15, valor: "R$ 405.000", compradores: 5 },
+      { estado: "GO", vendas: 12, valor: "R$ 324.000", compradores: 4 },
+    ];
+
+    const sazonalidade = [
+      { mes: "Janeiro", vendas: 8, valor: "R$ 216.000" },
+      { mes: "Fevereiro", vendas: 12, valor: "R$ 324.000" },
+      { mes: "Março", vendas: 15, valor: "R$ 405.000" },
+      { mes: "Abril", vendas: 18, valor: "R$ 486.000" },
+      { mes: "Maio", vendas: 22, valor: "R$ 594.000" },
+      { mes: "Junho", vendas: 25, valor: "R$ 675.000" },
+    ];
+
+    return (
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-7xl w-full max-h-[95vh] overflow-hidden">
+          <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-indigo-600 to-purple-600">
+            <div className="flex items-center space-x-3">
+              <div className="text-4xl">📊</div>
+              <div>
+                <h2 className="text-2xl font-bold text-white">
+                  Relatório Detalhado de Vendas
+                </h2>
+                <p className="text-indigo-100">
+                  Análise completa por pai, estado e sazonalidade
+                </p>
+              </div>
+            </div>
+            <button
+              onClick={onClose}
+              className="p-2 hover:bg-white/20 rounded-lg transition-colors text-white text-2xl font-bold"
+            >
+              ×
+            </button>
+          </div>
+
+          <div className="p-6 overflow-y-auto max-h-[calc(95vh-120px)]">
+            {/* Performance por Pai */}
+            <div className="mb-8">
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+                🐂 Performance por Pai (Linhagem)
+              </h3>
+              <div className="overflow-x-auto">
+                <table className="w-full bg-white dark:bg-gray-700 rounded-lg overflow-hidden">
+                  <thead className="bg-gray-50 dark:bg-gray-600">
+                    <tr>
+                      <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                        Pai
+                      </th>
+                      <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                        Filhos
+                      </th>
+                      <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                        Vendas
+                      </th>
+                      <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                        Taxa Venda
+                      </th>
+                      <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                        Valor Total
+                      </th>
+                      <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                        Preço Médio
+                      </th>
+                      <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                        Ranking
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-200 dark:divide-gray-600">
+                    {vendasPorPai.map((pai, index) => (
+                      <tr
+                        key={index}
+                        className="hover:bg-gray-50 dark:hover:bg-gray-600"
+                      >
+                        <td className="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
+                          {pai.pai}
+                        </td>
+                        <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                          {pai.filhos}
+                        </td>
+                        <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                          {pai.vendas}
+                        </td>
+                        <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                          <span
+                            className={`px-2 py-1 rounded-full text-xs ${
+                              pai.vendas / pai.filhos >= 0.8
+                                ? "bg-green-100 text-green-800"
+                                : "bg-yellow-100 text-yellow-800"
+                            }`}
+                          >
+                            {((pai.vendas / pai.filhos) * 100).toFixed(0)}%
+                          </span>
+                        </td>
+                        <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white font-semibold text-green-600">
+                          {pai.valor}
+                        </td>
+                        <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white font-semibold text-blue-600">
+                          {pai.precoMedio}
+                        </td>
+                        <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                          <span className="text-2xl">
+                            {index === 0
+                              ? "🥇"
+                              : index === 1
+                              ? "🥈"
+                              : index === 2
+                              ? "🥉"
+                              : "📊"}
+                          </span>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            {/* Vendas por Estado */}
+            <div className="mb-8">
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+                🗺️ Vendas por Estado (UF)
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+                {vendasPorEstado.map((estado, index) => (
+                  <button
+                    key={index}
+                    onClick={() => {
+                      setEstadoSelecionado(estado);
+                      setShowEstadoDetalheModal(true);
+                    }}
+                    className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800 hover:bg-blue-100 dark:hover:bg-blue-900/40 hover:scale-105 transition-all duration-300 cursor-pointer group"
+                  >
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-1">
+                        {estado.estado}
+                      </div>
+                      <div className="text-sm text-blue-800 dark:text-blue-300 mb-2">
+                        {estado.vendas} vendas
+                      </div>
+                      <div className="text-lg font-semibold text-green-600 mb-1">
+                        {estado.valor}
+                      </div>
+                      <div className="text-xs text-gray-600 dark:text-gray-400 mb-2">
+                        {estado.compradores} compradores
+                      </div>
+                      <div className="text-xs text-blue-600 dark:text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity">
+                        Clique para detalhes
+                      </div>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Sazonalidade */}
+            <div className="mb-8">
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+                📅 Resumo Vendas
+              </h3>
+              <div className="grid grid-cols-2 md:grid-cols-6 gap-4">
+                {sazonalidade.map((mes, index) => (
+                  <div
+                    key={index}
+                    className="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg text-center"
+                  >
+                    <div className="text-sm font-medium text-purple-800 dark:text-purple-200 mb-2">
+                      {mes.mes}
+                    </div>
+                    <div className="text-xl font-bold text-purple-600 dark:text-purple-400 mb-1">
+                      {mes.vendas}
+                    </div>
+                    <div className="text-xs text-purple-500">vendas</div>
+                    <div className="text-sm font-semibold text-green-600 mt-2">
+                      {mes.valor}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Insights e Recomendações */}
+            <div className="bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-900/20 dark:to-purple-900/20 p-6 rounded-lg">
+              <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+                💡 Insights e Recomendações
+              </h4>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <h5 className="font-semibold text-indigo-800 dark:text-indigo-200 mb-2">
+                    🎯 Oportunidades
+                  </h5>
+                  <ul className="space-y-1 text-sm text-indigo-700 dark:text-indigo-300">
+                    <li>
+                      • <strong>TREM BALA_EAO:</strong> Maior preço médio (R$
+                      35K) - Investir em mais FIV
+                    </li>
+                    <li>
+                      • <strong>São Paulo:</strong> Maior mercado (32 vendas) -
+                      Expandir network
+                    </li>
+                    <li>
+                      • <strong>Maio-Junho:</strong> Pico de vendas - Concentrar
+                      esforços
+                    </li>
+                    <li>
+                      • <strong>Rio Grande do Sul:</strong> Menor participação -
+                      Potencial crescimento
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <h5 className="font-semibold text-purple-800 dark:text-purple-200 mb-2">
+                    📈 Ações Recomendadas
+                  </h5>
+                  <ul className="space-y-1 text-sm text-purple-700 dark:text-purple-300">
+                    <li>• Aumentar programa FIV com CRIVO SANT ANNA</li>
+                    <li>• Desenvolver parceiros no RS e GO</li>
+                    <li>• Planejar leilões para maio-junho</li>
+                    <li>
+                      • Melhorar genética dos touros com menor performance
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  // Modal DETALHES DO ESTADO
+  const EstadoDetalheModal = ({ isOpen, onClose, estado }) => {
+    if (!isOpen || !estado) return null;
+
+    // Dados detalhados por estado
+    const dadosDetalhados = {
+      SP: {
+        vendas: [
+          {
+            id: "SP001",
+            animal: "Touro Elite SP",
+            comprador: "Fazenda Boa Vista",
+            cidade: "Ribeirão Preto",
+            valor: "R$ 45.000",
+            data: "15/12/2024",
+            tipo: "Venda Direta",
+          },
+          {
+            id: "SP002",
+            animal: "Novilha Premium",
+            comprador: "Agropecuária Moderna",
+            cidade: "São José do Rio Preto",
+            valor: "R$ 32.000",
+            data: "12/12/2024",
+            tipo: "Leilão",
+          },
+          {
+            id: "SP003",
+            animal: "Boi Gordo 456",
+            comprador: "JBS Friboi",
+            cidade: "Barretos",
+            valor: "R$ 18.000",
+            data: "10/12/2024",
+            tipo: "Abate",
+          },
+          {
+            id: "SP004",
+            animal: "Vaca Reprodutora",
+            comprador: "Pecuária São Paulo",
+            cidade: "Araçatuba",
+            valor: "R$ 28.000",
+            data: "08/12/2024",
+            tipo: "Venda Direta",
+          },
+          {
+            id: "SP005",
+            animal: "Touro FIV",
+            comprador: "Fazenda Três Irmãos",
+            cidade: "Presidente Prudente",
+            valor: "R$ 52.000",
+            data: "05/12/2024",
+            tipo: "Leilão",
+          },
+        ],
+        cidades: [
+          { nome: "Ribeirão Preto", vendas: 8, valor: "R$ 280.000" },
+          { nome: "São José do Rio Preto", vendas: 6, valor: "R$ 210.000" },
+          { nome: "Barretos", vendas: 5, valor: "R$ 175.000" },
+          { nome: "Araçatuba", vendas: 4, valor: "R$ 140.000" },
+          { nome: "Presidente Prudente", vendas: 9, valor: "R$ 315.000" },
+        ],
+        compradores: [
+          {
+            nome: "Fazenda Boa Vista",
+            compras: 8,
+            valor: "R$ 280.000",
+            contato: "(16) 99999-1234",
+          },
+          {
+            nome: "Agropecuária Moderna",
+            compras: 6,
+            valor: "R$ 210.000",
+            contato: "(17) 88888-5678",
+          },
+          {
+            nome: "JBS Friboi",
+            compras: 5,
+            valor: "R$ 175.000",
+            contato: "(17) 77777-9012",
+          },
+          {
+            nome: "Pecuária São Paulo",
+            compras: 4,
+            valor: "R$ 140.000",
+            contato: "(18) 66666-3456",
+          },
+          {
+            nome: "Fazenda Três Irmãos",
+            compras: 9,
+            valor: "R$ 315.000",
+            contato: "(18) 55555-7890",
+          },
+        ],
+      },
+      MG: {
+        vendas: [
+          {
+            id: "MG001",
+            animal: "Nelore Campeão",
+            comprador: "Fazenda Minas",
+            cidade: "Uberaba",
+            valor: "R$ 38.000",
+            data: "14/12/2024",
+            tipo: "Leilão",
+          },
+          {
+            id: "MG002",
+            animal: "Vaca Leiteira",
+            comprador: "Laticínios BH",
+            cidade: "Belo Horizonte",
+            valor: "R$ 25.000",
+            data: "11/12/2024",
+            tipo: "Venda Direta",
+          },
+          {
+            id: "MG003",
+            animal: "Boi para Abate",
+            comprador: "Marfrig",
+            cidade: "Uberlândia",
+            valor: "R$ 16.000",
+            data: "09/12/2024",
+            tipo: "Abate",
+          },
+        ],
+        cidades: [
+          { nome: "Uberaba", vendas: 12, valor: "R$ 420.000" },
+          { nome: "Uberlândia", vendas: 8, valor: "R$ 280.000" },
+          { nome: "Belo Horizonte", vendas: 5, valor: "R$ 175.000" },
+          { nome: "Montes Claros", vendas: 3, valor: "R$ 105.000" },
+        ],
+        compradores: [
+          {
+            nome: "Fazenda Minas",
+            compras: 12,
+            valor: "R$ 420.000",
+            contato: "(34) 99999-1234",
+          },
+          {
+            nome: "Laticínios BH",
+            compras: 8,
+            valor: "R$ 280.000",
+            contato: "(31) 88888-5678",
+          },
+          {
+            nome: "Marfrig",
+            compras: 5,
+            valor: "R$ 175.000",
+            contato: "(34) 77777-9012",
+          },
+          {
+            nome: "Agro Triângulo",
+            compras: 3,
+            valor: "R$ 105.000",
+            contato: "(38) 66666-3456",
+          },
+        ],
+      },
+    };
+
+    const dadosEstado = dadosDetalhados[estado.estado] || {
+      vendas: [],
+      cidades: [],
+      compradores: [],
+    };
+
+    return (
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-7xl w-full max-h-[95vh] overflow-hidden">
+          <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-blue-600 to-indigo-600">
+            <div className="flex items-center space-x-3">
+              <div className="text-4xl">🗺️</div>
+              <div>
+                <h2 className="text-2xl font-bold text-white">
+                  Vendas em {estado.estado}
+                </h2>
+                <p className="text-blue-100">Análise detalhada do estado</p>
+              </div>
+            </div>
+            <button
+              onClick={onClose}
+              className="p-2 hover:bg-white/20 rounded-lg transition-colors text-white text-2xl font-bold"
+            >
+              ×
+            </button>
+          </div>
+
+          <div className="p-6 overflow-y-auto max-h-[calc(95vh-120px)]">
+            {/* Resumo do Estado */}
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+              <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg text-center">
+                <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+                  {estado.vendas}
+                </div>
+                <div className="text-sm text-blue-800 dark:text-blue-300">
+                  Total de Vendas
+                </div>
+              </div>
+              <div className="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg text-center">
+                <div className="text-2xl font-bold text-green-600 dark:text-green-400">
+                  {estado.valor}
+                </div>
+                <div className="text-sm text-green-800 dark:text-green-300">
+                  Faturamento
+                </div>
+              </div>
+              <div className="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg text-center">
+                <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">
+                  {estado.compradores}
+                </div>
+                <div className="text-sm text-purple-800 dark:text-purple-300">
+                  Compradores
+                </div>
+              </div>
+              <div className="bg-orange-50 dark:bg-orange-900/20 p-4 rounded-lg text-center">
+                <div className="text-2xl font-bold text-orange-600 dark:text-orange-400">
+                  R${" "}
+                  {Math.round(
+                    parseInt(estado.valor.replace(/[^\d]/g, "")) /
+                      estado.vendas /
+                      1000
+                  )}
+                  K
+                </div>
+                <div className="text-sm text-orange-800 dark:text-orange-300">
+                  Preço Médio
+                </div>
+              </div>
+            </div>
+
+            {/* Vendas por Cidade */}
+            {dadosEstado.cidades.length > 0 && (
+              <div className="mb-8">
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+                  🏙️ Vendas por Cidade
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                  {dadosEstado.cidades.map((cidade, index) => (
+                    <div
+                      key={index}
+                      className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg"
+                    >
+                      <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
+                        {cidade.nome}
+                      </h4>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">
+                        {cidade.vendas} vendas
+                      </p>
+                      <p className="text-lg font-bold text-green-600">
+                        {cidade.valor}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Top Compradores do Estado */}
+            {dadosEstado.compradores.length > 0 && (
+              <div className="mb-8">
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+                  🏆 Top Compradores em {estado.estado}
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {dadosEstado.compradores
+                    .slice(0, 4)
+                    .map((comprador, index) => (
+                      <div
+                        key={index}
+                        className="bg-white dark:bg-gray-700 p-4 rounded-lg border border-gray-200 dark:border-gray-600"
+                      >
+                        <div className="flex justify-between items-start mb-2">
+                          <h4 className="font-semibold text-gray-900 dark:text-white">
+                            {comprador.nome}
+                          </h4>
+                          <span className="text-2xl">
+                            {index === 0
+                              ? "🥇"
+                              : index === 1
+                              ? "🥈"
+                              : index === 2
+                              ? "🥉"
+                              : "🏅"}
+                          </span>
+                        </div>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">
+                          {comprador.compras} compras
+                        </p>
+                        <p className="text-lg font-bold text-green-600 mb-2">
+                          {comprador.valor}
+                        </p>
+                        <p className="text-xs text-gray-500 mb-2">
+                          {comprador.contato}
+                        </p>
+                        <button className="px-3 py-1 bg-blue-600 text-white rounded text-sm hover:bg-blue-700">
+                          📞 Contatar
+                        </button>
+                      </div>
+                    ))}
+                </div>
+              </div>
+            )}
+
+            {/* Vendas Detalhadas */}
+            {dadosEstado.vendas.length > 0 && (
+              <div>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+                  📋 Vendas Detalhadas
+                </h3>
+                <div className="overflow-x-auto">
+                  <table className="w-full bg-white dark:bg-gray-700 rounded-lg overflow-hidden">
+                    <thead className="bg-gray-50 dark:bg-gray-600">
+                      <tr>
+                        <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                          ID
+                        </th>
+                        <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                          Animal
+                        </th>
+                        <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                          Comprador
+                        </th>
+                        <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                          Cidade
+                        </th>
+                        <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                          Valor
+                        </th>
+                        <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                          Tipo
+                        </th>
+                        <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                          Data
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-200 dark:divide-gray-600">
+                      {dadosEstado.vendas.map((venda, index) => (
+                        <tr
+                          key={index}
+                          className="hover:bg-gray-50 dark:hover:bg-gray-600"
+                        >
+                          <td className="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
+                            {venda.id}
+                          </td>
+                          <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                            {venda.animal}
+                          </td>
+                          <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                            {venda.comprador}
+                          </td>
+                          <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                            {venda.cidade}
+                          </td>
+                          <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white font-semibold text-green-600">
+                            {venda.valor}
+                          </td>
+                          <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                            <span
+                              className={`px-2 py-1 rounded-full text-xs ${
+                                venda.tipo === "Leilão"
+                                  ? "bg-purple-100 text-purple-800"
+                                  : venda.tipo === "Venda Direta"
+                                  ? "bg-blue-100 text-blue-800"
+                                  : "bg-red-100 text-red-800"
+                              }`}
+                            >
+                              {venda.tipo}
+                            </span>
+                          </td>
+                          <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                            {venda.data}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            )}
+
+            {/* Mensagem para estados sem dados detalhados */}
+            {dadosEstado.vendas.length === 0 && (
+              <div className="text-center py-12">
+                <div className="text-6xl mb-4">📊</div>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                  Dados Detalhados de {estado.estado}
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400 mb-4">
+                  {estado.vendas} vendas realizadas • {estado.valor} em
+                  faturamento
+                </p>
+                <p className="text-sm text-gray-500">
+                  Dados detalhados serão carregados da base de dados em breve
+                </p>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  // Modal RELATÓRIOS DE VENDAS</div>
   const RelatoriosVendasModal = ({ isOpen, onClose }) => {
     if (!isOpen) return null;
 
     const vendasMensais = [
-      { mes: "Dezembro", vendas: 45, valor: "R$ 1.250.000", crescimento: "+12%" },
-      { mes: "Novembro", vendas: 38, valor: "R$ 1.120.000", crescimento: "+8%" },
-      { mes: "Outubro", vendas: 42, valor: "R$ 1.180.000", crescimento: "+15%" },
+      {
+        mes: "Dezembro",
+        vendas: 45,
+        valor: "R$ 1.250.000",
+        crescimento: "+12%",
+      },
+      {
+        mes: "Novembro",
+        vendas: 38,
+        valor: "R$ 1.120.000",
+        crescimento: "+8%",
+      },
+      {
+        mes: "Outubro",
+        vendas: 42,
+        valor: "R$ 1.180.000",
+        crescimento: "+15%",
+      },
     ];
 
     return (
@@ -1041,50 +2973,94 @@ export default function Dashboard() {
             <div className="flex items-center space-x-3">
               <div className="text-4xl">📈</div>
               <div>
-                <h2 className="text-2xl font-bold text-white">Relatórios de Vendas</h2>
-                <p className="text-purple-100">Análises comerciais detalhadas</p>
+                <h2 className="text-2xl font-bold text-white">
+                  Relatórios de Vendas
+                </h2>
+                <p className="text-purple-100">
+                  Análises comerciais detalhadas
+                </p>
               </div>
             </div>
-            <button onClick={onClose} className="p-2 hover:bg-white/20 rounded-lg transition-colors text-white text-2xl font-bold">×</button>
+            <button
+              onClick={onClose}
+              className="p-2 hover:bg-white/20 rounded-lg transition-colors text-white text-2xl font-bold"
+            >
+              ×
+            </button>
           </div>
-          
+
           <div className="p-6 overflow-y-auto max-h-[calc(90vh-120px)]">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
               <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg text-center">
-                <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">125</div>
-                <div className="text-sm text-blue-800 dark:text-blue-300">Vendas Totais</div>
+                <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+                  125
+                </div>
+                <div className="text-sm text-blue-800 dark:text-blue-300">
+                  Vendas Totais
+                </div>
               </div>
               <div className="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg text-center">
-                <div className="text-2xl font-bold text-green-600 dark:text-green-400">R$ 3.55M</div>
-                <div className="text-sm text-green-800 dark:text-green-300">Faturamento</div>
+                <div className="text-2xl font-bold text-green-600 dark:text-green-400">
+                  R$ 3.55M
+                </div>
+                <div className="text-sm text-green-800 dark:text-green-300">
+                  Faturamento
+                </div>
               </div>
               <div className="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg text-center">
-                <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">R$ 28.4K</div>
-                <div className="text-sm text-purple-800 dark:text-purple-300">Ticket Médio</div>
+                <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">
+                  R$ 28.4K
+                </div>
+                <div className="text-sm text-purple-800 dark:text-purple-300">
+                  Ticket Médio
+                </div>
               </div>
               <div className="bg-orange-50 dark:bg-orange-900/20 p-4 rounded-lg text-center">
-                <div className="text-2xl font-bold text-orange-600 dark:text-orange-400">+11.7%</div>
-                <div className="text-sm text-orange-800 dark:text-orange-300">Crescimento</div>
+                <div className="text-2xl font-bold text-orange-600 dark:text-orange-400">
+                  +11.7%
+                </div>
+                <div className="text-sm text-orange-800 dark:text-orange-300">
+                  Crescimento
+                </div>
               </div>
             </div>
 
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">📊 Performance Mensal</h3>
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+              📊 Performance Mensal
+            </h3>
             <div className="overflow-x-auto">
               <table className="w-full bg-white dark:bg-gray-700 rounded-lg overflow-hidden">
                 <thead className="bg-gray-50 dark:bg-gray-600">
                   <tr>
-                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Mês</th>
-                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Vendas</th>
-                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Valor Total</th>
-                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Crescimento</th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      Mês
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      Vendas
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      Valor Total
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      Crescimento
+                    </th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200 dark:divide-gray-600">
                   {vendasMensais.map((venda, index) => (
-                    <tr key={index} className="hover:bg-gray-50 dark:hover:bg-gray-600">
-                      <td className="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">{venda.mes}</td>
-                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">{venda.vendas}</td>
-                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white font-semibold text-green-600">{venda.valor}</td>
+                    <tr
+                      key={index}
+                      className="hover:bg-gray-50 dark:hover:bg-gray-600"
+                    >
+                      <td className="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
+                        {venda.mes}
+                      </td>
+                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                        {venda.vendas}
+                      </td>
+                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white font-semibold text-green-600">
+                        {venda.valor}
+                      </td>
                       <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
                         <span className="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">
                           {venda.crescimento}
@@ -1106,9 +3082,30 @@ export default function Dashboard() {
     if (!isOpen) return null;
 
     const clientesAtivos = [
-      { id: "C001", nome: "João Silva", cidade: "São Paulo", compras: 12, valor: "R$ 340.000", status: "VIP" },
-      { id: "C002", nome: "Maria Santos", cidade: "Rio de Janeiro", compras: 8, valor: "R$ 220.000", status: "Ativo" },
-      { id: "C003", nome: "Pedro Costa", cidade: "Belo Horizonte", compras: 15, valor: "R$ 450.000", status: "VIP" },
+      {
+        id: "C001",
+        nome: "Luciano Abramo Ciambelli",
+        cidade: "São Paulo",
+        compras: 12,
+        valor: "R$ 340.000",
+        status: "VIP",
+      },
+      {
+        id: "C002",
+        nome: "Dona Monica",
+        cidade: "Rio de Janeiro",
+        compras: 8,
+        valor: "R$ 220.000",
+        status: "Ativo",
+      },
+      {
+        id: "C003",
+        nome: "Reginaldo Faria",
+        cidade: "Belo Horizonte",
+        compras: 15,
+        valor: "R$ 450.000",
+        status: "VIP",
+      },
     ];
 
     return (
@@ -1122,52 +3119,106 @@ export default function Dashboard() {
                 <p className="text-indigo-100">Gestão de compradores</p>
               </div>
             </div>
-            <button onClick={onClose} className="p-2 hover:bg-white/20 rounded-lg transition-colors text-white text-2xl font-bold">×</button>
+            <button
+              onClick={onClose}
+              className="p-2 hover:bg-white/20 rounded-lg transition-colors text-white text-2xl font-bold"
+            >
+              ×
+            </button>
           </div>
-          
+
           <div className="p-6 overflow-y-auto max-h-[calc(90vh-120px)]">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
               <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg text-center">
-                <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">156</div>
-                <div className="text-sm text-blue-800 dark:text-blue-300">Clientes Ativos</div>
+                <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+                  156
+                </div>
+                <div className="text-sm text-blue-800 dark:text-blue-300">
+                  Clientes Ativos
+                </div>
               </div>
               <div className="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg text-center">
-                <div className="text-2xl font-bold text-green-600 dark:text-green-400">23</div>
-                <div className="text-sm text-green-800 dark:text-green-300">Clientes VIP</div>
+                <div className="text-2xl font-bold text-green-600 dark:text-green-400">
+                  23
+                </div>
+                <div className="text-sm text-green-800 dark:text-green-300">
+                  Clientes VIP
+                </div>
               </div>
               <div className="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg text-center">
-                <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">R$ 22.8K</div>
-                <div className="text-sm text-purple-800 dark:text-purple-300">Ticket Médio</div>
+                <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">
+                  R$ 22.8K
+                </div>
+                <div className="text-sm text-purple-800 dark:text-purple-300">
+                  Ticket Médio
+                </div>
               </div>
               <div className="bg-orange-50 dark:bg-orange-900/20 p-4 rounded-lg text-center">
-                <div className="text-2xl font-bold text-orange-600 dark:text-orange-400">89%</div>
-                <div className="text-sm text-orange-800 dark:text-orange-300">Satisfação</div>
+                <div className="text-2xl font-bold text-orange-600 dark:text-orange-400">
+                  89%
+                </div>
+                <div className="text-sm text-orange-800 dark:text-orange-300">
+                  Satisfação
+                </div>
               </div>
             </div>
 
-            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">👥 Principais Clientes</h3>
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+              👥 Principais Clientes
+            </h3>
             <div className="overflow-x-auto">
               <table className="w-full bg-white dark:bg-gray-700 rounded-lg overflow-hidden">
                 <thead className="bg-gray-50 dark:bg-gray-600">
                   <tr>
-                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">ID</th>
-                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Nome</th>
-                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Cidade</th>
-                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Compras</th>
-                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Valor Total</th>
-                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Status</th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      ID
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      Nome
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      Cidade
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      Compras
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      Valor Total
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      Status
+                    </th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200 dark:divide-gray-600">
                   {clientesAtivos.map((cliente, index) => (
-                    <tr key={index} className="hover:bg-gray-50 dark:hover:bg-gray-600">
-                      <td className="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">{cliente.id}</td>
-                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">{cliente.nome}</td>
-                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">{cliente.cidade}</td>
-                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">{cliente.compras}</td>
-                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white font-semibold text-green-600">{cliente.valor}</td>
+                    <tr
+                      key={index}
+                      className="hover:bg-gray-50 dark:hover:bg-gray-600"
+                    >
+                      <td className="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
+                        {cliente.id}
+                      </td>
                       <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
-                        <span className={`px-2 py-1 rounded-full text-xs ${cliente.status === 'VIP' ? 'bg-gold-100 text-gold-800' : 'bg-blue-100 text-blue-800'}`}>
+                        {cliente.nome}
+                      </td>
+                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                        {cliente.cidade}
+                      </td>
+                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                        {cliente.compras}
+                      </td>
+                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white font-semibold text-green-600">
+                        {cliente.valor}
+                      </td>
+                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                        <span
+                          className={`px-2 py-1 rounded-full text-xs ${
+                            cliente.status === "VIP"
+                              ? "bg-gold-100 text-gold-800"
+                              : "bg-blue-100 text-blue-800"
+                          }`}
+                        >
                           {cliente.status}
                         </span>
                       </td>
@@ -1175,6 +3226,771 @@ export default function Dashboard() {
                   ))}
                 </tbody>
               </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  // Modal ANALYTICS BI
+  const AnalyticsBIModal = ({ isOpen, onClose }) => {
+    if (!isOpen) return null;
+
+    return (
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-6xl w-full max-h-[90vh] overflow-hidden">
+          <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-cyan-600 to-blue-600">
+            <div className="flex items-center space-x-3">
+              <div className="text-4xl">📊</div>
+              <div>
+                <h2 className="text-2xl font-bold text-white">Analytics BI</h2>
+                <p className="text-cyan-100">Inteligência de negócios</p>
+              </div>
+            </div>
+            <button
+              onClick={onClose}
+              className="p-2 hover:bg-white/20 rounded-lg transition-colors text-white text-2xl font-bold"
+            >
+              ×
+            </button>
+          </div>
+
+          <div className="p-6 overflow-y-auto max-h-[calc(90vh-120px)]">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+              <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-lg text-center">
+                <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">
+                  94.2%
+                </div>
+                <div className="text-sm text-blue-800 dark:text-blue-300">
+                  Taxa de Conversão
+                </div>
+              </div>
+              <div className="bg-green-50 dark:bg-green-900/20 p-6 rounded-lg text-center">
+                <div className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">
+                  R$ 28.4K
+                </div>
+                <div className="text-sm text-green-800 dark:text-green-300">
+                  Valor Médio por Animal
+                </div>
+              </div>
+              <div className="bg-purple-50 dark:bg-purple-900/20 p-6 rounded-lg text-center">
+                <div className="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2">
+                  156
+                </div>
+                <div className="text-sm text-purple-800 dark:text-purple-300">
+                  Clientes Únicos
+                </div>
+              </div>
+              <div className="bg-orange-50 dark:bg-orange-900/20 p-6 rounded-lg text-center">
+                <div className="text-3xl font-bold text-orange-600 dark:text-orange-400 mb-2">
+                  +18.5%
+                </div>
+                <div className="text-sm text-orange-800 dark:text-orange-300">
+                  Crescimento Anual
+                </div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+              <div className="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg">
+                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+                  📈 Tendências de Mercado
+                </h4>
+                <div className="space-y-4">
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-600 dark:text-gray-400">
+                      Demanda por Nelore
+                    </span>
+                    <div className="flex items-center">
+                      <div className="w-20 bg-gray-200 rounded-full h-2 mr-2">
+                        <div
+                          className="bg-green-600 h-2 rounded-full"
+                          style={{ width: "85%" }}
+                        ></div>
+                      </div>
+                      <span className="text-green-600 font-semibold">85%</span>
+                    </div>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-600 dark:text-gray-400">
+                      Demanda por GIR
+                    </span>
+                    <div className="flex items-center">
+                      <div className="w-20 bg-gray-200 rounded-full h-2 mr-2">
+                        <div
+                          className="bg-blue-600 h-2 rounded-full"
+                          style={{ width: "72%" }}
+                        ></div>
+                      </div>
+                      <span className="text-blue-600 font-semibold">72%</span>
+                    </div>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-600 dark:text-gray-400">
+                      Demanda por Brahman
+                    </span>
+                    <div className="flex items-center">
+                      <div className="w-20 bg-gray-200 rounded-full h-2 mr-2">
+                        <div
+                          className="bg-purple-600 h-2 rounded-full"
+                          style={{ width: "68%" }}
+                        ></div>
+                      </div>
+                      <span className="text-purple-600 font-semibold">68%</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg">
+                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+                  🎯 Metas vs Realizado
+                </h4>
+                <div className="space-y-4">
+                  <div>
+                    <div className="flex justify-between mb-1">
+                      <span className="text-gray-600 dark:text-gray-400">
+                        Vendas (Meta: 120)
+                      </span>
+                      <span className="text-green-600 font-semibold">
+                        125 (104%)
+                      </span>
+                    </div>
+                    <div className="w-full bg-gray-200 rounded-full h-2">
+                      <div
+                        className="bg-green-600 h-2 rounded-full"
+                        style={{ width: "104%" }}
+                      ></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div className="flex justify-between mb-1">
+                      <span className="text-gray-600 dark:text-gray-400">
+                        Receita (Meta: R$ 3.2M)
+                      </span>
+                      <span className="text-blue-600 font-semibold">
+                        R$ 3.55M (111%)
+                      </span>
+                    </div>
+                    <div className="w-full bg-gray-200 rounded-full h-2">
+                      <div
+                        className="bg-blue-600 h-2 rounded-full"
+                        style={{ width: "111%" }}
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-gradient-to-r from-cyan-50 to-blue-50 dark:from-cyan-900/20 dark:to-blue-900/20 p-6 rounded-lg">
+              <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
+                🔍 Insights Principais
+              </h4>
+              <ul className="space-y-2 text-gray-700 dark:text-gray-300">
+                <li>
+                  • <strong>Melhor período:</strong> Dezembro apresentou 12%
+                  mais vendas que a média
+                </li>
+                <li>
+                  • <strong>Perfil ideal:</strong> Clientes de SP e RJ
+                  representam 60% do faturamento
+                </li>
+                <li>
+                  • <strong>Oportunidade:</strong> Animais FIV têm margem 23%
+                  superior
+                </li>
+                <li>
+                  • <strong>Recomendação:</strong> Investir em marketing digital
+                  para região Sul
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  // Modal METAS DE VENDAS
+  const MetasVendasModal = ({ isOpen, onClose }) => {
+    if (!isOpen) return null;
+
+    const metas2024 = [
+      {
+        trimestre: "Q1 2024",
+        meta: "R$ 800.000",
+        realizado: "R$ 650.000",
+        percentual: 84,
+        status: "Vamos conseguir",
+      },
+      {
+        trimestre: "Q2 2024",
+        meta: "R$ 900.000",
+        realizado: "R$ 920.000",
+        percentual: 102,
+        status: "Superado",
+      },
+      {
+        trimestre: "Q3 2024",
+        meta: "R$ 950.000",
+        realizado: "R$ 980.000",
+        percentual: 103,
+        status: "Bora pra cima",
+      },
+      {
+        trimestre: "Q4 2024",
+        meta: "R$ 1.100.000",
+        realizado: "R$ 1.250.000",
+        percentual: 114,
+        status: "Superado",
+      },
+    ];
+
+    return (
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-5xl w-full max-h-[90vh] overflow-hidden">
+          <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-pink-600 to-rose-600">
+            <div className="flex items-center space-x-3">
+              <div className="text-4xl">🎯</div>
+              <div>
+                <h2 className="text-2xl font-bold text-white">
+                  Metas de Vendas
+                </h2>
+                <p className="text-pink-100">Acompanhamento de objetivos</p>
+              </div>
+            </div>
+            <button
+              onClick={onClose}
+              className="p-2 hover:bg-white/20 rounded-lg transition-colors text-white text-2xl font-bold"
+            >
+              ×
+            </button>
+          </div>
+
+          <div className="p-6 overflow-y-auto max-h-[calc(90vh-120px)]">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+              <div className="bg-green-50 dark:bg-green-900/20 p-6 rounded-lg text-center">
+                <div className="text-3xl font-bold text-green-600 dark:text-green-400 mb-2">
+                  106%
+                </div>
+                <div className="text-sm text-green-800 dark:text-green-300">
+                  Meta Anual Atingida
+                </div>
+              </div>
+              <div className="bg-blue-50 dark:bg-blue-900/20 p-6 rounded-lg text-center">
+                <div className="text-3xl font-bold text-blue-600 dark:text-blue-400 mb-2">
+                  R$ 4.0M
+                </div>
+                <div className="text-sm text-blue-800 dark:text-blue-300">
+                  Realizado 2024
+                </div>
+              </div>
+              <div className="bg-purple-50 dark:bg-purple-900/20 p-6 rounded-lg text-center">
+                <div className="text-3xl font-bold text-purple-600 dark:text-purple-400 mb-2">
+                  R$ 3.75M
+                </div>
+                <div className="text-sm text-purple-800 dark:text-purple-300">
+                  Meta 2024
+                </div>
+              </div>
+              <div className="bg-orange-50 dark:bg-orange-900/20 p-6 rounded-lg text-center">
+                <div className="text-3xl font-bold text-orange-600 dark:text-orange-400 mb-2">
+                  R$ 4.5M
+                </div>
+                <div className="text-sm text-orange-800 dark:text-orange-300">
+                  Meta 2025
+                </div>
+              </div>
+            </div>
+
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+              📊 Performance por Trimestre
+            </h3>
+            <div className="overflow-x-auto mb-6">
+              <table className="w-full bg-white dark:bg-gray-700 rounded-lg overflow-hidden">
+                <thead className="bg-gray-50 dark:bg-gray-600">
+                  <tr>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      Período
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      Meta
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      Realizado
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      %
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      Status
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-200 dark:divide-gray-600">
+                  {metas2024.map((meta, index) => (
+                    <tr
+                      key={index}
+                      className="hover:bg-gray-50 dark:hover:bg-gray-600"
+                    >
+                      <td className="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
+                        {meta.trimestre}
+                      </td>
+                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                        {meta.meta}
+                      </td>
+                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white font-semibold text-green-600">
+                        {meta.realizado}
+                      </td>
+                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white font-bold">
+                        {meta.percentual}%
+                      </td>
+                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                        <span className="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">
+                          {meta.status}
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            <div className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 p-6 rounded-lg">
+              <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
+                🏆 Conquistas 2024
+              </h4>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <p className="text-green-700 dark:text-green-300">
+                    ✅ Meta anual superada em 6%
+                  </p>
+                  <p className="text-green-700 dark:text-green-300">
+                    ✅ Todos os trimestres acima da meta
+                  </p>
+                  <p className="text-green-700 dark:text-green-300">
+                    ✅ Melhor performance: Q4 (114%)
+                  </p>
+                </div>
+                <div>
+                  <p className="text-blue-700 dark:text-blue-300">
+                    🎯 Meta 2025: R$ 4.5M (+12.5%)
+                  </p>
+                  <p className="text-blue-700 dark:text-blue-300">
+                    🎯 Foco: Expansão regional
+                  </p>
+                  <p className="text-blue-700 dark:text-blue-300">
+                    🎯 Estratégia: Animais premium
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  // Modal NOTAS FISCAIS
+  const NotasFiscaisModal = ({ isOpen, onClose }) => {
+    if (!isOpen) return null;
+
+    const notasRecentes = [
+      {
+        numero: "NF-001234",
+        cliente: "Luciano Abramo Ciambelli",
+        valor: "R$ 45.000",
+        data: "15/12/2024",
+        status: "Emitida",
+      },
+      {
+        numero: "NF-001235",
+        cliente: "Dona Monica",
+        valor: "R$ 32.000",
+        data: "14/12/2024",
+        status: "Emitida",
+      },
+      {
+        numero: "NF-001236",
+        cliente: "Reginaldo Faria",
+        valor: "R$ 67.000",
+        data: "13/12/2024",
+        status: "Cancelada",
+      },
+    ];
+
+    return (
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-5xl w-full max-h-[90vh] overflow-hidden">
+          <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-emerald-600 to-teal-600">
+            <div className="flex items-center space-x-3">
+              <div className="text-4xl">📋</div>
+              <div>
+                <h2 className="text-2xl font-bold text-white">Notas Fiscais</h2>
+                <p className="text-emerald-100">Emissão de documentos</p>
+              </div>
+            </div>
+            <button
+              onClick={onClose}
+              className="p-2 hover:bg-white/20 rounded-lg transition-colors text-white text-2xl font-bold"
+            >
+              ×
+            </button>
+          </div>
+
+          <div className="p-6 overflow-y-auto max-h-[calc(90vh-120px)]">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+              <div className="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg text-center">
+                <div className="text-2xl font-bold text-green-600 dark:text-green-400">
+                  156
+                </div>
+                <div className="text-sm text-green-800 dark:text-green-300">
+                  NFs Emitidas
+                </div>
+              </div>
+              <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg text-center">
+                <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+                  R$ 3.55M
+                </div>
+                <div className="text-sm text-blue-800 dark:text-blue-300">
+                  Valor Total
+                </div>
+              </div>
+              <div className="bg-red-50 dark:bg-red-900/20 p-4 rounded-lg text-center">
+                <div className="text-2xl font-bold text-red-600 dark:text-red-400">
+                  3
+                </div>
+                <div className="text-sm text-red-800 dark:text-red-300">
+                  Canceladas
+                </div>
+              </div>
+              <div className="bg-yellow-50 dark:bg-yellow-900/20 p-4 rounded-lg text-center">
+                <div className="text-2xl font-bold text-yellow-600 dark:text-yellow-400">
+                  2
+                </div>
+                <div className="text-sm text-yellow-800 dark:text-yellow-300">
+                  Pendentes
+                </div>
+              </div>
+            </div>
+
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                📋 Notas Fiscais Recentes
+              </h3>
+              <button className="px-4 py-2 bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors">
+                + Nova NF
+              </button>
+            </div>
+
+            <div className="overflow-x-auto">
+              <table className="w-full bg-white dark:bg-gray-700 rounded-lg overflow-hidden">
+                <thead className="bg-gray-50 dark:bg-gray-600">
+                  <tr>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      Número
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      Cliente
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      Valor
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      Data
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      Status
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      Ações
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-200 dark:divide-gray-600">
+                  {notasRecentes.map((nota, index) => (
+                    <tr
+                      key={index}
+                      className="hover:bg-gray-50 dark:hover:bg-gray-600"
+                    >
+                      <td className="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
+                        {nota.numero}
+                      </td>
+                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                        {nota.cliente}
+                      </td>
+                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white font-semibold text-green-600">
+                        {nota.valor}
+                      </td>
+                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                        {nota.data}
+                      </td>
+                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                        <span
+                          className={`px-2 py-1 rounded-full text-xs ${
+                            nota.status === "Emitida"
+                              ? "bg-green-100 text-green-800"
+                              : "bg-red-100 text-red-800"
+                          }`}
+                        >
+                          {nota.status}
+                        </span>
+                      </td>
+                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                        <button className="text-blue-600 hover:text-blue-800 mr-2">
+                          Ver
+                        </button>
+                        <button className="text-green-600 hover:text-green-800">
+                          PDF
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  // Modal WHATSAPP BUSINESS
+  const WhatsAppBusinessModal = ({ isOpen, onClose }) => {
+    if (!isOpen) return null;
+
+    const campanhas = [
+      {
+        nome: "Leilão Dezembro",
+        enviadas: 245,
+        abertas: 198,
+        cliques: 67,
+        conversoes: 12,
+      },
+      {
+        nome: "Promoção Black Friday",
+        enviadas: 180,
+        abertas: 156,
+        cliques: 89,
+        conversoes: 23,
+      },
+      {
+        nome: "Animais Premium",
+        enviadas: 120,
+        abertas: 98,
+        cliques: 45,
+        conversoes: 8,
+      },
+    ];
+
+    return (
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-5xl w-full max-h-[90vh] overflow-hidden">
+          <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-green-600 to-emerald-600">
+            <div className="flex items-center space-x-3">
+              <div className="text-4xl">📱</div>
+              <div>
+                <h2 className="text-2xl font-bold text-white">
+                  WhatsApp Business
+                </h2>
+                <p className="text-green-100">Comunicação comercial</p>
+              </div>
+            </div>
+            <button
+              onClick={onClose}
+              className="p-2 hover:bg-white/20 rounded-lg transition-colors text-white text-2xl font-bold"
+            >
+              ×
+            </button>
+          </div>
+
+          <div className="p-6 overflow-y-auto max-h-[calc(90vh-120px)]">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+              <div className="bg-green-50 dark:bg-green-900/20 p-4 rounded-lg text-center">
+                <div className="text-2xl font-bold text-green-600 dark:text-green-400">
+                  545
+                </div>
+                <div className="text-sm text-green-800 dark:text-green-300">
+                  Mensagens Enviadas
+                </div>
+              </div>
+              <div className="bg-blue-50 dark:bg-blue-900/20 p-4 rounded-lg text-center">
+                <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+                  452
+                </div>
+                <div className="text-sm text-blue-800 dark:text-blue-300">
+                  Mensagens Abertas
+                </div>
+              </div>
+              <div className="bg-purple-50 dark:bg-purple-900/20 p-4 rounded-lg text-center">
+                <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">
+                  201
+                </div>
+                <div className="text-sm text-purple-800 dark:text-purple-300">
+                  Cliques
+                </div>
+              </div>
+              <div className="bg-orange-50 dark:bg-orange-900/20 p-4 rounded-lg text-center">
+                <div className="text-2xl font-bold text-orange-600 dark:text-orange-400">
+                  43
+                </div>
+                <div className="text-sm text-orange-800 dark:text-orange-300">
+                  Conversões
+                </div>
+              </div>
+            </div>
+
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                📊 Campanhas Ativas
+              </h3>
+              <button className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+                + Nova Campanha
+              </button>
+            </div>
+
+            <div className="overflow-x-auto mb-6">
+              <table className="w-full bg-white dark:bg-gray-700 rounded-lg overflow-hidden">
+                <thead className="bg-gray-50 dark:bg-gray-600">
+                  <tr>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      Campanha
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      Enviadas
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      Abertas
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      Cliques
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      Conversões
+                    </th>
+                    <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
+                      Taxa
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-200 dark:divide-gray-600">
+                  {campanhas.map((campanha, index) => (
+                    <tr
+                      key={index}
+                      className="hover:bg-gray-50 dark:hover:bg-gray-600"
+                    >
+                      <td className="px-4 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
+                        {campanha.nome}
+                      </td>
+                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                        {campanha.enviadas}
+                      </td>
+                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                        {campanha.abertas}
+                      </td>
+                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                        {campanha.cliques}
+                      </td>
+                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white font-semibold text-green-600">
+                        {campanha.conversoes}
+                      </td>
+                      <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
+                        <span className="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">
+                          {(
+                            (campanha.conversoes / campanha.enviadas) *
+                            100
+                          ).toFixed(1)}
+                          %
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg">
+                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+                  📝 Modelos de Mensagem
+                </h4>
+                <div className="space-y-3">
+                  <div className="p-3 bg-white dark:bg-gray-600 rounded border-l-4 border-green-500">
+                    <p className="text-sm font-medium">Leilão Disponível</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400">
+                      Para divulgação de leilões
+                    </p>
+                  </div>
+                  <div className="p-3 bg-white dark:bg-gray-600 rounded border-l-4 border-blue-500">
+                    <p className="text-sm font-medium">Animal Premium</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400">
+                      Para animais de alta qualidade
+                    </p>
+                  </div>
+                  <div className="p-3 bg-white dark:bg-gray-600 rounded border-l-4 border-purple-500">
+                    <p className="text-sm font-medium">Promoção Especial</p>
+                    <p className="text-xs text-gray-600 dark:text-gray-400">
+                      Para ofertas limitadas
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg">
+                <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+                  📈 Performance
+                </h4>
+                <div className="space-y-4">
+                  <div>
+                    <div className="flex justify-between mb-1">
+                      <span className="text-gray-600 dark:text-gray-400">
+                        Taxa de Abertura
+                      </span>
+                      <span className="text-green-600 font-semibold">
+                        82.9%
+                      </span>
+                    </div>
+                    <div className="w-full bg-gray-200 rounded-full h-2">
+                      <div
+                        className="bg-green-600 h-2 rounded-full"
+                        style={{ width: "82.9%" }}
+                      ></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div className="flex justify-between mb-1">
+                      <span className="text-gray-600 dark:text-gray-400">
+                        Taxa de Clique
+                      </span>
+                      <span className="text-blue-600 font-semibold">36.9%</span>
+                    </div>
+                    <div className="w-full bg-gray-200 rounded-full h-2">
+                      <div
+                        className="bg-blue-600 h-2 rounded-full"
+                        style={{ width: "36.9%" }}
+                      ></div>
+                    </div>
+                  </div>
+                  <div>
+                    <div className="flex justify-between mb-1">
+                      <span className="text-gray-600 dark:text-gray-400">
+                        Taxa de Conversão
+                      </span>
+                      <span className="text-purple-600 font-semibold">
+                        7.9%
+                      </span>
+                    </div>
+                    <div className="w-full bg-gray-200 rounded-full h-2">
+                      <div
+                        className="bg-purple-600 h-2 rounded-full"
+                        style={{ width: "7.9%" }}
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -1304,31 +4120,123 @@ export default function Dashboard() {
         />
         <BoletimModal
           isOpen={showBoletimModal}
-          onClose={() => setShowBoletimModal(false)}
+          onClose={() => {
+            setShowBoletimModal(false);
+            setShowManejoModal(true);
+          }}
         />
         <NascimentosModal
           isOpen={showNascimentosModal}
-          onClose={() => setShowNascimentosModal(false)}
+          onClose={() => {
+            setShowNascimentosModal(false);
+            setShowManejoModal(true);
+          }}
         />
         <MortesModal
           isOpen={showMortesModal}
-          onClose={() => setShowMortesModal(false)}
+          onClose={() => {
+            setShowMortesModal(false);
+            setShowManejoModal(true);
+          }}
         />
-        <VendasLeilaoModal
-          isOpen={showVendasLeilaoModal}
-          onClose={() => setShowVendasLeilaoModal(false)}
+        <GestaoVendasModal
+          isOpen={showGestaoVendasModal}
+          onClose={() => {
+            setShowGestaoVendasModal(false);
+            setShowComercialModal(true);
+          }}
+        />
+        <VendaDiretaModal
+          isOpen={showVendaDiretaModal}
+          onClose={() => {
+            setShowVendaDiretaModal(false);
+            setShowGestaoVendasModal(true);
+          }}
+        />
+        <VendaDescarteModal
+          isOpen={showVendaDescarteModal}
+          onClose={() => {
+            setShowVendaDescarteModal(false);
+            setShowGestaoVendasModal(true);
+          }}
+        />
+        <LeilaoModal
+          isOpen={showLeilaoModal}
+          onClose={() => {
+            setShowLeilaoModal(false);
+            setShowGestaoVendasModal(true);
+          }}
+        />
+        <VendaAbateModal
+          isOpen={showVendaAbateModal}
+          onClose={() => {
+            setShowVendaAbateModal(false);
+            setShowGestaoVendasModal(true);
+          }}
+        />
+        <RelatorioDetalhadoModal
+          isOpen={showRelatorioDetalhadoModal}
+          onClose={() => {
+            setShowRelatorioDetalhadoModal(false);
+            setShowGestaoVendasModal(true);
+          }}
+        />
+        <EstadoDetalheModal
+          isOpen={showEstadoDetalheModal}
+          onClose={() => {
+            setShowEstadoDetalheModal(false);
+            setShowRelatorioDetalhadoModal(true);
+          }}
+          estado={estadoSelecionado}
         />
         <ControleFinanceiroModal
           isOpen={showControleFinanceiroModal}
-          onClose={() => setShowControleFinanceiroModal(false)}
+          onClose={() => {
+            setShowControleFinanceiroModal(false);
+            setShowComercialModal(true);
+          }}
         />
         <RelatoriosVendasModal
           isOpen={showRelatoriosVendasModal}
-          onClose={() => setShowRelatoriosVendasModal(false)}
+          onClose={() => {
+            setShowRelatoriosVendasModal(false);
+            setShowComercialModal(true);
+          }}
         />
         <ClientesModal
           isOpen={showClientesModal}
-          onClose={() => setShowClientesModal(false)}
+          onClose={() => {
+            setShowClientesModal(false);
+            setShowComercialModal(true);
+          }}
+        />
+        <AnalyticsBIModal
+          isOpen={showAnalyticsBIModal}
+          onClose={() => {
+            setShowAnalyticsBIModal(false);
+            setShowComercialModal(true);
+          }}
+        />
+        <MetasVendasModal
+          isOpen={showMetasVendasModal}
+          onClose={() => {
+            setShowMetasVendasModal(false);
+            setShowComercialModal(true);
+          }}
+        />
+        <NotasFiscaisModal
+          isOpen={showNotasFiscaisModal}
+          onClose={() => {
+            setShowNotasFiscaisModal(false);
+            setShowComercialModal(true);
+          }}
+        />
+        <WhatsAppBusinessModal
+          isOpen={showWhatsAppBusinessModal}
+          onClose={() => {
+            setShowWhatsAppBusinessModal(false);
+            setShowComercialModal(true);
+          }}
         />
       </Layout>
     );
