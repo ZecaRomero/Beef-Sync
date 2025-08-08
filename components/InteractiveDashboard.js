@@ -196,7 +196,7 @@ export default function InteractiveDashboard() {
   const renderBarChart = (data) => {
     const maxValue = Math.max(...Object.values(data))
     const total = Object.values(data).reduce((acc, val) => acc + val, 0)
-    
+
     // Cores específicas para cada categoria
     const categoryColors = {
       'Nascimento': { bg: 'from-green-400 to-green-600', icon: '🐄', border: 'border-green-200 dark:border-green-800' },
@@ -214,7 +214,7 @@ export default function InteractiveDashboard() {
     }
 
     // Ordenar por valor (maior para menor)
-    const sortedData = Object.entries(data).sort(([,a], [,b]) => b - a)
+    const sortedData = Object.entries(data).sort(([, a], [, b]) => b - a)
 
     return (
       <div className="space-y-4">
@@ -234,7 +234,7 @@ export default function InteractiveDashboard() {
             const percentage = ((value / maxValue) * 100)
             const percentageOfTotal = ((value / total) * 100)
             const colors = categoryColors[key] || categoryColors['Outros']
-            
+
             return (
               <div
                 key={key}
@@ -266,7 +266,7 @@ export default function InteractiveDashboard() {
                 {/* Barra de progresso */}
                 <div className="relative">
                   <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-4 overflow-hidden">
-                    <div 
+                    <div
                       className={`bg-gradient-to-r ${colors.bg} h-full rounded-full transition-all duration-1000 ease-out relative`}
                       style={{ width: `${percentage}%` }}
                     >
@@ -274,7 +274,7 @@ export default function InteractiveDashboard() {
                       <div className="absolute inset-0 bg-white opacity-20 rounded-full animate-pulse"></div>
                     </div>
                   </div>
-                  
+
                   {/* Indicador de porcentagem */}
                   <div className="absolute -top-6 right-0 text-xs font-medium text-gray-600 dark:text-gray-400">
                     {percentage.toFixed(1)}%
@@ -285,9 +285,9 @@ export default function InteractiveDashboard() {
                 <div className="mt-3 flex justify-between text-xs text-gray-500 dark:text-gray-400">
                   <span>Posição: {index + 1}º lugar</span>
                   <span>
-                    {percentage >= 50 ? '🔥 Alto impacto' : 
-                     percentage >= 25 ? '⚡ Médio impacto' : 
-                     '📊 Baixo impacto'}
+                    {percentage >= 50 ? '🔥 Alto impacto' :
+                      percentage >= 25 ? '⚡ Médio impacto' :
+                        '📊 Baixo impacto'}
                   </span>
                 </div>
               </div>
@@ -323,7 +323,7 @@ export default function InteractiveDashboard() {
             <div className="flex justify-between">
               <span className="text-gray-600 dark:text-gray-400">Top 3 representam:</span>
               <span className="font-medium text-gray-900 dark:text-white">
-                {((sortedData.slice(0, 3).reduce((acc, [,val]) => acc + val, 0) / total) * 100).toFixed(1)}% do total
+                {((sortedData.slice(0, 3).reduce((acc, [, val]) => acc + val, 0) / total) * 100).toFixed(1)}% do total
               </span>
             </div>
           </div>
@@ -335,7 +335,7 @@ export default function InteractiveDashboard() {
   const renderDoughnutChart = (data) => {
     const total = Object.values(data).reduce((acc, val) => acc + val, 0)
     const colors = ['bg-blue-500', 'bg-green-500', 'bg-yellow-500', 'bg-purple-500', 'bg-red-500']
-    
+
     return (
       <div className="flex flex-col items-center space-y-4">
         <div className="relative w-48 h-48">
@@ -366,34 +366,33 @@ export default function InteractiveDashboard() {
   return (
     <div className="space-y-6">
       {/* Métricas Principais com Animação */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
         {metrics.map((metric, index) => (
           <div
             key={index}
             onClick={() => openModal(metric.id)}
-            className="card p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 cursor-pointer group"
+            className="card p-3 sm:p-4 md:p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 cursor-pointer group"
           >
             <div className="flex items-center justify-between">
-              <div className="flex-1">
-                <p className="text-sm font-medium text-gray-600 dark:text-gray-400 mb-1">
+              <div className="flex-1 min-w-0">
+                <p className="text-xs sm:text-sm font-medium text-gray-600 dark:text-gray-400 mb-1">
                   {metric.title}
                 </p>
-                <p className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                <p className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-2">
                   {metric.value}
                 </p>
                 <div className="flex items-center">
                   <span className="mr-1">
                     {metric.trend === 'up' ? '📈' : '📉'}
                   </span>
-                  <span className={`text-sm font-medium ${
-                    metric.trend === 'up' ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'
-                  }`}>
+                  <span className={`text-xs sm:text-sm font-medium ${metric.trend === 'up' ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'
+                    }`}>
                     {metric.change}
                   </span>
                 </div>
               </div>
-              <div className={`${metric.bgColor} p-3 rounded-full group-hover:scale-110 transition-transform duration-300`}>
-                <span className="text-2xl">{metric.emoji}</span>
+              <div className={`${metric.bgColor} p-2 sm:p-3 rounded-full group-hover:scale-110 transition-transform duration-300 flex-shrink-0 ml-2`}>
+                <span className="text-xl sm:text-2xl">{metric.emoji}</span>
               </div>
             </div>
           </div>
@@ -410,11 +409,10 @@ export default function InteractiveDashboard() {
             <button
               key={option.key}
               onClick={() => setSelectedMetric(option.key)}
-              className={`flex items-center px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                selectedMetric === option.key
+              className={`flex items-center px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${selectedMetric === option.key
                   ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg transform scale-105'
                   : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
-              }`}
+                }`}
             >
               {option.label}
             </button>
@@ -445,14 +443,14 @@ export default function InteractiveDashboard() {
             <span className="mr-2 text-yellow-500">⭐</span>
             Top Performers (ROI)
             <span className="ml-2 text-gray-400 cursor-help">ℹ️</span>
-            
+
             {/* Tooltip */}
             <div className="absolute left-0 top-8 bg-gray-900 text-white text-sm rounded-lg p-3 shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-10 w-80">
               <div className="font-semibold mb-2">ROI = Retorno sobre Investimento</div>
               <div className="text-xs leading-relaxed">
-                <strong>Fórmula:</strong> (Receita - Investimento) / Investimento × 100<br/>
-                <strong>Exemplo:</strong> Investiu R$ 3.200, vendeu por R$ 4.500<br/>
-                <strong>ROI:</strong> (4.500 - 3.200) / 3.200 × 100 = <span className="text-green-400">40,6%</span><br/>
+                <strong>Fórmula:</strong> (Receita - Investimento) / Investimento × 100<br />
+                <strong>Exemplo:</strong> Investiu R$ 3.200, vendeu por R$ 4.500<br />
+                <strong>ROI:</strong> (4.500 - 3.200) / 3.200 × 100 = <span className="text-green-400">40,6%</span><br />
                 <strong>Significa:</strong> Para cada R$ 1 investido, ganhou R$ 0,40 de lucro
               </div>
             </div>
@@ -466,21 +464,19 @@ export default function InteractiveDashboard() {
                   className="flex items-center justify-between p-4 bg-gradient-to-r from-gray-50 to-blue-50 dark:from-gray-800 dark:to-blue-900 rounded-lg hover:shadow-md transition-shadow"
                 >
                   <div className="flex items-center space-x-3">
-                    <div className={`w-8 h-8 rounded-full flex items-center justify-center text-white font-bold ${
-                      index === 0 ? 'bg-yellow-500' :
-                      index === 1 ? 'bg-gray-400' :
-                      index === 2 ? 'bg-orange-600' : 'bg-blue-500'
-                    }`}>
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center text-white font-bold ${index === 0 ? 'bg-yellow-500' :
+                        index === 1 ? 'bg-gray-400' :
+                          index === 2 ? 'bg-orange-600' : 'bg-blue-500'
+                      }`}>
                       {index + 1}
                     </div>
                     <div>
                       <div className="font-medium text-gray-900 dark:text-white flex items-center">
                         {animal.nome}
-                        <span className={`ml-2 px-2 py-1 text-xs rounded-full ${
-                          animal.isVendido 
-                            ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200' 
+                        <span className={`ml-2 px-2 py-1 text-xs rounded-full ${animal.isVendido
+                            ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
                             : 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200'
-                        }`}>
+                          }`}>
                           {animal.situacao}
                         </span>
                       </div>
@@ -492,9 +488,8 @@ export default function InteractiveDashboard() {
                   <div className="text-right">
                     {animal.isVendido ? (
                       <>
-                        <div className={`text-lg font-bold ${
-                          animal.roi >= 0 ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'
-                        }`}>
+                        <div className={`text-lg font-bold ${animal.roi >= 0 ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'
+                          }`}>
                           {animal.roi.toFixed(1)}%
                         </div>
                         <div className="text-sm text-gray-600 dark:text-gray-400">
@@ -547,7 +542,7 @@ export default function InteractiveDashboard() {
                     <div className="mb-6 p-4 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-lg">
                       <div className="text-center">
                         <div className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
-                          {selectedCard === 'roi' 
+                          {selectedCard === 'roi'
                             ? `${details.total.toFixed(1)}%`
                             : `R$ ${details.total.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`
                           }
@@ -594,7 +589,7 @@ export default function InteractiveDashboard() {
                               {key}
                             </div>
                             <div className="font-bold text-blue-600 dark:text-blue-400">
-                              {selectedCard === 'roi' 
+                              {selectedCard === 'roi'
                                 ? `${value.toFixed(1)}%`
                                 : `R$ ${value.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`
                               }
@@ -617,9 +612,8 @@ export default function InteractiveDashboard() {
                         {details.items.slice(0, 10).map((item, index) => (
                           <div key={index} className="flex items-center justify-between p-3 bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 rounded-lg">
                             <div className="flex items-center space-x-3">
-                              <div className={`w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-bold ${
-                                index < 3 ? 'bg-gradient-to-r from-yellow-400 to-orange-500' : 'bg-gray-400'
-                              }`}>
+                              <div className={`w-6 h-6 rounded-full flex items-center justify-center text-white text-xs font-bold ${index < 3 ? 'bg-gradient-to-r from-yellow-400 to-orange-500' : 'bg-gray-400'
+                                }`}>
                                 {index + 1}
                               </div>
                               <div>
@@ -651,9 +645,8 @@ export default function InteractiveDashboard() {
                               )}
                               {selectedCard === 'lucro' && (
                                 <>
-                                  <div className={`font-bold ${
-                                    item.lucro >= 0 ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'
-                                  }`}>
+                                  <div className={`font-bold ${item.lucro >= 0 ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'
+                                    }`}>
                                     R$ {item.lucro.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                                   </div>
                                   <div className="text-sm text-gray-600 dark:text-gray-400">
@@ -663,9 +656,8 @@ export default function InteractiveDashboard() {
                               )}
                               {selectedCard === 'roi' && (
                                 <>
-                                  <div className={`font-bold ${
-                                    item.roi >= 0 ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'
-                                  }`}>
+                                  <div className={`font-bold ${item.roi >= 0 ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'
+                                    }`}>
                                     {item.roi.toFixed(1)}%
                                   </div>
                                   <div className="text-sm text-gray-600 dark:text-gray-400">

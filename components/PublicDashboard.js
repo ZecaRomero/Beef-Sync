@@ -9,7 +9,7 @@ export default function PublicDashboard({ inviteToken }) {
 
   useEffect(() => {
     loadDashboard();
-    
+
     // Simular atualizações em tempo real
     const interval = setInterval(() => {
       addLiveUpdate();
@@ -104,7 +104,7 @@ export default function PublicDashboard({ inviteToken }) {
                 </p>
               </div>
             </div>
-            
+
             <div className="flex items-center space-x-2">
               <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
               <span className="text-sm text-gray-600 dark:text-gray-400">
@@ -116,14 +116,14 @@ export default function PublicDashboard({ inviteToken }) {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
           {/* Sidebar com atualizações ao vivo */}
           <div className="lg:col-span-1">
             <div className="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-sm border border-gray-200 dark:border-gray-700 sticky top-6">
               <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4 flex items-center">
                 🔴 Atualizações ao Vivo
               </h3>
-              
+
               <div className="space-y-3 max-h-96 overflow-y-auto">
                 {liveUpdates.map((update) => (
                   <div
@@ -161,11 +161,10 @@ export default function PublicDashboard({ inviteToken }) {
                     <button
                       key={tab.id}
                       onClick={() => setSelectedTab(tab.id)}
-                      className={`py-4 px-1 border-b-2 font-medium text-sm flex items-center space-x-2 ${
-                        selectedTab === tab.id
+                      className={`py-4 px-1 border-b-2 font-medium text-sm flex items-center space-x-2 ${selectedTab === tab.id
                           ? "border-blue-500 text-blue-600 dark:text-blue-400"
                           : "border-transparent text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
-                      }`}
+                        }`}
                     >
                       <span>{tab.icon}</span>
                       <span>{tab.label}</span>
@@ -181,7 +180,7 @@ export default function PublicDashboard({ inviteToken }) {
                     <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
                       💰 Vendas Recentes
                     </h3>
-                    
+
                     <div className="space-y-4">
                       {dashboardData.recentSales.map((sale) => (
                         <div
@@ -203,7 +202,7 @@ export default function PublicDashboard({ inviteToken }) {
                                 </div>
                               </div>
                             </div>
-                            
+
                             <div className="text-right">
                               <div className="text-lg font-bold text-green-600 dark:text-green-400">
                                 {formatCurrency(sale.price)}
@@ -228,7 +227,7 @@ export default function PublicDashboard({ inviteToken }) {
                     <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
                       🏆 Rankings e Performance
                     </h3>
-                    
+
                     {/* Melhores Performers */}
                     <div className="mb-6">
                       <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-3">
@@ -275,8 +274,8 @@ export default function PublicDashboard({ inviteToken }) {
                             className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 text-center"
                           >
                             <div className="text-2xl mb-2">
-                              {category === "Terminados" ? "🐄" : 
-                               category === "Recria" ? "🐂" : "🐮"}
+                              {category === "Terminados" ? "🐄" :
+                                category === "Recria" ? "🐂" : "🐮"}
                             </div>
                             <div className="font-semibold text-gray-900 dark:text-white">
                               {category}
@@ -303,7 +302,7 @@ export default function PublicDashboard({ inviteToken }) {
                     <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
                       📊 Performance vs Mercado
                     </h3>
-                    
+
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
                       <div className="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 text-center">
                         <div className="text-3xl font-bold text-green-600 dark:text-green-400">
@@ -313,7 +312,7 @@ export default function PublicDashboard({ inviteToken }) {
                           📈 Acima do Mercado
                         </div>
                       </div>
-                      
+
                       <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 text-center">
                         <div className="text-3xl font-bold text-blue-600 dark:text-blue-400">
                           {dashboardData.marketComparison.atMarket}%
@@ -322,7 +321,7 @@ export default function PublicDashboard({ inviteToken }) {
                           ➡️ No Mercado
                         </div>
                       </div>
-                      
+
                       <div className="bg-red-50 dark:bg-red-900/20 rounded-lg p-4 text-center">
                         <div className="text-3xl font-bold text-red-600 dark:text-red-400">
                           {dashboardData.marketComparison.belowMarket}%
@@ -331,7 +330,7 @@ export default function PublicDashboard({ inviteToken }) {
                           📉 Abaixo do Mercado
                         </div>
                       </div>
-                      
+
                       <div className="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-4 text-center">
                         <div className="text-3xl font-bold text-purple-600 dark:text-purple-400">
                           +{dashboardData.marketComparison.avgPremium}%

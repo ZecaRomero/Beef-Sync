@@ -69,18 +69,18 @@ const QuickActions = ({ onActionComplete }) => {
   const handleSubmitQuickAdd = async (e) => {
     e.preventDefault();
     setLoading(true);
-    
+
     // Simular processamento
     await new Promise(resolve => setTimeout(resolve, 1500));
-    
+
     setLoading(false);
     setShowQuickAdd(false);
-    
+
     // Notificar conclusão
     if (onActionComplete) {
       onActionComplete();
     }
-    
+
     // Mostrar feedback
     alert(`✅ ${getActionTitle(quickAddType)} adicionado com sucesso!`);
   };
@@ -298,17 +298,17 @@ const QuickActions = ({ onActionComplete }) => {
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-3 md:gap-4">
             {quickActions.map((action) => (
               <Button
                 key={action.id}
                 onClick={action.action}
-                className={`${action.color} text-white h-auto p-4 flex flex-col items-center space-y-2 hover:scale-105 transition-transform`}
+                className={`${action.color} text-white h-auto p-2 sm:p-3 md:p-4 flex flex-col items-center space-y-1 sm:space-y-2 hover:scale-105 transition-transform`}
               >
-                <span className="text-2xl">{action.icon}</span>
+                <span className="text-lg sm:text-xl md:text-2xl">{action.icon}</span>
                 <div className="text-center">
-                  <div className="font-semibold text-sm">{action.title}</div>
-                  <div className="text-xs opacity-90">{action.description}</div>
+                  <div className="font-semibold text-xs sm:text-sm">{action.title}</div>
+                  <div className="text-xs opacity-90 hidden sm:block">{action.description}</div>
                 </div>
               </Button>
             ))}

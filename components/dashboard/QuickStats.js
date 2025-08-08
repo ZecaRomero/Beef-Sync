@@ -63,16 +63,16 @@ const QuickStats = () => {
   };
 
   return (
-    <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
       {quickStats.map((stat, index) => (
         <Card key={index} className="border border-gray-200 dark:border-gray-600">
-          <CardContent className="pt-4">
-            <div className="flex items-center justify-between mb-3">
+          <CardContent className="pt-3 sm:pt-4 p-3 sm:p-4">
+            <div className="flex items-center justify-between mb-2 sm:mb-3">
               <div className={`p-2 rounded-lg ${getColorClasses(stat.color)}`}>
-                <span className="text-lg">{stat.icon}</span>
+                <span className="text-lg sm:text-lg">{stat.icon}</span>
               </div>
               <div className="text-right">
-                <div className={`text-2xl font-bold ${getColorClasses(stat.color).split(' ')[0]}`}>
+                <div className={`text-xl sm:text-2xl font-bold ${getColorClasses(stat.color).split(' ')[0]}`}>
                   {stat.value}
                 </div>
                 {stat.total > 0 && stat.color !== 'red' && (
@@ -82,13 +82,13 @@ const QuickStats = () => {
                 )}
               </div>
             </div>
-            
+
             <div className="mb-2">
-              <div className="text-sm font-medium text-gray-700 dark:text-gray-300">
+              <div className="text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-300">
                 {stat.label}
               </div>
             </div>
-            
+
             {stat.total > 0 && stat.color !== 'red' && (
               <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
                 <div

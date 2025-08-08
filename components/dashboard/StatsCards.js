@@ -68,26 +68,26 @@ const StatsCards = () => {
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
       {cards.map((card, index) => (
         <Card
           key={index}
           className={`border-2 shadow-lg hover:shadow-xl transition-shadow ${getColorClasses(card.color)}`}
         >
-          <CardContent className="pt-6">
+          <CardContent className="pt-3 sm:pt-4 md:pt-6 p-3 sm:p-4 md:p-6">
             <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-bold text-gray-600 dark:text-gray-300 mb-1">
+              <div className="flex-1 min-w-0">
+                <p className="text-xs sm:text-sm font-bold text-gray-600 dark:text-gray-300 mb-1">
                   {card.title}
                 </p>
-                <p className={`text-3xl font-black ${getTextColor(card.color)} mb-2`}>
+                <p className={`text-lg sm:text-xl md:text-3xl font-black ${getTextColor(card.color)} mb-2`}>
                   {card.value}
                 </p>
                 <p className="text-xs text-gray-500 dark:text-gray-400">
                   {card.change}
                 </p>
               </div>
-              <div className={`text-4xl p-3 rounded-lg ${getColorClasses(card.color)}`}>
+              <div className={`text-2xl sm:text-3xl md:text-4xl p-2 sm:p-3 rounded-lg ${getColorClasses(card.color)} flex-shrink-0 ml-2`}>
                 {card.icon}
               </div>
             </div>

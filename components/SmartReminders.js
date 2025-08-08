@@ -17,13 +17,13 @@ export default function SmartReminders({ animals, materials, onCreateNotificatio
     animals?.forEach(animal => {
       const birthDate = new Date(animal.birthDate);
       const ageInMonths = Math.floor((today - birthDate) / (1000 * 60 * 60 * 24 * 30.44));
-      
+
       // Lembrete para vacinação de brucelose (fêmeas 3-8 meses)
       if (animal.gender === 'F' && ageInMonths >= 3 && ageInMonths <= 8) {
-        const hasVaccine = materials?.find(m => 
+        const hasVaccine = materials?.find(m =>
           m.name.toLowerCase().includes('brucelose') && m.quantity > 0
         );
-        
+
         if (hasVaccine && !animal.protocols?.includes('brucelose')) {
           newReminders.push({
             id: `brucelose-${animal.id}`,
@@ -44,10 +44,10 @@ export default function SmartReminders({ animals, materials, onCreateNotificatio
 
       // Lembrete para colocação de brinco (8-12 meses)
       if (ageInMonths >= 8 && ageInMonths <= 12) {
-        const hasBrinco = materials?.find(m => 
+        const hasBrinco = materials?.find(m =>
           m.name.toLowerCase().includes('brinco') && m.quantity > 0
         );
-        
+
         if (hasBrinco && !animal.protocols?.includes('brinco')) {
           newReminders.push({
             id: `brinco-${animal.id}`,
@@ -69,10 +69,10 @@ export default function SmartReminders({ animals, materials, onCreateNotificatio
 
       // Lembrete para vermifugação (2-4 meses inicial)
       if (ageInMonths >= 2 && ageInMonths <= 4) {
-        const hasVermifugo = materials?.find(m => 
+        const hasVermifugo = materials?.find(m =>
           m.name.toLowerCase().includes('ivermectina') && m.quantity > 0
         );
-        
+
         if (hasVermifugo && !animal.protocols?.includes('vermifugo_inicial')) {
           newReminders.push({
             id: `vermifugo-${animal.id}`,
@@ -116,7 +116,7 @@ export default function SmartReminders({ animals, materials, onCreateNotificatio
       if (material.expiryDate) {
         const expiryDate = new Date(material.expiryDate);
         const daysToExpiry = Math.floor((expiryDate - today) / (1000 * 60 * 60 * 24));
-        
+
         if (daysToExpiry <= 30 && daysToExpiry > 0) {
           newReminders.push({
             id: `expiry-${material.id}`,
@@ -146,7 +146,7 @@ export default function SmartReminders({ animals, materials, onCreateNotificatio
       if (material && material.quantity > 0) {
         // Aqui você chamaria a função para atualizar o material
         console.log(`Aplicando ${reminder.materialNeeded} em ${reminder.animalName}`);
-        
+
         // Criar notificação de sucesso
         onCreateNotification({
           title: `✅ ${reminder.title}`,
@@ -172,13 +172,13 @@ export default function SmartReminders({ animals, materials, onCreateNotificatio
   const snoozeReminder = (reminder, days = 3) => {
     const newDueDate = new Date();
     newDueDate.setDate(newDueDate.getDate() + days);
-    
-    setReminders(prev => prev.map(r => 
+
+    setReminders(prev => prev.map(r =>
       r.id === reminder.id ? { ...r, dueDate: newDueDate } : r
     ));
-    
+
     setActiveReminders(prev => prev.filter(r => r.id !== reminder.id));
-    
+
     onCreateNotification({
       title: `⏰ Lembrete Adiado`,
       message: `${reminder.title} foi adiado para ${newDueDate.toLocaleDateString('pt-BR')}`,
@@ -203,7 +203,7 @@ export default function SmartReminders({ animals, materials, onCreateNotificatio
       medium: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-400',
       low: 'bg-blue-100 text-blue-800 dark:bg-blue-900/20 dark:text-blue-400'
     };
-    
+
     const labels = {
       urgent: '🚨 Urgente',
       high: '⚠️ Alta',
@@ -242,7 +242,7 @@ export default function SmartReminders({ animals, materials, onCreateNotificatio
           <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
             🔔 Lembretes Ativos ({activeReminders.length})
           </h3>
-          
+
           <div className="space-y-4">
             {activeReminders.map((reminder) => (
               <div
@@ -259,7 +259,7 @@ export default function SmartReminders({ animals, materials, onCreateNotificatio
                         </h4>
                         {getPriorityBadge(reminder.priority)}
                       </div>
-                      
+
                       <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
                         {reminder.description}
                       </p>
@@ -285,7 +285,7 @@ export default function SmartReminders({ animals, materials, onCreateNotificatio
                     >
                       ✅ Executar
                     </Button>
-                    
+
                     <Button
                       variant="outline"
                       size="sm"
@@ -310,33 +310,33 @@ export default function SmartReminders({ animals, materials, onCreateNotificatio
       )}
 
       {/* Estatísticas */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <Card className="p-4 text-center">
-          <div className="text-2xl font-bold text-red-600 dark:text-red-400">
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+        <Card className="p-3 sm:p-4 text-center">
+          <div className="text-xl sm:text-2xl font-bold text-red-600 dark:text-red-400">
             {reminders.filter(r => r.priority === 'urgent').length}
           </div>
-          <div className="text-sm text-gray-600 dark:text-gray-400">Urgentes</div>
+          <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Urgentes</div>
         </Card>
-        
-        <Card className="p-4 text-center">
-          <div className="text-2xl font-bold text-orange-600 dark:text-orange-400">
+
+        <Card className="p-3 sm:p-4 text-center">
+          <div className="text-xl sm:text-2xl font-bold text-orange-600 dark:text-orange-400">
             {reminders.filter(r => r.priority === 'high').length}
           </div>
-          <div className="text-sm text-gray-600 dark:text-gray-400">Alta Prioridade</div>
+          <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Alta Prioridade</div>
         </Card>
-        
-        <Card className="p-4 text-center">
-          <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+
+        <Card className="p-3 sm:p-4 text-center">
+          <div className="text-xl sm:text-2xl font-bold text-blue-600 dark:text-blue-400">
             {reminders.filter(r => r.type === 'vaccination').length}
           </div>
-          <div className="text-sm text-gray-600 dark:text-gray-400">Vacinações</div>
+          <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Vacinações</div>
         </Card>
-        
-        <Card className="p-4 text-center">
-          <div className="text-2xl font-bold text-green-600 dark:text-green-400">
+
+        <Card className="p-3 sm:p-4 text-center">
+          <div className="text-xl sm:text-2xl font-bold text-green-600 dark:text-green-400">
             {reminders.filter(r => r.type === 'stock').length}
           </div>
-          <div className="text-sm text-gray-600 dark:text-gray-400">Estoque</div>
+          <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Estoque</div>
         </Card>
       </div>
     </div>

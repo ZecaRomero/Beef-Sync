@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from './ui/card';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
-import { 
-  BellIcon, 
+import {
+  BellIcon,
   ExclamationTriangleIcon,
   CheckCircleIcon,
   XCircleIcon,
@@ -93,7 +93,7 @@ const ReceptorAlertSystem = () => {
     receptors.forEach(receptor => {
       const birthDate = new Date(receptor.lastBirth);
       const daysSinceBirth = Math.floor((today - birthDate) / (1000 * 60 * 60 * 24));
-      
+
       // Alerta: 2 meses após parto - apta para nova TE
       if (daysSinceBirth >= 60 && daysSinceBirth <= 70 && !receptor.pregnancyStatus) {
         alertsGenerated.push({
@@ -114,7 +114,7 @@ const ReceptorAlertSystem = () => {
       if (receptor.pregnancyStatus === 'failed' && receptor.lastService) {
         const serviceDate = new Date(receptor.lastService);
         const daysSinceService = Math.floor((today - serviceDate) / (1000 * 60 * 60 * 24));
-        
+
         if (daysSinceService >= 30) {
           alertsGenerated.push({
             id: `pregnancy_failed_${receptor.id}`,
@@ -135,7 +135,7 @@ const ReceptorAlertSystem = () => {
       if (receptor.weaningDate && !receptor.lastService) {
         const weaningDate = new Date(receptor.weaningDate);
         const daysSinceWeaning = Math.floor((today - weaningDate) / (1000 * 60 * 60 * 24));
-        
+
         if (daysSinceWeaning >= 60 && daysSinceWeaning <= 90) {
           alertsGenerated.push({
             id: `inactive_warning_${receptor.id}`,
@@ -175,7 +175,7 @@ const ReceptorAlertSystem = () => {
 
     // Simular ação no backend
     console.log(`Executando ação: ${action} para ${alert.receptorName}`);
-    
+
     // Atualizar status da receptora
     setReceptors(prev => prev.map(receptor => {
       if (receptor.id === alert.receptorId) {
@@ -223,15 +223,15 @@ const ReceptorAlertSystem = () => {
       case 'te_ready':
         return (
           <div className="flex space-x-2">
-            <Button 
-              size="sm" 
+            <Button
+              size="sm"
               onClick={() => handleAlertAction(alert.id, 'mark_te_scheduled')}
               className="bg-blue-600 hover:bg-blue-700"
             >
               Agendar TE
             </Button>
-            <Button 
-              size="sm" 
+            <Button
+              size="sm"
               variant="outline"
               onClick={() => handleAlertAction(alert.id, 'dismiss')}
             >
@@ -242,15 +242,15 @@ const ReceptorAlertSystem = () => {
       case 'pregnancy_failed':
         return (
           <div className="flex space-x-2">
-            <Button 
-              size="sm" 
+            <Button
+              size="sm"
               onClick={() => handleAlertAction(alert.id, 'mark_discard')}
               className="bg-red-600 hover:bg-red-700"
             >
               Marcar Descarte
             </Button>
-            <Button 
-              size="sm" 
+            <Button
+              size="sm"
               variant="outline"
               onClick={() => handleAlertAction(alert.id, 'schedule_service')}
             >
@@ -261,15 +261,15 @@ const ReceptorAlertSystem = () => {
       case 'inactive_warning':
         return (
           <div className="flex space-x-2">
-            <Button 
-              size="sm" 
+            <Button
+              size="sm"
               onClick={() => handleAlertAction(alert.id, 'schedule_service')}
               className="bg-yellow-600 hover:bg-yellow-700"
             >
               Agendar Serviço
             </Button>
-            <Button 
-              size="sm" 
+            <Button
+              size="sm"
               variant="outline"
               onClick={() => handleAlertAction(alert.id, 'dismiss')}
             >
@@ -280,15 +280,15 @@ const ReceptorAlertSystem = () => {
       case 'inactive_critical':
         return (
           <div className="flex space-x-2">
-            <Button 
-              size="sm" 
+            <Button
+              size="sm"
               onClick={() => handleAlertAction(alert.id, 'mark_inactive')}
               className="bg-gray-600 hover:bg-gray-700"
             >
               Marcar Inativa
             </Button>
-            <Button 
-              size="sm" 
+            <Button
+              size="sm"
               variant="outline"
               onClick={() => handleAlertAction(alert.id, 'schedule_service')}
             >
@@ -341,10 +341,9 @@ const ReceptorAlertSystem = () => {
           </Card>
         ) : (
           alerts.map((alert) => (
-            <Card key={alert.id} className={`border-l-4 ${
-              alert.priority === 'high' ? 'border-l-red-500' :
-              alert.priority === 'medium' ? 'border-l-yellow-500' : 'border-l-green-500'
-            }`}>
+            <Card key={alert.id} className={`border-l-4 ${alert.priority === 'high' ? 'border-l-red-500' :
+                alert.priority === 'medium' ? 'border-l-yellow-500' : 'border-l-green-500'
+              }`}>
               <CardContent className="pt-6">
                 <div className="flex items-start justify-between">
                   <div className="flex items-start space-x-3">
@@ -357,8 +356,8 @@ const ReceptorAlertSystem = () => {
                           {alert.title}
                         </h3>
                         <Badge className={getPriorityColor(alert.priority)}>
-                          {alert.priority === 'high' ? 'Crítico' : 
-                           alert.priority === 'medium' ? 'Médio' : 'Baixo'}
+                          {alert.priority === 'high' ? 'Crítico' :
+                            alert.priority === 'medium' ? 'Médio' : 'Baixo'}
                         </Badge>
                       </div>
                       <p className="text-gray-600 dark:text-gray-400 mb-2">
@@ -395,36 +394,36 @@ const ReceptorAlertSystem = () => {
       </div>
 
       {/* Summary Statistics */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
         <Card className="bg-blue-50 dark:bg-blue-900/20 border-blue-200 dark:border-blue-800">
-          <CardContent className="pt-6">
+          <CardContent className="pt-3 sm:pt-4 md:pt-6 p-3 sm:p-4">
             <div className="text-center">
-              <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+              <div className="text-xl sm:text-2xl font-bold text-blue-600 dark:text-blue-400">
                 {receptors.filter(r => r.status === 'apta_te').length}
               </div>
-              <div className="text-sm text-blue-800 dark:text-blue-200">Aptas para TE</div>
+              <div className="text-xs sm:text-sm text-blue-800 dark:text-blue-200">Aptas para TE</div>
             </div>
           </CardContent>
         </Card>
 
         <Card className="bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800">
-          <CardContent className="pt-6">
+          <CardContent className="pt-3 sm:pt-4 md:pt-6 p-3 sm:p-4">
             <div className="text-center">
-              <div className="text-2xl font-bold text-green-600 dark:text-green-400">
+              <div className="text-xl sm:text-2xl font-bold text-green-600 dark:text-green-400">
                 {receptors.filter(r => r.pregnancyStatus === 'confirmed').length}
               </div>
-              <div className="text-sm text-green-800 dark:text-green-200">Prenhas</div>
+              <div className="text-xs sm:text-sm text-green-800 dark:text-green-200">Prenhas</div>
             </div>
           </CardContent>
         </Card>
 
         <Card className="bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800">
-          <CardContent className="pt-6">
+          <CardContent className="pt-3 sm:pt-4 md:pt-6 p-3 sm:p-4">
             <div className="text-center">
-              <div className="text-2xl font-bold text-red-600 dark:text-red-400">
+              <div className="text-xl sm:text-2xl font-bold text-red-600 dark:text-red-400">
                 {receptors.filter(r => r.category === 'descarte' || r.category === 'descarte_candidata').length}
               </div>
-              <div className="text-sm text-red-800 dark:text-red-200">Descarte</div>
+              <div className="text-xs sm:text-sm text-red-800 dark:text-red-200">Descarte</div>
             </div>
           </CardContent>
         </Card>

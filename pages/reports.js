@@ -98,8 +98,8 @@ export default function Reports() {
 
   const renderOverviewReport = () => (
     <div className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div 
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
+        <div
           onClick={() => router.push('/animals')}
           className="card p-6 text-center cursor-pointer hover:shadow-lg hover:scale-105 transition-all duration-300 group"
         >
@@ -113,7 +113,7 @@ export default function Reports() {
             👆 Clique para ver todos
           </div>
         </div>
-        <div 
+        <div
           onClick={() => router.push('/animals?filter=Ativo')}
           className="card p-6 text-center cursor-pointer hover:shadow-lg hover:scale-105 transition-all duration-300 group"
         >
@@ -127,7 +127,7 @@ export default function Reports() {
             👆 Clique para filtrar ativos
           </div>
         </div>
-        <div 
+        <div
           onClick={() => router.push('/animals?filter=Vendido')}
           className="card p-6 text-center cursor-pointer hover:shadow-lg hover:scale-105 transition-all duration-300 group"
         >
@@ -141,7 +141,7 @@ export default function Reports() {
             👆 Clique para ver vendidos
           </div>
         </div>
-        <div 
+        <div
           onClick={() => router.push('/animals?filter=Morto')}
           className="card p-6 text-center cursor-pointer hover:shadow-lg hover:scale-105 transition-all duration-300 group"
         >
@@ -202,11 +202,10 @@ export default function Reports() {
                     <div
                       className="bg-green-600 h-2 rounded-full"
                       style={{
-                        width: `${
-                          totalAnimais > 0
+                        width: `${totalAnimais > 0
                             ? (quantidade / totalAnimais) * 100
                             : 0
-                        }%`,
+                          }%`,
                       }}
                     ></div>
                   </div>
@@ -272,9 +271,8 @@ export default function Reports() {
                   <div
                     className="bg-red-600 h-2 rounded-full"
                     style={{
-                      width: `${
-                        (valor / Math.max(...Object.values(custoPorTipo))) * 100
-                      }%`,
+                      width: `${(valor / Math.max(...Object.values(custoPorTipo))) * 100
+                        }%`,
                     }}
                   ></div>
                 </div>
@@ -317,8 +315,8 @@ export default function Reports() {
               {[].map((animal) => {
                 const roi = animal.valorVenda
                   ? ((animal.valorVenda - animal.custoTotal) /
-                      animal.custoTotal) *
-                    100
+                    animal.custoTotal) *
+                  100
                   : null;
                 return (
                   <tr key={animal.id}>
@@ -334,8 +332,8 @@ export default function Reports() {
                     <td className="px-6 py-4 whitespace-nowrap text-sm text-green-600 dark:text-green-400">
                       {animal.valorVenda
                         ? `R$ ${animal.valorVenda.toLocaleString("pt-BR", {
-                            minimumFractionDigits: 2,
-                          })}`
+                          minimumFractionDigits: 2,
+                        })}`
                         : "-"}
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm">
@@ -534,18 +532,16 @@ export default function Reports() {
             <button
               key={relatorio.id}
               onClick={() => setSelectedReport(relatorio.id)}
-              className={`card p-4 text-left transition-colors ${
-                selectedReport === relatorio.id
+              className={`card p-4 text-left transition-colors ${selectedReport === relatorio.id
                   ? "ring-2 ring-primary-500 bg-primary-50 dark:bg-primary-900"
                   : "hover:bg-gray-50 dark:hover:bg-gray-700"
-              }`}
+                }`}
             >
               <relatorio.icon
-                className={`h-8 w-8 mb-3 ${
-                  selectedReport === relatorio.id
+                className={`h-8 w-8 mb-3 ${selectedReport === relatorio.id
                     ? "text-primary-600 dark:text-primary-400"
                     : "text-gray-400"
-                }`}
+                  }`}
               />
               <h3 className="font-medium text-gray-900 dark:text-white mb-1">
                 {relatorio.name}

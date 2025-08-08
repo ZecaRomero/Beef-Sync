@@ -40,7 +40,7 @@ export default function MaterialsManager({ userId }) {
         setMaterials([]);
       }
     };
-    
+
     loadMaterials();
 
     // Carregar animais reais da API
@@ -56,7 +56,7 @@ export default function MaterialsManager({ userId }) {
         setAnimals([]);
       }
     };
-    
+
     loadAnimals();
 
     // Carregar histórico de compras da API
@@ -75,7 +75,7 @@ export default function MaterialsManager({ userId }) {
         setPurchaseHistory([]);
       }
     };
-    
+
     loadPurchaseHistory();
   }, []);
 
@@ -178,7 +178,7 @@ export default function MaterialsManager({ userId }) {
   const renderOverview = () => (
     <div className="space-y-6">
       {/* Cards de Resumo */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
         <Card className="p-6 bg-white dark:bg-gray-800 border-2 border-blue-300 dark:border-blue-600 shadow-lg">
           <div className="flex items-center justify-between">
             <div>
@@ -255,7 +255,7 @@ export default function MaterialsManager({ userId }) {
               {animals?.filter((a) => {
                 const age = Math.floor(
                   (new Date() - new Date(a.birthDate)) /
-                    (1000 * 60 * 60 * 24 * 30.44)
+                  (1000 * 60 * 60 * 24 * 30.44)
                 );
                 return (
                   a.gender === "F" &&
@@ -276,7 +276,7 @@ export default function MaterialsManager({ userId }) {
               {animals?.filter((a) => {
                 const age = Math.floor(
                   (new Date() - new Date(a.birthDate)) /
-                    (1000 * 60 * 60 * 24 * 30.44)
+                  (1000 * 60 * 60 * 24 * 30.44)
                 );
                 return (
                   age >= 8 && age <= 12 && !a.protocols?.includes("brinco")
@@ -294,7 +294,7 @@ export default function MaterialsManager({ userId }) {
               {animals?.filter((a) => {
                 const age = Math.floor(
                   (new Date() - new Date(a.birthDate)) /
-                    (1000 * 60 * 60 * 24 * 30.44)
+                  (1000 * 60 * 60 * 24 * 30.44)
                 );
                 return (
                   age >= 2 && age <= 4 && !a.protocols?.includes("vermifugo")
@@ -633,12 +633,9 @@ export default function MaterialsManager({ userId }) {
                           item.minStock
                         );
                         alert(
-                          `🛒 Sugestão de Compra:\n\nItem: ${
-                            item.name
-                          }\nQuantidade sugerida: ${quantityNeeded} ${
-                            item.unit
-                          }\nFornecedor: ${
-                            item.supplier
+                          `🛒 Sugestão de Compra:\n\nItem: ${item.name
+                          }\nQuantidade sugerida: ${quantityNeeded} ${item.unit
+                          }\nFornecedor: ${item.supplier
                           }\nValor estimado: R$ ${(
                             quantityNeeded * item.unitPrice
                           ).toFixed(2)}`
@@ -652,8 +649,7 @@ export default function MaterialsManager({ userId }) {
                       className="border-red-300 text-red-700 hover:bg-red-50 font-bold"
                       onClick={() => {
                         alert(
-                          `📞 Contato do Fornecedor:\n\n${
-                            item.supplier
+                          `📞 Contato do Fornecedor:\n\n${item.supplier
                           }\nTelefone: (11) 9999-9999\nEmail: vendas@${item.supplier
                             .toLowerCase()
                             .replace(/\s+/g, "")}.com.br`
@@ -845,23 +841,23 @@ export default function MaterialsManager({ userId }) {
               </div>
 
               <div className="p-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                   {selectedCategory.items.map((item) => (
                     <Card
                       key={item.id}
-                      className="p-6 border-2 border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 shadow-lg"
+                      className="p-3 sm:p-4 md:p-6 border-2 border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 shadow-lg"
                     >
-                      <div className="flex items-center space-x-4 mb-4">
-                        <div className="bg-blue-600 p-3 rounded-lg">
-                          <span className="text-3xl text-white">
+                      <div className="flex items-center space-x-3 sm:space-x-4 mb-3 sm:mb-4">
+                        <div className="bg-blue-600 p-2 sm:p-3 rounded-lg flex-shrink-0">
+                          <span className="text-2xl sm:text-3xl text-white">
                             {getCategoryIcon(item.category)}
                           </span>
                         </div>
-                        <div>
-                          <h3 className="font-black text-gray-900 dark:text-white text-lg">
+                        <div className="flex-1 min-w-0">
+                          <h3 className="font-black text-gray-900 dark:text-white text-base sm:text-lg">
                             {item.name}
                           </h3>
-                          <p className="text-sm font-bold text-gray-600 dark:text-gray-300">
+                          <p className="text-xs sm:text-sm font-bold text-gray-600 dark:text-gray-300">
                             {item.location}
                           </p>
                         </div>
@@ -970,7 +966,7 @@ export default function MaterialsManager({ userId }) {
               </div>
 
               <div className="p-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                   {selectedSupplier.items.map((item) => (
                     <Card
                       key={item.id}
@@ -1050,7 +1046,7 @@ export default function MaterialsManager({ userId }) {
           </div>
         )}
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
           <Card className="p-6 border-2 border-gray-300 dark:border-gray-600">
             <h3 className="text-xl font-black text-black dark:text-white mb-6">
               📊 Relatório por Categoria
@@ -1340,7 +1336,7 @@ export default function MaterialsManager({ userId }) {
           </div>
 
           <form onSubmit={handleSubmit} className="p-6 space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
               {/* Nome do Material */}
               <div>
                 <label className="block text-sm font-medium text-black dark:text-white mb-2">
@@ -1613,15 +1609,14 @@ export default function MaterialsManager({ userId }) {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`py-4 px-2 border-b-2 font-medium text-sm transition-colors ${
-                  activeTab === tab.id
+                className={`py-4 px-2 border-b-2 font-medium text-sm transition-colors ${activeTab === tab.id
                     ? "border-blue-500 text-blue-600 dark:text-blue-400"
                     : "border-transparent text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
-                }`}
+                  }`}
               >
                 {tab.label}
               </button>
-            ))} 
+            ))}
           </nav>
         </div>
 
