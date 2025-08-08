@@ -133,13 +133,13 @@ export default function QuickActions({ onROICalculatorOpen }) {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4">
           {quickActions.map((action, index) => (
             <button
               key={action.id}
               onClick={action.action}
               className={`
-                group relative overflow-hidden rounded-xl p-4 text-left transition-all duration-300
+                group relative overflow-hidden rounded-xl p-3 sm:p-4 text-left transition-all duration-300
                 hover:scale-105 hover:shadow-xl transform
                 bg-gradient-to-br ${action.color} text-white
               `}
@@ -149,11 +149,11 @@ export default function QuickActions({ onROICalculatorOpen }) {
               <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity"></div>
               
               <div className="relative z-10">
-                <div className="text-3xl mb-3">{action.icon}</div>
-                <h3 className="font-semibold text-white mb-1">
+                <div className="text-xl sm:text-2xl md:text-3xl mb-2 sm:mb-3">{action.icon}</div>
+                <h3 className="font-semibold text-white mb-1 text-sm sm:text-base">
                   {action.title}
                 </h3>
-                <p className="text-xs text-white/80">
+                <p className="text-xs text-white/80 hidden sm:block">
                   {action.description}
                 </p>
               </div>
@@ -168,19 +168,19 @@ export default function QuickActions({ onROICalculatorOpen }) {
         </div>
 
         {/* Estatísticas de Uso */}
-        <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
-          <div className="grid grid-cols-3 gap-4 text-center">
+        <div className="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-gray-200 dark:border-gray-700">
+          <div className="grid grid-cols-3 gap-3 sm:gap-4 text-center">
             <div>
-              <div className="text-2xl font-bold text-gray-900 dark:text-white">127</div>
-              <div className="text-sm text-gray-500 dark:text-gray-400">Ações hoje</div>
+              <div className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 dark:text-white">127</div>
+              <div className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Ações hoje</div>
             </div>
             <div>
-              <div className="text-2xl font-bold text-gray-900 dark:text-white">89%</div>
-              <div className="text-sm text-gray-500 dark:text-gray-400">Eficiência</div>
+              <div className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 dark:text-white">89%</div>
+              <div className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Eficiência</div>
             </div>
             <div>
-              <div className="text-2xl font-bold text-gray-900 dark:text-white">2.3s</div>
-              <div className="text-sm text-gray-500 dark:text-gray-400">Tempo médio</div>
+              <div className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 dark:text-white">2.3s</div>
+              <div className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Tempo médio</div>
             </div>
           </div>
         </div>

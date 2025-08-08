@@ -144,40 +144,40 @@ export default function MarketAnalysis() {
       </div>
 
       {/* Resumo */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-        <div className="bg-green-50 dark:bg-green-900/20 rounded-lg p-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 mb-4 sm:mb-6">
+        <div className="bg-green-50 dark:bg-green-900/20 rounded-lg p-3 sm:p-4">
           <div className="flex items-center justify-between">
             <div>
-              <div className="text-2xl font-bold text-green-600 dark:text-green-400">
+              <div className="text-lg sm:text-xl md:text-2xl font-bold text-green-600 dark:text-green-400">
                 {filters.find(f => f.id === 'sell').count}
               </div>
-              <div className="text-sm text-green-600 dark:text-green-400">Prontos para venda</div>
+              <div className="text-xs sm:text-sm text-green-600 dark:text-green-400">Prontos para venda</div>
             </div>
-            <div className="text-3xl">💰</div>
+            <div className="text-2xl sm:text-3xl">💰</div>
           </div>
         </div>
 
-        <div className="bg-yellow-50 dark:bg-yellow-900/20 rounded-lg p-4">
+        <div className="bg-yellow-50 dark:bg-yellow-900/20 rounded-lg p-3 sm:p-4">
           <div className="flex items-center justify-between">
             <div>
-              <div className="text-2xl font-bold text-yellow-600 dark:text-yellow-400">
+              <div className="text-lg sm:text-xl md:text-2xl font-bold text-yellow-600 dark:text-yellow-400">
                 {filters.find(f => f.id === 'consider').count}
               </div>
-              <div className="text-sm text-yellow-600 dark:text-yellow-400">Considerar venda</div>
+              <div className="text-xs sm:text-sm text-yellow-600 dark:text-yellow-400">Considerar venda</div>
             </div>
-            <div className="text-3xl">🤔</div>
+            <div className="text-2xl sm:text-3xl">🤔</div>
           </div>
         </div>
 
-        <div className="bg-red-50 dark:bg-red-900/20 rounded-lg p-4">
+        <div className="bg-red-50 dark:bg-red-900/20 rounded-lg p-3 sm:p-4 sm:col-span-2 md:col-span-1">
           <div className="flex items-center justify-between">
             <div>
-              <div className="text-2xl font-bold text-red-600 dark:text-red-400">
+              <div className="text-lg sm:text-xl md:text-2xl font-bold text-red-600 dark:text-red-400">
                 {filters.find(f => f.id === 'hold').count}
               </div>
-              <div className="text-sm text-red-600 dark:text-red-400">Manter no rebanho</div>
+              <div className="text-xs sm:text-sm text-red-600 dark:text-red-400">Manter no rebanho</div>
             </div>
-            <div className="text-3xl">⏳</div>
+            <div className="text-2xl sm:text-3xl">⏳</div>
           </div>
         </div>
       </div>

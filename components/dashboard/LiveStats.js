@@ -206,13 +206,13 @@ export default function LiveStats({ data }) {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-5 gap-3 sm:gap-4">
           {stats.map((stat, index) => (
             <div
               key={stat.label}
               onClick={() => handleCardClick(stat.type)}
               className={`
-                p-4 rounded-xl transition-all duration-300 hover:scale-105 cursor-pointer
+                p-3 sm:p-4 rounded-xl transition-all duration-300 hover:scale-105 cursor-pointer
                 ${stat.bgColor} border border-gray-200 dark:border-gray-600
                 hover:shadow-lg hover:border-blue-300 dark:hover:border-blue-600
               `}
@@ -220,8 +220,8 @@ export default function LiveStats({ data }) {
               title={`Clique para ver ${stat.description}`}
             >
               <div className="text-center">
-                <div className="text-2xl mb-2">{stat.icon}</div>
-                <div className={`text-2xl font-bold ${stat.color} mb-1`}>
+                <div className="text-lg sm:text-2xl mb-1 sm:mb-2">{stat.icon}</div>
+                <div className={`text-lg sm:text-xl md:text-2xl font-bold ${stat.color} mb-1`}>
                   {stat.value}
                 </div>
                 <div className="text-xs text-gray-600 dark:text-gray-400">
@@ -262,89 +262,89 @@ export default function LiveStats({ data }) {
                   {modalData.map((item, index) => (
                     <div key={index} className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
                       {modalType === 'totalAnimals' || modalType === 'activeAnimals' ? (
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
                           <div>
-                            <span className="text-sm text-gray-500 dark:text-gray-400">Brinco:</span>
-                            <div className="font-semibold">{item.brinco}</div>
+                            <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Brinco:</span>
+                            <div className="font-semibold text-sm sm:text-base">{item.brinco}</div>
                           </div>
                           <div>
-                            <span className="text-sm text-gray-500 dark:text-gray-400">Nome:</span>
-                            <div className="font-semibold">{item.nome}</div>
+                            <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Nome:</span>
+                            <div className="font-semibold text-sm sm:text-base">{item.nome}</div>
                           </div>
                           <div>
-                            <span className="text-sm text-gray-500 dark:text-gray-400">Raça:</span>
-                            <div className="font-semibold">{item.raca}</div>
+                            <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Raça:</span>
+                            <div className="font-semibold text-sm sm:text-base">{item.raca}</div>
                           </div>
                           <div>
-                            <span className="text-sm text-gray-500 dark:text-gray-400">Categoria:</span>
-                            <div className="font-semibold">{item.categoria}</div>
+                            <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Categoria:</span>
+                            <div className="font-semibold text-sm sm:text-base">{item.categoria}</div>
                           </div>
                         </div>
                       ) : modalType === 'totalInvested' ? (
-                        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4">
                           <div>
-                            <span className="text-sm text-gray-500 dark:text-gray-400">Animal:</span>
-                            <div className="font-semibold">{item.brinco}</div>
+                            <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Animal:</span>
+                            <div className="font-semibold text-sm sm:text-base">{item.brinco}</div>
                           </div>
                           <div>
-                            <span className="text-sm text-gray-500 dark:text-gray-400">Investimento:</span>
-                            <div className="font-semibold text-red-600 dark:text-red-400">
+                            <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Investimento:</span>
+                            <div className="font-semibold text-sm sm:text-base text-red-600 dark:text-red-400">
                               R$ {(item.custoTotal || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                             </div>
                           </div>
                           <div>
-                            <span className="text-sm text-gray-500 dark:text-gray-400">Custos:</span>
-                            <div className="text-sm">{item.custos.length} registros</div>
+                            <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Custos:</span>
+                            <div className="text-xs sm:text-sm">{item.custos.length} registros</div>
                           </div>
                         </div>
                       ) : modalType === 'totalRevenue' ? (
-                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
                           <div>
-                            <span className="text-sm text-gray-500 dark:text-gray-400">Animal:</span>
-                            <div className="font-semibold">{item.animal}</div>
+                            <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Animal:</span>
+                            <div className="font-semibold text-sm sm:text-base">{item.animal}</div>
                           </div>
                           <div>
-                            <span className="text-sm text-gray-500 dark:text-gray-400">Valor:</span>
-                            <div className="font-semibold text-green-600 dark:text-green-400">
+                            <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Valor:</span>
+                            <div className="font-semibold text-sm sm:text-base text-green-600 dark:text-green-400">
                               R$ {(item.valor || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                             </div>
                           </div>
                           <div>
-                            <span className="text-sm text-gray-500 dark:text-gray-400">Comprador:</span>
-                            <div className="font-semibold">{item.comprador}</div>
+                            <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Comprador:</span>
+                            <div className="font-semibold text-sm sm:text-base">{item.comprador}</div>
                           </div>
                           <div>
-                            <span className="text-sm text-gray-500 dark:text-gray-400">Tipo:</span>
-                            <div className="font-semibold">{item.tipoVenda}</div>
+                            <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Tipo:</span>
+                            <div className="font-semibold text-sm sm:text-base">{item.tipoVenda}</div>
                           </div>
                         </div>
                       ) : modalType === 'avgROI' ? (
-                        <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+                        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-5 gap-3 sm:gap-4">
                           <div>
-                            <span className="text-sm text-gray-500 dark:text-gray-400">Animal:</span>
-                            <div className="font-semibold">{item.animal}</div>
+                            <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Animal:</span>
+                            <div className="font-semibold text-sm sm:text-base">{item.animal}</div>
                           </div>
                           <div>
-                            <span className="text-sm text-gray-500 dark:text-gray-400">Venda:</span>
-                            <div className="font-semibold text-green-600 dark:text-green-400">
+                            <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Venda:</span>
+                            <div className="font-semibold text-sm sm:text-base text-green-600 dark:text-green-400">
                               R$ {(item.valorVenda || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                             </div>
                           </div>
                           <div>
-                            <span className="text-sm text-gray-500 dark:text-gray-400">Custo:</span>
-                            <div className="font-semibold text-red-600 dark:text-red-400">
+                            <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Custo:</span>
+                            <div className="font-semibold text-sm sm:text-base text-red-600 dark:text-red-400">
                               R$ {(item.custoTotal || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                             </div>
                           </div>
                           <div>
-                            <span className="text-sm text-gray-500 dark:text-gray-400">Lucro:</span>
-                            <div className={`font-semibold ${item.lucro >= 0 ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}>
+                            <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Lucro:</span>
+                            <div className={`font-semibold text-sm sm:text-base ${item.lucro >= 0 ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}>
                               R$ {(item.lucro || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                             </div>
                           </div>
                           <div>
-                            <span className="text-sm text-gray-500 dark:text-gray-400">ROI:</span>
-                            <div className={`font-semibold ${item.roi >= 0 ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}>
+                            <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">ROI:</span>
+                            <div className={`font-semibold text-sm sm:text-base ${item.roi >= 0 ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}>
                               {item.roi.toFixed(1)}%
                             </div>
                           </div>
