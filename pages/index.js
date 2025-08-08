@@ -22,6 +22,8 @@ export default function Dashboard() {
   const [showTimeline, setShowTimeline] = useState(false);
   const [showAdvancedAnalytics, setShowAdvancedAnalytics] = useState(false);
   const [showReceptorAlerts, setShowReceptorAlerts] = useState(false);
+  const [showManejoModal, setShowManejoModal] = useState(false);
+  const [showComercialModal, setShowComercialModal] = useState(false);
   const router = useRouter();
   const { user, isDeveloper, isConsultant } = useAuth();
 
@@ -61,6 +63,140 @@ export default function Dashboard() {
 ---
 🤖 Beef Sync - Gestão Bovina Inteligente 🐄
     `.trim();
+  };
+
+  // Modal MANEJO
+  const ManejoModal = ({ isOpen, onClose }) => {
+    if (!isOpen) return null;
+
+    const manejoOptions = [
+      { icon: '👶', title: 'Nascimentos', desc: 'Registro de novos nascimentos' },
+      { icon: '📋', title: 'Boletim de Gado', desc: 'Relatórios do rebanho' },
+      { icon: '💀', title: 'Controle de Mortes', desc: 'Registro de óbitos' },
+      { icon: '🧬', title: 'Programa FIV', desc: 'Fertilização in vitro' },
+      { icon: '💉', title: 'Vacinação', desc: 'Controle de vacinas' },
+      { icon: '🏥', title: 'Saúde Animal', desc: 'Monitoramento veterinário' },
+      { icon: '📊', title: 'Relatórios', desc: 'Análises de manejo' },
+      { icon: '🔄', title: 'Transferências', desc: 'Movimentação de animais' }
+    ];
+
+    return (
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
+          <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-green-600 to-emerald-600">
+            <div className="flex items-center space-x-3">
+              <div className="text-4xl">🐄</div>
+              <div>
+                <h2 className="text-2xl font-bold text-white">MANEJO</h2>
+                <p className="text-green-100">Gestão completa do rebanho</p>
+              </div>
+            </div>
+            <button
+              onClick={onClose}
+              className="p-2 hover:bg-white/20 rounded-lg transition-colors text-white text-2xl font-bold"
+            >
+              ×
+            </button>
+          </div>
+          
+          <div className="p-6 overflow-y-auto max-h-[calc(90vh-120px)]">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {manejoOptions.map((option, index) => (
+                <button
+                  key={index}
+                  className="p-6 bg-gray-50 dark:bg-gray-700 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors group"
+                >
+                  <div className="text-center">
+                    <div className="text-3xl mb-3 group-hover:scale-110 transition-transform">
+                      {option.icon}
+                    </div>
+                    <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
+                      {option.title}
+                    </h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                      {option.desc}
+                    </p>
+                  </div>
+                </button>
+              ))}
+            </div>
+            
+            <div className="mt-8 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
+              <p className="text-center text-blue-700 dark:text-blue-300">
+                💡 <strong>Demonstração:</strong> Estas funcionalidades estão disponíveis na versão completa do sistema
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  // Modal COMERCIAL
+  const ComercialModal = ({ isOpen, onClose }) => {
+    if (!isOpen) return null;
+
+    const comercialOptions = [
+      { icon: '🏛️', title: 'Vendas em Leilão', desc: 'Gestão de leilões' },
+      { icon: '📈', title: 'Relatórios de Vendas', desc: 'Análises comerciais' },
+      { icon: '💰', title: 'Controle Financeiro', desc: 'Receitas e despesas' },
+      { icon: '📊', title: 'Analytics BI', desc: 'Inteligência de negócios' },
+      { icon: '🎯', title: 'Metas de Vendas', desc: 'Acompanhamento de objetivos' },
+      { icon: '📋', title: 'Notas Fiscais', desc: 'Emissão de documentos' },
+      { icon: '👥', title: 'Clientes', desc: 'Gestão de compradores' },
+      { icon: '📱', title: 'WhatsApp Business', desc: 'Comunicação comercial' }
+    ];
+
+    return (
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+        <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
+          <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-blue-600 to-purple-600">
+            <div className="flex items-center space-x-3">
+              <div className="text-4xl">💰</div>
+              <div>
+                <h2 className="text-2xl font-bold text-white">COMERCIAL</h2>
+                <p className="text-blue-100">Vendas e relatórios financeiros</p>
+              </div>
+            </div>
+            <button
+              onClick={onClose}
+              className="p-2 hover:bg-white/20 rounded-lg transition-colors text-white text-2xl font-bold"
+            >
+              ×
+            </button>
+          </div>
+          
+          <div className="p-6 overflow-y-auto max-h-[calc(90vh-120px)]">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {comercialOptions.map((option, index) => (
+                <button
+                  key={index}
+                  className="p-6 bg-gray-50 dark:bg-gray-700 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors group"
+                >
+                  <div className="text-center">
+                    <div className="text-3xl mb-3 group-hover:scale-110 transition-transform">
+                      {option.icon}
+                    </div>
+                    <h3 className="font-semibold text-gray-900 dark:text-white mb-2">
+                      {option.title}
+                    </h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                      {option.desc}
+                    </p>
+                  </div>
+                </button>
+              ))}
+            </div>
+            
+            <div className="mt-8 p-4 bg-purple-50 dark:bg-purple-900/20 rounded-lg">
+              <p className="text-center text-purple-700 dark:text-purple-300">
+                💡 <strong>Demonstração:</strong> Estas funcionalidades estão disponíveis na versão completa do sistema
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
   };
 
   const BIDashboardModal = () => (
@@ -125,8 +261,117 @@ export default function Dashboard() {
     );
   }
 
+  // Tela para visitantes
+  if (user.role === 'visitor') {
+    return (
+      <Layout>
+        <div className="space-y-8">
+          {/* Header de Boas-vindas para Visitante */}
+          <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-white text-center">
+            <div className="text-6xl mb-4">👋</div>
+            <h1 className="text-4xl font-bold mb-2">
+              Bem-vindo ao Beef Sync!
+            </h1>
+            <p className="text-xl text-blue-100">
+              Explore nosso sistema de gestão bovina
+            </p>
+            <p className="text-lg text-blue-200 mt-2">
+              Escolha uma das opções abaixo para conhecer nossas funcionalidades
+            </p>
+          </div>
+
+          {/* Cards Principais - MANEJO e COMERCIAL */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {/* Card MANEJO */}
+            <button
+              onClick={() => setShowManejoModal(true)}
+              className="group relative p-8 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-300 border border-gray-200 dark:border-gray-700 transform hover:scale-105"
+            >
+              <div className="text-center">
+                <div className="text-6xl mb-4 group-hover:scale-110 transition-transform duration-300">
+                  🐄
+                </div>
+                <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-3">
+                  MANEJO
+                </h3>
+                <p className="text-lg text-gray-600 dark:text-gray-400 mb-4">
+                  Gestão completa do rebanho
+                </p>
+                <div className="text-sm text-gray-500 dark:text-gray-500 space-y-1">
+                  <p>• Nascimentos</p>
+                  <p>• Boletim de Gado</p>
+                  <p>• Controle de Mortes</p>
+                  <p>• Programa FIV</p>
+                  <p>• E muito mais...</p>
+                </div>
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-r from-green-500/10 to-emerald-500/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </button>
+
+            {/* Card COMERCIAL */}
+            <button
+              onClick={() => setShowComercialModal(true)}
+              className="group relative p-8 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-300 border border-gray-200 dark:border-gray-700 transform hover:scale-105"
+            >
+              <div className="text-center">
+                <div className="text-6xl mb-4 group-hover:scale-110 transition-transform duration-300">
+                  💰
+                </div>
+                <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-3">
+                  COMERCIAL
+                </h3>
+                <p className="text-lg text-gray-600 dark:text-gray-400 mb-4">
+                  Vendas e relatórios financeiros
+                </p>
+                <div className="text-sm text-gray-500 dark:text-gray-500 space-y-1">
+                  <p>• Vendas em Leilão</p>
+                  <p>• Relatórios de Vendas</p>
+                  <p>• Análises Financeiras</p>
+                  <p>• Controle de Receitas</p>
+                  <p>• E muito mais...</p>
+                </div>
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </button>
+          </div>
+
+          {/* Informações Adicionais */}
+          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 max-w-4xl mx-auto">
+            <div className="text-center">
+              <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
+                🚀 Sobre o Beef Sync
+              </h3>
+              <p className="text-gray-600 dark:text-gray-400 text-lg leading-relaxed">
+                O Beef Sync é um sistema completo de gestão bovina que oferece controle total sobre 
+                o manejo do rebanho e operações comerciais. Com tecnologia avançada e interface 
+                intuitiva, facilitamos a administração da sua fazenda.
+              </p>
+            </div>
+          </div>
+
+          {/* Rodapé */}
+          <div className="text-center text-gray-500 dark:text-gray-400">
+            <p className="text-sm">
+              🔒 Acesso como visitante - Funcionalidades limitadas para demonstração
+            </p>
+          </div>
+        </div>
+
+        {/* Modais */}
+        <ManejoModal 
+          isOpen={showManejoModal} 
+          onClose={() => setShowManejoModal(false)} 
+        />
+        <ComercialModal 
+          isOpen={showComercialModal} 
+          onClose={() => setShowComercialModal(false)} 
+        />
+      </Layout>
+    );
+  }
+
   // Tela para consultores (usuários limitados)
-  if (user.role !== 'developer') {
+  if (user.role !== 'developer' && user.role !== 'visitor') {
     return (
       <Layout>
         <div className="space-y-6">
