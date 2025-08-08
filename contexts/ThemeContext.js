@@ -11,7 +11,7 @@ export const useTheme = () => {
 };
 
 export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState('dark'); // Começar no modo escuro por padrão
 
   useEffect(() => {
     // Verificar preferência salva no localStorage
@@ -19,9 +19,8 @@ export const ThemeProvider = ({ children }) => {
     if (savedTheme) {
       setTheme(savedTheme);
     } else {
-      // Verificar preferência do sistema
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      setTheme(prefersDark ? 'dark' : 'light');
+      // Se não há preferência salva, usar modo escuro por padrão
+      setTheme('dark');
     }
   }, []);
 

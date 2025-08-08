@@ -75,6 +75,56 @@
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.2);
   }
+
+  /* Mobile-first responsive classes */
+  .mobile-card {
+    @apply p-3 sm:p-4 md:p-6;
+  }
+
+  .mobile-text {
+    @apply text-sm sm:text-base;
+  }
+
+  .mobile-heading {
+    @apply text-lg sm:text-xl md:text-2xl;
+  }
+
+  .mobile-grid {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-4 md:gap-6;
+  }
+
+  .mobile-flex {
+    @apply flex flex-col sm:flex-row;
+  }
+
+  .mobile-space {
+    @apply space-y-3 sm:space-y-4 md:space-y-6;
+  }
+
+  .mobile-padding {
+    @apply p-3 sm:p-4 md:p-6;
+  }
+
+  .mobile-margin {
+    @apply m-2 sm:m-4 md:m-6;
+  }
+
+  /* Notification specific styles */
+  .notification-card {
+    @apply p-3 sm:p-4 rounded-lg border-l-4 transition-all hover:shadow-md;
+  }
+
+  .notification-text {
+    @apply text-sm sm:text-base line-clamp-2;
+  }
+
+  .notification-actions {
+    @apply flex items-center space-x-1 sm:space-x-2 flex-shrink-0;
+  }
+
+  .notification-button {
+    @apply p-1.5 sm:p-2 rounded-lg transition-colors;
+  }
 }
 
 @layer utilities {
@@ -90,5 +140,27 @@
   
   .gradient-bg {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  }
+
+  /* Line clamp utilities */
+  .line-clamp-1 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+  }
+
+  .line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+
+  .line-clamp-3 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
   }
 }

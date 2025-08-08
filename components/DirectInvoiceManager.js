@@ -6,6 +6,7 @@ import {
   UserIcon,
   MapPinIcon,
 } from "@heroicons/react/24/outline";
+import notificationService from "../services/notificationService";
 
 export default function DirectInvoiceManager({ isOpen, onClose }) {
   const [invoiceData, setInvoiceData] = useState({
@@ -107,36 +108,36 @@ export default function DirectInvoiceManager({ isOpen, onClose }) {
     return animals.reduce((sum, animal) => sum + (animal.preco || 0), 0);
   };
 
-  const handleGTASubmit = () => {
+  const handleGTASubmit = async () => {
     if (gtaNumber && emissionDate) {
       const emissionDateObj = new Date(emissionDate);
-      
-      // Criar tarefas de follow-up automatizadas
-      const tasks = [
-        {
-          type: "Confirmação de Chegada",
-          date: new Date(emissionDateObj.getTime() + 20 * 24 * 60 * 60 * 1000), // +20 dias
-          message: "Ligar para confirmar se os animais chegaram bem",
-          status: "Agendado"
-        },
-        {
-          type: "Follow-up Satisfação",
-          date: new Date(emissionDateObj.getTime() + 60 * 24 * 60 * 60 * 1000), // +2 meses
-          message: "Ligar para verificar satisfação com os animais",
-          status: "Agendado"
-        },
-        {
-          type: "Oferta Novos Animais",
-          date: new Date(emissionDateObj.getTime() + 240 * 24 * 60 * 60 * 1000), // +8 meses
-          message: "Ligar para oferecer novos animais",
-          status: "Agendado"
-        }
-      ];
-      
-      alert(`✅ GTA ${gtaNumber} cadastrada com sucesso!\n\n🤖 Follow-ups automáticos criados para:\n• ${tasks[0].date.toLocaleDateString('pt-BR')}: Confirmação chegada\n• ${tasks[1].date.toLocaleDateString('pt-BR')}: Verificação satisfação\n• ${tasks[2].date.toLocaleDateString('pt-BR')}: Oferta novos animais\n\n📞 Cliente: ${invoiceData.compradorNome || 'A definir'}`);
-      setGtaNumber('');
-      setEmissionDate('');
-      setShowGTAForm(false);
+
+      try {
+        // Criar notificações automáticas de follow-up
+        const gtaData = {
+          id: `gta-${Date.now()}`, // ID temporário
+          numero: gtaNumber,
+          dataEmissao: emissionDateObj.toISOString(),
+          compradorNome: invoiceData.compradorNome,
+          compradorTelefone: invoiceData.compradorCpfCnpj, // Usar CPF/CNPJ como telefone temporariamente
+          animais: animals
+        };
+
+        // Criar notificações automáticas
+        const notifications = await notificationService.createGTAAutomaticNotifications(gtaData);
+
+        alert(`✅ GTA ${gtaNumber} cadastrada com sucesso!\n\n🤖 ${notifications.length} notificações de follow-up criadas:\n• 5 dias antes: Lembrete\n• 20 dias: Confirmação chegada\n• 2 meses: Verificação satisfação\n• 8 meses: Oferta novos animais\n\n📞 Cliente: ${invoiceData.compradorNome || 'A definir'}\n\n🔔 As notificações aparecerão automaticamente no sistema!`);
+
+        setGtaNumber('');
+        setEmissionDate('');
+        setShowGTAForm(false);
+      } catch (error) {
+        console.error('Erro ao criar notificações:', error);
+        alert(`✅ GTA ${gtaNumber} cadastrada com sucesso!\n\n⚠️ Erro ao criar notificações automáticas. Elas podem ser criadas manualmente.`);
+        setGtaNumber('');
+        setEmissionDate('');
+        setShowGTAForm(false);
+      }
     }
   };
 
@@ -582,7 +583,7 @@ export default function DirectInvoiceManager({ isOpen, onClose }) {
                     />
                   </div>
                 </div>
-                
+
                 <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-3">
                   <h4 className="font-semibold text-blue-800 dark:text-blue-200 mb-2">
                     🤖 Follow-up Automático Pós-Venda:

@@ -28,6 +28,7 @@ model User {
   semenContainers SemenContainer[]
   semenStock      SemenStock[]
   semenMovements  SemenMovement[]
+  notifications   Notification[]
 
   @@map("users")
 }
@@ -152,6 +153,28 @@ model Alert {
   @@map("alerts")
 }
 
+model Notification {
+  id          String   @id @default(cuid())
+  tipo        String   // GTA_FOLLOWUP, SALE_ALERT, SYSTEM_ALERT, etc
+  titulo      String
+  mensagem    String
+  prioridade  String   @default("MEDIA") // ALTA, MEDIA, BAIXA
+  status      String   @default("PENDENTE") // PENDENTE, LIDA, RESOLVIDA, CANCELADA
+  dataCriacao DateTime @default(now())
+  dataLida    DateTime?
+  dataResolvida DateTime?
+  dataAgendada DateTime? // Para notificações agendadas
+  dados       String?   // JSON com dados adicionais
+  userId      String
+  gtaId       String?   // Relacionamento com GTA (opcional)
+  
+  // Relations
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  gta         GTA?     @relation(fields: [gtaId], references: [id], onDelete: SetNull)
+
+  @@map("notifications")
+}
+
 model MarketPrice {
   id        String   @id @default(cuid())
   produto   String   // BOI_GORDO, BEZERRO, etc
@@ -267,6 +290,9 @@ model GTA {
   transportador String?
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
+
+  // Relations
+  notifications Notification[]
 
   @@map("gtas")
 }

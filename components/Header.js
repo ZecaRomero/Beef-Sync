@@ -1,7 +1,7 @@
 import { Bars3Icon, SunIcon, MoonIcon, BellIcon, UserCircleIcon } from '@heroicons/react/24/outline'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import NotificationSystem from './NotificationSystem'
+import NotificationWidget from './NotificationWidget'
 
 export default function Header({ darkMode, toggleDarkMode, setSidebarOpen, onLogout }) {
   const [userMenuOpen, setUserMenuOpen] = useState(false)
@@ -100,7 +100,7 @@ export default function Header({ darkMode, toggleDarkMode, setSidebarOpen, onLog
           </button>
 
           {/* Notifications */}
-          <NotificationSystem />
+          <NotificationWidget userId={currentUser.id || 'user123'} />
 
           {/* User menu */}
           <div className="relative">
