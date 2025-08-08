@@ -106,12 +106,12 @@ export default function Dashboard() {
     return (
       <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
         <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
-          <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-green-600 to-emerald-600">
+          <div className="flex items-center justify-between p-4 md:p-6 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-green-600 to-emerald-600">
             <div className="flex items-center space-x-3">
-              <div className="text-4xl">🐄</div>
+              <div className="text-3xl md:text-4xl">🐄</div>
               <div>
-                <h2 className="text-2xl font-bold text-white">MANEJO</h2>
-                <p className="text-green-100">Gestão completa do rebanho</p>
+                <h2 className="text-xl md:text-2xl font-bold text-white">MANEJO</h2>
+                <p className="text-green-100 text-sm md:text-base">Gestão completa do rebanho</p>
               </div>
             </div>
             <button
@@ -123,7 +123,7 @@ export default function Dashboard() {
           </div>
 
           <div className="p-6 overflow-y-auto max-h-[calc(90vh-120px)]">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
               {manejoOptions.map((option, index) => (
                 <button
                   key={index}
@@ -154,7 +154,7 @@ export default function Dashboard() {
                       // NÃO fecha o modal MANEJO
                     }
                   }}
-                  className="p-6 bg-gray-50 dark:bg-gray-700 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-600 transition-all duration-300 group transform hover:scale-105 hover:shadow-lg cursor-pointer"
+                  className="p-4 md:p-6 bg-gray-50 dark:bg-gray-700 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-600 transition-all duration-300 group transform hover:scale-105 hover:shadow-lg cursor-pointer"
                 >
                   <div className="text-center">
                     <div className="text-3xl mb-3 group-hover:scale-110 transition-transform">
@@ -216,12 +216,12 @@ export default function Dashboard() {
     return (
       <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
         <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden">
-          <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-blue-600 to-purple-600">
+          <div className="flex items-center justify-between p-4 md:p-6 border-b border-gray-200 dark:border-gray-700 bg-gradient-to-r from-blue-600 to-purple-600">
             <div className="flex items-center space-x-3">
-              <div className="text-4xl">💰</div>
+              <div className="text-3xl md:text-4xl">💰</div>
               <div>
-                <h2 className="text-2xl font-bold text-white">COMERCIAL</h2>
-                <p className="text-blue-100">Vendas e relatórios financeiros</p>
+                <h2 className="text-xl md:text-2xl font-bold text-white">COMERCIAL</h2>
+                <p className="text-blue-100 text-sm md:text-base">Vendas e relatórios financeiros</p>
               </div>
             </div>
             <button
@@ -233,7 +233,7 @@ export default function Dashboard() {
           </div>
 
           <div className="p-6 overflow-y-auto max-h-[calc(90vh-120px)]">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
               {comercialOptions.map((option, index) => (
                 <button
                   key={index}
@@ -264,7 +264,7 @@ export default function Dashboard() {
                       // NÃO fecha o modal COMERCIAL
                     }
                   }}
-                  className="p-6 bg-gray-50 dark:bg-gray-700 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-600 transition-all duration-300 group transform hover:scale-105 hover:shadow-lg cursor-pointer"
+                  className="p-4 md:p-6 bg-gray-50 dark:bg-gray-700 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-600 transition-all duration-300 group transform hover:scale-105 hover:shadow-lg cursor-pointer"
                 >
                   <div className="text-center">
                     <div className="text-3xl mb-3 group-hover:scale-110 transition-transform">
@@ -4002,20 +4002,20 @@ export default function Dashboard() {
   if (user && user.role === "visitor") {
     return (
       <Layout>
-        <div className="space-y-8">
+        <div className="space-y-4 md:space-y-8">
           {/* Header de Boas-vindas para Visitante - Versão Compacta */}
-          <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl p-6 text-white text-center">
-            <div className="flex items-center justify-center space-x-4">
+          <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl p-4 md:p-6 text-white text-center">
+            <div className="flex items-center justify-center space-x-3 md:space-x-4">
               <img
                 src="/logo-fazendas-santanna.jpg"
                 alt="Fazendas Sant'Anna"
-                className="w-16 h-16 object-contain rounded-lg bg-white/10 p-1"
+                className="w-12 h-12 md:w-16 md:h-16 object-contain rounded-lg bg-white/10 p-1"
               />
               <div>
-                <h1 className="text-2xl font-bold">
+                <h1 className="text-lg md:text-2xl font-bold">
                   Beef Sync - Fazendas Sant'Anna
                 </h1>
-                <p className="text-blue-100">
+                <p className="text-blue-100 text-sm md:text-base">
                   Escolha uma opção para explorar o sistema
                 </p>
               </div>
@@ -4023,23 +4023,23 @@ export default function Dashboard() {
           </div>
 
           {/* Cards Principais - MANEJO e COMERCIAL */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 max-w-4xl mx-auto">
             {/* Card MANEJO */}
             <button
               onClick={() => setShowManejoModal(true)}
-              className="group relative p-8 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-300 border border-gray-200 dark:border-gray-700 transform hover:scale-105"
+              className="group relative p-4 md:p-8 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-300 border border-gray-200 dark:border-gray-700 transform hover:scale-105"
             >
               <div className="text-center">
-                <div className="text-6xl mb-4 group-hover:scale-110 transition-transform duration-300">
+                <div className="text-4xl md:text-6xl mb-2 md:mb-4 group-hover:scale-110 transition-transform duration-300">
                   🐄
                 </div>
-                <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-3">
+                <h3 className="text-xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2 md:mb-3">
                   MANEJO
                 </h3>
-                <p className="text-lg text-gray-600 dark:text-gray-400 mb-4">
+                <p className="text-sm md:text-lg text-gray-600 dark:text-gray-400 mb-2 md:mb-4">
                   Gestão completa do rebanho
                 </p>
-                <div className="text-sm text-gray-500 dark:text-gray-500 space-y-1">
+                <div className="text-xs md:text-sm text-gray-500 dark:text-gray-500 space-y-1">
                   <p>• Nascimentos</p>
                   <p>• Boletim de Gado</p>
                   <p>• Controle de Mortes</p>
@@ -4053,19 +4053,19 @@ export default function Dashboard() {
             {/* Card COMERCIAL */}
             <button
               onClick={() => setShowComercialModal(true)}
-              className="group relative p-8 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-300 border border-gray-200 dark:border-gray-700 transform hover:scale-105"
+              className="group relative p-4 md:p-8 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-300 border border-gray-200 dark:border-gray-700 transform hover:scale-105"
             >
               <div className="text-center">
-                <div className="text-6xl mb-4 group-hover:scale-110 transition-transform duration-300">
+                <div className="text-4xl md:text-6xl mb-2 md:mb-4 group-hover:scale-110 transition-transform duration-300">
                   💰
                 </div>
-                <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-3">
+                <h3 className="text-xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2 md:mb-3">
                   COMERCIAL
                 </h3>
-                <p className="text-lg text-gray-600 dark:text-gray-400 mb-4">
+                <p className="text-sm md:text-lg text-gray-600 dark:text-gray-400 mb-2 md:mb-4">
                   Vendas e relatórios financeiros
                 </p>
-                <div className="text-sm text-gray-500 dark:text-gray-500 space-y-1">
+                <div className="text-xs md:text-sm text-gray-500 dark:text-gray-500 space-y-1">
                   <p>• Vendas em Leilão</p>
                   <p>• Relatórios de Vendas</p>
                   <p>• Análises Financeiras</p>
@@ -4078,19 +4078,19 @@ export default function Dashboard() {
           </div>
 
           {/* Informações Adicionais */}
-          <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700 max-w-4xl mx-auto">
+          <div className="bg-white dark:bg-gray-800 rounded-xl p-4 md:p-6 shadow-lg border border-gray-200 dark:border-gray-700 max-w-4xl mx-auto">
             <div className="text-center">
-              <div className="flex justify-center mb-4">
+              <div className="flex justify-center mb-3 md:mb-4">
                 <img
                   src="/logo-fazendas-santanna.jpg"
                   alt="Fazendas Sant'Anna"
-                  className="w-16 h-16 object-contain rounded-lg"
+                  className="w-12 h-12 md:w-16 md:h-16 object-contain rounded-lg"
                 />
               </div>
-              <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
+              <h3 className="text-lg md:text-2xl font-semibold text-gray-900 dark:text-white mb-3 md:mb-4">
                 🚀 Sobre o Beef Sync - Fazendas Sant'Anna
               </h3>
-              <p className="text-gray-600 dark:text-gray-400 text-lg leading-relaxed">
+              <p className="text-gray-600 dark:text-gray-400 text-sm md:text-lg leading-relaxed">
                 O Beef Sync é um sistema completo de gestão bovina desenvolvido
                 especialmente para as Fazendas Sant'Anna. Oferece controle total
                 sobre o manejo do rebanho e operações comerciais, com tecnologia
