@@ -16,7 +16,7 @@ console.log('👥 USUÁRIOS DISPONÍVEIS:');
 console.log('');
 console.log('🔧 DESENVOLVEDOR:');
 console.log('   Usuário: Zeca');
-console.log('   Senha: 123');
+console.log('   Senha: 102030');
 console.log('   Acesso: TOTAL (dashboard completo)');
 console.log('');
 console.log('👁️ CONSULTORES:');
