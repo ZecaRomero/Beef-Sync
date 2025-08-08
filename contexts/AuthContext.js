@@ -93,15 +93,6 @@ export const AuthProvider = ({ children }) => {
     const savedUser = localStorage.getItem('beef-sync-user');
     if (savedUser) {
       setUser(JSON.parse(savedUser));
-    } else {
-      // Verificar se há um usuário visitante salvo
-      const visitorUser = localStorage.getItem('user');
-      if (visitorUser) {
-        const parsedUser = JSON.parse(visitorUser);
-        if (parsedUser.role === 'visitor') {
-          setUser(parsedUser);
-        }
-      }
     }
     setLoading(false);
   }, []);
@@ -145,7 +136,6 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     setUser(null);
     localStorage.removeItem('beef-sync-user');
-    localStorage.removeItem('user'); // Remove também o usuário visitante
     localStorage.removeItem('beef_sync_user_name');
     localStorage.removeItem('beef_sync_user_role');
   };
