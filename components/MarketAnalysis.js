@@ -208,7 +208,7 @@ export default function MarketAnalysis() {
                 </span>
               </div>
 
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+              <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 text-xs sm:text-sm">
                 <div>
                   <span className="text-gray-500 dark:text-gray-400">Investimento:</span>
                   <div className="font-semibold text-red-600 dark:text-red-400">

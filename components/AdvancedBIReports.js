@@ -18,7 +18,7 @@ export default function AdvancedBIReports() {
   const loadData = async () => {
     try {
       setData({ ...data, loading: true })
-      
+
       const [animalsRes, salesRes, costsRes, weightsRes] = await Promise.all([
         fetch('/api/animals-list'),
         fetch('/api/sales-list'),
@@ -87,7 +87,7 @@ export default function AdvancedBIReports() {
 
   const calculatePerformanceByBreed = () => {
     const breedStats = {}
-    
+
     data.animals.forEach(animal => {
       if (!breedStats[animal.raca]) {
         breedStats[animal.raca] = {
@@ -98,11 +98,11 @@ export default function AdvancedBIReports() {
           soldValue: 0
         }
       }
-      
+
       breedStats[animal.raca].count++
       breedStats[animal.raca].totalValue += animal.valorVenda || 0
       breedStats[animal.raca].avgWeight += animal.peso || 0
-      
+
       if (animal.status === 'VENDIDO') {
         breedStats[animal.raca].soldCount++
         breedStats[animal.raca].soldValue += animal.valorVenda || 0
@@ -122,12 +122,12 @@ export default function AdvancedBIReports() {
 
   const calculateROIAnalysis = () => {
     const roiData = []
-    
+
     data.animals.forEach(animal => {
       const animalCosts = data.costs.filter(c => c.animalId === animal.id)
       const totalCost = animalCosts.reduce((sum, cost) => sum + cost.valor, 0)
       const estimatedValue = animal.valorVenda || 40000
-      
+
       if (totalCost > 0) {
         const roi = ((estimatedValue - totalCost) / totalCost) * 100
         roiData.push({
@@ -147,7 +147,7 @@ export default function AdvancedBIReports() {
 
   const calculateCostAnalysis = () => {
     const costTypes = {}
-    
+
     data.costs.forEach(cost => {
       if (!costTypes[cost.tipo]) {
         costTypes[cost.tipo] = {
@@ -156,7 +156,7 @@ export default function AdvancedBIReports() {
           avgValue: 0
         }
       }
-      
+
       costTypes[cost.tipo].total += cost.valor
       costTypes[cost.tipo].count++
     })
@@ -171,44 +171,44 @@ export default function AdvancedBIReports() {
 
   const renderPerformanceReport = () => {
     const breedStats = calculatePerformanceByBreed()
-    
+
     return (
       <div className="space-y-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
           {Object.entries(breedStats).map(([raca, stats]) => (
-            <div key={raca} className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{raca}</h3>
-                <span className="text-2xl">🐄</span>
+            <div key={raca} className="bg-white dark:bg-gray-800 rounded-xl p-3 sm:p-4 md:p-6 shadow-lg border border-gray-200 dark:border-gray-700">
+              <div className="flex items-center justify-between mb-3 sm:mb-4">
+                <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white">{raca}</h3>
+                <span className="text-xl sm:text-2xl">🐄</span>
               </div>
-              
-              <div className="space-y-3">
+
+              <div className="space-y-2 sm:space-y-3">
                 <div className="flex justify-between">
-                  <span className="text-gray-600 dark:text-gray-400">Total:</span>
-                  <span className="font-semibold">{stats.count}</span>
+                  <span className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Total:</span>
+                  <span className="font-semibold text-sm sm:text-base">{stats.count}</span>
                 </div>
-                
+
                 <div className="flex justify-between">
-                  <span className="text-gray-600 dark:text-gray-400">Peso Médio:</span>
-                  <span className="font-semibold">{stats.avgWeight.toFixed(0)}kg</span>
+                  <span className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Peso Médio:</span>
+                  <span className="font-semibold text-sm sm:text-base">{stats.avgWeight.toFixed(0)}kg</span>
                 </div>
-                
+
                 <div className="flex justify-between">
-                  <span className="text-gray-600 dark:text-gray-400">Valor Médio:</span>
-                  <span className="font-semibold text-green-600 dark:text-green-400">
+                  <span className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Valor Médio:</span>
+                  <span className="font-semibold text-sm sm:text-base text-green-600 dark:text-green-400">
                     R$ {stats.avgValue.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                   </span>
                 </div>
-                
+
                 <div className="flex justify-between">
-                  <span className="text-gray-600 dark:text-gray-400">Vendidos:</span>
-                  <span className="font-semibold text-blue-600 dark:text-blue-400">
+                  <span className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Vendidos:</span>
+                  <span className="font-semibold text-sm sm:text-base text-blue-600 dark:text-blue-400">
                     {stats.soldCount} ({stats.soldPercentage.toFixed(1)}%)
                   </span>
                 </div>
-                
+
                 <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                  <div 
+                  <div
                     className="bg-blue-600 h-2 rounded-full transition-all duration-1000"
                     style={{ width: `${Math.min(100, stats.soldPercentage)}%` }}
                   ></div>
@@ -223,12 +223,12 @@ export default function AdvancedBIReports() {
 
   const renderROIReport = () => {
     const roiData = calculateROIAnalysis()
-    
+
     return (
       <div className="space-y-6">
         <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Top 10 ROI</h3>
-          
+
           <div className="overflow-x-auto">
             <table className="min-w-full">
               <thead>
@@ -256,11 +256,10 @@ export default function AdvancedBIReports() {
                       {item.roi.toFixed(1)}%
                     </td>
                     <td className="py-3 px-4">
-                      <span className={`px-2 py-1 rounded-full text-xs font-semibold ${
-                        item.status === 'ATIVO' 
+                      <span className={`px-2 py-1 rounded-full text-xs font-semibold ${item.status === 'ATIVO'
                           ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
                           : 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200'
-                      }`}>
+                        }`}>
                         {item.status}
                       </span>
                     </td>
@@ -276,39 +275,39 @@ export default function AdvancedBIReports() {
 
   const renderCostAnalysis = () => {
     const costAnalysis = calculateCostAnalysis()
-    
+
     return (
       <div className="space-y-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-3 sm:gap-4 md:gap-6">
           {Object.entries(costAnalysis).map(([tipo, stats]) => (
-            <div key={tipo} className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
-              <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{tipo}</h3>
-                <span className="text-2xl">💰</span>
+            <div key={tipo} className="bg-white dark:bg-gray-800 rounded-xl p-3 sm:p-4 md:p-6 shadow-lg border border-gray-200 dark:border-gray-700">
+              <div className="flex items-center justify-between mb-3 sm:mb-4">
+                <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white">{tipo}</h3>
+                <span className="text-xl sm:text-2xl">💰</span>
               </div>
-              
-              <div className="space-y-3">
+
+              <div className="space-y-2 sm:space-y-3">
                 <div className="flex justify-between">
-                  <span className="text-gray-600 dark:text-gray-400">Total:</span>
-                  <span className="font-semibold text-red-600 dark:text-red-400">
+                  <span className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Total:</span>
+                  <span className="font-semibold text-sm sm:text-base text-red-600 dark:text-red-400">
                     R$ {stats.total.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                   </span>
                 </div>
-                
+
                 <div className="flex justify-between">
-                  <span className="text-gray-600 dark:text-gray-400">Registros:</span>
-                  <span className="font-semibold">{stats.count}</span>
+                  <span className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Registros:</span>
+                  <span className="font-semibold text-sm sm:text-base">{stats.count}</span>
                 </div>
-                
+
                 <div className="flex justify-between">
-                  <span className="text-gray-600 dark:text-gray-400">Média:</span>
-                  <span className="font-semibold">
+                  <span className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Média:</span>
+                  <span className="font-semibold text-sm sm:text-base">
                     R$ {stats.avgValue.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                   </span>
                 </div>
-                
+
                 <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                  <div 
+                  <div
                     className="bg-red-600 h-2 rounded-full transition-all duration-1000"
                     style={{ width: `${(stats.total / 100000) * 100}%` }}
                   ></div>
@@ -340,7 +339,7 @@ export default function AdvancedBIReports() {
             <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
               Evolução de Peso - {item.animal}
             </h3>
-            
+
             <div className="flex items-center space-x-4">
               {item.weights.map((weight, wIndex) => (
                 <div key={wIndex} className="flex-1 text-center">
@@ -349,7 +348,7 @@ export default function AdvancedBIReports() {
                     {weight.weight.toFixed(0)}kg
                   </div>
                   <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 mt-2">
-                    <div 
+                    <div
                       className="bg-blue-600 h-2 rounded-full transition-all duration-1000"
                       style={{ width: `${(weight.weight / item.weights[item.weights.length - 1].weight) * 100}%` }}
                     ></div>
@@ -370,7 +369,7 @@ export default function AdvancedBIReports() {
       const totalCost = animalCosts.reduce((sum, cost) => sum + cost.valor, 0)
       const marketValue = animal.valorVenda || 40000
       const potentialROI = totalCost > 0 ? ((marketValue - totalCost) / totalCost) * 100 : 0
-      
+
       return {
         animal: animal.brinco,
         raca: animal.raca,
@@ -385,38 +384,37 @@ export default function AdvancedBIReports() {
       <div className="space-y-6">
         <div className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-gray-700">
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">Previsões de Mercado</h3>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
             {predictions.map((prediction, index) => (
-              <div key={index} className="bg-gray-50 dark:bg-gray-700 rounded-lg p-4">
-                <div className="flex items-center justify-between mb-3">
-                  <h4 className="font-semibold text-gray-900 dark:text-white">{prediction.animal}</h4>
-                  <span className={`px-2 py-1 rounded-full text-xs font-semibold ${
-                    prediction.recommendation === 'VENDER' 
+              <div key={index} className="bg-gray-50 dark:bg-gray-700 rounded-lg p-3 sm:p-4">
+                <div className="flex items-center justify-between mb-2 sm:mb-3">
+                  <h4 className="font-semibold text-sm sm:text-base text-gray-900 dark:text-white">{prediction.animal}</h4>
+                  <span className={`px-2 py-1 rounded-full text-xs font-semibold ${prediction.recommendation === 'VENDER'
                       ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
                       : prediction.recommendation === 'CONSIDERAR'
-                      ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200'
-                      : 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
-                  }`}>
+                        ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200'
+                        : 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
+                    }`}>
                     {prediction.recommendation}
                   </span>
                 </div>
-                
-                <div className="space-y-2 text-sm">
+
+                <div className="space-y-1 sm:space-y-2 text-xs sm:text-sm">
                   <div className="flex justify-between">
                     <span className="text-gray-600 dark:text-gray-400">Valor Atual:</span>
                     <span className="font-semibold text-green-600 dark:text-green-400">
                       R$ {prediction.currentValue.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                     </span>
                   </div>
-                  
+
                   <div className="flex justify-between">
                     <span className="text-gray-600 dark:text-gray-400">Valor Potencial:</span>
                     <span className="font-semibold text-blue-600 dark:text-blue-400">
                       R$ {prediction.potentialValue.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                     </span>
                   </div>
-                  
+
                   <div className="flex justify-between">
                     <span className="text-gray-600 dark:text-gray-400">ROI Potencial:</span>
                     <span className={`font-semibold ${prediction.roi >= 0 ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}>
@@ -481,11 +479,10 @@ export default function AdvancedBIReports() {
           <button
             key={report.id}
             onClick={() => setSelectedReport(report.id)}
-            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-              selectedReport === report.id
+            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${selectedReport === report.id
                 ? 'bg-blue-600 text-white'
                 : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
-            }`}
+              }`}
           >
             <span className="mr-2">{report.icon}</span>
             {report.title}
@@ -499,11 +496,10 @@ export default function AdvancedBIReports() {
           <button
             key={range.value}
             onClick={() => setTimeRange(range.value)}
-            className={`px-3 py-1 rounded-lg text-xs font-medium transition-colors ${
-              timeRange === range.value
+            className={`px-3 py-1 rounded-lg text-xs font-medium transition-colors ${timeRange === range.value
                 ? 'bg-green-600 text-white'
                 : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
-            }`}
+              }`}
           >
             {range.label}
           </button>
