@@ -110,8 +110,12 @@ export default function Dashboard() {
             <div className="flex items-center space-x-3">
               <div className="text-3xl md:text-4xl">🐄</div>
               <div>
-                <h2 className="text-xl md:text-2xl font-bold text-white">MANEJO</h2>
-                <p className="text-green-100 text-sm md:text-base">Gestão completa do rebanho</p>
+                <h2 className="text-xl md:text-2xl font-bold text-white">
+                  MANEJO
+                </h2>
+                <p className="text-green-100 text-sm md:text-base">
+                  Gestão completa do rebanho
+                </p>
               </div>
             </div>
             <button
@@ -220,8 +224,12 @@ export default function Dashboard() {
             <div className="flex items-center space-x-3">
               <div className="text-3xl md:text-4xl">💰</div>
               <div>
-                <h2 className="text-xl md:text-2xl font-bold text-white">COMERCIAL</h2>
-                <p className="text-blue-100 text-sm md:text-base">Vendas e relatórios financeiros</p>
+                <h2 className="text-xl md:text-2xl font-bold text-white">
+                  COMERCIAL
+                </h2>
+                <p className="text-blue-100 text-sm md:text-base">
+                  Vendas e relatórios financeiros
+                </p>
               </div>
             </div>
             <button
@@ -4002,20 +4010,20 @@ export default function Dashboard() {
   if (user && user.role === "visitor") {
     return (
       <Layout>
-        <div className="space-y-4 md:space-y-8">
+        <div className="space-y-3 md:space-y-8">
           {/* Header de Boas-vindas para Visitante - Versão Compacta */}
-          <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl p-4 md:p-6 text-white text-center">
-            <div className="flex items-center justify-center space-x-3 md:space-x-4">
+          <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg md:rounded-xl p-3 md:p-6 text-white text-center">
+            <div className="flex items-center justify-center space-x-2 md:space-x-4">
               <img
                 src="/logo-fazendas-santanna.jpg"
                 alt="Fazendas Sant'Anna"
-                className="w-12 h-12 md:w-16 md:h-16 object-contain rounded-lg bg-white/10 p-1"
+                className="w-10 h-10 md:w-16 md:h-16 object-contain rounded-lg bg-white/10 p-1"
               />
               <div>
-                <h1 className="text-lg md:text-2xl font-bold">
+                <h1 className="text-base md:text-2xl font-bold">
                   Beef Sync - Fazendas Sant'Anna
                 </h1>
-                <p className="text-blue-100 text-sm md:text-base">
+                <p className="text-blue-100 text-xs md:text-base">
                   Escolha uma opção para explorar o sistema
                 </p>
               </div>
@@ -4023,79 +4031,79 @@ export default function Dashboard() {
           </div>
 
           {/* Cards Principais - MANEJO e COMERCIAL */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-8 max-w-4xl mx-auto">
             {/* Card MANEJO */}
             <button
               onClick={() => setShowManejoModal(true)}
-              className="group relative p-4 md:p-8 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-300 border border-gray-200 dark:border-gray-700 transform hover:scale-105"
+              className="group relative p-3 md:p-8 bg-white dark:bg-gray-800 rounded-xl md:rounded-2xl shadow-lg md:shadow-2xl hover:shadow-xl md:hover:shadow-3xl transition-all duration-300 border border-gray-200 dark:border-gray-700 transform hover:scale-105"
             >
               <div className="text-center">
-                <div className="text-4xl md:text-6xl mb-2 md:mb-4 group-hover:scale-110 transition-transform duration-300">
+                <div className="text-3xl md:text-6xl mb-1 md:mb-4 group-hover:scale-110 transition-transform duration-300">
                   🐄
                 </div>
-                <h3 className="text-xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2 md:mb-3">
+                <h3 className="text-lg md:text-3xl font-bold text-gray-900 dark:text-white mb-1 md:mb-3">
                   MANEJO
                 </h3>
-                <p className="text-sm md:text-lg text-gray-600 dark:text-gray-400 mb-2 md:mb-4">
+                <p className="text-xs md:text-lg text-gray-600 dark:text-gray-400 mb-1 md:mb-4">
                   Gestão completa do rebanho
                 </p>
-                <div className="text-xs md:text-sm text-gray-500 dark:text-gray-500 space-y-1">
+                <div className="text-xs md:text-sm text-gray-500 dark:text-gray-500 space-y-0.5 md:space-y-1">
                   <p>• Nascimentos</p>
                   <p>• Boletim de Gado</p>
                   <p>• Controle de Mortes</p>
-                  <p>• Programa FIV</p>
-                  <p>• E muito mais...</p>
+                  <p className="hidden md:block">• Programa FIV</p>
+                  <p className="hidden md:block">• E muito mais...</p>
                 </div>
               </div>
-              <div className="absolute inset-0 bg-gradient-to-r from-green-500/10 to-emerald-500/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-green-500/10 to-emerald-500/10 rounded-xl md:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </button>
 
             {/* Card COMERCIAL */}
             <button
               onClick={() => setShowComercialModal(true)}
-              className="group relative p-4 md:p-8 bg-white dark:bg-gray-800 rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-300 border border-gray-200 dark:border-gray-700 transform hover:scale-105"
+              className="group relative p-3 md:p-8 bg-white dark:bg-gray-800 rounded-xl md:rounded-2xl shadow-lg md:shadow-2xl hover:shadow-xl md:hover:shadow-3xl transition-all duration-300 border border-gray-200 dark:border-gray-700 transform hover:scale-105"
             >
               <div className="text-center">
-                <div className="text-4xl md:text-6xl mb-2 md:mb-4 group-hover:scale-110 transition-transform duration-300">
+                <div className="text-3xl md:text-6xl mb-1 md:mb-4 group-hover:scale-110 transition-transform duration-300">
                   💰
                 </div>
-                <h3 className="text-xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2 md:mb-3">
+                <h3 className="text-lg md:text-3xl font-bold text-gray-900 dark:text-white mb-1 md:mb-3">
                   COMERCIAL
                 </h3>
-                <p className="text-sm md:text-lg text-gray-600 dark:text-gray-400 mb-2 md:mb-4">
+                <p className="text-xs md:text-lg text-gray-600 dark:text-gray-400 mb-1 md:mb-4">
                   Vendas e relatórios financeiros
                 </p>
-                <div className="text-xs md:text-sm text-gray-500 dark:text-gray-500 space-y-1">
+                <div className="text-xs md:text-sm text-gray-500 dark:text-gray-500 space-y-0.5 md:space-y-1">
                   <p>• Vendas em Leilão</p>
                   <p>• Relatórios de Vendas</p>
                   <p>• Análises Financeiras</p>
-                  <p>• Controle de Receitas</p>
-                  <p>• E muito mais...</p>
+                  <p className="hidden md:block">• Controle de Receitas</p>
+                  <p className="hidden md:block">• E muito mais...</p>
                 </div>
               </div>
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-xl md:rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </button>
           </div>
 
           {/* Informações Adicionais */}
-          <div className="bg-white dark:bg-gray-800 rounded-xl p-4 md:p-6 shadow-lg border border-gray-200 dark:border-gray-700 max-w-4xl mx-auto">
+          <div className="bg-white dark:bg-gray-800 rounded-lg md:rounded-xl p-3 md:p-6 shadow-md md:shadow-lg border border-gray-200 dark:border-gray-700 max-w-4xl mx-auto">
             <div className="text-center">
-              <div className="flex justify-center mb-3 md:mb-4">
+              <div className="flex justify-center mb-2 md:mb-4">
                 <img
                   src="/logo-fazendas-santanna.jpg"
                   alt="Fazendas Sant'Anna"
-                  className="w-12 h-12 md:w-16 md:h-16 object-contain rounded-lg"
+                  className="w-10 h-10 md:w-16 md:h-16 object-contain rounded-lg"
                 />
               </div>
-              <h3 className="text-lg md:text-2xl font-semibold text-gray-900 dark:text-white mb-3 md:mb-4">
+              <h3 className="text-base md:text-2xl font-semibold text-gray-900 dark:text-white mb-2 md:mb-4">
                 🚀 Sobre o Beef Sync - Fazendas Sant'Anna
               </h3>
-              <p className="text-gray-600 dark:text-gray-400 text-sm md:text-lg leading-relaxed">
+              <p className="text-gray-600 dark:text-gray-400 text-xs md:text-lg leading-relaxed">
                 O Beef Sync é um sistema completo de gestão bovina desenvolvido
                 especialmente para as Fazendas Sant'Anna. Oferece controle total
                 sobre o manejo do rebanho e operações comerciais, com tecnologia
                 avançada e interface intuitiva para facilitar a administração da
-                fazenda.
+                fazenda.By Zec@
               </p>
             </div>
           </div>
